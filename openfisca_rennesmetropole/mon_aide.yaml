@@ -1,29 +1,82 @@
-- name: "Un couple avec deux enfants reçoit 200€"
+- name: "Une personne seule à 100%"
   period: 2016-01
   familles:
-    parents: ["couple1", "couple2"]
-    enfants: ["enfant1", "enfant2"]
+    parents: ["personne1"]
   individus:
-  - id: "couple1"
-    age: 35
-  - id: "couple2"
-    age: 35
+  - id: "personne1"
+    salaire_net: 700
+  output_variables:
+    rennes_metropole_transport: 100
+
+- name: "Une personne seule à 85%"
+  period: 2016-01
+  familles:
+    parents: ["personne1"]
+  individus:
+  - id: "personne1"
+    salaire_net: 1000
+  output_variables:
+    rennes_metropole_transport: 85
+
+- name: "Une personne seule à 50%"
+  period: 2016-01
+  familles:
+    parents: ["personne1"]
+  individus:
+  - id: "personne1"
+    salaire_net: 1200
+  output_variables:
+    rennes_metropole_transport: 50
+
+- name: "couple  100%"
+  period: 2016-01
+  familles:
+    parents: ["personne1","personne2"]
+  individus:
+  - id: "personne1"
+    salaire_net: 200
+  - id: "personne2"
+    salaire_net: 400
+  output_variables:
+    rennes_metropole_transport: 100
+
+- name: "couple  100%"
+  period: 2016-01
+  familles:
+    parents: ["personne1","personne2"]
+  individus:
+  - id: "personne1"
+    salaire_net: 200
+  - id: "personne2"
+    salaire_net: 400
+  output_variables:
+    rennes_metropole_transport: 100
+
+- name: "Une personne seule avec un enfant à 100%"
+  period: 2016-01
+  familles:
+    parents: ["personne1"]
+    enfants: ["enfant1"]
+  individus:
+  - id: "personne1"
+    salaire_net: 1619
   - id: "enfant1"
-    age: 8
-  - id: "enfant2"
-    age: 4
   output_variables:
-    mon_aide: 200
+    rennes_metropole_transport: 100
 
-- name: "Un couple sans enfant ne reçoit rien"
+- name: "Couple avec 4 enfant à 50%"
   period: 2016-01
   familles:
-    parents: ["couple1", "couple2"]
+    parents: ["personne1","personne2"]
+    enfants: ["enfant1","enfant2","enfant3","enfant4"]
   individus:
-  - id: "couple1"
-    age: 35
-  - id: "couple2"
-    age: 35
+  - id: "personne1"
+    salaire_net: 1619
+  - id: "personne2"
+    salaire_net: 1500
+  - id: "enfant1"
+  - id: "enfant2"
+  - id: "enfant3"
+  - id: "enfant4"
   output_variables:
-    mon_aide: 0
-
+    rennes_metropole_transport: 50
