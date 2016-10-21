@@ -14,7 +14,58 @@ class rennes_metropole_transport(Variable):
         period = period.this_month
         nombre_enfants = simulation.calculate('af_nbenf', period)
         # montant_par_enfant = simulation.legislation_at(period.start).rennesmetropole.mon_aide.montant
-        
+       
+
+
+        ressources_a_inclure =[
+
+            'salaire_net',
+            'indemnites_journalieres',
+            'allocation_aide_retour_emploi',
+            'ass',
+            'rsa',
+            'ppa',
+            'pensions_invalidite',
+            'revenus_stage_formation_pro',
+            'af',
+            'cf',
+            'asf',
+            'paje_base',
+            'paje_clca',
+            'paje_prepare',
+            #'ajpp',
+            'apl',
+            'alf',
+            'als',
+            'aah',
+            'retraite_nette',
+            'retraite_combattant',
+            'aspa',
+            'pensions_alimentaires_percues',
+            'revenus_locatifs',
+            'revenus_capital',
+            
+
+
+        ]
+
+        #pensions_alimentaires_versees
+
+        #renvenus BIC ou B
+        def revenus_tns():
+            revenus_auto_entrepreneur = simulation.calculate_add('tns_auto_entrepreneur_benefice', period.last_3_months)
+
+            # Les revenus TNS hors AE sont estimés en se basant sur le revenu N-1
+            tns_micro_entreprise_benefice = simulation.calculate('tns_micro_entreprise_benefice', period.last_year) * (3 / 12)
+            tns_benefice_exploitant_agricole = simulation.calculate('tns_benefice_exploitant_agricole', period.last_year) * (3 / 12)
+            tns_autres_revenus = simulation.calculate('tns_autres_revenus', period.last_year) * (3 / 12)
+            return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
+ 
+
+        ressources=sum([simulation.calculate_add(ressource,period) for ressource in ressources_a_inclure]) - simulation.calculate('pensions_alimentaires_versees_individu', period) + revenus_tns()
+
+
+
 		#recherche si en couple
         famille_en_couple =simulation.compute('en_couple', period)
         #transformation valeur en couple sur l'entity Famille
@@ -36,9 +87,9 @@ class rennes_metropole_transport(Variable):
 
         seuil_evolutif=(1+individu_en_couple*(0.5+nombre_enfants*0.3))
 
-        print(taux3)
+        print(ressources)
 
-        result = select([salaire_cumul <= seuil1*seuil_evolutif,salaire_cumul <= seuil2*seuil_evolutif, salaire_cumul <= seuil3*seuil_evolutif], [taux1,taux2,taux3])
+        result = select([ressources <= seuil1*seuil_evolutif,ressources <= seuil2*seuil_evolutif, ressources <= seuil3*seuil_evolutif], [taux1,taux2,taux3])
         # import ipdb
         # ipdb.set_trace()
 

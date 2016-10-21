@@ -49,6 +49,8 @@
     salaire_net: 200
   - id: "personne2"
     salaire_net: 400
+    indemnites_journalieres_paternite: 400
+    indemnites_journalieres_maternite: 400
   output_variables:
     rennes_metropole_transport: 100
 
