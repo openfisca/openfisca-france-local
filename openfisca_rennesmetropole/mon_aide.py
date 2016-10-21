@@ -49,7 +49,7 @@ class rennes_metropole_transport(Variable):
 
         ]
 
-        #pensions_alimentaires_versees
+        #pensions_alimentaires_versees 
 
         #renvenus BIC ou B
         def revenus_tns():
@@ -62,11 +62,11 @@ class rennes_metropole_transport(Variable):
             return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
  
 
-        ressources=sum([simulation.calculate_add(ressource,period) for ressource in ressources_a_inclure]) - simulation.calculate('pensions_alimentaires_versees_individu', period) + revenus_tns()
+        ressources=sum([simulation.calculate_add(ressource,period.last_3_months) for ressource in ressources_a_inclure]) - simulation.calculate('pensions_alimentaires_versees_individu', period.last_3_months) + revenus_tns()
 
 
 
-		#recherche si en couple
+        #recherche si en couple
         famille_en_couple =simulation.compute('en_couple', period)
         #transformation valeur en couple sur l'entity Famille
         individu_en_couple = self.cast_from_entity_to_roles(famille_en_couple)
@@ -82,17 +82,47 @@ class rennes_metropole_transport(Variable):
 		# determine si une personne seule a des enfants qui est considéré de fait comme un couple
         individu_en_couple = or_(individu_en_couple,nombre_enfants>=1)
 
-        salaire =  simulation.compute('salaire_net', period)
-        salaire_cumul=self.sum_by_entity(salaire, entity = 'famille')
+        #salaire =  simulation.compute('salaire_net', period)
+       # salaire_cumul=self.sum_by_entity(salaire, entity = 'famille')
 
         seuil_evolutif=(1+individu_en_couple*(0.5+nombre_enfants*0.3))
 
         print(ressources)
 
-        result = select([ressources <= seuil1*seuil_evolutif,ressources <= seuil2*seuil_evolutif, ressources <= seuil3*seuil_evolutif], [taux1,taux2,taux3])
+        result_non_etudiant = select([ressources <= seuil1*seuil_evolutif,ressources <= seuil2*seuil_evolutif, ressources <= seuil3*seuil_evolutif], [taux1,taux2,taux3])
         # import ipdb
         # ipdb.set_trace()
+
+        etudiant = simulation.calculate('etudiant')
+       
+        result_etudiant = simulation.calculate('rennes_metropole_transport_etudiant')
+        print(result_etudiant)
+        result = where(etudiant, result_etudiant, result_non_etudiant)
 
  
         return period, result
 
+
+
+
+
+
+   
+
+
+
+class rennes_metropole_transport_etudiant(Variable):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Calcul tarification solidaire"
+
+
+    def function(self, simulation, period):
+        taux1= simulation.legislation_at(period.start).rennesmetropole.tarification_solidaire.taux_reduction.taux1      
+        taux2 = simulation.legislation_at(period.start).rennesmetropole.tarification_solidaire.taux_reduction.taux2
+        taux3 = simulation.legislation_at(period.start).rennesmetropole.tarification_solidaire.taux_reduction.taux3
+        period = period.this_month
+        montant_bourse = simulation.calculate('bourse_enseignement_sup',)
+        print(montant_bourse)
+        result_etudiant = select([montant_bourse >= 450.5,montant_bourse >= 321.8, montant_bourse >= 166.9], [taux1,taux2,taux3])
+        return period, result_etudiant
