@@ -117,8 +117,8 @@ class rennes_metropole_transport_etudiant(Variable):
         period = period.this_month
         #montant_bourse = simulation.calculate('bourse_enseignement_sup',)
         
-        #echelon = simulation.calculate('echelon_bourse',period)
-        echelon = 1
+        echelon = simulation.calculate('echelon_bourse',period)
+        #echelon = 1
         print(echelon)
         result_etudiant = select([echelon >= 5,echelon >= 3, echelon >= 2], [taux1,taux2,taux3])
         return period, result_etudiant
