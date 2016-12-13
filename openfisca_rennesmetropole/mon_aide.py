@@ -87,7 +87,7 @@ class rennes_metropole_transport(Variable):
 
         seuil_evolutif=(1+individu_en_couple*(0.5+nombre_enfants*0.3))
 
-        print(ressources)
+       # print(ressources)
 
         result_non_etudiant = select([ressources <= seuil1*seuil_evolutif,ressources <= seuil2*seuil_evolutif, ressources <= seuil3*seuil_evolutif], [taux1,taux2,taux3])
         # import ipdb
@@ -104,13 +104,6 @@ class rennes_metropole_transport(Variable):
 
 
 
-
-
-
-   
-
-
-
 class rennes_metropole_transport_etudiant(Variable):
     column = FloatCol
     entity_class = Individus
@@ -122,7 +115,10 @@ class rennes_metropole_transport_etudiant(Variable):
         taux2 = simulation.legislation_at(period.start).rennesmetropole.tarification_solidaire.taux_reduction.taux2
         taux3 = simulation.legislation_at(period.start).rennesmetropole.tarification_solidaire.taux_reduction.taux3
         period = period.this_month
-        montant_bourse = simulation.calculate('bourse_enseignement_sup',)
-        print(montant_bourse)
-        result_etudiant = select([montant_bourse >= 450.5,montant_bourse >= 321.8, montant_bourse >= 166.9], [taux1,taux2,taux3])
+        #montant_bourse = simulation.calculate('bourse_enseignement_sup',)
+        
+        #echelon = simulation.calculate('echelon_bourse',period)
+        echelon = 1
+        print(echelon)
+        result_etudiant = select([echelon >= 5,echelon >= 3, echelon >= 2], [taux1,taux2,taux3])
         return period, result_etudiant
