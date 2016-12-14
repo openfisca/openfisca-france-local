@@ -14,7 +14,7 @@ class rennes_metropole_transport(Variable):
         period = period.this_month
         nombre_enfants = simulation.calculate('af_nbenf', period)
         # montant_par_enfant = simulation.legislation_at(period.start).rennesmetropole.mon_aide.montant
-       
+        nombre_enfants = 1
 
 
         ressources_a_inclure =[
@@ -62,10 +62,11 @@ class rennes_metropole_transport(Variable):
             return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
  
 
-        ressources=sum([simulation.calculate_add(ressource,period.last_3_months) for ressource in ressources_a_inclure]) - simulation.calculate('pensions_alimentaires_versees_individu', period.last_3_months) + revenus_tns()
+        ressources=sum([simulation.calculate_add(ressource,period.last_year) for ressource in ressources_a_inclure]) - simulation.calculate('pensions_alimentaires_versees_individu', period.last_3_months) + revenus_tns()
 
-
-
+        print (simulation.calculate_add('rsa',period.last_year))
+        #ressources = ressources / 3
+        print(ressources)
         #recherche si en couple
         famille_en_couple =simulation.compute('en_couple', period)
         #transformation valeur en couple sur l'entity Famille
@@ -87,7 +88,7 @@ class rennes_metropole_transport(Variable):
 
         seuil_evolutif=(1+individu_en_couple*(0.5+nombre_enfants*0.3))
 
-       # print(ressources)
+        
 
         result_non_etudiant = select([ressources <= seuil1*seuil_evolutif,ressources <= seuil2*seuil_evolutif, ressources <= seuil3*seuil_evolutif], [taux1,taux2,taux3])
         # import ipdb
@@ -96,10 +97,10 @@ class rennes_metropole_transport(Variable):
         etudiant = simulation.calculate('etudiant')
        
         result_etudiant = simulation.calculate('rennes_metropole_transport_etudiant')
-        print(result_etudiant)
+        print(etudiant)
         result = where(etudiant, result_etudiant, result_non_etudiant)
 
- 
+        print(result)
         return period, result
 
 
@@ -118,7 +119,7 @@ class rennes_metropole_transport_etudiant(Variable):
         #montant_bourse = simulation.calculate('bourse_enseignement_sup',)
         
         echelon = simulation.calculate('echelon_bourse',period)
-        #echelon = 1
+       # echelon = 1
         print(echelon)
         result_etudiant = select([echelon >= 5,echelon >= 3, echelon >= 2], [taux1,taux2,taux3])
         return period, result_etudiant
