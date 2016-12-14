@@ -14,7 +14,7 @@ class rennes_metropole_transport(Variable):
         period = period.this_month
         nombre_enfants = simulation.calculate('af_nbenf', period)
         # montant_par_enfant = simulation.legislation_at(period.start).rennesmetropole.mon_aide.montant
-        nombre_enfants = 1
+        #nombre_enfants = 1
 
 
         ressources_a_inclure =[
