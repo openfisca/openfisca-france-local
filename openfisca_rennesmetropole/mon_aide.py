@@ -14,7 +14,7 @@ class rennes_metropole_transport(Variable):
         period = period.this_month
         nombre_enfants = simulation.calculate('af_nbenf', period)
         # montant_par_enfant = simulation.legislation_at(period.start).rennesmetropole.mon_aide.montant
-        #nombre_enfants = 1
+       
 
 
         ressources_a_inclure =[
@@ -34,7 +34,7 @@ class rennes_metropole_transport(Variable):
             'paje_clca',
             'paje_prepare',
             #'ajpp',
-            'apl',
+            'aide_logement',
             'alf',
             'als',
             'aah',
@@ -64,9 +64,10 @@ class rennes_metropole_transport(Variable):
 
         ressources=sum([simulation.calculate_add(ressource,period.last_year) for ressource in ressources_a_inclure]) - simulation.calculate('pensions_alimentaires_versees_individu', period.last_3_months) + revenus_tns()
 
-        print (simulation.calculate_add('rsa',period.last_year))
+        #print (simulation.calculate_add('rsa',period.last_year))
         #ressources = ressources / 3
-        print(ressources)
+      #  print(simulation.calculate_add('aide_logement',period.last_year))
+      #  print(simulation.calculate_add('salaire_net',period.last_year))
         #recherche si en couple
         famille_en_couple =simulation.compute('en_couple', period)
         #transformation valeur en couple sur l'entity Famille
@@ -95,11 +96,11 @@ class rennes_metropole_transport(Variable):
         # ipdb.set_trace()
 
         etudiant = simulation.calculate('etudiant')
-       
+        
         result_etudiant = simulation.calculate('rennes_metropole_transport_etudiant')
-        print(etudiant)
+        #print(etudiant)
         result = where(etudiant, result_etudiant, result_non_etudiant)
-
+        print(ressources)
         print(result)
         return period, result
 
@@ -119,7 +120,7 @@ class rennes_metropole_transport_etudiant(Variable):
         #montant_bourse = simulation.calculate('bourse_enseignement_sup',)
         
         echelon = simulation.calculate('echelon_bourse',period)
-       # echelon = 1
+        #echelon = 1
         print(echelon)
         result_etudiant = select([echelon >= 5,echelon >= 3, echelon >= 2], [taux1,taux2,taux3])
         return period, result_etudiant
