@@ -35,8 +35,8 @@ class rennes_metropole_transport(Variable):
             'paje_prepare',
             #'ajpp',
             'aide_logement',
-            'alf',
-            'als',
+            #'alf',
+            #'als',
             'aah',
             'retraite_nette',
             'retraite_combattant',
@@ -62,10 +62,10 @@ class rennes_metropole_transport(Variable):
             return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
  
 
-        ressources=sum([simulation.calculate_add(ressource,period.last_year) for ressource in ressources_a_inclure]) - simulation.calculate('pensions_alimentaires_versees_individu', period.last_3_months) + revenus_tns()
+        ressources=sum([simulation.calculate_add(ressource,period.start.period('year').offset(-1))/12 for ressource in ressources_a_inclure]) - simulation.calculate('pensions_alimentaires_versees_individu', period.last_3_months) + revenus_tns()
 
         #print (simulation.calculate_add('rsa',period.last_year))
-        #ressources = ressources / 3
+       # ressources = ressources / 12
       #  print(simulation.calculate_add('aide_logement',period.last_year))
       #  print(simulation.calculate_add('salaire_net',period.last_year))
         #recherche si en couple
@@ -94,11 +94,10 @@ class rennes_metropole_transport(Variable):
         result_non_etudiant = select([ressources <= seuil1*seuil_evolutif,ressources <= seuil2*seuil_evolutif, ressources <= seuil3*seuil_evolutif], [taux1,taux2,taux3])
         # import ipdb
         # ipdb.set_trace()
-
         etudiant = simulation.calculate('etudiant')
-        
+        #result_etudiant=1
         result_etudiant = simulation.calculate('rennes_metropole_transport_etudiant')
-        #print(etudiant)
+        print(etudiant)
         result = where(etudiant, result_etudiant, result_non_etudiant)
         print(ressources)
         print(result)
@@ -113,14 +112,15 @@ class rennes_metropole_transport_etudiant(Variable):
 
 
     def function(self, simulation, period):
+        period = period.this_month
         taux1= simulation.legislation_at(period.start).rennesmetropole.tarification_solidaire.taux_reduction.taux1      
         taux2 = simulation.legislation_at(period.start).rennesmetropole.tarification_solidaire.taux_reduction.taux2
         taux3 = simulation.legislation_at(period.start).rennesmetropole.tarification_solidaire.taux_reduction.taux3
-        period = period.this_month
+        
         #montant_bourse = simulation.calculate('bourse_enseignement_sup',)
         
         echelon = simulation.calculate('echelon_bourse',period)
-        #echelon = 1
+       # echelon = 1
         print(echelon)
         result_etudiant = select([echelon >= 5,echelon >= 3, echelon >= 2], [taux1,taux2,taux3])
         return period, result_etudiant
