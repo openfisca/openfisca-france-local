@@ -103,8 +103,8 @@ class rennes_metropole_transport(Variable):
         #result_etudiant = simulation.calculate('rennes_metropole_transport_etudiant')
         
         # Récupération de l'échelon de bourse
-        #echelon = simulation.calculate('echelon_bourse',period)
-        echelon = 3
+        echelon = simulation.calculate('echelon_bourse',period)
+        #echelon = 4
         #print(echelon)
         result_etudiant = select([echelon >= 5,echelon >= 3, echelon >= 2], [taux1,taux2,taux3])
         result = where(etudiant, result_etudiant, result_non_etudiant)
