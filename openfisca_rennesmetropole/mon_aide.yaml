@@ -43,6 +43,94 @@
       2016-10: 1000
       2016-11: 1000
       2016-12: 1000
+
   output_variables:
     rennes_metropole_transport: 85
 
+- name: "Etudiant boursier"
+  period: 2016-12
+  familles:
+    parents: ["personne1"]
+  individus:
+  - id: "personne1"
+    etudiant: 1
+    date_naissance: 1992-01-01
+    #echelon_bourse: 4
+
+  output_variables:
+    rennes_metropole_transport: 85
+
+- name: "Salairé avec un enfant de 10 ans"
+  period: 2016-12
+  familles:
+    parents: ["personne1"]
+    enfants: ["enfant1"]
+  individus:
+  - id: "personne1"
+    salaire_net:
+
+      2015-12: 0
+      2016-01: 0
+      2016-02: 0
+      2016-03: 0
+      2016-04: 1100
+      2016-05: 1100
+      2016-06: 1100
+      2016-07: 1100
+      2016-08: 1100
+      2016-09: 1100
+      2016-10: 1100
+      2016-11: 1100
+      2016-12: 1100
+
+  - id: "enfant1"
+    date_naissance: 2006-01-01
+    #echelon_bourse: 4
+
+  output_variables:
+    rennes_metropole_transport: ["100","85"]
+
+
+- name: "Une personne seule retraité à 0%"
+  period: 2016-12
+  familles:
+    parents: ["personne1"]
+  individus:
+  - id: "personne1"
+    date_naissance: 1952-01-01
+    salaire_net:
+      2015-12: 1500
+      2016-01: 1500
+      2016-02: 1500
+      2016-03: 1500
+      2016-04: 1500
+      2016-05: 1500
+      2016-06: 1500
+      2016-07: 1500
+      2016-08: 1500
+      2016-09: 1500
+      2016-10: 1500
+      2016-11: 1500
+      2016-12: 1500
+
+  output_variables: 
+   rennes_metropole_transport: 0
+
+
+- name: "Chomeur avec deux enfants de 10 ans"
+  period: 2016-12
+  familles:
+    parents: ["personne1"]
+    enfants: ["enfant1","enfant2"]
+  individus:
+  - id: "personne1"
+    salaire_net:
+
+      
+  - id: "enfant1"
+    date_naissance: 2006-01-01
+  - id: "enfant2"
+    date_naissance: 2006-01-01
+
+  output_variables:
+    rennes_metropole_transport: ["100","85","85"]
