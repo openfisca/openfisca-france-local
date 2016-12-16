@@ -1,84 +1,48 @@
 - name: "Une personne seule à 100%"
-  period: 2016-01
+  period: 2016-12
   familles:
     parents: ["personne1"]
   individus:
   - id: "personne1"
-    salaire_net: 700
+    date_naissance: 1972-01-01
+    salaire_net:
+      2015-12: 700
+      2016-01: 700
+      2016-02: 700
+      2016-03: 700
+      2016-04: 700
+      2016-05: 700
+      2016-06: 700
+      2016-07: 700
+      2016-08: 700
+      2016-09: 700
+      2016-10: 700
+      2016-11: 700
+      2016-12: 700
+
   output_variables:
     rennes_metropole_transport: 100
 
 - name: "Une personne seule à 85%"
-  period: 2016-01
+  period: 2016-12
   familles:
     parents: ["personne1"]
   individus:
   - id: "personne1"
-    salaire_net: 1000
+    salaire_net:
+      2015-12: 0
+      2016-01: 0
+      2016-02: 0
+      2016-03: 0
+      2016-04: 1000
+      2016-05: 1000
+      2016-06: 1000
+      2016-07: 1000
+      2016-08: 1000
+      2016-09: 1000
+      2016-10: 1000
+      2016-11: 1000
+      2016-12: 1000
   output_variables:
     rennes_metropole_transport: 85
 
-- name: "Une personne seule à 50%"
-  period: 2016-01
-  familles:
-    parents: ["personne1"]
-  individus:
-  - id: "personne1"
-    salaire_net: 1200
-  output_variables:
-    rennes_metropole_transport: 50
-
-- name: "couple  100%"
-  period: 2016-01
-  familles:
-    parents: ["personne1","personne2"]
-  individus:
-  - id: "personne1"
-    salaire_net: 200
-  - id: "personne2"
-    salaire_net: 400
-  output_variables:
-    rennes_metropole_transport: 100
-
-- name: "couple  100%"
-  period: 2016-01
-  familles:
-    parents: ["personne1","personne2"]
-  individus:
-  - id: "personne1"
-    salaire_net: 200
-  - id: "personne2"
-    salaire_net: 400
-    indemnites_journalieres_paternite: 400
-    indemnites_journalieres_maternite: 400
-  output_variables:
-    rennes_metropole_transport: 100
-
-- name: "Une personne seule avec un enfant à 100%"
-  period: 2016-01
-  familles:
-    parents: ["personne1"]
-    enfants: ["enfant1"]
-  individus:
-  - id: "personne1"
-    salaire_net: 1619
-  - id: "enfant1"
-  output_variables:
-    rennes_metropole_transport: 100
-
-- name: "Couple avec 4 enfant à 50%"
-  period: 2016-01
-  familles:
-    parents: ["personne1","personne2"]
-    enfants: ["enfant1","enfant2","enfant3","enfant4"]
-  individus:
-  - id: "personne1"
-    salaire_net: 1619
-  - id: "personne2"
-    salaire_net: 1500
-  - id: "enfant1"
-  - id: "enfant2"
-  - id: "enfant3"
-  - id: "enfant4"
-  output_variables:
-    rennes_metropole_transport: 50

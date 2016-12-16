@@ -14,8 +14,7 @@ class rennes_metropole_transport(Variable):
         period = period.this_month
         nombre_enfants = simulation.calculate('af_nbenf', period)
         # montant_par_enfant = simulation.legislation_at(period.start).rennesmetropole.mon_aide.montant
-      
-
+        
 
         ressources_a_inclure =[
 
@@ -24,7 +23,7 @@ class rennes_metropole_transport(Variable):
             'allocation_aide_retour_emploi',
             'ass',
             'rsa',
-            'ppa',
+           # 'ppa',
             'pensions_invalidite',
             'revenus_stage_formation_pro',
             'af',
@@ -48,12 +47,13 @@ class rennes_metropole_transport(Variable):
 
 
         ]
-
+        
         #pensions_alimentaires_versees 
-
+       
         #renvenus BIC ou B
         def revenus_tns():
             revenus_auto_entrepreneur = simulation.calculate_add('tns_auto_entrepreneur_benefice', period.last_3_months)
+           
 
             # Les revenus TNS hors AE sont estimés en se basant sur le revenu N-1
             tns_micro_entreprise_benefice = simulation.calculate('tns_micro_entreprise_benefice', period.last_year) * (3 / 12)
@@ -64,6 +64,9 @@ class rennes_metropole_transport(Variable):
 
         ressources=sum([simulation.calculate_add(ressource,period.start.period('year').offset(-1))/12 for ressource in ressources_a_inclure]) - simulation.calculate('pensions_alimentaires_versees_individu', period.last_3_months) + revenus_tns()
 
+        #ajout de la ppa
+        ressources=ressources+(simulation.calculate('ppa',period.last_year)) * (3 / 12)
+         
         #print (simulation.calculate_add('rsa',period.last_year))
        # ressources = ressources / 12
       #  print(simulation.calculate_add('aide_logement',period.last_year))
@@ -98,16 +101,18 @@ class rennes_metropole_transport(Variable):
         etudiant = simulation.calculate('etudiant')
        
         #result_etudiant = simulation.calculate('rennes_metropole_transport_etudiant')
-        #echelon = 3
+        
         # Récupération de l'échelon de bourse
-        echelon = simulation.calculate('echelon_bourse',period)
-
+        #echelon = simulation.calculate('echelon_bourse',period)
+        echelon = 3
         #print(echelon)
         result_etudiant = select([echelon >= 5,echelon >= 3, echelon >= 2], [taux1,taux2,taux3])
         result = where(etudiant, result_etudiant, result_non_etudiant)
-        #print(ressources)
-        #print(result_non_etudiant)
-        #print(result)
+        print(ressources)
+        print(simulation.calculate('salaire_net', period.start.period('year').offset(-1))/12)
+        print(simulation.calculate('rsa', period.start.period('year').offset(-1))/12)
+        print(result_non_etudiant)
+        print(result)
         return period, result
 
 
