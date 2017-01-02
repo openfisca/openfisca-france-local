@@ -63,7 +63,7 @@ class rennes_metropole_transport(Variable):
 
 
         ressources=sum([simulation.calculate_add(ressource,period.start.period('year').offset(-1))/12 for ressource in ressources_a_inclure]) - simulation.calculate('pensions_alimentaires_versees_individu', period.last_3_months) + revenus_tns()
-        
+
         #on prend en compte le salire du conjoint
         ressources = (sum(ressources));
         #ajout de la ppa
