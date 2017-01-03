@@ -62,10 +62,37 @@ class rennes_metropole_transport(Variable):
             return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
 
 
-        ressources=sum([simulation.calculate_add(ressource,period.start.period('year').offset(-1))/12 for ressource in ressources_a_inclure]) - simulation.calculate('pensions_alimentaires_versees_individu', period.last_3_months) + revenus_tns()
+       # ressources=sum([simulation.calculate_add(ressource,period.start.period('year').offset(-1))/12 for ressource in ressources_a_inclure]) - simulation.calculate('pensions_alimentaires_versees_individu', period.last_3_months) + revenus_tns()
 
         #on prend en compte le salire du conjoint
-        ressources = (sum(ressources));
+        ressources = sum(simulation.calculate('salaire_net', period.start.period('year').offset(-1))/12)
+       
+        ressources = ressources + sum(simulation.calculate('indemnites_journalieres', period.start.period('year').offset(-1))/12)
+        ressources = ressources + sum(simulation.calculate('allocation_aide_retour_emploi', period.start.period('year').offset(-1))/12)
+        ressources = ressources + sum(simulation.calculate('ass', period.start.period('year').offset(-1))/12)
+        ressources = ressources + sum(simulation.calculate('rsa', period.start.period('year').offset(-1))/12)
+        ressources = ressources + sum(simulation.calculate('pensions_invalidite', period.start.period('year').offset(-1))/12)
+        ressources = ressources + sum(simulation.calculate('revenus_stage_formation_pro', period.start.period('year').offset(-1))/12)
+        ressources = ressources + sum(simulation.calculate('af', period.start.period('year').offset(-1))/12)
+        ressources = ressources + sum(simulation.calculate('cf', period.start.period('year').offset(-1))/12)
+        ressources = ressources + sum(simulation.calculate('asf', period.start.period('year').offset(-1))/12)
+        ressources = ressources + sum(simulation.calculate('paje_base', period.start.period('year').offset(-1))/12)
+        ressources = ressources + sum(simulation.calculate('paje_clca', period.start.period('year').offset(-1))/12)
+        ressources = ressources + sum(simulation.calculate('paje_prepare', period.start.period('year').offset(-1))/12)
+        ressources = ressources + sum(simulation.calculate('aide_logement', period.start.period('year').offset(-1))/12)
+        ressources = ressources + sum(simulation.calculate('aah', period.start.period('year').offset(-1))/12)
+        ressources = ressources + sum(simulation.calculate('retraite_nette', period.start.period('year').offset(-1))/12)
+        ressources = ressources + sum(simulation.calculate('retraite_combattant', period.start.period('year').offset(-1))/12)
+        ressources = ressources + sum(simulation.calculate('aspa', period.start.period('year').offset(-1))/12)
+        ressources = ressources + sum(simulation.calculate('pensions_alimentaires_percues', period.start.period('year').offset(-1))/12)
+        ressources = ressources + sum(simulation.calculate('revenus_locatifs', period.start.period('year').offset(-1))/12)
+        ressources = ressources + sum(simulation.calculate('revenus_capital', period.start.period('year').offset(-1))/12)
+        
+
+        ressources = ressources - simulation.calculate('pensions_alimentaires_versees_individu', period.last_3_months) + revenus_tns()
+
+       
+        
         #ajout de la ppa
         ressources=ressources+(simulation.calculate('ppa',period.last_year)) * (3 / 12)
 
@@ -93,11 +120,11 @@ class rennes_metropole_transport(Variable):
        # salaire_cumul=self.sum_by_entity(salaire, entity = 'famille')
 
         seuil_evolutif=(1+individu_en_couple*(0.5+nombre_enfants*0.3))
-
+        
 
 
         result_non_etudiant = select([ressources <= seuil1*seuil_evolutif,ressources <= seuil2*seuil_evolutif, ressources <= seuil3*seuil_evolutif], [taux1,taux2,taux3])
-
+        
         # import ipdb
         # ipdb.set_trace()
         etudiant = simulation.calculate('etudiant')
@@ -109,14 +136,35 @@ class rennes_metropole_transport(Variable):
         #echelon = 4
         #print(echelon)
         result_etudiant = select([echelon >= 5,echelon >= 3, echelon >= 2], [taux1,taux2,taux3])
+        #print(result_etudiant)
         result = where(etudiant, result_etudiant, result_non_etudiant)
-        print(ressources)
-        print(simulation.calculate('salaire_net', period.start.period('year').offset(-1))/12)
-        print(simulation.calculate('rsa', period.start.period('year').offset(-1))/12)
-        print(result_non_etudiant)
-        print(result)
-        return period, result
+        #print("---")
+        #print(ressources)
+        #print(simulation.calculate('salaire_net', period.start.period('year').offset(-1))/12)
+        #print(simulation.calculate('indemnites_journalieres', period.start.period('year').offset(-1))/12)
+        #print(simulation.calculate('allocation_aide_retour_emploi', period.start.period('year').offset(-1))/12)
+        #print(simulation.calculate('ass', period.start.period('year').offset(-1))/12)
+        #print(simulation.calculate('rsa', period.start.period('year').offset(-1))/12)
+        #print(simulation.calculate('pensions_invalidite', period.start.period('year').offset(-1))/12)
+        #print(simulation.calculate('revenus_stage_formation_pro', period.start.period('year').offset(-1))/12)
+        #print(simulation.calculate('af', period.start.period('year').offset(-1))/12)
+        #print(simulation.calculate('cf', period.start.period('year').offset(-1))/12)
+        #print(simulation.calculate('asf', period.start.period('year').offset(-1))/12)
+        #print(simulation.calculate('paje_base', period.start.period('year').offset(-1))/12)
+        #print(simulation.calculate('paje_clca', period.start.period('year').offset(-1))/12)
+        #print(simulation.calculate('paje_prepare', period.start.period('year').offset(-1))/12)
+        #print(simulation.calculate('aide_logement', period.start.period('year').offset(-1))/12)
+        #print(simulation.calculate('aah', period.start.period('year').offset(-1))/12)
+        #print(simulation.calculate('retraite_nette', period.start.period('year').offset(-1))/12)
+        #print(simulation.calculate('retraite_combattant', period.start.period('year').offset(-1))/12)
+        #print(simulation.calculate('aspa', period.start.period('year').offset(-1))/12)
+        #print(simulation.calculate('pensions_alimentaires_percues', period.start.period('year').offset(-1))/12)
+        #print(simulation.calculate('revenus_locatifs', period.start.period('year').offset(-1))/12)
+        #print(simulation.calculate('revenus_capital', period.start.period('year').offset(-1))/12)
 
+        #print(result_non_etudiant)
+        #print(result) 
+        return period, result 
 
 
 class rennes_metropole_transport_etudiant(Variable):
