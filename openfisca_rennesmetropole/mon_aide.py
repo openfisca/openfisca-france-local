@@ -69,6 +69,7 @@ class rennes_metropole_transport(Variable):
        
         ressources = ressources + sum(simulation.calculate('indemnites_journalieres', period.start.period('year').offset(-1))/12)
         ressources = ressources + sum(simulation.calculate('allocation_aide_retour_emploi', period.start.period('year').offset(-1))/12)
+        ressources = ressources + sum(simulation.calculate('chomage_net', period.start.period('year').offset(-1))/12)
         ressources = ressources + sum(simulation.calculate('ass', period.start.period('year').offset(-1))/12)
         ressources = ressources + sum(simulation.calculate('rsa', period.start.period('year').offset(-1))/12)
         ressources = ressources + sum(simulation.calculate('pensions_invalidite', period.start.period('year').offset(-1))/12)
@@ -113,7 +114,7 @@ class rennes_metropole_transport(Variable):
         taux2 = simulation.legislation_at(period.start).rennesmetropole.tarification_solidaire.taux_reduction.taux2
         taux3 = simulation.legislation_at(period.start).rennesmetropole.tarification_solidaire.taux_reduction.taux3
 
-		# determine si une personne seule a des enfants qui est considéré de fait comme un couple
+        # determine si une personne seule a des enfants qui est considéré de fait comme un couple
         individu_en_couple = or_(individu_en_couple,nombre_enfants>=1)
 
         #salaire =  simulation.compute('salaire_net', period)
@@ -138,11 +139,12 @@ class rennes_metropole_transport(Variable):
         result_etudiant = select([echelon >= 5,echelon >= 3, echelon >= 2], [taux1,taux2,taux3])
         #print(result_etudiant)
         result = where(etudiant, result_etudiant, result_non_etudiant)
-        #print("---")
-        #print(ressources)
+        print("---")
+        print(ressources)
         #print(simulation.calculate('salaire_net', period.start.period('year').offset(-1))/12)
-        print(simulation.calculate('indemnites_journalieres', period.start.period('year').offset(-1))/12)
-        print(simulation.calculate('allocation_aide_retour_emploi', period.start.period('year').offset(-1))/12)
+        #print(simulation.calculate('indemnites_journalieres', period.start.period('year').offset(-1))/12)
+        #print(simulation.calculate('allocation_aide_retour_emploi', period.start.period('year').offset(-1))/12)
+        #print(simulation.calculate('chomage_net', period.start.period('year').offset(-1))/12)
         #print(simulation.calculate('ass', period.start.period('year').offset(-1))/12)
         #print(simulation.calculate('rsa', period.start.period('year').offset(-1))/12)
         #print(simulation.calculate('pensions_invalidite', period.start.period('year').offset(-1))/12)
