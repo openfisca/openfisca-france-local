@@ -5,6 +5,19 @@ from numpy import (maximum as max_, logical_not as not_, absolute as abs_, minim
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
+from openfisca_rennesmetropole.communes import communes
+
+
+class residence_rennes_metropole(Variable):
+    column = BoolCol
+    entity = Individu
+    label = u"Le lieu de résidence se situe dans une commune faisant partie de Rennes Métropole"
+
+    def function(individu, period):
+        code_insee_commune = individu.menage('depcom', period)
+        return period, sum([code_insee_commune == code_insee for code_insee in communes])
+
+
 class rennes_metropole_transport(Variable):
     column = FloatCol
     entity = Individu
@@ -15,9 +28,9 @@ class rennes_metropole_transport(Variable):
         nombre_enfants = simulation.calculate('af_nbenf', period)
         # montant_par_enfant = simulation.legislation_at(period.start).rennesmetropole.mon_aide.montant
 
-        print("--nouvelle simulation--") 
+        print("--nouvelle simulation--")
         ressources_a_inclure =[
- 
+
             'salaire_net',
             'indemnites_journalieres',
             'allocation_aide_retour_emploi',
@@ -65,7 +78,7 @@ class rennes_metropole_transport(Variable):
 
         #on prend en compte le salire du conjoint
         ressources = sum(simulation.calculate_add('salaire_net', period.start.period('year').offset(-1))/12)
-       
+
         ressources = ressources + sum(simulation.calculate_add('indemnites_journalieres', period.start.period('year').offset(-1))/12)
         ressources = ressources + sum(simulation.calculate_add('allocation_aide_retour_emploi', period.start.period('year').offset(-1))/12)
         ressources = ressources + sum(simulation.calculate_add('chomage_net', period.start.period('year').offset(-1))/12)
@@ -87,15 +100,15 @@ class rennes_metropole_transport(Variable):
         ressources = ressources + sum(simulation.calculate_add('pensions_alimentaires_percues', period.start.period('year').offset(-1))/12)
         ressources = ressources + sum(simulation.calculate_add('revenus_locatifs', period.start.period('year').offset(-1))/12)
         ressources = ressources + sum(simulation.calculate_add('revenus_capital', period.start.period('year').offset(-1))/12)
-        
+
 
         ressources = ressources - simulation.calculate_add('pensions_alimentaires_versees_individu', period.last_3_months) + revenus_tns()
 
-       
-        
+
+
         #ajout de la ppa
         ressources=ressources+(simulation.calculate_add('ppa', period.start.period('year').offset(-1))/12)
-        
+
         #print (simulation.calculate_add('rsa',period.last_year))
        # ressources = ressources / 12
       #  print(simulation.calculate_add('aide_logement',period.last_year))
@@ -116,13 +129,13 @@ class rennes_metropole_transport(Variable):
 
         # determine si une personne seule a des enfants qui est considéré de fait comme un couple
         individu_en_couple = or_(individu_en_couple,nombre_enfants>=1)
-        
+
         #salaire =  simulation.compute('salaire_net', period)
        # salaire_cumul=self.sum_by_entity(salaire, entity = 'famille')
 
 
         #----------------------on retire les apl et on ajoute le forfait logement si ahh seul revenu---------------------------
-        print("--avant aah--") 
+        print("--avant aah--")
         print(ressources)
         forfait_logement =simulation.calculate_add('cmu_forfait_logement_al')
         forfait_logement =forfait_logement/12
@@ -138,7 +151,7 @@ class rennes_metropole_transport(Variable):
         #----------------------fin on retire les apl et on ajoute le forfait logement si ahh seul revenu----------------------
 
         #----------------------on retire les apl et on ajoute le forfait logement si aspa seul revenu---------------------------
-        print("--avant aspa--") 
+        print("--avant aspa--")
         print(ressources)
         forfait_logement =simulation.calculate_add('cmu_forfait_logement_al')
         forfait_logement =forfait_logement/12
@@ -160,7 +173,7 @@ class rennes_metropole_transport(Variable):
         #print seuil_evolutif
 
         result_non_etudiant = select([ressources <= seuil1*seuil_evolutif,ressources <= seuil2*seuil_evolutif, ressources <= seuil3*seuil_evolutif], [taux1,taux2,taux3])
-        
+
         # import ipdb
         # ipdb.set_trace()
         etudiant = simulation.calculate('etudiant')
@@ -204,8 +217,10 @@ class rennes_metropole_transport(Variable):
 
         #print(result_non_etudiant)
         print("---result---")
-        print(result) 
-        return period, result 
+        print(result)
+        residence_rennes_metropole = simulation.calculate('residence_rennes_metropole', period)
+
+        return period, result * residence_rennes_metropole
 
 
 class rennes_metropole_transport_etudiant(Variable):
