@@ -1,12 +1,12 @@
 - name: "Une personne seule à 100%"
-  period: 2016-12
+  period: 2016-01
   familles:
     parents: ["personne1"]
   individus:
   - id: "personne1"
     date_naissance: 1972-01-01
     salaire_net:
-      2015-12: 700
+      
       2016-01: 700
       2016-02: 700
       2016-03: 700
@@ -19,11 +19,12 @@
       2016-10: 700
       2016-11: 700
       2016-12: 700
+      2017-01: 700
 
   output_variables:
     rennes_metropole_transport: 100
 
-- name: "Une personne seule à 85%"
+- name: "Une personne seule à 85% 1000euros/mois 8000/an"
   period: 2016-12
   familles:
     parents: ["personne1"]
@@ -55,7 +56,7 @@
   - id: "personne1"
     etudiant: 1
     date_naissance: 1992-01-01
-    #echelon_bourse: 4
+    echelon_bourse: 4
 
   output_variables:
     rennes_metropole_transport: 85
@@ -88,7 +89,7 @@
     #echelon_bourse: 4
 
   output_variables:
-    rennes_metropole_transport: ["100","85"]
+    rennes_metropole_transport: ["100","0"]
 
 
 - name: "Une personne seule retraité à 0%"
@@ -133,4 +134,174 @@
     date_naissance: 2006-01-01
 
   output_variables:
-    rennes_metropole_transport: ["100","85","85"]
+    rennes_metropole_transport: ["100","0","0"]
+
+
+- name: "Couple : Salarié + 1 adulte handicapé"
+  period: 2017-03
+  familles:
+    parents: ["personne1","personne2"]
+    aide_logement:
+      2016-01: 330
+      2016-02: 330
+      2016-03: 330
+      2016-04: 330
+      2016-05: 330
+      2016-06: 330
+      2016-07: 330
+      2016-08: 330
+      2016-09: 330
+      2016-10: 330
+      2016-11: 330
+      2016-12: 330
+      2017-01: 330
+      2017-02: 330
+  individus:
+  - id: "personne1"
+    date_naissance: 1964-01-01
+    salaire_net:
+      2016-01: 600
+      2016-02: 600
+      2016-03: 600
+      2016-04: 600
+      2016-05: 600
+      2016-06: 600
+      2016-07: 600
+      2016-08: 600
+      2016-09: 600
+      2016-10: 600
+      2016-11: 600
+      2016-12: 600
+      2017-01: 600
+      2017-02: 600
+
+  - id: "personne2"
+    date_naissance: 1963-01-01
+    aah:
+      2016-01: 808
+      2016-02: 808
+      2016-03: 808
+      2016-04: 808
+      2016-05: 808
+      2016-06: 808
+      2016-07: 808
+      2016-08: 808
+      2016-09: 808
+      2016-10: 808
+      2016-11: 808
+      2016-12: 808
+      2017-01: 808
+      2017-02: 808
+
+
+
+  output_variables: 
+   rennes_metropole_transport: ["50","50"]
+
+
+
+- name: "Personne : 1 adulte handicapé"
+  period: 2017-03
+  familles:
+    cmu_forfait_logement_al : 770.64477539
+    parents: ["personne1"]
+    aide_logement: 3960
+  individus:
+  - id: "personne1"
+    date_naissance: 1964-01-01
+    aah:
+      2016-01: 600
+      2016-02: 600
+      2016-03: 600
+      2016-04: 600
+      2016-05: 600
+      2016-06: 600
+      2016-07: 600
+      2016-08: 600
+      2016-09: 600
+      2016-10: 600
+      2016-11: 600
+      2016-12: 600
+      2017-01: 600
+      2017-02: 600
+      2017-03: 600
+
+
+
+  output_variables: 
+   rennes_metropole_transport: ["100"]
+
+
+
+- name: "Couple : Salarié + 2 adulte handicapé"
+  period: 2017-03
+  familles:
+    parents: ["personne1","personne2"]
+    aide_logement : 3960
+
+    cmu_forfait_logement_al : 770.64477539
+
+  individus:
+  - id: "personne1"
+    date_naissance: 1964-01-01
+    aah:
+      2016-01: 1400
+      2016-02: 1400
+      2016-03: 1400
+      2016-04: 1400
+      2016-05: 1400
+      2016-06: 1400
+      2016-07: 1400
+      2016-08: 1400
+      2016-09: 1400
+      2016-10: 1400
+      2016-11: 1400
+      2016-12: 1400
+      2017-01: 1400
+      2017-02: 1400
+      2017-03: 1400
+
+  - id: "personne2"
+    date_naissance: 1963-01-01
+
+  output_variables: 
+   rennes_metropole_transport: ["85","85"]
+
+
+- name: "Couple : retraités"
+  period: 2017-03
+  familles:
+    parents: ["personne1","personne2"]
+    aide_logement: 3960
+
+    cmu_forfait_logement_al : 770.64477539
+
+ 
+    aspa:
+      2016-01: 1500
+      2016-02: 1500
+      2016-03: 1500
+      2016-04: 1500
+      2016-05: 1500
+      2016-06: 1500
+      2016-07: 1500
+      2016-08: 1500
+      2016-09: 1500
+      2016-10: 1500
+      2016-11: 1500
+      2016-12: 1500
+      2017-01: 1500
+      2017-02: 1500
+      2017-03: 1500
+  individus:
+  - id: "personne1"
+    date_naissance: 1964-01-02
+
+
+  - id: "personne2"
+    date_naissance: 1963-01-01
+
+
+
+  output_variables: 
+   rennes_metropole_transport: ["85","85"]
