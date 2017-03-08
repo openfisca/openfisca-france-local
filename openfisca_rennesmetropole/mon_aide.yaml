@@ -2,11 +2,13 @@
   period: 2016-01
   familles:
     parents: ["personne1"]
+  menages:
+    depcom: 35001
   individus:
   - id: "personne1"
     date_naissance: 1972-01-01
     salaire_net:
-      
+
       2016-01: 700
       2016-02: 700
       2016-03: 700
@@ -28,6 +30,8 @@
   period: 2016-12
   familles:
     parents: ["personne1"]
+  menages:
+    depcom: 35001
   individus:
   - id: "personne1"
     salaire_net:
@@ -52,6 +56,8 @@
   period: 2016-12
   familles:
     parents: ["personne1"]
+  menages:
+    depcom: 35001
   individus:
   - id: "personne1"
     etudiant: 1
@@ -65,6 +71,8 @@
   period: 2016-12
   familles:
     parents: ["personne1"]
+  menages:
+    depcom: 35001
     enfants: ["enfant1"]
   individus:
   - id: "personne1"
@@ -96,6 +104,8 @@
   period: 2016-12
   familles:
     parents: ["personne1"]
+  menages:
+    depcom: 35001
   individus:
   - id: "personne1"
     date_naissance: 1952-01-01
@@ -114,7 +124,7 @@
       2016-11: 1500
       2016-12: 1500
 
-  output_variables: 
+  output_variables:
    rennes_metropole_transport: 0
 
 
@@ -122,18 +132,21 @@
   period: 2016-12
   familles:
     parents: ["personne1"]
+  menages:
+    depcom: 35001
     enfants: ["enfant1","enfant2"]
   individus:
   - id: "personne1"
     salaire_net:
 
-      
+
   - id: "enfant1"
     date_naissance: 2006-01-01
   - id: "enfant2"
     date_naissance: 2006-01-01
 
   output_variables:
+<<<<<<< HEAD
     rennes_metropole_transport: ["100","0","0"]
 
 
@@ -195,7 +208,7 @@
 
 
 
-  output_variables: 
+  output_variables:
    rennes_metropole_transport: ["50","50"]
 
 
@@ -228,7 +241,7 @@
 
 
 
-  output_variables: 
+  output_variables:
    rennes_metropole_transport: ["100"]
 
 
@@ -264,7 +277,7 @@
   - id: "personne2"
     date_naissance: 1963-01-01
 
-  output_variables: 
+  output_variables:
    rennes_metropole_transport: ["85","85"]
 
 
@@ -273,10 +286,7 @@
   familles:
     parents: ["personne1","personne2"]
     aide_logement: 3960
-
     cmu_forfait_logement_al : 770.64477539
-
- 
     aspa:
       2016-01: 1500
       2016-02: 1500
@@ -296,12 +306,20 @@
   individus:
   - id: "personne1"
     date_naissance: 1964-01-02
-
-
   - id: "personne2"
     date_naissance: 1963-01-01
-
-
-
-  output_variables: 
+  output_variables:
    rennes_metropole_transport: ["85","85"]
+
+
+- name: "Personne qui n'habite pas à Rennes Métropole"
+  period: 2016-12
+  familles:
+    parents: ["personne1"]
+  menages:
+    depcom: 36001
+  individus:
+  - id: "personne1"
+    date_naissance: 1972-01-01
+  output_variables:
+    rennes_metropole_transport: 0
