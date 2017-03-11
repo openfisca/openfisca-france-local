@@ -139,11 +139,12 @@ class rennes_metropole_transport(Variable):
         print(ressources)
         forfait_logement =simulation.calculate_add('cmu_forfait_logement_al')
         forfait_logement =forfait_logement/12
-        aide_au_logement = sum(simulation.calculate_add('aide_logement', period.start.period('year').offset(-1))/12)
-
+        aide_au_logement = (simulation.calculate_add('aide_logement', period.start.period('year').offset(-1))/12)
         touche_que_aah=ressources-aide_au_logement
-        touche_que_aah=touche_que_aah-sum(simulation.calculate_add('aah', period.start.period('year').offset(-1))/12)
+        touche_que_aah=touche_que_aah-(simulation.calculate_add('aah', period.start.period('year').offset(-1))/12)
         touche_que_aah=touche_que_aah-round(sum(simulation.calculate_add('rsa', period.start.period('year').offset(-1))/12))
+        print("toucheque aah")
+        print(touche_que_aah)
         forfait = where(touche_que_aah, '0', '1')
         ressources=where(forfait, ressources-aide_au_logement+forfait_logement,ressources)
         print(forfait_logement)
@@ -155,10 +156,11 @@ class rennes_metropole_transport(Variable):
         print(ressources)
         forfait_logement =simulation.calculate_add('cmu_forfait_logement_al')
         forfait_logement =forfait_logement/12
-        aide_au_logement = sum(simulation.calculate_add('aide_logement', period.start.period('year').offset(-1))/12)
+        aide_au_logement = (simulation.calculate_add('aide_logement', period.start.period('year').offset(-1))/12)
 
         touche_que_aspa=ressources-aide_au_logement
-        touche_que_aspa=touche_que_aspa-sum(simulation.calculate_add('aspa', period.start.period('year').offset(-1))/12)
+        touche_que_aspa=touche_que_aspa-(simulation.calculate_add('aspa', period.start.period('year').offset(-1))/12)
+
         touche_que_aspa=touche_que_aspa-round(sum(simulation.calculate_add('rsa', period.start.period('year').offset(-1))/12))
         forfait_aspa = where(touche_que_aspa, '0', '1')
         ressources=where(forfait_aspa, ressources-aide_au_logement+forfait_logement,ressources)
