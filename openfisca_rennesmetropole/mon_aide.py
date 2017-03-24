@@ -11,20 +11,21 @@ from openfisca_rennesmetropole.communes import communes
 class residence_rennes_metropole(Variable):
     column = BoolCol
     entity = Individu
+    definition_period = MONTH
     label = u"Le lieu de résidence se situe dans une commune faisant partie de Rennes Métropole"
 
     def function(individu, period):
         code_insee_commune = individu.menage('depcom', period)
-        return period, sum([code_insee_commune == code_insee for code_insee in communes])
+        return sum([code_insee_commune == code_insee for code_insee in communes])
 
 
 class rennes_metropole_transport(Variable):
     column = FloatCol
     entity = Individu
+    definition_period = MONTH
     label = u"Calcul tarification solidaire"
 
     def function(self, simulation, period):
-        period = period.this_month
         nombre_enfants = simulation.calculate('af_nbenf', period)
         # montant_par_enfant = simulation.legislation_at(period.start).rennesmetropole.mon_aide.montant
 
@@ -222,17 +223,17 @@ class rennes_metropole_transport(Variable):
         #print(result)
         residence_rennes_metropole = simulation.calculate('residence_rennes_metropole', period)
 
-        return period, result * residence_rennes_metropole
+        return result * residence_rennes_metropole
 
 
 class rennes_metropole_transport_etudiant(Variable):
     column = FloatCol
     entity = Individu
+    definition_period = MONTH
     label = u"Calcul tarification solidaire"
 
 
     def function(self, simulation, period):
-        period = period.this_month
         taux1= simulation.legislation_at(period.start).rennesmetropole.tarification_solidaire.taux_reduction.taux1
         taux2 = simulation.legislation_at(period.start).rennesmetropole.tarification_solidaire.taux_reduction.taux2
         taux3 = simulation.legislation_at(period.start).rennesmetropole.tarification_solidaire.taux_reduction.taux3
@@ -243,4 +244,4 @@ class rennes_metropole_transport_etudiant(Variable):
         echelon = 1
         #print(echelon)
         result_etudiant = select([echelon >= 5,echelon >= 3, echelon >= 2], [taux1,taux2,taux3])
-        return period, result_etudiant
+        return result_etudiant
