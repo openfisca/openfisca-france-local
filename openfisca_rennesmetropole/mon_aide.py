@@ -138,7 +138,7 @@ class rennes_metropole_transport(Variable):
         #----------------------on retire les apl et on ajoute le forfait logement si ahh seul revenu---------------------------
         #print("--avant aah--")
         #print(ressources)
-        forfait_logement =simulation.calculate_add('cmu_forfait_logement_al')
+        forfait_logement =simulation.calculate_add('cmu_forfait_logement_al', period)
         forfait_logement =forfait_logement/12
         aide_au_logement = (simulation.calculate_add('aide_logement', period.start.period('year').offset(-1))/12)
         touche_que_aah=ressources-aide_au_logement
@@ -155,7 +155,7 @@ class rennes_metropole_transport(Variable):
         #----------------------on retire les apl et on ajoute le forfait logement si aspa seul revenu---------------------------
        #print("--avant aspa--")
         #print(ressources)
-        forfait_logement =simulation.calculate_add('cmu_forfait_logement_al')
+        forfait_logement =simulation.calculate_add('cmu_forfait_logement_al', period)
         forfait_logement =forfait_logement/12
         aide_au_logement = (simulation.calculate_add('aide_logement', period.start.period('year').offset(-1))/12)
 
@@ -179,9 +179,9 @@ class rennes_metropole_transport(Variable):
 
         # import ipdb
         # ipdb.set_trace()
-        etudiant = simulation.calculate('etudiant')
+        etudiant = simulation.calculate('etudiant', period)
 
-        #result_etudiant = simulation.calculate('rennes_metropole_transport_etudiant')
+        #result_etudiant = simulation.calculate('rennes_metropole_transport_etudiant', period)
 
         # Récupération de l'échelon de bourse
         echelon = simulation.calculate('echelon_bourse',period)
