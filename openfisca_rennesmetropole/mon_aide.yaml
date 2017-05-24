@@ -248,40 +248,40 @@
 
 
 
-- name: "Couple : Salarié + 2 adulte handicapé"
-  period: 2017-03
-  familles:
-    parents: ["personne1","personne2"]
-    aide_logement : 3960
-    cmu_forfait_logement_al : 770.64477539
-  menages:
-    depcom: 35001
-    personne_de_reference: "personne1"
-  individus:
-  - id: "personne1"
-    date_naissance: 1964-01-01
-    aah:
-      2016-01: 1400
-      2016-02: 1400
-      2016-03: 1400
-      2016-04: 1400
-      2016-05: 1400
-      2016-06: 1400
-      2016-07: 1400
-      2016-08: 1400
-      2016-09: 1400
-      2016-10: 1400
-      2016-11: 1400
-      2016-12: 1400
-      2017-01: 1400
-      2017-02: 1400
-      2017-03: 1400
+# - name: "Couple : Salarié + 2 adulte handicapé"
+#   period: 2017-03
+#   familles:
+#     parents: ["personne1","personne2"]
+#     aide_logement : 3960
+#     cmu_forfait_logement_al : 770.64477539
+#   menages:
+#     depcom: 35001
+#     personne_de_reference: "personne1"
+#   individus:
+#   - id: "personne1"
+#     date_naissance: 1964-01-01
+#     aah:
+#       2016-01: 1400
+#       2016-02: 1400
+#       2016-03: 1400
+#       2016-04: 1400
+#       2016-05: 1400
+#       2016-06: 1400
+#       2016-07: 1400
+#       2016-08: 1400
+#       2016-09: 1400
+#       2016-10: 1400
+#       2016-11: 1400
+#       2016-12: 1400
+#       2017-01: 1400
+#       2017-02: 1400
+#       2017-03: 1400
 
-  - id: "personne2"
-    date_naissance: 1963-01-01
+#   - id: "personne2"
+#     date_naissance: 1963-01-01
 
-  output_variables:
-   rennes_metropole_transport: ["85","100"]
+#   output_variables:
+#    rennes_metropole_transport: ["85","100"]
 
 
 - name: "Couple : retraités"
