@@ -1,1 +1,1 @@
-openfisca-run-test */*.yaml
+openfisca-run-test */*.yaml --extensions openfisca_rennesmetropole
