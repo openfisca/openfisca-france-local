@@ -2,24 +2,30 @@
   <NODE code="tarification_solidaire" description="Tarification Solidaire">
     <NODE code="seuil" description="Plafonds de revenus">
      <CODE code="seuil1" description="Seuil1" format="float" type="monetary">
-       <VALUE deb="2013-01-01" fin="2018-12-31" valeur="900" />
+       <END deb="2019-01-01" />
+       <VALUE deb="2013-01-01" valeur="900" />
      </CODE>
      <CODE code="seuil2" description="Seuil2" format="float" type="monetary">
-       <VALUE deb="2013-01-01" fin="2018-12-31" valeur="1050" />
+       <END deb="2019-01-01" />
+       <VALUE deb="2013-01-01" valeur="1050" />
      </CODE>
      <CODE code="seuil3" description="Seuil3" format="float" type="monetary">
-       <VALUE deb="2013-01-01" fin="2018-12-31" valeur="1200" />
+       <END deb="2019-01-01" />
+       <VALUE deb="2013-01-01" valeur="1200" />
      </CODE>
     </NODE>
     <NODE code="taux_reduction" description="Taux de réduction au montant de l'abonnement mensuel">
      <CODE code="taux1" description="Taux1" format="float" type="monetary">
-       <VALUE deb="2013-01-01" fin="2018-12-31" valeur="100" />
+       <END deb="2019-01-01" />
+       <VALUE deb="2013-01-01" valeur="100" />
      </CODE>
      <CODE code="taux2" description="Taux2" format="float" type="monetary">
-       <VALUE deb="2013-01-01" fin="2018-12-31" valeur="85" />
+       <END deb="2019-01-01" />
+       <VALUE deb="2013-01-01" valeur="85" />
      </CODE>
      <CODE code="taux3" description="Taux3" format="float" type="monetary">
-       <VALUE deb="2013-01-01" fin="2018-12-31" valeur="50" />
+       <END deb="2019-01-01" />
+       <VALUE deb="2013-01-01" valeur="50" />
      </CODE>
     </NODE>
   </NODE>
