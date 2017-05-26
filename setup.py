@@ -9,7 +9,9 @@ setup(
     author="Rennes Métropole, Incubateur de Services Numériques (SGMAP)",
     packages=find_packages(),
     include_package_data=True,
-    install_requires=[],
+    install_requires=[
+        'OpenFisca-France >= 17.0, < 18.0'
+    ],
     classifiers=[
         "Programming Language :: Python",
         "Programming Language :: Python :: 2.7",
