@@ -14,7 +14,7 @@ class residence_rennes_metropole(Variable):
     definition_period = MONTH
     label = u"Le lieu de résidence se situe dans une commune faisant partie de Rennes Métropole"
 
-    def function(individu, period):
+    def formula(individu, period):
         code_insee_commune = individu.menage('depcom', period)
         return sum([code_insee_commune == code_insee for code_insee in communes])
 
@@ -25,7 +25,7 @@ class rennes_metropole_transport(Variable):
     definition_period = MONTH
     label = u"Calcul tarification solidaire"
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         nombre_enfants = simulation.calculate('af_nbenf', period)
         # montant_par_enfant = simulation.legislation_at(period.start).rennesmetropole.mon_aide.montant
 
@@ -233,7 +233,7 @@ class rennes_metropole_transport_etudiant(Variable):
     label = u"Calcul tarification solidaire"
 
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         taux1= simulation.legislation_at(period.start).rennesmetropole.tarification_solidaire.taux_reduction.taux1
         taux2 = simulation.legislation_at(period.start).rennesmetropole.tarification_solidaire.taux_reduction.taux2
         taux3 = simulation.legislation_at(period.start).rennesmetropole.tarification_solidaire.taux_reduction.taux3
