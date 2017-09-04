@@ -120,13 +120,13 @@ class rennes_metropole_transport(Variable):
         #transformation valeur en couple sur l'entity Famille
         individu_en_couple = self.cast_from_entity_to_roles(famille_en_couple)
 
-        seuil1= simulation.legislation_at(period.start).rennesmetropole.tarification_solidaire.seuil.seuil1
-        seuil2 = simulation.legislation_at(period.start).rennesmetropole.tarification_solidaire.seuil.seuil2
-        seuil3 = simulation.legislation_at(period.start).rennesmetropole.tarification_solidaire.seuil.seuil3
+        seuil1= simulation.parameters_at(period.start).rennesmetropole.tarification_solidaire.seuil.seuil1
+        seuil2 = simulation.parameters_at(period.start).rennesmetropole.tarification_solidaire.seuil.seuil2
+        seuil3 = simulation.parameters_at(period.start).rennesmetropole.tarification_solidaire.seuil.seuil3
 
-        taux1= simulation.legislation_at(period.start).rennesmetropole.tarification_solidaire.taux_reduction.taux1
-        taux2 = simulation.legislation_at(period.start).rennesmetropole.tarification_solidaire.taux_reduction.taux2
-        taux3 = simulation.legislation_at(period.start).rennesmetropole.tarification_solidaire.taux_reduction.taux3
+        taux1= simulation.parameters_at(period.start).rennesmetropole.tarification_solidaire.taux_reduction.taux1
+        taux2 = simulation.parameters_at(period.start).rennesmetropole.tarification_solidaire.taux_reduction.taux2
+        taux3 = simulation.parameters_at(period.start).rennesmetropole.tarification_solidaire.taux_reduction.taux3
 
         # determine si une personne seule a des enfants qui est considéré de fait comme un couple
         individu_en_couple = or_(individu_en_couple,nombre_enfants>=1)
@@ -234,9 +234,9 @@ class rennes_metropole_transport_etudiant(Variable):
 
 
     def formula(self, simulation, period):
-        taux1= simulation.legislation_at(period.start).rennesmetropole.tarification_solidaire.taux_reduction.taux1
-        taux2 = simulation.legislation_at(period.start).rennesmetropole.tarification_solidaire.taux_reduction.taux2
-        taux3 = simulation.legislation_at(period.start).rennesmetropole.tarification_solidaire.taux_reduction.taux3
+        taux1= simulation.parameters_at(period.start).rennesmetropole.tarification_solidaire.taux_reduction.taux1
+        taux2 = simulation.parameters_at(period.start).rennesmetropole.tarification_solidaire.taux_reduction.taux2
+        taux3 = simulation.parameters_at(period.start).rennesmetropole.tarification_solidaire.taux_reduction.taux3
 
         #montant_bourse = simulation.calculate('bourse_enseignement_sup',)
 
