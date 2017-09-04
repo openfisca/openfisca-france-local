@@ -1,0 +1,5 @@
+description: Taux3
+unit: currency
+values:
+  2013-01-01:
+    value: 50.0

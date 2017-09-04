@@ -1,0 +1,5 @@
+description: Seuil2
+unit: currency
+values:
+  2013-01-01:
+    value: 1050.0

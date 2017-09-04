@@ -3,15 +3,15 @@ from setuptools import setup, find_packages
 
 setup(
     name="Openfisca-RennesMetropole",
-    version="1.0.3",
+    version="1.0.4",
     description="Plugin OpenFisca pour les aides sociales de ma collectivité",
     license="http://www.fsf.org/licensing/licenses/agpl-3.0.html",
     author="Rennes Métropole, Incubateur de Services Numériques (SGMAP)",
     packages=find_packages(),
     include_package_data=True,
     install_requires=[
-        'OpenFisca-Core >= 15, < 16',
-        'OpenFisca-France >= 18, < 19'
+        'OpenFisca-Core >= 17, < 18',
+        'OpenFisca-France >= 18.9, < 19'
     ],
     classifiers=[
         "Programming Language :: Python",
