@@ -1,0 +1,5 @@
+description: Taux2
+unit: currency
+values:
+  2013-01-01:
+    value: 85.0

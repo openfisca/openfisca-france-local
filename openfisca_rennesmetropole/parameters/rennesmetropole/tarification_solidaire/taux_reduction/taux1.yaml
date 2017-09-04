@@ -1,0 +1,5 @@
+description: Taux1
+unit: currency
+values:
+  2013-01-01:
+    value: 100.0
