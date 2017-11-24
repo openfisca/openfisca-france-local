@@ -9,7 +9,7 @@ from openfisca_rennesmetropole.communes import communes
 
 
 class residence_rennes_metropole(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Individu
     definition_period = MONTH
     label = u"Le lieu de résidence se situe dans une commune faisant partie de Rennes Métropole"
@@ -20,7 +20,7 @@ class residence_rennes_metropole(Variable):
 
 
 class rennes_metropole_transport(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     definition_period = MONTH
     label = u"Calcul tarification solidaire"
@@ -227,7 +227,7 @@ class rennes_metropole_transport(Variable):
 
 
 class rennes_metropole_transport_etudiant(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     definition_period = MONTH
     label = u"Calcul tarification solidaire"
