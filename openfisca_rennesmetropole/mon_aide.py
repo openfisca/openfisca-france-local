@@ -19,14 +19,13 @@ class residence_rennes_metropole(Variable):
         return sum([code_insee_commune == code_insee for code_insee in communes])
 
 
-class rennes_metropole_transport(Variable):
+class rennes_metropole_transport_base_ressource(Variable):
     value_type = float
     entity = Individu
     definition_period = MONTH
-    label = u"Calcul tarification solidaire"
+    label = u"Base ressources pour la tarification solidaire de Rennes Métropole"
 
     def formula(self, simulation, period):
-        nombre_enfants = simulation.calculate('af_nbenf', period)
         # montant_par_enfant = simulation.legislation_at(period.start).rennesmetropole.mon_aide.montant
 
         #print("--nouvelle simulation--")
@@ -110,26 +109,6 @@ class rennes_metropole_transport(Variable):
         #ajout de la ppa
         ressources=ressources+(simulation.calculate_add('ppa', period.start.period('year').offset(-1))/12)
 
-        #print (simulation.calculate_add('rsa',period.last_year))
-       # ressources = ressources / 12
-      #  print(simulation.calculate_add('aide_logement',period.last_year))
-      #  print(simulation.calculate_add('salaire_net',period.last_year))
-        #recherche si en couple
-        famille_en_couple =simulation.compute('en_couple', period)
-
-        #transformation valeur en couple sur l'entity Famille
-        individu_en_couple = self.cast_from_entity_to_roles(famille_en_couple)
-
-        seuil1= simulation.parameters_at(period.start).rennesmetropole.tarification_solidaire.seuil.seuil1
-        seuil2 = simulation.parameters_at(period.start).rennesmetropole.tarification_solidaire.seuil.seuil2
-        seuil3 = simulation.parameters_at(period.start).rennesmetropole.tarification_solidaire.seuil.seuil3
-
-        taux1= simulation.parameters_at(period.start).rennesmetropole.tarification_solidaire.taux_reduction.taux1
-        taux2 = simulation.parameters_at(period.start).rennesmetropole.tarification_solidaire.taux_reduction.taux2
-        taux3 = simulation.parameters_at(period.start).rennesmetropole.tarification_solidaire.taux_reduction.taux3
-
-        # determine si une personne seule a des enfants qui est considéré de fait comme un couple
-        individu_en_couple = or_(individu_en_couple,nombre_enfants>=1)
 
         #salaire =  simulation.compute('salaire_net', period)
        # salaire_cumul=self.sum_by_entity(salaire, entity = 'famille')
@@ -169,7 +148,40 @@ class rennes_metropole_transport(Variable):
         #print(ressources)
         #----------------------fin on retire les apl et on ajoute le forfait logement si ahh seul revenu----------------------
 
+        return ressources
 
+
+class rennes_metropole_transport(Variable):
+    value_type = float
+    entity = Individu
+    definition_period = MONTH
+    label = u"Calcul tarification solidaire"
+
+    def formula(self, simulation, period):
+        nombre_enfants = simulation.calculate('af_nbenf', period)
+
+        #print (simulation.calculate_add('rsa',period.last_year))
+       # ressources = ressources / 12
+      #  print(simulation.calculate_add('aide_logement',period.last_year))
+      #  print(simulation.calculate_add('salaire_net',period.last_year))
+        #recherche si en couple
+        famille_en_couple =simulation.compute('en_couple', period)
+
+        #transformation valeur en couple sur l'entity Famille
+        individu_en_couple = self.cast_from_entity_to_roles(famille_en_couple)
+
+        seuil1= simulation.parameters_at(period.start).rennesmetropole.tarification_solidaire.seuil.seuil1
+        seuil2 = simulation.parameters_at(period.start).rennesmetropole.tarification_solidaire.seuil.seuil2
+        seuil3 = simulation.parameters_at(period.start).rennesmetropole.tarification_solidaire.seuil.seuil3
+
+        taux1= simulation.parameters_at(period.start).rennesmetropole.tarification_solidaire.taux_reduction.taux1
+        taux2 = simulation.parameters_at(period.start).rennesmetropole.tarification_solidaire.taux_reduction.taux2
+        taux3 = simulation.parameters_at(period.start).rennesmetropole.tarification_solidaire.taux_reduction.taux3
+
+        # determine si une personne seule a des enfants qui est considéré de fait comme un couple
+        individu_en_couple = or_(individu_en_couple,nombre_enfants>=1)
+
+        ressources = simulation.calculate('rennes_metropole_transport_base_ressource', period)
 
 
         seuil_evolutif=(1+individu_en_couple*(0.5+nombre_enfants*0.3))
