@@ -1,0 +1,15 @@
+- name: "Hors Métropole"
+  period: 2017-01
+  input_variables:
+    depcom: '75019'
+  output_variables:
+    residence_brest_metropole: false
+    brest_metropole_transport: 0
+
+- name: "Dans Métropole"
+  period: 2017-01
+  input_variables:
+    depcom: '29019'
+  output_variables:
+    residence_brest_metropole: true
+    brest_metropole_transport: 1

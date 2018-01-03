@@ -1,6 +1,9 @@
 # Développement sur GitPod
 build
 
+# OSX
+*.DS_Store
+
 # Développement sur IDEA - PyCharm
 .idea/
 
