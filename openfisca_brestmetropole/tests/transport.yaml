@@ -18,7 +18,7 @@
     cmu_c: false
     quotient_familial_caf: 0
   output_variables:
-    brest_metropole_transport_pourcent: 84
+    brest_metropole_transport_montant: 6.2
 
 - name: "QF CAF 500"
   period: 2018-01
@@ -26,7 +26,7 @@
     cmu_c: false
     quotient_familial_caf: 500
   output_variables:
-    brest_metropole_transport_pourcent: 61
+    brest_metropole_transport_montant: 15
 
 - name: "QF CAF 600"
   period: 2018-01
@@ -34,7 +34,7 @@
     cmu_c: false
     quotient_familial_caf: 600
   output_variables:
-    brest_metropole_transport_pourcent: 41.6
+    brest_metropole_transport_montant: 22.5
 
 - name: "QF CAF 600 avec CMUC"
   period: 2018-01
@@ -42,4 +42,4 @@
     cmu_c: true
     quotient_familial_caf: 600
   output_variables:
-    brest_metropole_transport_pourcent: 61
+    brest_metropole_transport_montant: 15
