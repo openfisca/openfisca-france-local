@@ -24,23 +24,23 @@ class brest_metropole_transport(Variable):
     label = u"Tarification solidaire de Brest métropole"
 
     def formula(individu, period, parameters):
-        pourcent = individu.famille('brest_metropole_transport_pourcent', period)
+        pourcent = individu.famille('brest_metropole_transport_montant', period)
 
         return individu('residence_brest_metropole', period) * pourcent
 
 
-class brest_metropole_transport_pourcent(Variable):
+class brest_metropole_transport_montant(Variable):
     value_type = float
     entity = Famille
     definition_period = MONTH
-    label = u"Réduction en pourcentage de la tarification solidaire de Brest métropole"
+    label = u"Tarif mensuel solidaire de Brest métropole"
 
     def formula(famille, period, parameters):
         cmu_c = famille('cmu_c', period)
         quotient_familial_caf = famille('quotient_familial_caf', period)
 
         return (
-            84 * (quotient_familial_caf <= 482) +
-            61 * ((482 < quotient_familial_caf) * (quotient_familial_caf <= 573) + cmu_c * (573 < quotient_familial_caf)) +
-            41.6 * (573 < quotient_familial_caf) * (quotient_familial_caf <= 728) * not_(cmu_c)
+             6.2 * (quotient_familial_caf <= 482) +
+            15   * ((482 < quotient_familial_caf) * (quotient_familial_caf <= 573) + cmu_c * (573 < quotient_familial_caf)) +
+            22.5 * (573 < quotient_familial_caf) * (quotient_familial_caf <= 728) * not_(cmu_c)
         )
