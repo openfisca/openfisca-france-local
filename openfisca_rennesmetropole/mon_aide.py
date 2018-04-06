@@ -1,7 +1,7 @@
  # -*- coding: utf-8 -*-
 from __future__ import division
 
-from numpy import (maximum as max_, logical_not as not_, absolute as abs_, minimum as min_, select, where,logical_or as or_)
+from numpy import (maximum as max_, logical_not as not_, absolute as abs_, minimum as min_, select, where, logical_or as or_, round as round_)
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
@@ -25,130 +25,68 @@ class rennes_metropole_transport_base_ressource(Variable):
     definition_period = MONTH
     label = u"Base ressources pour la tarification solidaire de Rennes Métropole"
 
-    def formula(self, simulation, period):
-        # montant_par_enfant = simulation.legislation_at(period.start).rennesmetropole.mon_aide.montant
-
-        #print("--nouvelle simulation--")
-        ressources_a_inclure =[
-
-            'salaire_net',
-            'indemnites_journalieres',
-            'allocation_aide_retour_emploi',
-            'ass',
-            'rsa',
-           # 'ppa',
-            'pensions_invalidite',
-            'revenus_stage_formation_pro',
-            'af',
-            'cf',
-            'asf',
-            'paje_base',
-            'paje_clca',
-            'paje_prepare',
-            #'ajpp',
-            'aide_logement',
-            #'alf',
-            #'als',
-            'aah',
-            'retraite_nette',
-            'retraite_combattant',
-            'aspa',
-            'pensions_alimentaires_percues',
-            'revenus_locatifs',
-            'revenus_capital',
-
-
-
-        ]
-
+    def formula(individu, period, parameters):
         #pensions_alimentaires_versees
 
         #renvenus BIC ou B
         def revenus_tns():
-            revenus_auto_entrepreneur = simulation.calculate_add('tns_auto_entrepreneur_benefice', period.last_3_months)
+            revenus_auto_entrepreneur = individu('tns_auto_entrepreneur_benefice', period.last_3_months, options = [ADD])
 
 
             # Les revenus TNS hors AE sont estimés en se basant sur le revenu N-1
-            tns_micro_entreprise_benefice = simulation.calculate('tns_micro_entreprise_benefice', period.last_year) * (3 / 12)
-            tns_benefice_exploitant_agricole = simulation.calculate('tns_benefice_exploitant_agricole', period.last_year) * (3 / 12)
-            tns_autres_revenus = simulation.calculate('tns_autres_revenus', period.last_year) * (3 / 12)
-            return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
+            tns_micro_entreprise_benefice = individu('tns_micro_entreprise_benefice', period.last_year, options = [ADD])
+            tns_benefice_exploitant_agricole = individu('tns_benefice_exploitant_agricole', period.last_year, options = [ADD])
+            tns_autres_revenus = individu('tns_autres_revenus', period.last_year, options = [ADD])
+            return (revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus) * (3 / 12)
 
-       # ressources=sum([simulation.calculate_add(ressource,period.start.period('year').offset(-1))/12 for ressource in ressources_a_inclure]) - simulation.calculate('pensions_alimentaires_versees_individu', period.last_3_months) + revenus_tns()
+        #on prend en compte le salaire du conjoint
+        last_year = period.start.period('year').offset(-1)
 
-        #on prend en compte le salire du conjoint
-        ressources = sum(simulation.calculate_add('salaire_net', period.start.period('year').offset(-1))/12)
+        ressources_individuelles_annuelles = (
+            individu('aah', last_year, options = [ADD])
+            + individu('allocation_aide_retour_emploi', last_year, options = [ADD])
+            + individu('chomage_net', last_year, options = [ADD])
+            + individu('indemnites_journalieres', last_year, options = [ADD])
+            + individu('pensions_alimentaires_percues', last_year, options = [ADD])
+            + individu('pensions_invalidite', last_year, options = [ADD])
+            + individu('retraite_combattant', last_year, options = [ADD])
+            + individu('retraite_nette', last_year, options = [ADD])
+            + individu('revenus_stage_formation_pro', last_year, options = [ADD])
+            + individu('revenus_capital', last_year, options = [ADD])
+            + individu('revenus_locatifs', last_year, options = [ADD])
+            + individu('salaire_net', last_year, options = [ADD])
+            + revenus_tns()
+            - individu('pensions_alimentaires_versees_individu', period.last_3_months, options = [ADD])
+            )
 
-        ressources = ressources + sum(simulation.calculate_add('indemnites_journalieres', period.start.period('year').offset(-1))/12)
-        ressources = ressources + sum(simulation.calculate_add('allocation_aide_retour_emploi', period.start.period('year').offset(-1))/12)
-        ressources = ressources + sum(simulation.calculate_add('chomage_net', period.start.period('year').offset(-1))/12)
-        ressources = ressources + sum(simulation.calculate_add('ass', period.start.period('year').offset(-1))/12)
-        ressources = ressources + round(sum(simulation.calculate_add('rsa', period.start.period('year').offset(-1))/12))
-        ressources = ressources + sum(simulation.calculate_add('pensions_invalidite', period.start.period('year').offset(-1))/12)
-        ressources = ressources + sum(simulation.calculate_add('revenus_stage_formation_pro', period.start.period('year').offset(-1))/12)
-        ressources = ressources + sum(simulation.calculate_add('af', period.start.period('year').offset(-1))/12)
-        ressources = ressources + sum(simulation.calculate_add('cf', period.start.period('year').offset(-1))/12)
-        ressources = ressources + sum(simulation.calculate_add('asf', period.start.period('year').offset(-1))/12)
-        ressources = ressources + sum(simulation.calculate_add('paje_base', period.start.period('year').offset(-1))/12)
-        ressources = ressources + sum(simulation.calculate_add('paje_clca', period.start.period('year').offset(-1))/12)
-        ressources = ressources + sum(simulation.calculate_add('paje_prepare', period.start.period('year').offset(-1))/12)
-        ressources = ressources + sum(simulation.calculate_add('aide_logement', period.start.period('year').offset(-1))/12)
-        ressources = ressources + sum(simulation.calculate_add('aah', period.start.period('year').offset(-1))/12)
-        ressources = ressources + sum(simulation.calculate_add('retraite_nette', period.start.period('year').offset(-1))/12)
-        ressources = ressources + sum(simulation.calculate_add('retraite_combattant', period.start.period('year').offset(-1))/12)
-        ressources = ressources + sum(simulation.calculate_add('aspa', period.start.period('year').offset(-1))/12)
-        ressources = ressources + sum(simulation.calculate_add('pensions_alimentaires_percues', period.start.period('year').offset(-1))/12)
-        ressources = ressources + sum(simulation.calculate_add('revenus_locatifs', period.start.period('year').offset(-1))/12)
-        ressources = ressources + sum(simulation.calculate_add('revenus_capital', period.start.period('year').offset(-1))/12)
+        ressources_familiales_annuelles = (
+            individu.famille('af', last_year, options = [ADD])
+            + round_(individu.famille('rsa', last_year, options = [ADD]))
+            + individu.famille('aide_logement', last_year, options = [ADD])
+            + individu.famille('asf', last_year, options = [ADD])
+            + individu.famille('aspa', last_year, options = [ADD])
+            + individu.famille('ass', last_year, options = [ADD])
+            + individu.famille('cf', last_year, options = [ADD])
+            + individu.famille('paje_base', last_year, options = [ADD])
+            + individu.famille('paje_clca', last_year, options = [ADD])
+            + individu.famille('paje_prepare', last_year, options = [ADD])
+            + individu.famille('ppa', last_year, options = [ADD])
+            )
 
+        ressources_familiales = (ressources_familiales_annuelles + individu.famille.sum(ressources_individuelles_annuelles)) / 12
 
-        ressources = ressources - simulation.calculate_add('pensions_alimentaires_versees_individu', period.last_3_months) + revenus_tns()
+        forfait_logement = individu.famille('cmu_forfait_logement_al', period) / 12
+        aide_logement = individu.famille('aide_logement', last_year, options = [ADD]) / 12
+        rsa = round_(individu.famille('rsa', last_year, options = [ADD]) / 12)
+        touche_que_aah = ressources_familiales - aide_logement - (individu.famille.sum(individu('aah', last_year, options = [ADD])) / 12) - rsa
+        forfait_aah = where(touche_que_aah, '0', '1')
+        ressources_familiales = where(forfait_aah, ressources_familiales - aide_logement + forfait_logement, ressources_familiales)
 
-
-
-        #ajout de la ppa
-        ressources=ressources+(simulation.calculate_add('ppa', period.start.period('year').offset(-1))/12)
-
-
-        #salaire =  simulation.compute('salaire_net', period)
-       # salaire_cumul=self.sum_by_entity(salaire, entity = 'famille')
-
-
-        #----------------------on retire les apl et on ajoute le forfait logement si ahh seul revenu---------------------------
-        #print("--avant aah--")
-        #print(ressources)
-        forfait_logement =simulation.calculate_add('cmu_forfait_logement_al', period)
-        forfait_logement =forfait_logement/12
-        aide_au_logement = (simulation.calculate_add('aide_logement', period.start.period('year').offset(-1))/12)
-        touche_que_aah=ressources-aide_au_logement
-        touche_que_aah=touche_que_aah-(simulation.calculate_add('aah', period.start.period('year').offset(-1))/12)
-        touche_que_aah=touche_que_aah-round(sum(simulation.calculate_add('rsa', period.start.period('year').offset(-1))/12))
-        #print("toucheque aah")
-        #print(touche_que_aah)
-        forfait = where(touche_que_aah, '0', '1')
-        ressources=where(forfait, ressources-aide_au_logement+forfait_logement,ressources)
-        #print(forfait_logement)
-        #print(ressources)
-        #----------------------fin on retire les apl et on ajoute le forfait logement si ahh seul revenu----------------------
-
-        #----------------------on retire les apl et on ajoute le forfait logement si aspa seul revenu---------------------------
-       #print("--avant aspa--")
-        #print(ressources)
-        forfait_logement =simulation.calculate_add('cmu_forfait_logement_al', period)
-        forfait_logement =forfait_logement/12
-        aide_au_logement = (simulation.calculate_add('aide_logement', period.start.period('year').offset(-1))/12)
-
-        touche_que_aspa=ressources-aide_au_logement
-        touche_que_aspa=touche_que_aspa-(simulation.calculate_add('aspa', period.start.period('year').offset(-1))/12)
-
-        touche_que_aspa=touche_que_aspa-round(sum(simulation.calculate_add('rsa', period.start.period('year').offset(-1))/12))
+        touche_que_aspa = ressources_familiales - aide_logement - (individu.famille('aspa', last_year, options = [ADD]) / 12) - rsa
         forfait_aspa = where(touche_que_aspa, '0', '1')
-        ressources=where(forfait_aspa, ressources-aide_au_logement+forfait_logement,ressources)
-        #print(forfait_logement)
-        #print(ressources)
-        #----------------------fin on retire les apl et on ajoute le forfait logement si ahh seul revenu----------------------
+        ressources_familiales = where(forfait_aspa, ressources_familiales - aide_logement + forfait_logement, ressources_familiales)
 
-        return ressources
+        return ressources_familiales
 
 
 class rennes_metropole_transport(Variable):
@@ -157,103 +95,38 @@ class rennes_metropole_transport(Variable):
     definition_period = MONTH
     label = u"Calcul tarification solidaire"
 
-    def formula(self, simulation, period):
-        nombre_enfants = simulation.calculate('af_nbenf', period)
+    def formula(individu, period, parameters):
+        nombre_enfants = individu.famille('af_nbenf', period)
+        ressources_familiales = individu('rennes_metropole_transport_base_ressource', period)
+        # montant_par_enfant = simulation.legislation_at(period.start).rennesmetropole.mon_aide.montant
 
-        #print (simulation.calculate_add('rsa',period.last_year))
-       # ressources = ressources / 12
-      #  print(simulation.calculate_add('aide_logement',period.last_year))
-      #  print(simulation.calculate_add('salaire_net',period.last_year))
-        #recherche si en couple
-        famille_en_couple =simulation.compute('en_couple', period)
 
-        #transformation valeur en couple sur l'entity Famille
-        individu_en_couple = self.cast_from_entity_to_roles(famille_en_couple)
 
-        seuil1= simulation.parameters_at(period.start).rennesmetropole.tarification_solidaire.seuil.seuil1
-        seuil2 = simulation.parameters_at(period.start).rennesmetropole.tarification_solidaire.seuil.seuil2
-        seuil3 = simulation.parameters_at(period.start).rennesmetropole.tarification_solidaire.seuil.seuil3
+        seuil1 = parameters(period.start).rennesmetropole.tarification_solidaire.seuil.seuil1
+        seuil2 = parameters(period.start).rennesmetropole.tarification_solidaire.seuil.seuil2
+        seuil3 = parameters(period.start).rennesmetropole.tarification_solidaire.seuil.seuil3
 
-        taux1= simulation.parameters_at(period.start).rennesmetropole.tarification_solidaire.taux_reduction.taux1
-        taux2 = simulation.parameters_at(period.start).rennesmetropole.tarification_solidaire.taux_reduction.taux2
-        taux3 = simulation.parameters_at(period.start).rennesmetropole.tarification_solidaire.taux_reduction.taux3
+        taux1 = parameters(period.start).rennesmetropole.tarification_solidaire.taux_reduction.taux1
+        taux2 = parameters(period.start).rennesmetropole.tarification_solidaire.taux_reduction.taux2
+        taux3 = parameters(period.start).rennesmetropole.tarification_solidaire.taux_reduction.taux3
 
         # determine si une personne seule a des enfants qui est considéré de fait comme un couple
-        individu_en_couple = or_(individu_en_couple,nombre_enfants>=1)
+        individu_en_couple = or_(individu.famille('en_couple', period), nombre_enfants >= 1)
 
-        ressources = simulation.calculate('rennes_metropole_transport_base_ressource', period)
+        #salaire =  simulation.compute('salaire_net', period)
+       # salaire_cumul = self.sum_by_entity(salaire, entity = 'famille')
 
+        #----------------------on retire les apl et on ajoute le forfait logement si ahh seul revenu---------------------------
 
-        seuil_evolutif=(1+individu_en_couple*(0.5+nombre_enfants*0.3))
-        #print seuil_evolutif
+        seuil_evolutif = (1 + individu_en_couple * (0.5 + nombre_enfants * 0.3))
 
-        result_non_etudiant = select([ressources <= seuil1*seuil_evolutif,ressources <= seuil2*seuil_evolutif, ressources <= seuil3*seuil_evolutif], [taux1,taux2,taux3])
+        result_non_etudiant = select([ressources_familiales <= seuil1 * seuil_evolutif, ressources_familiales <= seuil2 * seuil_evolutif, ressources_familiales <= seuil3 * seuil_evolutif], [taux1, taux2, taux3])
 
-        # import ipdb
-        # ipdb.set_trace()
-        etudiant = simulation.calculate('etudiant', period)
-
-        #result_etudiant = simulation.calculate('rennes_metropole_transport_etudiant', period)
-
-        # Récupération de l'échelon de bourse
-        echelon = simulation.calculate('echelon_bourse',period)
-        #echelon = 4
-        #print(echelon)
-        result_etudiant = select([echelon >= 5,echelon >= 3, echelon >= 2], [taux1,taux2,taux3])
-        #print(result_etudiant)
+        etudiant = individu('etudiant', period)
+        echelon = individu('echelon_bourse', period)
+        result_etudiant = select([echelon >= 5, echelon >= 3, echelon >= 2], [taux1, taux2, taux3])
         result = where(etudiant, result_etudiant, result_non_etudiant)
-        #print("---ressources---")
-        #print(ressources)
-        #print("---detail ressources---")
-        #print(simulation.calculate_add('salaire_net', period.start.period('year').offset(-1))/12)
-        #print(simulation.calculate('indemnites_journalieres', period.start.period('year').offset(-1))/12)
-        #print(simulation.calculate('allocation_aide_retour_emploi', period.start.period('year').offset(-1))/12)
-        #print(simulation.calculate('chomage_net', period.start.period('year').offset(-1))/12)
-        #print(simulation.calculate('ass', period.start.period('year').offset(-1))/12)
-        #print(round(simulation.calculate('rsa', period.start.period('year').offset(-1))/12))
-        #print(simulation.calculate('pensions_invalidite', period.start.period('year').offset(-1))/12)
-        #print(simulation.calculate('revenus_stage_formation_pro', period.start.period('year').offset(-1))/12)
-        #print(simulation.calculate('af', period.start.period('year').offset(-1))/12)
-        #print(simulation.calculate('cf', period.start.period('year').offset(-1))/12)
-        #print(simulation.calculate('asf', period.start.period('year').offset(-1))/12)
-        #print(simulation.calculate('paje_base', period.start.period('year').offset(-1))/12)
-        #print(simulation.calculate('paje_clca', period.start.period('year').offset(-1))/12)
-        #print(simulation.calculate('paje_prepare', period.start.period('year').offset(-1))/12)
-        #print(simulation.calculate_add('aide_logement', period.start.period('year').offset(-1))/12)
-        #print(simulation.calculate('aah', period.start.period('year').offset(-1))/12)
-        #print(simulation.calculate('retraite_nette', period.start.period('year').offset(-1))/12)
-        #print(simulation.calculate('retraite_combattant', period.start.period('year').offset(-1))/12)
-        #print(simulation.calculate('aspa', period.start.period('year').offset(-1))/12)
-        #print(simulation.calculate('pensions_alimentaires_percues', period.start.period('year').offset(-1))/12)
-        #print(simulation.calculate('revenus_locatifs', period.start.period('year').offset(-1))/12)
-        #print(simulation.calculate('revenus_capital', period.start.period('year').offset(-1))/12)
 
-        #print(simulation.calculate_add('ppa', period.start.period('year').offset(-1))/12)
-
-        #print(result_non_etudiant)
-        #print("---result---")
-        #print(result)
-        residence_rennes_metropole = simulation.calculate('residence_rennes_metropole', period)
+        residence_rennes_metropole = individu('residence_rennes_metropole', period)
 
         return result * residence_rennes_metropole
-
-
-class rennes_metropole_transport_etudiant(Variable):
-    value_type = float
-    entity = Individu
-    definition_period = MONTH
-    label = u"Calcul tarification solidaire"
-
-
-    def formula(self, simulation, period):
-        taux1= simulation.parameters_at(period.start).rennesmetropole.tarification_solidaire.taux_reduction.taux1
-        taux2 = simulation.parameters_at(period.start).rennesmetropole.tarification_solidaire.taux_reduction.taux2
-        taux3 = simulation.parameters_at(period.start).rennesmetropole.tarification_solidaire.taux_reduction.taux3
-
-        #montant_bourse = simulation.calculate('bourse_enseignement_sup',)
-
-        #echelon = simulation.calculate('echelon_bourse',period)
-        echelon = 1
-        #print(echelon)
-        result_etudiant = select([echelon >= 5,echelon >= 3, echelon >= 2], [taux1,taux2,taux3])
-        return result_etudiant
