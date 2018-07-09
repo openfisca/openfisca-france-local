@@ -1,0 +1,26 @@
+defaults: &defaults
+  working_directory: ~/openfisca-rennesmetropole
+  docker:
+    - image: python:2.7.12
+
+version: 2
+jobs:
+  test:
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          name: Upgrade pip
+          command: pip install --upgrade pip wheel
+      - run:
+          name: Install dependencies
+          command: pip install . --upgrade && pip install ".[test]"
+      - run:
+          name: Run unit tests
+          command: openfisca-run-test tests/**/*.yaml --extensions openfisca_rennesmetropole
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - test
