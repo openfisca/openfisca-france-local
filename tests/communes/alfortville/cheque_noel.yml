@@ -1,0 +1,4 @@
+name: Valide le montant du bon d'achat pour Noël
+period: 2018
+output_variables:
+  alfortville_cheque_noel: 30
