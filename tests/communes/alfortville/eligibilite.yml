@@ -2,6 +2,7 @@
   period: 2018-09
   input_variables:
     depcom: 55039
+    statut_occupation_logement: proprietaire
   output_variables:
     alfortville_eligibilite_residence: true
 
@@ -9,5 +10,14 @@
   period: 2018-09
   input_variables:
     depcom: 49023
+    statut_occupation_logement: proprietaire
+  output_variables:
+    alfortville_eligibilite_residence: false
+
+- name: Famille alfortvillaise éligible aux dispositif
+  period: 2018-09
+  input_variables:
+    depcom: 55039
+    statut_occupation_logement: loge_gratuitement
   output_variables:
     alfortville_eligibilite_residence: false
