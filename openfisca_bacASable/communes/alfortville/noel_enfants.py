@@ -8,6 +8,9 @@ class alfortville_noel_enfants_base_ressources(Variable):
     definition_period = MONTH
     label = u"Montant des ressources prises en compte pour le dispositif Noël des enfants"
 
+    def formula(famille, period, parameters):
+        return famille('rsa_base_ressources', period, extra_params = [period])
+
 
 class alfortville_noel_enfants_eligibilite_financiere(Variable):
     value_type = float
