@@ -2,14 +2,14 @@
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
-class alfortville_cheque_noel_base_ressources(Variable):
+class alfortville_noel_enfants_base_ressources(Variable):
     value_type = float
     entity = Famille
     definition_period = MONTH
     label = u"Montant des ressources prises en compte pour le dispositif Noël des enfants"
 
 
-class alfortville_cheque_noel_eligibilite_financiere(Variable):
+class alfortville_noel_enfants_eligibilite_financiere(Variable):
     value_type = float
     entity = Famille
     definition_period = MONTH
@@ -20,11 +20,11 @@ class alfortville_cheque_noel_eligibilite_financiere(Variable):
         smic_brut_mensuel = smic.smic_h_b * smic.nb_heure_travail_mensuel
         smic_net_mensuel = 0.7 * smic_brut_mensuel
 
-        base_ressources = famille('alfortville_cheque_noel_base_ressources', period)
+        base_ressources = famille('alfortville_noel_enfants_base_ressources', period)
         return base_ressources <= smic_net_mensuel
 
 
-class alfortville_cheque_noel_eligibilite_jeune(Variable):
+class alfortville_noel_enfants_eligibilite_jeune(Variable):
     value_type = bool
     entity = Individu
     definition_period = MONTH
@@ -36,12 +36,18 @@ class alfortville_cheque_noel_eligibilite_jeune(Variable):
         return age <= cheque_noel.age_maximum
 
 
-class alfortville_cheque_noel(Variable):
+class alfortville_noel_enfants(Variable):
     value_type = float
     entity = Famille
-    definition_period = YEAR
-    label = u"Montant"
+    definition_period = MONTH
+    label = u"Montant total des bons d'achats du disposition Noël des enfants pour une famille"
 
     def formula(famille, period, parameters):
         cheque_noel = parameters(period).communes.alfortville.cheque_noel
-        return cheque_noel.montant * (famille('af_nbenf', period.first_month) >= 0)
+
+        residence_alfortville = famille.demandeur.menage('alfortville_eligibilite_residence', period)
+        eligibilite_financiere = famille('alfortville_noel_enfants_eligibilite_financiere', period)
+
+        enfants_eligibles = famille.members('alfortville_noel_enfants_eligibilite_jeune', period)
+        nb_enfants_eligibles = famille.sum(enfants_eligibles)
+        return residence_alfortville * eligibilite_financiere * cheque_noel.montant * nb_enfants_eligibles

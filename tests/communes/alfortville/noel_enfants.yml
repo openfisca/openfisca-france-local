@@ -1,46 +1,49 @@
 - name: Famille éligible au dispositif car sans ressources
   period: 2018-09
   input_variables:
-    alfortville_cheque_noel_base_ressources: 0
+    alfortville_noel_enfants_base_ressources: 0
   output_variables:
-    alfortville_cheque_noel_eligibilite_financiere: true
+    alfortville_noel_enfants_eligibilite_financiere: true
 
 - name: Famille éligible au dispositif car avec de faibles ressources
   period: 2018-09
   input_variables:
-    alfortville_cheque_noel_base_ressources: 800
+    alfortville_noel_enfants_base_ressources: 800
   output_variables:
-    alfortville_cheque_noel_eligibilite_financiere: true
+    alfortville_noel_enfants_eligibilite_financiere: true
 
 - name: Famille éligible au dispositif car avec d'importantes ressources
   period: 2018-09
   input_variables:
-    alfortville_cheque_noel_base_ressources: 8000
+    alfortville_noel_enfants_base_ressources: 8000
   output_variables:
-    alfortville_cheque_noel_eligibilite_financiere: false
+    alfortville_noel_enfants_eligibilite_financiere: false
 
 - name: Enfant de 8 ans éligible au dispositif
   period: 2018-09
   input_variables:
     age: 8
   output_variables:
-    alfortville_cheque_noel_eligibilite_jeune: true
+    alfortville_noel_enfants_eligibilite_jeune: true
 
 - name: Enfant de 16 ans éligible au dispositif
   period: 2018-09
   input_variables:
     age: 16
   output_variables:
-    alfortville_cheque_noel_eligibilite_jeune: true
+    alfortville_noel_enfants_eligibilite_jeune: true
 
 - name: Enfant de 17 ans non éligible au dispositif
   period: 2018-09
   input_variables:
     age: 17
   output_variables:
-    alfortville_cheque_noel_eligibilite_jeune: false
+    alfortville_noel_enfants_eligibilite_jeune: false
 
 - name: Valide le montant du bon d'achat pour Noël
-  period: 2018
+  period: 2018-09
+  input_variables:
+    alfortville_eligibilite_residence: true
+    alfortville_noel_enfants_eligibilite_jeune: true
   output_variables:
-    alfortville_cheque_noel: 30
+    alfortville_noel_enfants: 30
