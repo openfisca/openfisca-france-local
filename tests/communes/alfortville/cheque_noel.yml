@@ -41,6 +41,9 @@
     alfortville_cheque_noel_eligibilite_jeune: false
 
 - name: Valide le montant du bon d'achat pour Noël
-  period: 2018
+  period: 2018-09
+  input_variables:
+    alfortville_eligibilite_residence: true
+    alfortville_cheque_noel_eligibilite_jeune: true
   output_variables:
     alfortville_cheque_noel: 30

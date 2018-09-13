@@ -39,9 +39,15 @@ class alfortville_cheque_noel_eligibilite_jeune(Variable):
 class alfortville_cheque_noel(Variable):
     value_type = float
     entity = Famille
-    definition_period = YEAR
-    label = u"Montant"
+    definition_period = MONTH
+    label = u"Montant total des bons d'achats du disposition Noël des enfants pour une famille"
 
     def formula(famille, period, parameters):
         cheque_noel = parameters(period).communes.alfortville.cheque_noel
-        return cheque_noel.montant * (famille('af_nbenf', period.first_month) >= 0)
+
+        residence_alfortville = famille.demandeur.menage('alfortville_eligibilite_residence', period)
+        eligibilite_financiere = famille('alfortville_cheque_noel_eligibilite_financiere', period)
+
+        enfants_eligibles = famille.members('alfortville_cheque_noel_eligibilite_jeune', period)
+        nb_enfants_eligibles = famille.sum(enfants_eligibles)
+        return residence_alfortville * eligibilite_financiere * cheque_noel.montant * nb_enfants_eligibles
