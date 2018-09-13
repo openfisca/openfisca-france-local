@@ -2,7 +2,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="OpenFisca-Bac-A-Sable",
+    name="OpenFisca-BacASable",
     version="0.0.3",
     description="Extension OpenFisca pour expérimenter avec les partenaires de beta.gouv.fr",
     license="http://www.fsf.org/licensing/licenses/agpl-3.0.html",
