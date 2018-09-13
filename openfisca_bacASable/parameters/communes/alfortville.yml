@@ -1,0 +1,7 @@
+cheque_noel:
+  montant:
+    values:
+      2009-01-01: 30
+  age_maximum:
+    values:
+      2009-01-01: 16
