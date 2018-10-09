@@ -12,6 +12,13 @@
   output_variables:
     alfortville_noel_enfants_eligibilite_financiere: true
 
+- name: Famille éligible au dispositif car avec 1100 de faibles ressources
+  period: 2018-09
+  input_variables:
+    alfortville_noel_enfants_base_ressources: 1100
+  output_variables:
+    alfortville_noel_enfants_eligibilite_financiere: true
+
 - name: Famille éligible au dispositif car avec d'importantes ressources
   period: 2018-09
   input_variables:
