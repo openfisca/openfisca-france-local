@@ -21,7 +21,7 @@ class alfortville_noel_enfants_eligibilite_financiere(Variable):
     def formula(famille, period, parameters):
         smic = parameters(period).cotsoc.gen
         smic_brut_mensuel = smic.smic_h_b * smic.nb_heure_travail_mensuel
-        smic_net_mensuel = 0.7 * smic_brut_mensuel
+        smic_net_mensuel = 7.82 / 9.88 * smic_brut_mensuel
 
         base_ressources = famille('alfortville_noel_enfants_base_ressources', period)
         return base_ressources <= smic_net_mensuel
