@@ -21,6 +21,9 @@ class alfortville_noel_enfants_eligibilite_financiere(Variable):
     def formula(famille, period, parameters):
         smic = parameters(period).cotsoc.gen
         smic_brut_mensuel = smic.smic_h_b * smic.nb_heure_travail_mensuel
+        # Utilisation des valeurs indicatives de service-public.fr pour passer du SMIC brut au SMIC net
+        # https://www.service-public.fr/particuliers/vosdroits/F2300
+        # Dans l'attente de la formule effectivement utilisée par la ville d'Alfortville
         smic_net_mensuel = 7.82 / 9.88 * smic_brut_mensuel
 
         base_ressources = famille('alfortville_noel_enfants_base_ressources', period)
