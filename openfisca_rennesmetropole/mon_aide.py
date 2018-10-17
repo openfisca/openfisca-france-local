@@ -44,7 +44,6 @@ class rennes_metropole_transport_base_ressource(Variable):
 
         ressources_individuelles_annuelles = (
             individu('aah', last_year, options = [ADD])
-            + individu('allocation_aide_retour_emploi', last_year, options = [ADD])
             + individu('chomage_net', last_year, options = [ADD])
             + individu('indemnites_journalieres', last_year, options = [ADD])
             + individu('pensions_alimentaires_percues', last_year, options = [ADD])
