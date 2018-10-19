@@ -3,5 +3,11 @@
   input_variables:
     salaire_net:
       2018-09: 100
+    retraite_nette:
+      2018-09: 99
+    chomage_net:
+      2018-09: 98
+    pensions_alimentaires_percues:
+      2018-09: 97
   output_variables:
-    alfortville_noel_enfants_base_ressources: 100
+    alfortville_noel_enfants_base_ressources: 100 + 99 + 98 + 97

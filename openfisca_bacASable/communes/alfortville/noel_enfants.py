@@ -12,7 +12,10 @@ class alfortville_noel_enfants_base_ressources(Variable):
         period = period.last_month
 
         salaire_net = famille.members('salaire_net', period)
-        return famille.sum(salaire_net)
+        retraite_nette = famille.members('retraite_nette', period)
+        chomage_net = famille.members('chomage_net', period)
+        pensions_alimentaires_percues = famille.members('pensions_alimentaires_percues', period)
+        return famille.sum(salaire_net + retraite_nette + chomage_net + pensions_alimentaires_percues)
 
 
 class alfortville_noel_enfants_eligibilite_financiere(Variable):
