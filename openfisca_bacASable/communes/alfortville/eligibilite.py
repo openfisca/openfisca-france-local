@@ -9,12 +9,4 @@ class alfortville_eligibilite_residence(Variable):
     label = u"Éligibilité résidentielle d'un ménage aux dipositifs d'Alfortville"
 
     def formula(menage, period, parameters):
-        statut_occupation = menage('statut_occupation_logement', period)
-        eligibilite_occupation = (
-            + (statut_occupation == TypesStatutOccupationLogement.primo_accedant)
-            + (statut_occupation == TypesStatutOccupationLogement.proprietaire)
-            + (statut_occupation == TypesStatutOccupationLogement.locataire_hlm)
-            + (statut_occupation == TypesStatutOccupationLogement.locataire_vide)
-            + (statut_occupation == TypesStatutOccupationLogement.sans_domicile)
-        )
-        return eligibilite_occupation * (menage('depcom', period) == '55039')
+        return (menage('depcom', period) == '55039')
