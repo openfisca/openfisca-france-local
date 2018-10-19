@@ -11,13 +11,11 @@ class alfortville_noel_enfants_base_ressources(Variable):
     def formula(famille, period, parameters):
         period = period.last_month
 
-        salaire_net = famille.members('salaire_net', period)
-        retraite_nette = famille.members('retraite_nette', period)
-        chomage_net = famille.members('chomage_net', period)
-        pensions_alimentaires_percues = famille.members('pensions_alimentaires_percues', period)
-
+        nom_individu_resources = ['chomage_net', 'pensions_alimentaires_percues', 'retraite_nette', 'salaire_net']
+        individu_resources = sum([famille.members(ressource, period) for ressource in nom_individu_resources])
+ 
         rsa = famille('rsa', period)
-        return rsa + famille.sum(salaire_net + retraite_nette + chomage_net + pensions_alimentaires_percues)
+        return rsa + famille.sum(individu_resources)
 
 
 class alfortville_noel_enfants_eligibilite_financiere(Variable):
