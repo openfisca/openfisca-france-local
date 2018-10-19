@@ -9,7 +9,8 @@ class alfortville_noel_enfants_base_ressources(Variable):
     label = u"Montant des ressources prises en compte pour le dispositif Noël des enfants"
 
     def formula(famille, period, parameters):
-        return famille('rsa_base_ressources', period, extra_params = [period])
+        salaire_net = famille.members('salaire_net', period)
+        return famille.sum(salaire_net)
 
 
 class alfortville_noel_enfants_eligibilite_financiere(Variable):
