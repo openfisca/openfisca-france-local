@@ -44,6 +44,7 @@ class rennes_metropole_transport_base_ressource(Variable):
 
         ressources_individuelles_annuelles = (
             individu('aah', last_year, options = [ADD])
+            + individu('ass', last_year, options = [ADD])
             + individu('chomage_net', last_year, options = [ADD])
             + individu('indemnites_journalieres', last_year, options = [ADD])
             + individu('pensions_alimentaires_percues', last_year, options = [ADD])
@@ -64,7 +65,6 @@ class rennes_metropole_transport_base_ressource(Variable):
             + individu.famille('aide_logement', last_year, options = [ADD])
             + individu.famille('asf', last_year, options = [ADD])
             + individu.famille('aspa', last_year, options = [ADD])
-            + individu.famille('ass', last_year, options = [ADD])
             + individu.famille('cf', last_year, options = [ADD])
             + individu.famille('paje_base', last_year, options = [ADD])
             + individu.famille('paje_clca', last_year, options = [ADD])
