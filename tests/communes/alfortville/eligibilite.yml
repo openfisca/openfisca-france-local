@@ -1,7 +1,7 @@
 - name: Famille alfortvillaise éligible aux dispositifs
   period: 2018-09
   input_variables:
-    depcom: 55039
+    depcom: 94002
     statut_occupation_logement: proprietaire
   output_variables:
     alfortville_eligibilite_residence: true
