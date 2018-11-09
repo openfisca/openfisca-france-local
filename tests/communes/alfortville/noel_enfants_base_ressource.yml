@@ -1,10 +1,12 @@
-- name: Prise en compte du salaire net (M-1) dans la base ressource
+- name: Prise en compte des bonnes ressources dans la base ressource
   period: 2018-10
   input_variables:
+    aah:
+      2018-09: 97
+    ass:
+      2018-09: 95
     chomage_net:
       2018-09: 98
-    pensions_alimentaires_percues:
-      2018-09: 97
     retraite_nette:
       2018-09: 99
     rsa:
@@ -12,20 +14,17 @@
     salaire_net:
       2018-09: 100
   output_variables:
-    alfortville_noel_enfants_base_ressources: 100 + 99 + 98 + 97 + 96
+    alfortville_noel_enfants_base_ressources: 100 + 99 + 98 + 97 + 96 + 95
 
-- name: Prise en compte du salaire net (M-1) dans la base ressource
+- name: Non prise en compte des pensions alimentaires reçues dans la base ressource
   period: 2018-10
   individus:
   - id: parent1
-    salaire_net:
+    pensions_alimentaires_percues:
       2018-09: 200
-  - id: parent2
-    retraite_nette:
-      2018-09: 100
   familles:
-  - parents: [parent1, parent2]
+  - parents: [parent1]
     rsa:
       2018-09: 0
   output_variables:
-    alfortville_noel_enfants_base_ressources: 300
+    alfortville_noel_enfants_base_ressources: 0
