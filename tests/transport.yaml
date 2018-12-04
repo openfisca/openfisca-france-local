@@ -1,14 +1,14 @@
 - name: "Hors Métropole"
   period: 2018-01
   input_variables:
-    depcom: '75019'
+    depcom: 75019
   output_variables:
     residence_brest_metropole: false
 
 - name: "Dans Métropole"
   period: 2018-01
   input_variables:
-    depcom: '29019'
+    depcom: 29019
   output_variables:
     residence_brest_metropole: true
 
