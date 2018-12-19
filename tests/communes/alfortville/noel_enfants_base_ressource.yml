@@ -1,6 +1,6 @@
 - name: Prise en compte des bonnes ressources dans la base ressource
   period: 2018-10
-  input_variables:
+  input:
     aah:
       2018-09: 97
     ass:
@@ -13,18 +13,25 @@
       2018-09: 96
     salaire_net:
       2018-09: 100
-  output_variables:
+  output:
     alfortville_noel_enfants_base_ressources: 100 + 99 + 98 + 97 + 96 + 95
 
 - name: Non prise en compte des pensions alimentaires reçues dans la base ressource
   period: 2018-10
-  individus:
-  - id: parent1
-    pensions_alimentaires_percues:
-      2018-09: 200
-  familles:
-  - parents: [parent1]
-    rsa:
-      2018-09: 0
-  output_variables:
+  input:
+    foyer_fiscal:
+      declarants:
+      - parent1
+    individus:
+      parent1:
+        pensions_alimentaires_percues:
+          2018-09: 200
+    famille:
+      parents: [parent1]
+      rsa:
+        2018-09: 0
+    menage:
+      personne_de_reference:
+      - parent1
+  output:
     alfortville_noel_enfants_base_ressources: 0

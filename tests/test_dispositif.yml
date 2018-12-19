@@ -1,6 +1,6 @@
 name: Test
 period: 2018-01
-input_variables:
+input:
   date_naissance: 2018-12-12
-output_variables:
+output:
   test_dispositif: true
