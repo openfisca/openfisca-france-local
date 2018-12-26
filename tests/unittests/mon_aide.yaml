@@ -54,12 +54,11 @@
           2016-10: 1000
           2016-11: 1000
           2016-12: 1000
-
     foyer_fiscal:
       declarants:
       - personne1
   output:
-    rennes_metropole_transport: ['85']
+    rennes_metropole_transport: [85]
 - name: Etudiant boursier
   period: 2016-12
   input:
@@ -84,6 +83,7 @@
   input:
     famille:
       parents: [personne1]
+      enfants: [enfant1]
     menage:
       depcom: 35001
       personne_de_reference: personne1
@@ -91,7 +91,6 @@
     individus:
       personne1:
         salaire_net:
-
           2015-12: 0
           2016-01: 0
           2016-02: 0
@@ -105,18 +104,16 @@
           2016-10: 1100
           2016-11: 1100
           2016-12: 1100
-
       enfant1:
         date_naissance: 2006-01-01
     foyers_fiscaux:
       foyer_fiscal_0:
         declarants:
         - personne1
-      foyer_fiscal_1:
-        declarants:
+        personnes_a_charge:
         - enfant1
   output:
-    rennes_metropole_transport: ['100', '0']
+    rennes_metropole_transport: [100, 0]
 - name: Une personne seule retraité à 0%
   period: 2016-12
   input:
@@ -149,12 +146,12 @@
   output:
     rennes_metropole_transport: 0
 
-
 - name: Chomeur avec deux enfants de 10 ans
   period: 2016-12
   input:
     famille:
       parents: [personne1]
+      enfants: [enfant1, enfant2]
     menage:
       depcom: 35001
       personne_de_reference: personne1
@@ -170,15 +167,12 @@
       foyer_fiscal_0:
         declarants:
         - personne1
-      foyer_fiscal_1:
-        declarants:
+        personnes_a_charge:
         - enfant1
-      foyer_fiscal_2:
-        declarants:
         - enfant2
   output:
+    rennes_metropole_transport: [100, 0, 0]
 
-    rennes_metropole_transport: ['100', '0', '0']
 - name: 'Couple : Salarié + 1 adulte handicapé'
   period: 2017-03
   input:
@@ -217,7 +211,6 @@
           2016-12: 808
           2017-01: 808
           2017-02: 808
-
       personne2:
         date_naissance: 1963-01-01
         aah:
@@ -239,18 +232,16 @@
       foyer_fiscal_0:
         declarants:
         - personne1
-      foyer_fiscal_1:
-        declarants:
         - personne2
     menages:
       menage_0:
         personne_de_reference:
         - personne1
-      menage_1:
-        personne_de_reference:
+        conjoint:
         - personne2
   output:
-    rennes_metropole_transport: ['0', '0']
+    rennes_metropole_transport: [0, 0]
+
 - name: 'Personne : 1 adulte handicapé'
   period: 2017-02
   input:
@@ -312,6 +303,7 @@
     menage:
       depcom: 35001
       personne_de_reference: personne1
+      conjoint: personne2
     individus:
       personne1:
         date_naissance: 1964-01-02
@@ -321,11 +313,9 @@
       foyer_fiscal_0:
         declarants:
         - personne1
-      foyer_fiscal_1:
-        declarants:
         - personne2
   output:
-    rennes_metropole_transport: ['85', '85']
+    rennes_metropole_transport: [85, 85]
 - name: Personne qui n'habite pas à Rennes Métropole
   period: 2016-12
   input:
