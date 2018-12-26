@@ -47,6 +47,7 @@
     individus:
      parent: {}
      enfant:
+      age: 10
       handicap: true
     familles:
       famille:
