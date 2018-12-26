@@ -29,7 +29,6 @@
   output:
     rennes_metropole_transport: 100
 
-
 - name: Une personne seule à 85% 1000euros/mois 8000/an
   period: 2016-12
   input:
@@ -59,6 +58,7 @@
       - personne1
   output:
     rennes_metropole_transport: [85]
+
 - name: Etudiant boursier
   period: 2016-12
   input:
@@ -114,6 +114,7 @@
         - enfant1
   output:
     rennes_metropole_transport: [100, 0]
+
 - name: Une personne seule retraité à 0%
   period: 2016-12
   input:
@@ -139,7 +140,6 @@
           2016-10: 1500
           2016-11: 1500
           2016-12: 1500
-
     foyer_fiscal:
       declarants:
       - personne1
@@ -316,6 +316,7 @@
         - personne2
   output:
     rennes_metropole_transport: [85, 85]
+
 - name: Personne qui n'habite pas à Rennes Métropole
   period: 2016-12
   input:
