@@ -113,7 +113,7 @@
         personnes_a_charge:
         - enfant1
   output:
-    rennes_metropole_transport: [100, 0]
+    rennes_metropole_transport: [100, 100]
 
 - name: Une personne seule retraité à 0%
   period: 2016-12
@@ -171,7 +171,7 @@
         - enfant1
         - enfant2
   output:
-    rennes_metropole_transport: [100, 0, 0]
+    rennes_metropole_transport: [100, 100, 100]
 
 - name: 'Couple : Salarié + 1 adulte handicapé'
   period: 2017-03
