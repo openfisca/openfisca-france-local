@@ -45,10 +45,10 @@
   period: 2018-01
   input:
     individus:
-     parent: {}
-     enfant:
-      age: 10
-      handicap: true
+      parent: {}
+      enfant:
+        age: 10
+        handicap: true
     familles:
       famille:
         parents:
