@@ -12,6 +12,7 @@ class garantie_jeune_neet(Variable):
         not_in_employment = individu('salaire_net', period) == 0
 
         scolarite = individu('scolarite', period)
-        not_in_education = scolarite == TypesScolarite.inconnue
+        activite = individu('activite', period)
+        not_in_education = (scolarite == TypesScolarite.inconnue) * (activite != TypesActivite.etudiant)
 
         return not_in_employment * not_in_education

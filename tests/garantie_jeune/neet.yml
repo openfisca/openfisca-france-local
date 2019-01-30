@@ -13,3 +13,11 @@
     scolarite: college
   output:
     garantie_jeune_neet: false
+
+- name: Prise en compte du status étudiant dans la définition de NEET
+  description: Not in Employement, Education or Training
+  period: 2019-01
+  input:
+    activite: etudiant
+  output:
+    garantie_jeune_neet: false
