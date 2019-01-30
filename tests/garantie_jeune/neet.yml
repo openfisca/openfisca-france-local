@@ -1,0 +1,15 @@
+- name: Prise en compte du salaire dans la définition de NEET
+  description: Not in Employement, Education or Training
+  period: 2019-01
+  input:
+    salaire_net: 1
+  output:
+    garantie_jeune_neet: false
+
+- name: Prise en compte de la scolarité dans la définition de NEET
+  description: Not in Employement, Education or Training
+  period: 2019-01
+  input:
+    scolarite: college
+  output:
+    garantie_jeune_neet: false
