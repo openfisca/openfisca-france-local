@@ -1,0 +1,15 @@
+- name: Évaluation de l'i
+  period: 2019-01
+  absolute_error_margin: 0.004
+  input:
+    age:
+      - 15
+      - 16
+      - 25
+      - 26
+  output:
+    garantie_jeune_eligibilite_age:
+      - false
+      - true
+      - true
+      - false

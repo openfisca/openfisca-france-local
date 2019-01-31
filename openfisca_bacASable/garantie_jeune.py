@@ -38,3 +38,16 @@ class garantie_jeune_max(Variable):
         taux_1_personne = params.forfait_logement.taux_1_personne
 
         return (individu('age', period) > 0) * montant_base * (1 - taux_1_personne)
+
+
+class garantie_jeune_eligibilite_age(Variable):
+    value_type = bool
+    entity = Individu
+    definition_period = MONTH
+    label = u"Éligibilité en fonction de l'âge à la Garantie Jeune"
+
+    def formula(individu, period, parameters):
+        params_age = parameters(period).garantie_jeune.age
+        age = individu('age', period)
+
+        return (params_age.minimum <= age) * (age <= params_age.maximum)
