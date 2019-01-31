@@ -4,4 +4,4 @@
   input:
     salaire_net: 1
   output:
-    garantie_jeune_max: 484.82
+    garantie_jeunes_max: 484.82

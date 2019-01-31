@@ -2,7 +2,7 @@
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
-class garantie_jeune_neet(Variable):
+class garantie_jeunes_neet(Variable):
     value_type = bool
     entity = Individu
     definition_period = MONTH
@@ -22,7 +22,7 @@ class garantie_jeune_neet(Variable):
         return not_in_employment * not_in_education * not_in_training
 
 
-class garantie_jeune_max(Variable):
+class garantie_jeunes_max(Variable):
     value_type = float
     entity = Individu
     definition_period = MONTH
@@ -40,28 +40,28 @@ class garantie_jeune_max(Variable):
         return (individu('age', period) > 0) * montant_base * (1 - taux_1_personne)
 
 
-class garantie_jeune_eligibilite_age(Variable):
+class garantie_jeunes_eligibilite_age(Variable):
     value_type = bool
     entity = Individu
     definition_period = MONTH
     label = u"Éligibilité en fonction de l'âge à la Garantie Jeune"
 
     def formula(individu, period, parameters):
-        params_age = parameters(period).garantie_jeune.age
+        params_age = parameters(period).garantie_jeunes.age
         age = individu('age', period)
 
         return (params_age.minimum <= age) * (age <= params_age.maximum)
 
 
-class garantie_jeune(Variable):
+class garantie_jeunes(Variable):
     value_type = float
     entity = Individu
     definition_period = MONTH
     label = u"Montant de la Garantie Jeune"
 
     def formula(individu, period, parameters):
-        montant = individu('garantie_jeune_max', period)
-        neet = individu('garantie_jeune_neet', period)
-        age_ok = individu('garantie_jeune_eligibilite_age', period)
+        montant = individu('garantie_jeunes_max', period)
+        neet = individu('garantie_jeunes_neet', period)
+        age_ok = individu('garantie_jeunes_eligibilite_age', period)
 
         return neet * age_ok * montant

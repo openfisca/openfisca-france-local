@@ -8,7 +8,7 @@
       - 25
       - 26
   output:
-    garantie_jeune_eligibilite_age:
+    garantie_jeunes_eligibilite_age:
       - false
       - true
       - true

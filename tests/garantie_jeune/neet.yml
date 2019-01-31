@@ -4,7 +4,7 @@
   input:
     salaire_net: 1
   output:
-    garantie_jeune_neet: false
+    garantie_jeunes_neet: false
 
 - name: Prise en compte de la scolarité dans la définition de NEET
   description: Not in Employement, Education or Training
@@ -12,7 +12,7 @@
   input:
     scolarite: college
   output:
-    garantie_jeune_neet: false
+    garantie_jeunes_neet: false
 
 - name: Prise en compte du status étudiant dans la définition de NEET
   description: Not in Employement, Education or Training
@@ -20,7 +20,7 @@
   input:
     activite: etudiant
   output:
-    garantie_jeune_neet: false
+    garantie_jeunes_neet: false
 
 - name: Prise en compte des indemnités de stage dans la définition de NEET
   description: Not in Employement, Education or Training
@@ -28,7 +28,7 @@
   input:
     indemnites_stage: 1
   output:
-    garantie_jeune_neet: false
+    garantie_jeunes_neet: false
 
 - name: Prise en compte des revenus de formation professionnelle dans la définition de NEET
   description: Not in Employement, Education or Training
@@ -36,4 +36,4 @@
   input:
     revenus_stage_formation_pro: 1
   output:
-    garantie_jeune_neet: false
+    garantie_jeunes_neet: false
