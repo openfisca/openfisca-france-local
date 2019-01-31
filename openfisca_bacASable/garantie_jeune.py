@@ -51,3 +51,17 @@ class garantie_jeune_eligibilite_age(Variable):
         age = individu('age', period)
 
         return (params_age.minimum <= age) * (age <= params_age.maximum)
+
+
+class garantie_jeune(Variable):
+    value_type = float
+    entity = Individu
+    definition_period = MONTH
+    label = u"Montant de la Garantie Jeune"
+
+    def formula(individu, period, parameters):
+        montant = individu('garantie_jeune_max', period)
+        neet = individu('garantie_jeune_neet', period)
+        age_ok = individu('garantie_jeune_eligibilite_age', period)
+
+        return neet * age_ok * montant
