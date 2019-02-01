@@ -1,6 +1,5 @@
-- name: Évaluation de l'i
+- name: Critère d'âge pour la Garantie Jeunes
   period: 2019-01
-  absolute_error_margin: 0.004
   input:
     age:
       - 15
