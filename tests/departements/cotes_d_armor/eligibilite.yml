@@ -1,0 +1,5 @@
+- period: 2019-01
+  input:
+    depcom: [22901, 30010]
+  output:
+    cotes_d_armor_eligibilite_residence: [true, false]
