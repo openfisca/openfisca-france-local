@@ -1,1 +1,1 @@
-# Extension OpenFisca pour expérimenter avec nos partenaires
+# Extension OpenFisca pour nos partenariats avec les collectivités territoriales
