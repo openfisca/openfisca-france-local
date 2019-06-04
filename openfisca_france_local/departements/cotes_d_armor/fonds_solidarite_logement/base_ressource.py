@@ -15,16 +15,32 @@ class cotes_d_armor_fonds_solidarite_logement_base_ressource_mensuelle(Variable)
     def formula(menage, period, parameters):
         individual_resource_names = [
             'aah',
+            'asi',
             'ass',
+            'caah',
             'chomage_net',
+            'garantie_jeunes',
+            'indemnites_journalieres',
+            'mva',
+            'pensions_alimentaires_percues',
+            'pensions_invalidite',
+            'rente_accident_travail',
             'retraite_nette',
             'salaire_net'
         ]
         individu_resources = sum([menage.members(resource, period) for resource in individual_resource_names])
 
         family_resource_names = [
-            'rsa',
+            'ada',
+            'af',
+            'aide_logement',
+            'asf',
+            'aspa',
+            'cf',
+            'paje_base',
+            'paje_prepare',
             'ppa',
+            'rsa',
         ]
         famil_resources = sum([menage.members.famille(resource, period) for resource in family_resource_names])
 
