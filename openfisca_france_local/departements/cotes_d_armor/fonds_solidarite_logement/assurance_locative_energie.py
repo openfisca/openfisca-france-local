@@ -35,7 +35,16 @@ class cotes_d_armor_fonds_solidarite_logement_assurance_locative_energie_eligibi
         return resid * financier
 
 
-class cotes_d_armor_fonds_solidarite_logement_assurance_locative_energie_eligibilite_individuelle(Variable):
+class cotes_d_armor_fonds_solidarite_logement_assurance_locative_eligibilite(Variable):
+    value_type = bool
+    entity = Individu
+    definition_period = MONTH
+
+    def formula(individu, period, parameters):
+        return individu.menage('cotes_d_armor_fonds_solidarite_logement_assurance_locative_energie_eligibilite', period)
+
+
+class cotes_d_armor_fonds_solidarite_logement_energie_eligibilite(Variable):
     value_type = bool
     entity = Individu
     definition_period = MONTH

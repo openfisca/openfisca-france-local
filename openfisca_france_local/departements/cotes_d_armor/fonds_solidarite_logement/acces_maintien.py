@@ -61,7 +61,16 @@ class cotes_d_armor_fonds_solidarite_logement_acces_maintien_eligibilite(Variabl
         return resid * loyer_adapte * financier
 
 
-class cotes_d_armor_fonds_solidarite_logement_acces_maintien_eligibilite_individuelle(Variable):
+class cotes_d_armor_fonds_solidarite_logement_acces_eligibilite(Variable):
+    value_type = bool
+    entity = Individu
+    definition_period = MONTH
+
+    def formula(individu, period, parameters):
+        return individu.menage('cotes_d_armor_fonds_solidarite_logement_acces_maintien_eligibilite', period)
+
+
+class cotes_d_armor_fonds_solidarite_logement_maintien_eligibilite(Variable):
     value_type = bool
     entity = Individu
     definition_period = MONTH
