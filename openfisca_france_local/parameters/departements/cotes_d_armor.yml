@@ -1,0 +1,60 @@
+fonds_solidarite_logement:
+  acces_maintien:
+    taux_effort_maximum:
+      reference: 4-1 b du Règlement intérieur du fonds de solidarité pour le logement des Côtes d'Armor
+      values:
+        2009-01-01:
+          value: 0.3
+    bareme:
+      reference: Annexe 2 du Règlement intérieur du fonds de solidarité pour le logement des Côtes d'Armor
+      v1:
+        values:
+          2009-01-01:
+            value: 1015
+      v2:
+        values:
+          2009-01-01:
+            value: 1525
+      v3:
+        values:
+          2009-01-01:
+            value: 2030
+      v4:
+        values:
+          2009-01-01:
+            value: 2540
+      v5:
+        values:
+          2009-01-01:
+            value: 3050
+      plus:
+        values:
+          2009-01-01:
+            value: 500
+  assurance_locative_energie:
+    bareme:
+      reference: Annexe 2 du Règlement intérieur du fonds de solidarité pour le logement des Côtes d'Armor
+      v1:
+        values:
+          2009-01-01:
+            value: 900
+      v2:
+        values:
+          2009-01-01:
+            value: 1050
+      v3:
+        values:
+          2009-01-01:
+            value: 1200
+      v4:
+        values:
+          2009-01-01:
+            value: 1500
+      v5:
+        values:
+          2009-01-01:
+            value: 1800
+      plus:
+        values:
+          2009-01-01:
+            value: 200

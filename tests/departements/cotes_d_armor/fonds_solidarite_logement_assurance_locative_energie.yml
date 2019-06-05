@@ -1,0 +1,6 @@
+- period: 2019-04
+  input:
+    cotes_d_armor_fonds_solidarite_logement_assurance_locative_energie_plafond: [500, 500]
+    cotes_d_armor_fonds_solidarite_logement_base_ressource_moyennee: [499, 501]
+  output:
+    cotes_d_armor_fonds_solidarite_logement_assurance_locative_energie_eligibilite_financiere: [true, false]
