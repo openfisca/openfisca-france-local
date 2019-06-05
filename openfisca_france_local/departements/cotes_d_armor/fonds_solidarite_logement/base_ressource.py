@@ -11,6 +11,10 @@ class cotes_d_armor_fonds_solidarite_logement_base_ressource_mensuelle(Variable)
     value_type = float
     entity = Menage
     definition_period = MONTH
+    reference = [
+        'Annexe 2 page 21 du Réglement intérieur',
+        'Annexes non publiées',
+    ]
 
     def formula(menage, period, parameters):
         individual_resource_names = [
@@ -52,6 +56,9 @@ class cotes_d_armor_fonds_solidarite_logement_base_ressource_moyennee(Variable):
     value_type = float
     entity = Menage
     definition_period = MONTH
+    reference = [
+        'Annexe 2 page 21 du Réglement intérieur',
+    ]
 
     def formula(menage, period, parameters):
         return menage('cotes_d_armor_fonds_solidarite_logement_base_ressource_mensuelle', period.last_3_months, options = [ADD]) / 3

@@ -7,6 +7,9 @@ class cotes_d_armor_fonds_solidarite_logement_acces_maintien_taux_effort(Variabl
     value_type = float
     entity = Menage
     definition_period = MONTH
+    reference = [
+        'Chapitre 4 page 8 du Réglement intérieur',
+    ]
 
     def formula(menage, period, parameters):
         loyer = menage('loyer', period)
@@ -20,6 +23,9 @@ class cotes_d_armor_fonds_solidarite_logement_acces_maintien_loyer_adapte(Variab
     value_type = bool
     entity = Menage
     definition_period = MONTH
+    reference = [
+        'Chapitre 4 page 8 du Réglement intérieur',
+    ]
 
     def formula(menage, period, parameters):
         taux_effort = menage('cotes_d_armor_fonds_solidarite_logement_acces_maintien_taux_effort', period)
@@ -32,6 +38,9 @@ class cotes_d_armor_fonds_solidarite_logement_acces_maintien_plafond(Variable):
     value_type = float
     entity = Menage
     definition_period = MONTH
+    reference = [
+        'Annexe 2 page 21 du Réglement intérieur',
+    ]
 
     def formula(menage, period, parameters):
         bareme = parameters(period).departements.cotes_d_armor.fonds_solidarite_logement.acces_maintien.bareme
@@ -42,6 +51,9 @@ class cotes_d_armor_fonds_solidarite_logement_acces_maintien_eligibilite_financi
     value_type = bool
     entity = Menage
     definition_period = MONTH
+    reference = [
+        'Annexe 2 page 21 du Réglement intérieur',
+    ]
 
     def formula(menage, period, parameters):
         br = menage('cotes_d_armor_fonds_solidarite_logement_base_ressource_moyennee', period)
