@@ -2,6 +2,8 @@ name: montant noel des enfants à Alfortville
 description: Description du test
 absolute_error_margin: 10
 period: 2019-05
+output:
+  alfortville_noel_enfants: 60
 input:
   individus:
     demandeur:
