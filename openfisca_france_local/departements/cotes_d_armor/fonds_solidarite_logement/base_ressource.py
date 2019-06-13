@@ -37,7 +37,6 @@ class cotes_d_armor_fonds_solidarite_logement_base_ressource_mensuelle(Variable)
         family_resource_names = [
             'ada',
             'af',
-            'aide_logement',
             'asf',
             'aspa',
             'cf',
