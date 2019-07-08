@@ -25,7 +25,7 @@ class cotes_d_armor_fonds_solidarite_logement_base_ressource_mensuelle(Variable)
             'chomage_net',
             'garantie_jeunes',
             'indemnites_journalieres',
-            'mva',
+            # 'mva', # En attente de fiabilisation
             'pensions_alimentaires_percues',
             'pensions_invalidite',
             'rente_accident_travail',
