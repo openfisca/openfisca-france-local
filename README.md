@@ -1,1 +1,48 @@
 # Extension OpenFisca pour nos partenariats avec les collectivités territoriales
+
+## Introduction
+
+[OpenFisca](https://www.openfisca.fr/) est un logiciel libre de micro-simulation. Ce dépôt contient la modélisation des aides locales françaises. Celles-ci étendent le modèle national de la France, [openfisca-france](https://github.com/openfisca/openfisca-france#openfisca-france).
+
+Pour plus d'information sur les fonctionnalités et la manière d'utiliser OpenFisca, vous pouvez consulter la [documentation générale](https:/openfisca.org/doc/).
+
+## Installation
+
+Ce paquet requiert [Python 3.6](https://www.python.org/downloads/release/python-369/) et [pip](https://pip.pypa.io/en/stable/installing/).
+
+Afin d'installer l'extension `openfisca-france-local`, lancez une fenêtre de terminal et suivez les instructions suivantes pour en récupérer le code source :
+
+```shell
+git clone git@github.com:betagouv/openfisca-france-local.git
+```
+
+Puis, pour aller dans `openfisca-france-local` et l'installer dans votre environnement :
+
+```shell
+cd openfisca-france-local
+pip install --editable .
+```
+
+Une fois l'installation terminée, vous devriez pouvoir la tester avec les commandes suivantes :
+
+```shell
+openfisca test tests/test_dispositif.yml --country-package openfisca_france --extension openfisca_france_local
+```
+
+Ceci exécute un test `test_dispositif.yml` faisant appel au module `openfisca_france_local`. Vous devriez obtenir un résultat se terminant par `1 passed in 0.0xs` tel que dans cet exemple :
+
+```shell
+libyaml is not installed in your environment. This can make OpenFisca slower to start. Once you have installed libyaml, run 'pip uninstall pyyaml && pip install pyyaml --no-cache-dir' so that it is used in your Python environment.
+
+ libyaml is not installed in your environment, this can make your test suite slower to run. Once you have installed libyaml, run `pip uninstall pyyaml && pip install pyyaml --no-cache-dir` so that it is used in your Python environment.
+=================== test session starts ===================
+platform linux -- Python 3.7.4, pytest-5.1.2, py-1.8.0, pluggy-0.12.0
+rootdir: /home/thomas/test/openfisca-france-local
+collected 1 item                                          
+
+tests/test_dispositif.yml .
+
+==================== 1 passed in 0.01s ====================
+```
+
+:tada: openfisca-france-local est prêt à être utilisé !
