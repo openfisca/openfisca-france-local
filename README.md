@@ -1,14 +1,16 @@
 # Extension OpenFisca pour nos partenariats avec les collectivités territoriales
 
+
 ## Introduction
 
-[OpenFisca](https://www.openfisca.fr/) est un logiciel libre de micro-simulation. Ce dépôt contient la modélisation des aides locales françaises. Celles-ci étendent le modèle national de la France, [openfisca-france](https://github.com/openfisca/openfisca-france#openfisca-france).
+[OpenFisca](https://www.openfisca.fr/) est un logiciel libre de micro-simulation. Ce dépôt contient la modélisation des aides locales françaises. Celles-ci enrichissent le modèle national de la France, [openfisca-france](https://github.com/openfisca/openfisca-france#openfisca-france).
 
 Pour plus d'information sur les fonctionnalités et la manière d'utiliser OpenFisca, vous pouvez consulter la [documentation générale](https:/openfisca.org/doc/).
 
+
 ## Installation
 
-Ce paquet requiert [Python 3.6](https://www.python.org/downloads/release/python-369/) et [pip](https://pip.pypa.io/en/stable/installing/).
+Ce paquet requiert [Python 3.7 ou supérieur](https://www.python.org/downloads/) et [pip](https://pip.pypa.io/en/stable/installing/).
 
 Afin d'installer l'extension `openfisca-france-local`, lancez une fenêtre de terminal et suivez les instructions suivantes pour en récupérer le code source :
 
@@ -46,3 +48,9 @@ tests/test_dispositif.yml .
 ```
 
 :tada: openfisca-france-local est prêt à être utilisé !
+
+### Rédaction des formules et tests
+
+Vous trouverez un exemple d'aide dans le fichier [communes/alfortville/noel_enfants.py](https://github.com/betagouv/openfisca-france-local/blob/master/openfisca_france_local/communes/alfortville/noel_enfants.py#L57-L71), ainsi que le fichier de tests associé, [tests/communes/alfortville/noel_enfants.yml](https://github.com/betagouv/openfisca-france-local/blob/master/tests/communes/alfortville/noel_enfants.yml#L50-L56). Les paramètres nécessaires au calcul se trouvent quant à eux dans le fichier [openfisca_france_local/parameters/communes/alfortville.yml](https://github.com/betagouv/openfisca-france-local/blob/master/openfisca_france_local/parameters/communes/alfortville.yml).
+
+Pour ajouter des formules et tests, créez simplement des fichiers .py et .yml à l'intérieur du répertoire.
