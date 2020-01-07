@@ -1,0 +1,9 @@
+period: 2020-01
+input:
+  aah: 0
+  ada: 0
+  rfr:
+    2018: 0
+  depcom: 33090
+output:
+  nouvelle_aquitaine_carte_solidaire: 80
