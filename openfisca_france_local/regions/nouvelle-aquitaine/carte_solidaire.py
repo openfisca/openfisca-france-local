@@ -26,7 +26,7 @@ class nouvelle_aquitaine_carte_solidaire_eligibilite_financiere(Variable):
         return ((qf < plafond) + b_aah + b_ada)
 
 
-class nouvelle_aquitaine_carte_solidaire(Variable):
+class nouvelle_aquitaine_carte_solidaire_eligibilite(Variable):
     value_type = bool
     entity = Individu
     definition_period = MONTH
@@ -36,3 +36,15 @@ class nouvelle_aquitaine_carte_solidaire(Variable):
         resid = individu.menage('nouvelle_aquitaine_eligibilite_residence', period)
         fin = individu('nouvelle_aquitaine_carte_solidaire_eligibilite_financiere', period)
         return resid * fin
+
+
+class nouvelle_aquitaine_carte_solidaire(Variable):
+    value_type = float
+    entity = Individu
+    definition_period = MONTH
+    label = u"Réduction obtenue en \% avec la carte solidaire pour les transports de la Nouvelle Aquitaine"
+
+    def formula(individu, period, parameters):
+        reduction = parameters(period).regions.nouvelle_aquitaine.carte_solidaire.reduction
+        elig = individu('nouvelle_aquitaine_carte_solidaire_eligibilite', period)
+        return elig * reduction
