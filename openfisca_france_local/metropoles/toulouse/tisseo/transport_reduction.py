@@ -1,5 +1,5 @@
  # -*- coding: utf-8 -*-
-from openfisca_france.model.base import Variable, FoyerFiscal, Individu, MONTH, YEAR
+from openfisca_france.model.base import Variable, FoyerFiscal, Individu, MONTH, YEAR, max_
 
 class tisseo_transport_reduction(Variable):
     value_type = float
@@ -10,4 +10,15 @@ class tisseo_transport_reduction(Variable):
     def formula(individu, period):
         ressort_territorial = individu.menage('tisseo_ressort_territorial', period)
 
-        return ressort_territorial * individu('tisseo_transport_jeune_reduction', period)
+        jeune = max_(
+          individu('tisseo_transport_jeune_reduction', period),
+          individu('tisseo_transport_etudiant_reduction', period)
+          )
+
+        demandeur_emploi = max_(
+          individu('tisseo_transport_demandeur_emploi_indemnise_reduction', period),
+          individu('tisseo_transport_demandeur_emploi_non_indemnise_reduction', period)
+          )
+
+        reduction_maximum = max_(jeune, demandeur_emploi)
+        return ressort_territorial * reduction_maximum
