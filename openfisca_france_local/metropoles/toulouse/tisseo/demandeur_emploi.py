@@ -1,5 +1,5 @@
  # -*- coding: utf-8 -*-
-from openfisca_france.model.base import Variable, Individu, MONTH, select
+from openfisca_france.model.base import Variable, Individu, MONTH, TypesActivite, select
 
 class tisseo_transport_demandeur_emploi_indemnise_reduction(Variable):
     value_type = float
@@ -34,6 +34,8 @@ class tisseo_transport_demandeur_emploi_non_indemnise_reduction(Variable):
     def formula(individu, period, parameters):
         ressources = individu.foyer_fiscal('tisseo_transport_reduction_ressources_fiscales', period.n_2)
 
+        chomeur = individu('activite', period) == TypesActivite.chomeur
+
         smic = parameters(period).cotsoc.gen
         smic_brut_mensuel = smic.smic_h_b * smic.nb_heure_travail_mensuel
         # Utilisation des valeurs indicatives de service-public.fr pour passer du SMIC brut au SMIC net
@@ -41,4 +43,4 @@ class tisseo_transport_demandeur_emploi_non_indemnise_reduction(Variable):
         # Dans l'attente de la formule effectivement utilisée par la ville d'Alfortville
         smic_net_mensuel = 7.82 / 9.88 * smic_brut_mensuel
 
-        return (ressources <= smic_net_mensuel) * 80
+        return chomeur * (ressources <= smic_net_mensuel) * 80
