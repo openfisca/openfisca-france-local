@@ -1,0 +1,5 @@
+period: 2020-02
+input:
+  tisseo_transport_jeune_reduction: 10
+output:
+  tisseo_transport_reduction: 10
