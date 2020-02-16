@@ -20,5 +20,7 @@ class tisseo_transport_reduction(Variable):
           individu('tisseo_transport_demandeur_emploi_non_indemnise_reduction', period)
           )
 
-        reduction_maximum = max_(jeune, demandeur_emploi)
+        retraite = individu('tisseo_transport_retraite_reduction', period)
+
+        reduction_maximum = max_(max_(jeune, demandeur_emploi), retraite)
         return ressort_territorial * reduction_maximum

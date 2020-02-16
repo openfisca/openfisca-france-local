@@ -9,12 +9,13 @@ class tisseo_transport_retraite_reduction(Variable):
 
     def formula(individu, period, parameters):
         retraite = individu('activite', period) == TypesActivite.retraite
+        age = individu('age', period)
 
         ressources = individu.foyer_fiscal('tisseo_transport_reduction_ressources_fiscales', period.n_2)
 
         aah = parameters(period).prestations.minima_sociaux.aah.montant
         smic_net_mensuel = individu('tisseo_transport_reduction_plafond_smic_net', period)
-        return retraite * select([
+        return (retraite + (65 <= age)) * select([
             ressources <= aah,
             ressources <= smic_net_mensuel
             ], [100, 80], default=70)
