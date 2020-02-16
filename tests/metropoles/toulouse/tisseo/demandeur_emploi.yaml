@@ -11,7 +11,7 @@
     activite: [chomeur, chomeur, chomeur]
     chomage_net:
       2020-01: [0, 0, 0]
-    rfr:
-      2018: [0, 1200, 24000]
+    tisseo_transport_reduction_ressources_fiscales:
+      2018: [0, 100, 2000]
   output:
     tisseo_transport_demandeur_emploi_non_indemnise_reduction: [80, 80, 0]

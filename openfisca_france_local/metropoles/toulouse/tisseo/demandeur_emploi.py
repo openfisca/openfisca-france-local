@@ -32,7 +32,7 @@ class tisseo_transport_demandeur_emploi_non_indemnise_reduction(Variable):
     label = u"Pourcentage de la réduction pour les demandeurs d'emploi non indemnisés"
 
     def formula(individu, period, parameters):
-        ressources = individu.foyer_fiscal('rfr', period.n_2) / 12
+        ressources = individu.foyer_fiscal('tisseo_transport_reduction_ressources_fiscales', period.n_2)
 
         smic = parameters(period).cotsoc.gen
         smic_brut_mensuel = smic.smic_h_b * smic.nb_heure_travail_mensuel
