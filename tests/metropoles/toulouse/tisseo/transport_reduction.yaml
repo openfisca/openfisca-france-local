@@ -1,0 +1,7 @@
+period: 2020-02
+input:
+  tisseo_ressort_territorial: true
+  tisseo_transport_jeune_reduction: 10
+  tisseo_transport_demandeur_emploi_non_indemnise_reduction: 0
+output:
+  tisseo_transport_reduction: 10

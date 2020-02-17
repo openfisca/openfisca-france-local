@@ -1,0 +1,7 @@
+- period: 2020-02
+  input:
+    taux_incapacite: [0, 0.49, 0.79, 0.79, 0.79, 0.80]
+    tisseo_transport_reduction_ressources_fiscales:
+      2018: [0, 0, 0, 910, 1500, 1500]
+  output:
+    tisseo_transport_invalide_reduction: [0, 0, 100, 80, 70, 100]

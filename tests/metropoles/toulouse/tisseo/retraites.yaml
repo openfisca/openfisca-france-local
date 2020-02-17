@@ -1,0 +1,8 @@
+- period: 2020-02
+  input:
+    activite: [retraite, retraite, retraite, actif]
+    age: [60, 60, 60, 66]
+    tisseo_transport_reduction_ressources_fiscales:
+      2018: [0, 910, 1500, 1500]
+  output:
+    tisseo_transport_retraite_reduction: [100, 80, 70, 70]

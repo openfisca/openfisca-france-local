@@ -1,0 +1,14 @@
+- period: 2020-02
+  input:
+    age: [19, 20, 26]
+  output:
+    tisseo_transport_jeune_reduction: [80, 70, 0]
+
+- period: 2020-02
+  input:
+    age: [20, 26, 34, 35]
+    etudiant: [true, true, true, true]
+    boursier: [false, false, true, true]
+    echelon_bourse: [-1, -1, 7, 7]
+  output:
+    tisseo_transport_etudiant_reduction: [80, 0, 100, 0]

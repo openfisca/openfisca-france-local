@@ -1,0 +1,16 @@
+- period: 2020-02
+  input:
+    chomage_net:
+      2020-01: [0, 1, 850, 1500]
+  output:
+    tisseo_transport_demandeur_emploi_indemnise_reduction: [0, 100, 80, 70]
+
+- period: 2020-02
+  input:
+    activite: [actif, chomeur, chomeur, chomeur]
+    chomage_net:
+      2020-01: [0, 0, 0, 0]
+    tisseo_transport_reduction_ressources_fiscales:
+      2018: [0, 0, 100, 2000]
+  output:
+    tisseo_transport_demandeur_emploi_non_indemnise_reduction: [0, 80, 80, 0]
