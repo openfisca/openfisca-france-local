@@ -1,0 +1,8 @@
+name: Test FSL reform
+period: 2018-01
+reforms:
+  - openfisca_france_local.fsl_factory.fsl_reform
+input:
+  date_naissance: 2018-12-12
+output:
+  test_dispositif: true
