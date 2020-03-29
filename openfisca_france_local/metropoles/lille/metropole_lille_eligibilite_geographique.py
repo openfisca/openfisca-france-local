@@ -1,0 +1,110 @@
+ # -*- coding: utf-8 -*-
+from openfisca_france.model.base import Variable, FoyerFiscal, Menage, MONTH, YEAR
+
+code_communes = [
+  b'59005', # Allennois
+  b'59527', # Andrésiens
+  b'59011', # Annœullinois
+  b'59013', # Anstinois
+  b'59017', # Armentiérois
+  b'59025', # Aubersois
+  b'59044', # Basiliens
+  b'59051', # Basséens
+  b'59052', # Bauvinois
+  b'59056', # Beaucampois
+  b'59090', # Bonduois
+  b'59098', # Bousbecquois
+  b'59106', # Bouvinois
+  b'59128', # Capinghemmois
+  b'59133', # Carninois
+  b'59143', # Chapellois
+  b'59146', # Chérengeois
+  b'59152', # Cominois
+  b'59163', # Croisiens
+  b'59173', # Deûlémontois
+  b'59670', # Donois
+  b'59193', # Emmerinois
+  b'59195', # Englosiens
+  b'59196', # Ennetiérois
+  b'59202', # Erquinghemmois
+  b'59201', # Erquinghemois
+  b'59208', # Escobecquois
+  b'59220', # Faches-Thumesnilois
+  b'59247', # Forestois
+  b'59250', # Fournois
+  b'59252', # Frelinghinois
+  b'59256', # Fretinois
+  b'59257', # Fromellois
+  b'59088', # Grenériens
+  b'59275', # Grusonnois
+  b'59278', # Hallennois
+  b'59279', # Halluinois
+  b'59281', # Hantayeurs
+  b'59286', # Haubourdinois
+  b'59299', # Hémois
+  b'59303', # Herlilois
+  b'59316', # Houplinois
+  b'59317', # Houplinois
+  b'59320', # Illilois
+  b'59328', # Lambersartois
+  b'59332', # Lannoyens
+  b'59339', # Leersois
+  b'59343', # Lesquinois
+  b'59346', # Lezennois
+  b'59350', # Lillois
+  b'59352', # Linsellois
+  b'59356', # Lompretois
+  b'59360', # Loossois
+  b'59367', # Lyssois
+  b'59368', # Madeleinois
+  b'59371', # Maisnilois
+  b'59378', # Marcquois
+  b'59386', # Marquettois
+  b'59388', # Marquillois
+  b'59410', # Monsois
+  b'59421', # Mouvallois
+  b'59426', # Neuvillois
+  b'59437', # Noyellois
+  b'59457', # Pérenchinois
+  b'59458', # Péronnais
+  b'59470', # Prémesquois
+  b'59477', # Provinois
+  b'59482', # Quesnoysiens
+  b'59487', # Radinghémois
+  b'59507', # Ronchinois
+  b'59508', # Roncquois
+  b'59512', # Roubaisiens
+  b'59522', # Saillysiens
+  b'59523', # Sainghinois
+  b'59524', # Sainghinois
+  b'59550', # Saloméens
+  b'59553', # Santois
+  b'59560', # Seclinois
+  b'59566', # Sequedinois
+  b'59585', # Templemarois
+  b'59598', # Toufflersois
+  b'59599', # Tourquennois
+  b'59602', # Tressinois
+  b'59609', # Vendevillois
+  b'59611', # Verlinghemois
+  b'59009', # Villeneuvois
+  b'59636', # Wambrecitains
+  b'59643', # Warnetonnois
+  b'59646', # Wasquehaliens
+  b'59648', # Wattignisiens
+  b'59650', # Wattrelosiens
+  b'59653', # Wavrinois
+  b'59656', # Wervicquois
+  b'59658', # Wicrois
+  b'59660', # Willemois
+]
+
+class metropole_lille_eligibilite_geographique(Variable):
+    value_type = bool
+    entity = Menage
+    definition_period = MONTH
+    label = u"Ménage dans une commune de la Métropole de Lille"
+
+    def formula(menage, period):
+        depcom = menage('depcom', period)
+        return sum([depcom == code for code in code_communes])
