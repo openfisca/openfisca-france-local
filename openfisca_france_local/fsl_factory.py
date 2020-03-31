@@ -23,6 +23,7 @@ class fsl_reform(reforms.Reform):
         self.add_variable(fsl_factory('alpes_maritimes', 'des Alpes Maritimes', b'06'))
         self.add_variable(fsl_factory('bouches_du_rhone', 'Des Bouches-du-Rhône', b'13'))
         self.add_variable(fsl_factory('calvados', 'du Calvados', b'14'))
+        self.add_variable(fsl_factory('doubs', 'du Doubs', b'25'))
         self.add_variable(fsl_factory('finistere', 'du Finistère', b'29'))
         self.add_variable(fsl_factory('haute_garonne', 'de la Haute-Garonne', b'31'))
         self.add_variable(fsl_factory('gironde', 'de la Gironde', b'33'))
