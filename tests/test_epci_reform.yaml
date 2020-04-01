@@ -1,0 +1,8 @@
+name: Test EPCI reform
+period: 2018-01
+reforms:
+  - openfisca_france_local.epci_test_factory.epci_reform
+input:
+  depcom: ['01304', 33610]
+output:
+  menage_dans_epci_siren_200029999: [true, false]
