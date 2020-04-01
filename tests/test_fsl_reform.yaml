@@ -1,8 +1,19 @@
-name: Test FSL reform
-period: 2018-01
-reforms:
-  - openfisca_france_local.fsl_factory.fsl_reform
-input:
-  depcom: ['14304', '33510']
-output:
-  calvados_fonds_solidarite_logement_aide_maintien_eligibilite: [true, false]
+- name: Test FSL reform
+  period: 2018-01
+  reforms:
+    - openfisca_france_local.fsl_factory.fsl_reform
+  input:
+    depcom: ['14304', '33510']
+  output:
+    calvados_fonds_solidarite_logement_aide_maintien_eligibilite: [true, false]
+
+- name: Test FSL reform
+  period: 2018-01
+  reforms:
+    - openfisca_france_local.epci_test_factory.epci_reform
+    - openfisca_france_local.fsl_factory.fsl_reform
+  input:
+    depcom: ['06088', '06001', 33510']
+  output:
+    nice_metropole_fonds_solidarite_logement_aide_maintien_eligibilite: [true, false, false]
+    alpes_maritimes_fonds_solidarite_logement_aide_maintien_eligibilite: [false, true, false]
