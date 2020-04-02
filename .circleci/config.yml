@@ -11,7 +11,7 @@ upgrade_pip: &upgrade_pip
 install_dependencies: &install_dependencies
   run:
     name: Install dependencies
-    command: pip install . --upgrade && pip install ".[test]"
+    command: pip install . --upgrade && pip install ".[test,excel-reader]"
 
 version: 2
 jobs:
