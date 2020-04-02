@@ -5,17 +5,18 @@ from numpy.core.defchararray import startswith
 
 
 def fsl_factory(prefix, dlabel, code_insee_departement):
-  class NewFSLClass(Variable):
-      value_type = bool
-      entity = Menage
-      definition_period = MONTH
-      label = u"Ménage éligible à l'aide au maintien du FSL du département %s" % dlabel
+    class NewFSLClass(Variable):
+        value_type = bool
+        entity = Menage
+        definition_period = MONTH
+        label = u"Ménage éligible à l'aide au maintien du FSL du département %s" % dlabel
 
-      def formula(menage, period):
-          return startswith(menage('depcom', period), code_insee_departement)
+        def formula(menage, period):
+            return startswith(menage('depcom', period), code_insee_departement)
 
-  NewFSLClass.__name__ = "%s_fonds_solidarite_logement_aide_maintien_eligibilite" % prefix
-  return NewFSLClass
+    NewFSLClass.__name__ = "%s_fonds_solidarite_logement_aide_maintien_eligibilite" % prefix
+    return NewFSLClass
+
 
 class fsl_reform(reforms.Reform):
     def apply(self):

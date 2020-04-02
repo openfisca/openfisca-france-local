@@ -3,6 +3,6 @@ period: 2018-01
 reforms:
   - openfisca_france_local.fsl_factory.fsl_reform
 input:
-  date_naissance: 2018-12-12
+  depcom: ['14304', '33510']
 output:
-  test_dispositif: true
+  calvados_fonds_solidarite_logement_aide_maintien_eligibilite: [true, false]
