@@ -1,5 +1,5 @@
  # -*- coding: utf-8 -*-
-from openfisca_france.model.base import *  # noqa analysis:ignore
+from openfisca_france.model.base import Individu, Variable, MONTH
 
 
 class test_dispositif(Variable):
@@ -9,4 +9,4 @@ class test_dispositif(Variable):
     label = u"Variable de test pour l'extension"
 
     def formula(individu, period):
-        return 1 * individu('age', period)
+        return individu('age', period) > 0

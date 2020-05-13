@@ -31,6 +31,12 @@ Une fois l'installation terminée, vous devriez pouvoir la tester avec les comma
 openfisca test tests/test_dispositif.yml --country-package openfisca_france --extension openfisca_france_local
 ```
 
+Ou plus simplement :
+
+```shell
+openfisca_local_test tests/test_dispositif.yml
+```
+
 Ceci exécute un test `test_dispositif.yml` faisant appel au module `openfisca_france_local`. Vous devriez obtenir un résultat se terminant par `1 passed in 0.0xs` tel que dans cet exemple :
 
 ```shell

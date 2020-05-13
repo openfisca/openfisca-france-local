@@ -1,5 +1,5 @@
  # -*- coding: utf-8 -*-
-from openfisca_france.model.base import *  # noqa analysis:ignore
+from openfisca_france.model.base import Menage, MONTH, Variable
 
 
 class alfortville_eligibilite_residence(Variable):
@@ -9,4 +9,4 @@ class alfortville_eligibilite_residence(Variable):
     label = u"Éligibilité résidentielle d'un ménage aux dipositifs d'Alfortville"
 
     def formula(menage, period, parameters):
-        return (menage('depcom', period) == b'94002')
+        return menage('depcom', period) == b'94002'

@@ -21,5 +21,6 @@ setup(
     classifiers=[
         "Programming Language :: Python",
         "Programming Language :: Python :: 3.7",
-    ]
+    ],
+    scripts=['openfisca_france_local/scripts/openfisca_local_test']
 )
