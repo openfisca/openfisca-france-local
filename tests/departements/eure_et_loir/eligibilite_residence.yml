@@ -1,0 +1,5 @@
+- period: 2019-01
+  input:
+    depcom: [28001, 30010]
+  output:
+    eure_et_loir_eligibilite_residence: [true, false]
