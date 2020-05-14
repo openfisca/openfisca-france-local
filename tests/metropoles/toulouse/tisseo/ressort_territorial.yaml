@@ -1,0 +1,5 @@
+period: 2020-02
+input:
+  depcom: ['31467', '33610']
+output:
+  tisseo_ressort_territorial: [true, false]
