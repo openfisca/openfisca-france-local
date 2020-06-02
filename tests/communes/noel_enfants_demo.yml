@@ -1,0 +1,7 @@
+- name: Famille éligible au dispositif car sans ressources
+  period: 2018-09
+  input:
+    alfortville_noel_enfants_base_ressources: 0
+  output:
+    alfortville_noel_enfants_eligibilite_financiere: true
+  
