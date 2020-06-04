@@ -1,5 +1,5 @@
  # -*- coding: utf-8 -*-
-from openfisca_france.model.base import *  # noqa analysis:ignore
+from openfisca_france.model.base import Famille, Individu, Menage, MONTH, Variable
 
 
 class alfortville_noel_enfants_base_ressources(Variable):
