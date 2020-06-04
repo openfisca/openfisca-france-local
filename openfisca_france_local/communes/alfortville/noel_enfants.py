@@ -6,7 +6,7 @@ class alfortville_noel_enfants_base_ressources(Variable):
     value_type = float
     entity = Famille
     definition_period = MONTH
-    label = u"Montant des ressources prises en compte pour le dispositif Noël des enfants"
+    label = "Montant des ressources prises en compte pour le dispositif Noël des enfants"
 
     def formula(famille, period, parameters):
         period = period.last_month
@@ -28,7 +28,7 @@ class alfortville_noel_enfants_eligibilite_financiere(Variable):
     value_type = float
     entity = Famille
     definition_period = MONTH
-    label = u"Montant maximum des ressources pour bénéficier du chèque Noël des enfants"
+    label = "Montant maximum des ressources pour bénéficier du chèque Noël des enfants"
 
     def formula(famille, period, parameters):
         smic = parameters(period).cotsoc.gen
@@ -46,7 +46,7 @@ class alfortville_noel_enfants_eligibilite_jeune(Variable):
     value_type = bool
     entity = Individu
     definition_period = MONTH
-    label = u"Éligibité d'un enfant au dispositif Noël des enfants"
+    label = "Éligibité d'un enfant au dispositif Noël des enfants"
 
     def formula(individu, period, parameters):
         cheque_noel = parameters(period).communes.alfortville.cheque_noel
@@ -58,7 +58,7 @@ class alfortville_noel_enfants(Variable):
     value_type = float
     entity = Famille
     definition_period = MONTH
-    label = u"Montant total des bons d'achats du disposition Noël des enfants pour une famille"
+    label = "Montant total des bons d'achats du disposition Noël des enfants pour une famille"
 
     def formula(famille, period, parameters):
         cheque_noel = parameters(period).communes.alfortville.cheque_noel
