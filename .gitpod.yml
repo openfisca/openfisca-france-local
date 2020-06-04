@@ -1,0 +1,5 @@
+tasks:
+  - init: pip install --editable .
+    command: openfisca_local_test tests/test_dispositif.yml
+image:
+  file: .gitpod.Dockerfile
