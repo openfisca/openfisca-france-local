@@ -5,21 +5,21 @@
   output:
     alfortville_noel_enfants_eligibilite_financiere: true
 
-- name: Famille éligible au dispositif car avec de faibles ressources
+- name: Famille éligible au dispositif car ne dispose que de faibles les ressources
   period: 2018-09
   input:
     alfortville_noel_enfants_base_ressources: 800
   output:
     alfortville_noel_enfants_eligibilite_financiere: true
 
-- name: Famille éligible au dispositif car avec 1100 de faibles ressources
+- name: Famille éligible au dispositif car ne dispose que de faibles ressources
   period: 2018-09
   input:
     alfortville_noel_enfants_base_ressources: 1100
   output:
     alfortville_noel_enfants_eligibilite_financiere: true
 
-- name: Famille éligible au dispositif car avec d'importantes ressources
+- name: Famille non éligible au dispositif car dispose d importantes ressources
   period: 2018-09
   input:
     alfortville_noel_enfants_base_ressources: 8000
