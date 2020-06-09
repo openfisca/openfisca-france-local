@@ -4,6 +4,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 from numpy.core.defchararray import startswith
 
+
 class eure_loire_eligibilite_residence(Variable):
     value_type = bool
     entity = Menage
@@ -13,13 +14,14 @@ class eure_loire_eligibilite_residence(Variable):
     def formula(menage, period):
         return startswith(menage('depcom', period), b'28')
 
+
 class adefip_eligibilite_activite(Variable):
     value_type = bool
     entity = Individu
     definition_period = MONTH
     label = u"Éligibilité en lien avec l'activité de l'individu"
 
-    def formula(individu, period):
+    def formula(individu, period, parameters):
         params_adefip = parameters(period).departements.eure_loire.adefip
         duree_activite = individu('duree_contrat_ou_formation', period)
 
@@ -38,6 +40,7 @@ class adefip_eligibilite_activite(Variable):
         condition_cdi = (contrat_de_travail_duree == TypesContratDeTravailDuree.cdi)
 
         return condition_formation + condition_cdd + condition_cdi
+
 
 class adefip_eligibilite(Variable):
     value_type = bool
@@ -66,12 +69,13 @@ class adefip_eligibilite(Variable):
 
         return residence_eure_loire * percoit_rsa * ne_percoit_pas_adefip_12_derniers_mois * avoir_cer_ppae * (condition_activite + condition_entreprise)
 
+
 class adefip_montant(Variable):
     value_type = float
     entity = Individu
     definition_period = MONTH
 
-    def formula(individu, period):
+    def formula(individu, period, parameters):
         params_adefip = parameters(period).departements.eure_loire.adefip
 
         duree_activite = individu('duree_contrat_ou_formation', period)
@@ -122,6 +126,7 @@ class adefip_montant(Variable):
         montant_adefip = montant_formation + montant_cdd + montant_cdi + montant_creation_reprise_entreprise
 
         return montant_adefip
+
 
 class adefip(Variable):
     value_type = int
