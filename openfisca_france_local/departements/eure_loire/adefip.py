@@ -34,10 +34,10 @@ class adefip_eligibilite_activite(Variable):
 
         # cas CDD
         condition_duree_cdd = duree_activite >= params_adefip.durees.duree_minimum_cdd_palier1
-        condition_cdd = (contrat_de_travail_duree == TypesContratDeTravailDuree.cdd) * condition_duree_cdd
+        condition_cdd = not_(condition_formation) * (contrat_de_travail_duree == TypesContratDeTravailDuree.cdd) * condition_duree_cdd
 
         # cas CDI
-        condition_cdi = (contrat_de_travail_duree == TypesContratDeTravailDuree.cdi)
+        condition_cdi = not_(condition_formation) * (contrat_de_travail_duree == TypesContratDeTravailDuree.cdi)
 
         return condition_formation + condition_cdd + condition_cdi
 
@@ -65,7 +65,7 @@ class adefip_eligibilite(Variable):
 
         # conditions d'emplois/entreprise
         condition_activite = individu('adefip_eligibilite_activite', period);
-        condition_entreprise = individu('creation_ou_reprise_entreprise', period)
+        condition_entreprise = not_(condition_activite) * individu('creation_ou_reprise_entreprise', period)
 
         return residence_eure_loire * percoit_rsa * ne_percoit_pas_adefip_12_derniers_mois * avoir_cer_ppae * (condition_activite + condition_entreprise)
 
@@ -92,6 +92,10 @@ class adefip_montant(Variable):
                     duree_activite >= params_adefip.durees.duree_minimum_formation)
         montant_formation = condition_formation * params_adefip.montants.montant_formation_3_mois_ou_plus
 
+        # cas creation ou reprise entreprise
+        condition_entreprise = not_(condition_formation) * individu('creation_ou_reprise_entreprise', period)
+        montant_creation_reprise_entreprise = condition_entreprise * params_adefip.montants.montant_creation_reprise_entreprise
+
         # cas CDD palier 1 (entre 3 et 6 mois)
         est_en_cdd = contrat_de_travail_duree == TypesContratDeTravailDuree.cdd
         condition_duree_cdd_palier_1_min = (duree_activite >= params_adefip.durees.duree_minimum_cdd_palier1)
@@ -104,7 +108,7 @@ class adefip_montant(Variable):
         condition_cdd_palier_2 = est_en_cdd * condition_duree_cdd_palier_2_min
         montant_cdd_palier_2 = condition_cdd_palier_2 * params_adefip.montants.montant_cdd_6_mois_ou_plus
 
-        montant_cdd = montant_cdd_palier_1 + montant_cdd_palier_2
+        montant_cdd = (montant_cdd_palier_1 + montant_cdd_palier_2) * not_(condition_formation) * not_(condition_entreprise)
 
         # cas CDI temps plein
         est_en_cdi = contrat_de_travail_duree == TypesContratDeTravailDuree.cdi
@@ -117,11 +121,7 @@ class adefip_montant(Variable):
         condition_cdi_temps_partiel = est_en_cdi * est_a_temps_partiel
         montant_cdi_temps_partiel = condition_cdi_temps_partiel * params_adefip.montants.montant_cdi_temps_partiel
 
-        montant_cdi = montant_cdi_temps_plein + montant_cdi_temps_partiel
-
-        # cas creation ou reprise entreprise
-        condition_entreprise = individu('creation_ou_reprise_entreprise', period)
-        montant_creation_reprise_entreprise = condition_entreprise * params_adefip.montants.montant_creation_reprise_entreprise
+        montant_cdi = (montant_cdi_temps_plein + montant_cdi_temps_partiel) * not_(condition_formation) * not_(condition_entreprise)
 
         montant_adefip = montant_formation + montant_cdd + montant_cdi + montant_creation_reprise_entreprise
 
@@ -132,6 +132,7 @@ class adefip(Variable):
     value_type = int
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period):
 
