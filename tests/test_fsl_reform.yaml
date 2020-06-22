@@ -17,3 +17,13 @@
   output:
     nice_metropole_fonds_solidarite_logement_aide_maintien_eligibilite: [true, false, false]
     alpes_maritimes_fonds_solidarite_logement_aide_maintien_eligibilite: [false, true, false]
+
+- period: 2020-02
+  reforms:
+    - openfisca_france_local.epci_test_factory.epci_reform
+    - openfisca_france_local.fsl_factory.fsl_reform
+  input:
+    depcom: ['59653', '59139']
+  output:
+    lille_metropole_fonds_solidarite_logement_aide_maintien_eligibilite: [true, false]
+    nord_fonds_solidarite_logement_aide_maintien_eligibilite: [false, true]
