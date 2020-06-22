@@ -1,5 +1,0 @@
-period: 2020-02
-input:
-  metropole_lille_eligibilite_geographique: [true, false]
-output:
-  metropole_lille_fonds_solidarite_logement_aide_maintien_eligibilite: [true, false]
