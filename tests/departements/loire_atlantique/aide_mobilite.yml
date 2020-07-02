@@ -1,0 +1,9 @@
+- period: 2020-07
+  input:
+    age: 18
+    loire_atlantique_eligibilite_residence: true
+    loire_atlantique_quotient_familial:
+      2018: 400
+  output:
+    loire_atlantique_aide_mobilite_permis_am: 150
+    loire_atlantique_aide_mobilite_permis_b: 750
