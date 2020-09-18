@@ -17,6 +17,10 @@ setup(
     extras_require = {
         'test': [
             'nose',
+            ],
+        'excel-reader': [
+            'pandas == 1.0.3',
+            'xlrd == 1.2.0'
             ]
         },
     classifiers=[
