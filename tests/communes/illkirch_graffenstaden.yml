@@ -1,0 +1,39 @@
+- period: 2020-10
+  input:
+    depcom: 67218
+  output:
+    illkirch_graffenstaden_eligibilite_residence: true
+
+- period: 2020-10
+  input:
+    age: [17, 18]
+  output:
+    illkirch_graffenstaden_coupon_arts_et_sports_eligibilite_enfant: [true, false]
+
+- period: 2020-10
+  input:
+    illkirch_graffenstaden_coupon_arts_et_sports_eligibilite_enfant: [true, false]
+  output:
+    illkirch_graffenstaden_coupon_arts_et_sports_eligibilite_famille: [true, false]
+
+- period: 2020-10
+  input:
+    illkirch_graffenstaden_coupon_arts_et_sports_quotient_familial: [400, 550, 700, 800]
+  output:
+    illkirch_graffenstaden_coupon_arts_et_sports_montant: [150, 100, 50, 0]
+- period: 2020-10
+  input:
+    rfr:
+      2018: [1200, 2400]
+    nbptr:
+      2018: [1, 2]
+  output:
+    illkirch_graffenstaden_coupon_arts_et_sports_quotient_familial: [100, 100]
+
+- period: 2020-10
+  input:
+    illkirch_graffenstaden_eligibilite_residence: true
+    illkirch_graffenstaden_coupon_arts_et_sports_eligibilite_famille: true
+    illkirch_graffenstaden_coupon_arts_et_sports_montant: 67
+  output:
+    illkirch_graffenstaden_coupon_arts_et_sports_montant: 67
