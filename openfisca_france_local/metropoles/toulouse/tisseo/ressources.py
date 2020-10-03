@@ -1,5 +1,5 @@
- # -*- coding: utf-8 -*-
 from openfisca_france.model.base import Variable, FoyerFiscal, Individu, MONTH, YEAR
+
 
 class tisseo_transport_reduction_ressources_fiscales(Variable):
     value_type = float
@@ -8,7 +8,7 @@ class tisseo_transport_reduction_ressources_fiscales(Variable):
     label = u"Base ressource fiscales pour les titres de transports Tisséo"
 
     def formula(foyer_fiscal, period):
-        return foyer_fiscal('rfr', period) / foyer_fiscal('nbptr', period) / 12
+        return foyer_fiscal("rfr", period) / foyer_fiscal("nbptr", period) / 12
 
 
 class tisseo_transport_reduction_plafond_smic_net(Variable):
