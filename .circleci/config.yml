@@ -23,7 +23,7 @@ jobs:
       - *install_dependencies
       - run:
           name: Run tests
-          command: openfisca-run-test `circleci tests glob "tests/**/*.{yml,yaml}"` --extensions openfisca_france_local
+          command: openfisca test `circleci tests glob "tests/**/*.{yml,yaml}"` --extensions openfisca_france_local
 
 workflows:
   version: 2
