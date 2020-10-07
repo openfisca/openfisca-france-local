@@ -10,6 +10,6 @@ class eure_et_loir_eligibilite_pretvehicule(Variable):
 
     def formula(individu, period):
         recoit_rsa = individu.famille('rsa', period) > 0
-        reside_eure_et_loir = individu.menage('eure_et_loir_eligibilite_residence', period)
+        reside_eure_et_loir = individu.menage('eure_loire_eligibilite_residence', period)
 
         return recoit_rsa * reside_eure_et_loir

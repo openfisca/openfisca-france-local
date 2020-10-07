@@ -9,7 +9,7 @@ class eure_et_loir_eligibilite_FAJ(Variable):
     label = "Éligibilité au Fond d'Aide aux Jeunes"
 
     def formula(individu, period, parameters):
-        reside_eure_et_loir = individu.menage('eure_et_loir_eligibilite_residence', period)
+        reside_eure_et_loir = individu.menage('eure_loire_eligibilite_residence', period)
         a_entre_18_25_ans = 18 <= individu('age', period) <= 25
         rsa = parameters(period).prestations.minima_sociaux.rsa
         revenue_inferieur_RSA = individu('eure_et_loir_revenus_nets_du_travail', period) < rsa.montant_de_base_du_rsa
