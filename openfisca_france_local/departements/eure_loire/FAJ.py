@@ -2,17 +2,6 @@
 from openfisca_france.model.base import Variable, Individu, MONTH
 
 
-class eure_et_loir_revenus_nets_du_travail(Variable):
-    value_type = float
-    entity = Individu
-    definition_period = MONTH
-    label = "Montant des revenus nets du travail"
-
-    def formula(individu, period):
-        # Il faudra ajouter des revenus ici
-        return individu('salaire_net', period)
-
-
 class eure_et_loir_eligibilite_FAJ(Variable):
     value_type = bool
     entity = Individu
