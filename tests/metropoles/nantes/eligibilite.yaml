@@ -1,0 +1,6 @@
+- period: 2020-10
+  input:
+    nantes_metropole_tarification_solidaire_transport_eligibilite_geographique: [true, false]
+    nantes_metropole_tarification_solidaire_transport_montant: [12, 45]
+  output:
+    nantes_metropole_tarification_solidaire_transport: [12, 0]
