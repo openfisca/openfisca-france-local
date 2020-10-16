@@ -1,0 +1,6 @@
+period: 2020
+input:
+  rfr: 1000
+  nbptr: 2
+output:
+  nantes_metropole_tarification_solidaire_transport_quotient_familial: 1000 / 2 / 12
