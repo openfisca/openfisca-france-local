@@ -72,7 +72,7 @@ class eurometropole_strasbourg_tarification_solidaire_transport_eligible_tarif_r
     def formula(individu, period):
         age = individu('age', period)
         taux_incapacite = individu('taux_incapacite', period)
-        return 26 < age + 65 <= age + 0.80 <= taux_incapacite
+        return (26 < age) + (65 <= age) + (0.80 <= taux_incapacite)
 
 
 class eurometropole_strasbourg_tarification_solidaire_transport_montant(Variable):
