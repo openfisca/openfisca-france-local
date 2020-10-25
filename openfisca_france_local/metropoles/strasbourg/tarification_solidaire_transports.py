@@ -1,4 +1,4 @@
-from openfisca_france.model.base import Variable, Famille, FoyerFiscal, Individu, Menage, MONTH, YEAR, select
+from openfisca_france.model.base import Variable, Individu, Menage, MONTH, YEAR, select
 
 
 class eurometropole_strasbourg_tarification_solidaire_transport_eligibilite_geographique(Variable):
