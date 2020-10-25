@@ -1,0 +1,7 @@
+- period: 2020-10
+  input:
+    eurometropole_strasbourg_tarification_solidaire_transport_eligibilite_geographique: [true, true, true, true, true]
+    eurometropole_strasbourg_tarification_solidaire_transport_eligible_tarif_reduit: [true, false, true, false, false]
+    eurometropole_strasbourg_tarification_solidaire_transport_quotient_familial: [0, 0, 500, 500, 800]
+  output:
+    eurometropole_strasbourg_tarification_solidaire_transport_montant: [3.4, 5.8, 7.3, 13.4, 0]
