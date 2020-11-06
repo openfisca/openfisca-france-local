@@ -1,0 +1,6 @@
+- name: Cas nominal d'éligibilité à l'aide repas-foyer d'Eure-et-Loir
+  period: 2020-01
+  input:
+    age: [60, 65]
+  output:
+    eure_et_loir_eligibilite_repas_foyer: [False, True]
