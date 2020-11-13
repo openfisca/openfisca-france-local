@@ -1,0 +1,197 @@
+- name: Cas passant avec personne > 65 ans
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        asi_aspa_base_ressources_individu: 450
+        retraite_nette:
+          2020-09: 300
+        age: 66
+        inapte_travail: 0
+        nationalite: FR
+        gir: gir_5
+        apa_eligibilite:
+          2020-09: 0
+    familles:
+      _:
+        parents: p1
+        rsa:
+          2020-09: 0
+  output:
+    eure_et_loir_aide_menagere_personne_agee: 1
+
+- name: Cas passant avec personne > 60 ans et inapte_travail
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        asi_aspa_base_ressources_individu: 450
+        retraite_nette:
+          2020-09: 300
+        age: 61
+        inapte_travail: 1
+        nationalite: FR
+        gir: gir_5
+        apa_eligibilite:
+          2020-09: 0
+    familles:
+      _:
+        parents: p1
+        rsa:
+          2020-09: 0
+  output:
+    eure_et_loir_aide_menagere_personne_agee: 1
+
+- name: Cas passant avec personne de l'UE (IT)
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        asi_aspa_base_ressources_individu: 450
+        retraite_nette:
+          2020-09: 300
+        age: 66
+        inapte_travail: 0
+        nationalite: IT
+        gir: gir_5
+        apa_eligibilite:
+          2020-09: 0
+    familles:
+      _:
+        parents: p1
+        rsa:
+          2020-09: 0
+  output:
+    eure_et_loir_aide_menagere_personne_agee: 1
+
+- name: Cas passant avec personne gir_6
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        asi_aspa_base_ressources_individu: 450
+        retraite_nette:
+          2020-09: 300
+        age: 66
+        inapte_travail: 0
+        nationalite: FR
+        gir: gir_6
+        apa_eligibilite:
+          2020-09: 0
+    familles:
+      _:
+        parents: p1
+        rsa:
+          2020-09: 0
+  output:
+    eure_et_loir_aide_menagere_personne_agee: 1
+
+- name: Cas non passant ressource > minimum
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        asi_aspa_base_ressources_individu: 150
+        retraite_nette:
+          2020-09: 300
+        age: 66
+        inapte_travail: 0
+        nationalite: FR
+        gir: gir_6
+        apa_eligibilite:
+          2020-09: 0
+    familles:
+      _:
+        parents: p1
+        rsa:
+          2020-09: 0
+  output:
+    eure_et_loir_aide_menagere_personne_agee: 0
+
+- name: Cas non passant personne <65 ans et non inapte_travail
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        asi_aspa_base_ressources_individu: 450
+        retraite_nette:
+          2020-09: 300
+        age: 64
+        inapte_travail: 0
+        nationalite: FR
+        gir: gir_5
+        apa_eligibilite:
+          2020-09: 0
+    familles:
+      _:
+        parents: p1
+        rsa:
+          2020-09: 0
+  output:
+    eure_et_loir_aide_menagere_personne_agee: 0
+
+- name: Cas non passant personne gir_2
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        asi_aspa_base_ressources_individu: 450
+        retraite_nette:
+          2020-09: 300
+        age: 66
+        inapte_travail: 0
+        nationalite: FR
+        gir: gir_2
+        apa_eligibilite:
+          2020-09: 0
+    familles:
+      _:
+        parents: p1
+        rsa:
+          2020-09: 0
+  output:
+    eure_et_loir_aide_menagere_personne_agee: 0
+
+- name: Cas non passant personne possédant apa
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        asi_aspa_base_ressources_individu: 450
+        retraite_nette:
+          2020-09: 300
+        age: 66
+        inapte_travail: 0
+        nationalite: FR
+        gir: gir_5
+        apa_eligibilite:
+          2020-09: 1
+    familles:
+      _:
+        parents: p1
+        rsa:
+          2020-09: 0
+  output:
+    eure_et_loir_aide_menagere_personne_agee: 0
+
+- name: Cas non passant avec personne hors UE (LL)
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        asi_aspa_base_ressources_individu: 450
+        retraite_nette:
+          2020-09: 300
+        age: 66
+        inapte_travail: 0
+        nationalite: LL
+        gir: gir_5
+        apa_eligibilite:
+          2020-09: 0
+    familles:
+      _:
+        parents: p1
+        rsa:
+          2020-09: 0
+  output:
+    eure_et_loir_aide_menagere_personne_agee: 0

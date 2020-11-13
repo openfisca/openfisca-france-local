@@ -1,0 +1,139 @@
+- name: Cas passant avec personne <60 ans
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        asi_aspa_base_ressources_individu: 450
+        retraite_nette:
+          2020-09: 300
+        age: 59
+        nationalite: FR
+        taux_incapacite: 0.81
+        aah_restriction_substantielle_durable_acces_emploi: 0
+    familles:
+      _:
+        parents: p1
+        rsa:
+          2020-09: 0
+  output:
+    eure_et_loir_aide_menagere_personne_handicap: 1
+
+- name: Cas passant avec personne taux incapacité compris entre 50et 70 et avec restriction true
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        asi_aspa_base_ressources_individu: 450
+        retraite_nette:
+          2020-09: 300
+        age: 59
+        nationalite: FR
+        taux_incapacite: 0.68
+        aah_restriction_substantielle_durable_acces_emploi: 1
+    familles:
+      _:
+        parents: p1
+        rsa:
+          2020-09: 0
+  output:
+    eure_et_loir_aide_menagere_personne_handicap: 1.
+
+- name: Cas passant avec personne originaire UE (IT)
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        asi_aspa_base_ressources_individu: 450
+        retraite_nette:
+          2020-09: 300
+        age: 59
+        nationalite: IT
+        taux_incapacite: 0.81
+        aah_restriction_substantielle_durable_acces_emploi: 0
+    familles:
+      _:
+        parents: p1
+        rsa:
+          2020-09: 0
+  output:
+    eure_et_loir_aide_menagere_personne_handicap: 1
+
+- name: Cas non passant avec personne >60 ans
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        asi_aspa_base_ressources_individu: 450
+        retraite_nette:
+          2020-09: 300
+        age: 69
+        nationalite: FR
+        taux_incapacite: 0.81
+        aah_restriction_substantielle_durable_acces_emploi: 0
+    familles:
+      _:
+        parents: p1
+        rsa:
+          2020-09: 0
+  output:
+    eure_et_loir_aide_menagere_personne_handicap: 0
+
+- name: Cas non passant avec personne ayant trop de ressources
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        asi_aspa_base_ressources_individu: 150
+        retraite_nette:
+          2020-09: 300
+        age: 59
+        nationalite: FR
+        taux_incapacite: 0.81
+        aah_restriction_substantielle_durable_acces_emploi: 0
+    familles:
+      _:
+        parents: p1
+        rsa:
+          2020-09: 0
+  output:
+    eure_et_loir_aide_menagere_personne_handicap: 0
+
+- name: Cas non passant avec personne taux incapacite trop faible
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        asi_aspa_base_ressources_individu: 450
+        retraite_nette:
+          2020-09: 300
+        age: 59
+        nationalite: FR
+        taux_incapacite: 0.31
+        aah_restriction_substantielle_durable_acces_emploi: 0
+    familles:
+      _:
+        parents: p1
+        rsa:
+          2020-09: 0
+  output:
+    eure_et_loir_aide_menagere_personne_handicap: 0
+
+- name: Cas non passant avec personne non ressortissant UE
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        asi_aspa_base_ressources_individu: 450
+        retraite_nette:
+          2020-09: 300
+        age: 59
+        nationalite: LL
+        taux_incapacite: 0.81
+        aah_restriction_substantielle_durable_acces_emploi: 0
+    familles:
+      _:
+        parents: p1
+        rsa:
+          2020-09: 0
+  output:
+    eure_et_loir_aide_menagere_personne_handicap: 0
