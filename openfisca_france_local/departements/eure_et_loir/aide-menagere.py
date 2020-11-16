@@ -9,7 +9,8 @@ class eure_et_loir_aide_menagere_personne_agee(Variable):
     entity = Individu
     definition_period = MONTH
     label = "Éligibilité d'une personne agée à l'aide sociale à domicile pour l'aide ménagère"
-    reference = """ L’aide-ménagère est une aide en nature accordée aux personnes âgées qui, du fait de leur état de santé ou de leur âge, ont besoin de recourir à un personnel pour effectuer les actes de la vie courante. La participation financière du bénéficiaire est définie par le Conseil départemental.
+    reference = """ Titre 2 Chapitre 1-1 du Règlement départemental d'Aide Sociale PA PH de l'Eure et Loir
+                    L’aide-ménagère est une aide en nature accordée aux personnes âgées qui, du fait de leur état de santé ou de leur âge, ont besoin de recourir à un personnel pour effectuer les actes de la vie courante. La participation financière du bénéficiaire est définie par le Conseil départemental.
                     L’éligibilité de l’aide dépend niveau de GIR (5 ou 6).
                     Cette aide fait l’objet d’une récupération sur succession et n’est pas cumulable avec l’Allocation compensatrice pour tierce personne (ACTP), la Majoration Tierce Personne (MTP versée par la CPAM), l’Allocation personnalisée d’autonomie (APA), les prestations d’aide-ménagère servie par les caisses de retraite.
                 """
@@ -51,7 +52,8 @@ class eure_et_loir_aide_menagere_personne_handicap(Variable):
     entity = Individu
     definition_period = MONTH
     label = "Éligibilité d'une personne en situation de handicap à l'aide ménagère à domicile"
-    reference = """ L’aide-ménagère est accordée aux personnes en situation de handicap ayant besoin, pour demeurer à leur domicile, d’une aide matérielle pour effectuer les actes de la vie courante. 
+    reference = """ Titre 3 Chapitre 1-1 du Règlement départemental d'Aide Sociale PA PH de l'Eure et Loir
+                    L’aide-ménagère est accordée aux personnes en situation de handicap ayant besoin, pour demeurer à leur domicile, d’une aide matérielle pour effectuer les actes de la vie courante. 
                     La participation financière du bénéficiaire est définie par le Conseil départemental.
                     Cette aide n’est pas cumulable avec l’Allocation compensatrice pour tierce personne (ACTP), la Majoration Tierce Personne (MTP versée par la CPAM) et les prestations d’aide-ménagère servies par les caisses de retraite
                 """
