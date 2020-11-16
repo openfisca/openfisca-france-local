@@ -83,7 +83,8 @@ class eure_et_loir_aide_menagere_personne_handicap(Variable):
         }
 
         individu_resources = sum([individu(resource, period.last_month) for resource in individual_resource_names])
-        condition_taux_incapacite = ((taux_incapacite >= 0.8) or (taux_incapacite<0.7 and taux_incapacite>0.5 and restriction_substantielle_durable))
+        condition_taux_incapacite = ((taux_incapacite >= parameters(period).departements.eure_et_loir.aide_menagere.taux_incapacite_superieur)
+                                     or (taux_incapacite< parameters(period).departements.eure_et_loir.aide_menagere.taux_incapacite_maximum_avec_restriction_acces_emploi and taux_incapacite>parameters(period).departements.eure_et_loir.aide_menagere.taux_incapacite_minimum_avec_restriction_acces_emploi and restriction_substantielle_durable))
         condition_age = (age < parameters(period).departements.eure_et_loir.aide_menagere.age_minimal_personne_handicap)
         condition_nationalite = ressortissant_eee
         condition_ressources = individu_resources < individu('asi_aspa_base_ressources_individu', period)

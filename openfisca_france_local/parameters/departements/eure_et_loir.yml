@@ -14,3 +14,18 @@ aide_menagere:
     values:
       2020-01-01:
         value: 60
+  taux_incapacite_superieur:
+    reference: Titre 3 Chapitre 1-1 Article 94-4 du Règlement départemental d'Aide Sociale PA PH de l'Eure et Loir
+    values:
+      2020-01-01:
+        value: 0.8
+  taux_incapacite_minimum_avec_restriction_acces_emploi:
+    reference: Titre 3 Chapitre 1-1 Article 94-4 du Règlement départemental d'Aide Sociale PA PH de l'Eure et Loir
+    values:
+      2020-01-01:
+        value: 0.5
+  taux_incapacite_maximum_avec_restriction_acces_emploi:
+    reference: Titre 3 Chapitre 1-1 Article 94-4 du Règlement départemental d'Aide Sociale PA PH de l'Eure et Loir
+    values:
+      2020-01-01:
+        value: 0.7
