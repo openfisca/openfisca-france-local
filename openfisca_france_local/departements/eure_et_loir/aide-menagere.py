@@ -14,7 +14,7 @@ class eure_et_loir_aide_menagere_personne_agee(Variable):
                     Cette aide fait l’objet d’une récupération sur succession et n’est pas cumulable avec l’Allocation compensatrice pour tierce personne (ACTP), la Majoration Tierce Personne (MTP versée par la CPAM), l’Allocation personnalisée d’autonomie (APA), les prestations d’aide-ménagère servie par les caisses de retraite.
                 """
 
-    def formula_2020_01(individu, period):
+    def formula_2020_01(individu, period,parameters):
         age = individu('age', period)
         inapte_travail = individu('inapte_travail', period)
         ressortissant_eee =  individu('ressortissant_eee', period)
@@ -39,7 +39,7 @@ class eure_et_loir_aide_menagere_personne_agee(Variable):
         }
 
         individu_resources = sum([individu(resource, period.last_month) for resource in individual_resource_names])
-        condition_age = ((age > 65) or (age > 60 and inapte_travail))
+        condition_age = ((age > parameters(period).departements.eure_et_loir.aide_menagere.age_minimal_personne_agee_apte_travail) or (age > parameters(period).departements.eure_et_loir.aide_menagere.age_minimal_personne_agee_inapte_travail and inapte_travail))
         condition_nationalite = ressortissant_eee
         condition_gir = ((gir == TypesGir.gir_5) or (gir == TypesGir.gir_6))
         condition_ressources = individu_resources < individu('asi_aspa_base_ressources_individu', period)
@@ -56,7 +56,7 @@ class eure_et_loir_aide_menagere_personne_handicap(Variable):
                     Cette aide n’est pas cumulable avec l’Allocation compensatrice pour tierce personne (ACTP), la Majoration Tierce Personne (MTP versée par la CPAM) et les prestations d’aide-ménagère servies par les caisses de retraite
                 """
 
-    def formula_2020_01(individu, period):
+    def formula_2020_01(individu, period,parameters):
         taux_incapacite = individu('taux_incapacite', period)
         restriction_substantielle_durable = individu('aah_restriction_substantielle_durable_acces_emploi',period)
         age = individu('age', period)
@@ -82,7 +82,7 @@ class eure_et_loir_aide_menagere_personne_handicap(Variable):
 
         individu_resources = sum([individu(resource, period.last_month) for resource in individual_resource_names])
         condition_taux_incapacite = ((taux_incapacite >= 0.8) or (taux_incapacite<0.7 and taux_incapacite>0.5 and restriction_substantielle_durable))
-        condition_age = (age < 60)
+        condition_age = (age < parameters(period).departements.eure_et_loir.aide_menagere.age_minimal_personne_handicap)
         condition_nationalite = ressortissant_eee
         condition_ressources = individu_resources < individu('asi_aspa_base_ressources_individu', period)
 

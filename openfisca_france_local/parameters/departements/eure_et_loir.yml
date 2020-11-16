@@ -1,0 +1,16 @@
+aide_menagere:
+  age_minimal_personne_agee_apte_travail:
+    reference: Titre 2 Chapitre 1-1 Article 23 du Règlement départemental d'Aide Sociale PA PH de l'Eure et Loir
+    values:
+      2020-01-01:
+        value: 65
+  age_minimal_personne_agee_inapte_travail:
+    reference: Titre 2 Chapitre 1-1 Article 23 du Règlement départemental d'Aide Sociale PA PH de l'Eure et Loir
+    values:
+      2020-01-01:
+        value: 60
+  age_minimal_personne_handicap:
+    reference: Titre 3 Chapitre 1-1  Article 94-1 du Règlement départemental d'Aide Sociale PA PH de l'Eure et Loir
+    values:
+      2020-01-01:
+        value: 60
