@@ -40,7 +40,7 @@ class eure_et_loir_aide_menagere_personne_agee(Variable):
         }
 
         individu_resources = sum([individu(resource, period.last_month) for resource in individual_resource_names])
-        condition_age = ((age > parameters(period).departements.eure_et_loir.aide_menagere.age_minimal_personne_agee_apte_travail) or (age > parameters(period).departements.eure_et_loir.aide_menagere.age_minimal_personne_agee_inapte_travail and inapte_travail))
+        condition_age = ((age >= parameters(period).departements.eure_et_loir.aide_menagere.age_minimal_personne_agee_apte_travail) or (age >= parameters(period).departements.eure_et_loir.aide_menagere.age_minimal_personne_agee_inapte_travail and inapte_travail))
         condition_nationalite = ressortissant_eee
         condition_gir = ((gir == TypesGir.gir_5) or (gir == TypesGir.gir_6))
         condition_ressources = individu_resources < individu('asi_aspa_base_ressources_individu', period)
@@ -85,7 +85,7 @@ class eure_et_loir_aide_menagere_personne_handicap(Variable):
         individu_resources = sum([individu(resource, period.last_month) for resource in individual_resource_names])
         condition_taux_incapacite = ((taux_incapacite >= parameters(period).departements.eure_et_loir.aide_menagere.taux_incapacite_superieur)
                                      or (taux_incapacite< parameters(period).departements.eure_et_loir.aide_menagere.taux_incapacite_maximum_avec_restriction_acces_emploi and taux_incapacite>parameters(period).departements.eure_et_loir.aide_menagere.taux_incapacite_minimum_avec_restriction_acces_emploi and restriction_substantielle_durable))
-        condition_age = (age < parameters(period).departements.eure_et_loir.aide_menagere.age_minimal_personne_handicap)
+        condition_age = (age <= parameters(period).departements.eure_et_loir.aide_menagere.age_minimal_personne_handicap)
         condition_nationalite = ressortissant_eee
         condition_ressources = individu_resources < individu('asi_aspa_base_ressources_individu', period)
 
