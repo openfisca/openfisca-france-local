@@ -1,0 +1,89 @@
+- name: Cas passant avec personne > 18 ans
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        age: 19
+        nationalite: FR
+        duree_possession_titre_sejour: 1
+        handicap: 1
+
+  output:
+    eure_et_loir_ASH_personne_handicap: 1
+
+- name: Cas passant avec personne = 18 ans
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        age: 18
+        nationalite: FR
+        duree_possession_titre_sejour: 1
+        handicap: 1
+
+  output:
+    eure_et_loir_ASH_personne_handicap: 1
+
+- name: Cas passant avec personne nationalité UE (IT)
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        age: 19
+        nationalite: IT
+        duree_possession_titre_sejour: 1
+        handicap: 1
+
+  output:
+    eure_et_loir_ASH_personne_handicap: 1
+
+- name: Cas passant avec personne nationalité hors UE et titre de séjour OK (LL)
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        age: 19
+        nationalite: LL
+        duree_possession_titre_sejour: 1
+        handicap: 1
+  output:
+    eure_et_loir_ASH_personne_handicap: 1
+
+- name: Cas passant non passant personne < 18 ans
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        age: 16
+        nationalite: FR
+        duree_possession_titre_sejour: 1
+        handicap: 1
+
+  output:
+    eure_et_loir_ASH_personne_handicap: 0
+
+- name: Cas passant non passant personne non handicapée
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        age: 19
+        nationalite: FR
+        duree_possession_titre_sejour: 1
+        handicap: 0
+
+  output:
+    eure_et_loir_ASH_personne_handicap: 0
+
+- name: Cas passant non passant personne nationalité hors UE sans titre de séjour
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        age: 19
+        nationalite: LL
+        duree_possession_titre_sejour: 0
+        handicap: 1
+
+  output:
+    eure_et_loir_ASH_personne_handicap: 0
