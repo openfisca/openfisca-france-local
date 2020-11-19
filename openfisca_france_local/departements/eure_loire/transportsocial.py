@@ -27,4 +27,4 @@ class eure_et_loir_eligibilite_transportsocial(Variable):
         rsa = parameters(period).prestations.minima_sociaux.rsa
         revenue_inferieur_RSA = individu('eure_et_loir_revenus_nets_du_travail', period) < rsa.montant_de_base_du_rsa
 
-        return reside_eure_et_loir * (recoit_rsa + reside_eure_et_loir * a_entre_18_25_ans * revenue_inferieur_RSA)
+        return reside_eure_et_loir * (recoit_rsa + a_entre_18_25_ans * revenue_inferieur_RSA)
