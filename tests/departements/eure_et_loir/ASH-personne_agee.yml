@@ -11,7 +11,7 @@
         age: 66
         inapte_travail: 0
         nationalite: FR
-        duree_possession_titre_sejour: 1
+        titre_sejour: 0
     menage:
       personne_de_reference:
         - parent1
@@ -32,7 +32,7 @@
         age: 65
         inapte_travail: 0
         nationalite: FR
-        duree_possession_titre_sejour: 1
+        titre_sejour: 0
     menage:
       personne_de_reference:
         - parent1
@@ -53,7 +53,7 @@
         age: 60
         inapte_travail: 1
         nationalite: FR
-        duree_possession_titre_sejour: 1
+        titre_sejour: 0
     menage:
       personne_de_reference:
         - parent1
@@ -74,7 +74,7 @@
         age: 61
         inapte_travail: 1
         nationalite: FR
-        duree_possession_titre_sejour: 1
+        titre_sejour: 0
     menage:
       personne_de_reference:
         - parent1
@@ -95,7 +95,7 @@
         age: 66
         inapte_travail: 0
         nationalite: IT
-        duree_possession_titre_sejour: 1
+        titre_sejour: 0
     menage:
       personne_de_reference:
         - parent1
@@ -116,7 +116,7 @@
         age: 66
         inapte_travail: 0
         nationalite: LL
-        duree_possession_titre_sejour: 1
+        titre_sejour: 1
     menage:
       personne_de_reference:
         - parent1
@@ -137,7 +137,7 @@
         age: 63
         inapte_travail: 0
         nationalite: FR
-        duree_possession_titre_sejour: 1
+        titre_sejour: 0
     menage:
       personne_de_reference:
         - parent1
@@ -158,7 +158,7 @@
         age: 58
         inapte_travail: 0
         nationalite: FR
-        duree_possession_titre_sejour: 1
+        titre_sejour: 0
     menage:
       personne_de_reference:
         - parent1
@@ -179,7 +179,7 @@
         age: 66
         inapte_travail: 0
         nationalite: FR
-        duree_possession_titre_sejour: 1
+        titre_sejour: 0
     menage:
       personne_de_reference:
         - parent1
@@ -201,7 +201,7 @@
         age: 66
         inapte_travail: 0
         nationalite: LL
-        duree_possession_titre_sejour: 0
+        titre_sejour: 0
     menage:
       personne_de_reference:
         - parent1

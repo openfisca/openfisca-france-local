@@ -42,7 +42,7 @@ class eure_et_loir_ASH_personne_agee(Variable):
             period).departements.eure_et_loir.ASH.age_minimal_personne_agee_apte_travail) or (
                                      age >= parameters(
                                  period).departements.eure_et_loir.ASH.age_minimal_personne_agee_inapte_travail and inapte_travail))
-        condition_nationalite = ressortissant_eee if ressortissant_eee else duree_possession_titre_sejour >0
+        condition_nationalite = ressortissant_eee if ressortissant_eee else individu('titre_sejour',period)
         condition_ressources = individu_resources <= individu.menage('loyer',period)
 
         # Attention le loyer ici est défini sur un mois alors que les tarifs des établissements sont journaliers
@@ -67,7 +67,7 @@ class eure_et_loir_ASH_personne_handicap(Variable):
         situation_handicap = individu('handicap',period)
 
         condition_age = (age >= parameters(period).departements.eure_et_loir.ASH.age_minimal_personne_handicap)
-        condition_nationalite = ressortissant_eee if ressortissant_eee else duree_possession_titre_sejour >0
+        condition_nationalite = ressortissant_eee if ressortissant_eee else individu('titre_sejour',period)
         condition_handicap = situation_handicap
 
         return condition_age * condition_nationalite * condition_handicap
