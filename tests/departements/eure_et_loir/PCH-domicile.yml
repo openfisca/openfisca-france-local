@@ -1,0 +1,97 @@
+- name: Cas passant avec personne handicapée
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        nationalite: FR
+        duree_possession_titre_sejour: 1
+        handicap: 1
+        apa_domicile: 0
+    famille:
+      aeeh: 0
+  output:
+    eure_et_loir_PCH_domicile: 1
+
+- name: Cas passant avec personne nationalité UE (IT)
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        nationalite: IT
+        duree_possession_titre_sejour: 1
+        handicap: 1
+        apa_domicile: 0
+    famille:
+      aeeh: 0
+  output:
+    eure_et_loir_PCH_domicile: 1
+
+- name: Cas passant avec personne nationalité non UE et titre_séjour OK (LL)
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        nationalite: LL
+        duree_possession_titre_sejour: 1
+        handicap: 1
+        apa_domicile: 0
+    famille:
+      aeeh: 0
+  output:
+    eure_et_loir_PCH_domicile: 1
+
+- name: Cas non passant avec personne nationalité non UE et titre_séjour KO (LL)
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        nationalite: LL
+        duree_possession_titre_sejour: 0
+        handicap: 1
+        apa_domicile: 0
+    famille:
+      aeeh: 0
+  output:
+    eure_et_loir_PCH_domicile: 0
+
+- name: Cas non passant avec personne non handicapée
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        nationalite: FR
+        duree_possession_titre_sejour: 1
+        handicap: 0
+        apa_domicile: 0
+    famille:
+      aeeh: 0
+  output:
+    eure_et_loir_PCH_domicile: 0
+
+- name: Cas non passant avec personne possédant apa
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        nationalite: FR
+        duree_possession_titre_sejour: 1
+        handicap: 1
+        apa_domicile: 100
+    famille:
+      aeeh: 0
+  output:
+    eure_et_loir_PCH_domicile: 0
+
+- name: Cas non passant avec personne possédant aeeh
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        nationalite: FR
+        duree_possession_titre_sejour: 1
+        handicap: 1
+        apa_domicile: 0
+    famille:
+      aeeh: 100
+  output:
+    eure_et_loir_PCH_domicile: 0
