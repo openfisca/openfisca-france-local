@@ -29,23 +29,3 @@ aide_menagere:
     values:
       2020-01-01:
         value: 0.7
-
-ASH:
-  age_minimal_personne_agee_apte_travail:
-    reference: Titre 2 Chapitre 2-1 Article 65-1 du Règlement départemental d'Aide Sociale PA PH de l'Eure et Loir
-    values:
-      2020-01-01:
-        value: 65
-  age_minimal_personne_agee_inapte_travail:
-    reference: Titre 2 Chapitre 2-1 Article 65-1 du Règlement départemental d'Aide Sociale PA PH de l'Eure et Loir
-    values:
-      2020-01-01:
-        value: 60
-  age_minimal_personne_handicap:
-    reference: Titre 3 Chapitre 2-1 Article 162-1 du Règlement départemental d'Aide Sociale PA PH de l'Eure et Loir
-    values:
-      2020-01-01:
-        value: 18
-
-
-
