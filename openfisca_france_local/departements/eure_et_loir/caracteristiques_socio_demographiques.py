@@ -63,3 +63,11 @@ class beneficiaire_complement_aeeh(Variable):
     entity = Famille
     definition_period = MONTH
     default_value = False
+
+
+class actp(Variable):
+    value_type = bool
+    label ="Bénéficiaire de l'Allocation compensatrice pour tierce personne"
+    entity = Individu
+    definition_period = MONTH
+    default_value = False
