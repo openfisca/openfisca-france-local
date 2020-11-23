@@ -4,9 +4,10 @@
     individus:
       p1:
         nationalite: FR
-        duree_possession_titre_sejour: 1
+        titre_sejour: 0
         handicap: 1
         apa_domicile: 0
+        actp: 0
     famille:
       aeeh: 0
   output:
@@ -18,9 +19,10 @@
     individus:
       p1:
         nationalite: IT
-        duree_possession_titre_sejour: 1
+        titre_sejour: 0
         handicap: 1
         apa_domicile: 0
+        actp: 0
     famille:
       aeeh: 0
   output:
@@ -32,9 +34,10 @@
     individus:
       p1:
         nationalite: LL
-        duree_possession_titre_sejour: 1
+        titre_sejour: 1
         handicap: 1
         apa_domicile: 0
+        actp: 0
     famille:
       aeeh: 0
   output:
@@ -46,9 +49,10 @@
     individus:
       p1:
         nationalite: LL
-        duree_possession_titre_sejour: 0
+        titre_sejour: 0
         handicap: 1
         apa_domicile: 0
+        actp: 0
     famille:
       aeeh: 0
   output:
@@ -60,9 +64,10 @@
     individus:
       p1:
         nationalite: FR
-        duree_possession_titre_sejour: 1
+        titre_sejour: 0
         handicap: 0
         apa_domicile: 0
+        actp: 0
     famille:
       aeeh: 0
   output:
@@ -74,9 +79,10 @@
     individus:
       p1:
         nationalite: FR
-        duree_possession_titre_sejour: 1
+        titre_sejour: 0
         handicap: 1
-        apa_domicile: 100
+        apa_domicile: 1
+        actp: 0
     famille:
       aeeh: 0
   output:
@@ -88,10 +94,26 @@
     individus:
       p1:
         nationalite: FR
-        duree_possession_titre_sejour: 1
+        titre_sejour: 0
         handicap: 1
         apa_domicile: 0
+        actp: 0
     famille:
-      aeeh: 100
+      aeeh: 1
+  output:
+    eure_et_loir_PCH_domicile: 0
+
+- name: Cas non passant avec personne possédant actp
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        nationalite: FR
+        titre_sejour: 0
+        handicap: 1
+        apa_domicile: 0
+        actp: 1
+    famille:
+      aeeh: 0
   output:
     eure_et_loir_PCH_domicile: 0

@@ -1,0 +1,79 @@
+- name: Cas passant avec personne handicapée
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        nationalite: FR
+        titre_sejour: 1
+        handicap: 1
+    famille:
+      place_hebergement: 1
+  output:
+    eure_et_loir_PCH_etablissement: 1
+
+- name: Cas passant avec personne nationalité UE (IT)
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        nationalite: IT
+        titre_sejour: 1
+        handicap: 1
+    famille:
+      place_hebergement: 1
+
+  output:
+    eure_et_loir_PCH_etablissement: 1
+
+- name: Cas passant avec personne nationalité non UE (LL) mais titre séjour OK
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        nationalite: LL
+        titre_sejour: 1
+        handicap: 1
+    famille:
+      place_hebergement: 1
+
+  output:
+    eure_et_loir_PCH_etablissement: 1
+
+- name: Cas non passant avec personne nationalité non UE et titre séjour KO
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        nationalite: LL
+        titre_sejour: 0
+        handicap: 1
+    famille:
+      place_hebergement: 1
+  output:
+    eure_et_loir_PCH_etablissement: 0
+
+- name: Cas non passant avec personne non handicapée
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        nationalite: FR
+        titre_sejour: 1
+        handicap: 0
+    famille:
+      place_hebergement: 1
+  output:
+    eure_et_loir_PCH_etablissement: 0
+
+- name: Cas non passant avec personne sans place hébergement
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        nationalite: FR
+        titre_sejour: 1
+        handicap: 1
+    famille:
+      place_hebergement: 0
+  output:
+    eure_et_loir_PCH_etablissement: 0
