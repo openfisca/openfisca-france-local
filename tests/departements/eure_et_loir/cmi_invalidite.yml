@@ -1,0 +1,88 @@
+- name: Cas passant avec personne incapacité 81 %
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        taux_incapacite: 0.81
+        apa_domicile: 100
+        gir: gir_1
+  output:
+    eure_et_loir_cmi_invalidite: 1
+
+- name: Cas passant avec personne incapacité 80 %
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        taux_incapacite: 0.80
+        apa_domicile: 100
+        gir: gir_1
+  output:
+    eure_et_loir_cmi_invalidite: 1
+
+- name: Cas passant avec personne incapacité 70 % et apa OK
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        taux_incapacite: 0.70
+        apa_domicile: 100
+        gir: gir_1
+  output:
+    eure_et_loir_cmi_invalidite: 1
+
+- name: Cas passant avec personne incapacité 70 % et apa OK et gir_2
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        taux_incapacite: 0.70
+        apa_domicile: 100
+        gir: gir_2
+  output:
+    eure_et_loir_cmi_invalidite: 1
+
+- name: Cas passant avec personne incapacité 80 % et apa KO
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        taux_incapacite: 0.80
+        apa_domicile: 0
+        gir: gir_2
+  output:
+    eure_et_loir_cmi_invalidite: 1
+
+- name: Cas non passant avec personne incapacité < 80 % et apa KO
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        taux_incapacite: 0.70
+        apa_domicile: 0
+        gir: gir_2
+  output:
+    eure_et_loir_cmi_invalidite: 0
+
+- name: Cas non passant avec personne incapacité < 80 % et apa OK et gir_3
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        taux_incapacite: 0.70
+        apa_domicile: 100
+        gir: gir_3
+  output:
+    eure_et_loir_cmi_invalidite: 0
+
+- name: Cas non passant avec personne incapacité < 80 % et apa KO et gir_3
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        taux_incapacite: 0.70
+        apa_domicile: 0
+        gir: gir_3
+  output:
+    eure_et_loir_cmi_invalidite: 0
+
