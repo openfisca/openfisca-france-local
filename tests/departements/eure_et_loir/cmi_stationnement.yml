@@ -1,0 +1,49 @@
+- name: Cas passant avec personne apa ok et gir_1
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        apa_domicile: 100
+        gir: gir_1
+  output:
+    eure_et_loir_cmi_stationnement: 1
+
+- name: Cas passant avec personne apa ok et gir_2
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        apa_domicile: 100
+        gir: gir_2
+  output:
+    eure_et_loir_cmi_stationnement: 1
+
+- name: Cas non passant avec personne apa ok et gir_3
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        apa_domicile: 100
+        gir: gir_3
+  output:
+    eure_et_loir_cmi_stationnement: 0
+
+- name: Cas non passant avec personne apa ko
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        apa_domicile: 0
+        gir: gir_1
+  output:
+    eure_et_loir_cmi_stationnement: 0
+
+- name: Cas non passant avec personne apa ko et gir_3
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        apa_domicile: 0
+        gir: gir_3
+  output:
+    eure_et_loir_cmi_stationnement: 0

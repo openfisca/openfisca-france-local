@@ -7,7 +7,7 @@ class eure_et_loir_cmi_invalidite(Variable):
     value_type = bool
     entity = Individu
     definition_period = MONTH
-    label = "Éligibilité à la Carte mobilité inclusion invalididté"
+    label = "Éligibilité à la Carte mobilité inclusion invalidité"
     reference = """ Titre 4 Chapitre 1 du Règlement départemental d'Aide Sociale PA PH de l'Eure-et-Loir
                     Cette carte permet d’obtenir une priorité d’accès aux places assises dans les lieux publics, les salles d’attente et les transports en commun, de bénéficier d’avantages fiscaux et de réductions tarifaires.
                     Pour les bénéficiaires de l’Allocation personnalisée d’autonomie (APA), l’éligibilité de l’aide dépend niveau de GIR (1 ou 2).
