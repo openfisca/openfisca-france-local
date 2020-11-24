@@ -13,7 +13,7 @@ class eure_et_loir_cmi_stationnement(Variable):
                 """
 
     def formula(individu, period):
-        beneficiaire_apa = individu('apa_domicile',period) # où apa_domicile est le montant de l'aide apa versé
+        beneficiaire_apa = individu('apa_domicile', period)  # où apa_domicile est le montant de l'aide apa versé
         gir = individu('gir', period)
 
         condition_apa = 1 if beneficiaire_apa else 0
