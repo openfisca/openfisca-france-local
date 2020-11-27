@@ -86,3 +86,4 @@ class eure_et_loir_eligibilite_aide_menagere_personne_handicap(Variable):
             period).departements.eure_et_loir.aide_menagere.montant_aspa
 
         return condition_residence * condition_taux_incapacite * condition_age * condition_nationalite * condition_ressources
+
