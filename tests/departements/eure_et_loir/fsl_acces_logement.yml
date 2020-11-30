@@ -1,0 +1,23 @@
+- name: Cas passant avec ressources foyer < 60 % seuil pauvreté
+  period: 2020
+  input:
+    individus:
+      parent1:
+        salaire_net: 1000
+      parent2:
+        salaire_net: 0
+      Toto:
+        age: 8
+      Tata:
+        age: 6
+    menage:
+      personne_de_reference:
+        - parent1
+      conjoint: "parent2"
+      type_menage: 3
+      enfants: [ "Toto", "Tata" ]
+  output:
+    eure_et_loir_fsl_acces_logement: 1
+
+
+
