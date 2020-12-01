@@ -1,4 +1,4 @@
-- name: Cas passant avec personne handicapée
+- name: Éligibilité à l'aide PCH de l'Eure-et-Loir à domicile avec une PH handicapée
   period: 2020-10
   input:
     individus:
@@ -10,10 +10,12 @@
         actp: 0
     famille:
       aeeh: 0
+    menage:
+      depcom: 28000
   output:
-    eure_et_loir_PCH_domicile: 1
+    eure_et_loir_eligibilite_pch_domicile: 1
 
-- name: Cas passant avec personne nationalité UE (IT)
+- name: Éligibilité à l'aide PCH de l'Eure-et-Loir à domicile avec une PH nationalité UE (IT)
   period: 2020-10
   input:
     individus:
@@ -25,10 +27,12 @@
         actp: 0
     famille:
       aeeh: 0
+    menage:
+      depcom: 28000
   output:
-    eure_et_loir_PCH_domicile: 1
+    eure_et_loir_eligibilite_pch_domicile: 1
 
-- name: Cas passant avec personne nationalité non UE et titre_séjour OK (LL)
+- name: Éligibilité à l'aide PCH de l'Eure-et-Loir à domicile avec PH nationalité non UE et titre_séjour OK (LL)
   period: 2020-10
   input:
     individus:
@@ -40,10 +44,12 @@
         actp: 0
     famille:
       aeeh: 0
+    menage:
+      depcom: 28000
   output:
-    eure_et_loir_PCH_domicile: 1
+    eure_et_loir_eligibilite_pch_domicile: 1
 
-- name: Cas non passant avec personne nationalité non UE et titre_séjour KO (LL)
+- name: Éligibilité à l'aide PCH de l'Eure-et-Loir à domicile avec PH nationalité non UE et titre_séjour KO (LL)
   period: 2020-10
   input:
     individus:
@@ -55,10 +61,12 @@
         actp: 0
     famille:
       aeeh: 0
+    menage:
+      depcom: 28000
   output:
-    eure_et_loir_PCH_domicile: 0
+    eure_et_loir_eligibilite_pch_domicile: 0
 
-- name: Cas non passant avec personne non handicapée
+- name: Non Éligibilité à l'aide PCH de l'Eure-et-Loir à domicile avec PH non handicapée
   period: 2020-10
   input:
     individus:
@@ -70,10 +78,12 @@
         actp: 0
     famille:
       aeeh: 0
+    menage:
+      depcom: 28000
   output:
-    eure_et_loir_PCH_domicile: 0
+    eure_et_loir_eligibilite_pch_domicile: 0
 
-- name: Cas non passant avec personne possédant apa
+- name: Non Éligibilité à l'aide PCH de l'Eure-et-Loir à domicile avec PH possédant apa
   period: 2020-10
   input:
     individus:
@@ -85,10 +95,12 @@
         actp: 0
     famille:
       aeeh: 0
+    menage:
+      depcom: 28000
   output:
-    eure_et_loir_PCH_domicile: 0
+    eure_et_loir_eligibilite_pch_domicile: 0
 
-- name: Cas non passant avec personne possédant aeeh
+- name: Non Éligibilité à l'aide PCH de l'Eure-et-Loir à domicile avec PH possédant aeeh
   period: 2020-10
   input:
     individus:
@@ -100,10 +112,12 @@
         actp: 0
     famille:
       aeeh: 1
+    menage:
+      depcom: 28000
   output:
-    eure_et_loir_PCH_domicile: 0
+    eure_et_loir_eligibilite_pch_domicile: 0
 
-- name: Cas non passant avec personne possédant actp
+- name: Non Éligibilité à l'aide PCH de l'Eure-et-Loir à domicile avec PH possédant actp
   period: 2020-10
   input:
     individus:
@@ -115,5 +129,7 @@
         actp: 1
     famille:
       aeeh: 0
+    menage:
+      depcom: 28000
   output:
-    eure_et_loir_PCH_domicile: 0
+    eure_et_loir_eligibilite_pch_domicile: 0

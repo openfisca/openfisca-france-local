@@ -1,0 +1,89 @@
+- name: Éligibilité à l'aide PCH de l'Eure-et-Loir en établissement avec PH handicapée
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        nationalite: FR
+        titre_sejour: 1
+        handicap: 1
+    famille:
+      place_hebergement: 1
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_pch_etablissement: 1
+
+- name: Éligibilité à l'aide PCH de l'Eure-et-Loir en établissement avec PH  nationalité UE (IT)
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        nationalite: IT
+        titre_sejour: 1
+        handicap: 1
+    famille:
+      place_hebergement: 1
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_pch_etablissement: 1
+
+- name: Éligibilité à l'aide PCH de l'Eure-et-Loir en établissement avec PH  nationalité non UE (LL) mais titre séjour OK
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        nationalite: LL
+        titre_sejour: 1
+        handicap: 1
+    famille:
+      place_hebergement: 1
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_pch_etablissement: 1
+
+- name: Non Éligibilité à l'aide PCH de l'Eure-et-Loir en établissement avec PH nationalité non UE et titre séjour KO
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        nationalite: LL
+        titre_sejour: 0
+        handicap: 1
+    famille:
+      place_hebergement: 1
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_pch_etablissement: 0
+
+- name: Non Éligibilité à l'aide PCH de l'Eure-et-Loir en établissement avec PH non handicapée
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        nationalite: FR
+        titre_sejour: 1
+        handicap: 0
+    famille:
+      place_hebergement: 1
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_pch_etablissement: 0
+
+- name: Non Éligibilité à l'aide PCH de l'Eure-et-Loir en établissement avec PH sans place hébergement
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        nationalite: FR
+        titre_sejour: 1
+        handicap: 1
+    famille:
+      place_hebergement: 0
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_pch_etablissement: 0
