@@ -1,49 +1,59 @@
-- name: Cas passant avec personne apa ok et gir_1
+- name: Éligibilité à la CMI stationnement de l'Eure-et-Loir avec personne apa ok et gir_1
   period: 2020-10
   input:
     individus:
       p1:
         apa_domicile: 100
         gir: gir_1
+    menage:
+      depcom: 28000
   output:
-    eure_et_loir_cmi_stationnement: 1
+    eure_et_loir_eligibilite_cmi_stationnement: 1
 
-- name: Cas passant avec personne apa ok et gir_2
+- name: Éligibilité à la CMI stationnement de l'Eure-et-Loir avec personne  apa ok et gir_2
   period: 2020-10
   input:
     individus:
       p1:
         apa_domicile: 100
         gir: gir_2
+    menage:
+      depcom: 28000
   output:
-    eure_et_loir_cmi_stationnement: 1
+    eure_et_loir_eligibilite_cmi_stationnement: 1
 
-- name: Cas non passant avec personne apa ok et gir_3
+- name: Non Éligibilité à la CMI stationnement de l'Eure-et-Loir avec personne  apa ok et gir_3
   period: 2020-10
   input:
     individus:
       p1:
         apa_domicile: 100
         gir: gir_3
+    menage:
+      depcom: 28000
   output:
-    eure_et_loir_cmi_stationnement: 0
+    eure_et_loir_eligibilite_cmi_stationnement: 0
 
-- name: Cas non passant avec personne apa ko
+- name: Non Éligibilité à la CMI stationnement de l'Eure-et-Loir avec personne apa ko
   period: 2020-10
   input:
     individus:
       p1:
         apa_domicile: 0
         gir: gir_1
+    menage:
+      depcom: 28000
   output:
-    eure_et_loir_cmi_stationnement: 0
+    eure_et_loir_eligibilite_cmi_stationnement: 0
 
-- name: Cas non passant avec personne apa ko et gir_3
+- name: Non Éligibilité à la CMI stationnement de l'Eure-et-Loir avec personne apa ko et gir_3
   period: 2020-10
   input:
     individus:
       p1:
         apa_domicile: 0
         gir: gir_3
+    menage:
+      depcom: 28000
   output:
-    eure_et_loir_cmi_stationnement: 0
+    eure_et_loir_eligibilite_cmi_stationnement: 0

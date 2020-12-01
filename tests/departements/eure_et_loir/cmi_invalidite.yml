@@ -1,4 +1,4 @@
-- name: Cas passant avec personne incapacité 81 %
+- name: Éligibilité à la CMI invalidité de l'Eure-et-Loir avec personne incapacité 81 %
   period: 2020-10
   input:
     individus:
@@ -6,10 +6,12 @@
         taux_incapacite: 0.81
         apa_domicile: 100
         gir: gir_1
+    menage:
+      depcom: 28000
   output:
-    eure_et_loir_cmi_invalidite: 1
+    eure_et_loir_eligibilite_cmi_invalidite: 1
 
-- name: Cas passant avec personne incapacité 80 %
+- name: Éligibilité à la CMI invalidité de l'Eure-et-Loir avec personne incapacité 80 %
   period: 2020-10
   input:
     individus:
@@ -17,10 +19,12 @@
         taux_incapacite: 0.80
         apa_domicile: 100
         gir: gir_1
+    menage:
+      depcom: 28000
   output:
-    eure_et_loir_cmi_invalidite: 1
+    eure_et_loir_eligibilite_cmi_invalidite: 1
 
-- name: Cas passant avec personne incapacité 70 % et apa OK
+- name: Éligibilité à la CMI invalidité de l'Eure-et-Loir avec personne incapacité 70 % et apa OK
   period: 2020-10
   input:
     individus:
@@ -28,10 +32,12 @@
         taux_incapacite: 0.70
         apa_domicile: 100
         gir: gir_1
+    menage:
+      depcom: 28000
   output:
-    eure_et_loir_cmi_invalidite: 1
+    eure_et_loir_eligibilite_cmi_invalidite: 1
 
-- name: Cas passant avec personne incapacité 70 % et apa OK et gir_2
+- name: Éligibilité à la CMI invalidité de l'Eure-et-Loir avec personne incapacité 70 % et apa OK et gir_2
   period: 2020-10
   input:
     individus:
@@ -39,10 +45,12 @@
         taux_incapacite: 0.70
         apa_domicile: 100
         gir: gir_2
+    menage:
+      depcom: 28000
   output:
-    eure_et_loir_cmi_invalidite: 1
+    eure_et_loir_eligibilite_cmi_invalidite: 1
 
-- name: Cas passant avec personne incapacité 80 % et apa KO
+- name: Éligibilité à la CMI invalidité de l'Eure-et-Loir avec personne incapacité 80 % et apa KO
   period: 2020-10
   input:
     individus:
@@ -50,10 +58,12 @@
         taux_incapacite: 0.80
         apa_domicile: 0
         gir: gir_2
+    menage:
+      depcom: 28000
   output:
-    eure_et_loir_cmi_invalidite: 1
+    eure_et_loir_eligibilite_cmi_invalidite: 1
 
-- name: Cas non passant avec personne incapacité < 80 % et apa KO
+- name: Non Éligibilité à la CMI invalidité de l'Eure-et-Loir avec personne incapacité < 80 % et apa KO
   period: 2020-10
   input:
     individus:
@@ -61,10 +71,12 @@
         taux_incapacite: 0.70
         apa_domicile: 0
         gir: gir_2
+    menage:
+      depcom: 28000
   output:
-    eure_et_loir_cmi_invalidite: 0
+    eure_et_loir_eligibilite_cmi_invalidite: 0
 
-- name: Cas non passant avec personne incapacité < 80 % et apa OK et gir_3
+- name: Non Éligibilité à la CMI invalidité de l'Eure-et-Loir avec personne incapacité < 80 % et apa OK et gir_3
   period: 2020-10
   input:
     individus:
@@ -72,10 +84,12 @@
         taux_incapacite: 0.70
         apa_domicile: 100
         gir: gir_3
+    menage:
+      depcom: 28000
   output:
-    eure_et_loir_cmi_invalidite: 0
+    eure_et_loir_eligibilite_cmi_invalidite: 0
 
-- name: Cas non passant avec personne incapacité < 80 % et apa KO et gir_3
+- name: Non Éligibilité à la CMI invalidité de l'Eure-et-Loir avec personne incapacité < 80 % et apa KO et gir_3
   period: 2020-10
   input:
     individus:
@@ -83,6 +97,8 @@
         taux_incapacite: 0.70
         apa_domicile: 0
         gir: gir_3
+    menage:
+      depcom: 28000
   output:
-    eure_et_loir_cmi_invalidite: 0
+    eure_et_loir_eligibilite_cmi_invalidite: 0
 
