@@ -1,4 +1,4 @@
-- name: Cas passant avec personne > 65 ans
+- name: Éligibilité à l'ash de l'eure-et-loir avec personne > 65 ans
   period: 2020-10
   input:
     foyer_fiscal:
@@ -16,10 +16,11 @@
       personne_de_reference:
         - parent1
       loyer: 410
+      depcom: 28000
   output:
-    eure_et_loir_ASH_personne_agee: 1
+    eure_et_loir_eligibilite_ash_personne_agee: 1
 
-- name: Cas passant avec personne = 65 ans
+- name: Éligibilité à l'ash de l'eure-et-loir avec personne = 65 ans
   period: 2020-10
   input:
     foyer_fiscal:
@@ -37,10 +38,11 @@
       personne_de_reference:
         - parent1
       loyer: 410
+      depcom: 28000
   output:
-    eure_et_loir_ASH_personne_agee: 1
+    eure_et_loir_eligibilite_ash_personne_agee: 1
 
-- name: Cas passant avec personne = 60 ans et inapte_travail
+- name: Éligibilité à l'ash de l'eure-et-loir avec personne = 60 ans et inapte_travail
   period: 2020-10
   input:
     foyer_fiscal:
@@ -58,10 +60,11 @@
       personne_de_reference:
         - parent1
       loyer: 410
+      depcom: 28000
   output:
-    eure_et_loir_ASH_personne_agee: 1
+    eure_et_loir_eligibilite_ash_personne_agee: 1
 
-- name: Cas passant avec personne > 60 ans et inapte_travail
+- name: Éligibilité à l'ash de l'eure-et-loir avec personne > 60 ans et inapte_travail
   period: 2020-10
   input:
     foyer_fiscal:
@@ -79,10 +82,11 @@
       personne_de_reference:
         - parent1
       loyer: 410
+      depcom: 28000
   output:
-    eure_et_loir_ASH_personne_agee: 1
+    eure_et_loir_eligibilite_ash_personne_agee: 1
 
-- name: Cas passant avec personne nationalité UE (IT)
+- name: Éligibilité à l'ash de l'eure-et-loir avec personne nationalité UE (IT)
   period: 2020-10
   input:
     foyer_fiscal:
@@ -100,10 +104,11 @@
       personne_de_reference:
         - parent1
       loyer: 410
+      depcom: 28000
   output:
-    eure_et_loir_ASH_personne_agee: 1
+    eure_et_loir_eligibilite_ash_personne_agee: 1
 
-- name: Cas passant avec personne nationalité non UE (LL) mais titre de séjour OK
+- name: Éligibilité à l'ash de l'eure-et-loir avec personne nationalité non UE (LL) mais titre de séjour OK
   period: 2020-10
   input:
     foyer_fiscal:
@@ -121,10 +126,11 @@
       personne_de_reference:
         - parent1
       loyer: 410
+      depcom: 28000
   output:
-    eure_et_loir_ASH_personne_agee: 1
+    eure_et_loir_eligibilite_ash_personne_agee: 1
 
-- name: Cas non passant personne <65 et non inapte_travail
+- name: Non Éligibilité à l'ash de l'eure-et-loir avec personne <65 et non inapte_travail
   period: 2020-10
   input:
     foyer_fiscal:
@@ -142,10 +148,11 @@
       personne_de_reference:
         - parent1
       loyer: 410
+      depcom: 28000
   output:
-    eure_et_loir_ASH_personne_agee: 0
+    eure_et_loir_eligibilite_ash_personne_agee: 0
 
-- name: Cas non passant personne <60 ans
+- name: Non Éligibilité à l'ash de l'eure-et-loir avec personne <60 ans
   period: 2020-10
   input:
     foyer_fiscal:
@@ -163,10 +170,11 @@
       personne_de_reference:
         - parent1
       loyer: 410
+      depcom: 28000
   output:
-    eure_et_loir_ASH_personne_agee: 0
+    eure_et_loir_eligibilite_ash_personne_agee: 0
 
-- name: Cas non passant personne resssources > loyer
+- name: Non Éligibilité à l'ash de l'eure-et-loir avec personne resssources > loyer
   period: 2020-10
   input:
     foyer_fiscal:
@@ -184,11 +192,11 @@
       personne_de_reference:
         - parent1
       loyer: 410
+      depcom: 28000
   output:
-    eure_et_loir_ASH_personne_agee: 0
+    eure_et_loir_eligibilite_ash_personne_agee: 0
 
-- name: Cas non passant avec une personne
-    nationalité non UE et pas de titre de séjour
+- name: Non Éligibilité à l'ash de l'eure-et-loir avec une personne nationalité non UE et pas de titre de séjour
   period: 2020-10
   input:
     foyer_fiscal:
@@ -206,5 +214,6 @@
       personne_de_reference:
         - parent1
       loyer: 410
+      depcom: 28000
   output:
-    eure_et_loir_ASH_personne_agee: 0
+    eure_et_loir_eligibilite_ash_personne_agee: 0

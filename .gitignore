@@ -1,6 +1,9 @@
 # Développement sur GitPod
 build
 
+# Développement sur IDEA - PyCharm
+.idea/
+
 # Développement local
 *.egg-info
 *.pyc
