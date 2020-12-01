@@ -1,10 +1,9 @@
-- name: Cas passant avec personne <60 ans
+- name: Eligibilité à l'aide-ménagère PH avec personne <60 ans
   period: 2020-10
   input:
     individus:
       p1:
-        asi_aspa_base_ressources_individu: 450
-        retraite_nette:
+        retraite_imposable:
           2020-09: 300
         age: 59
         nationalite: FR
@@ -15,16 +14,18 @@
         parents: p1
         rsa:
           2020-09: 0
+        aspa: 903.20
+    menage:
+      depcom: 28000
   output:
-    eure_et_loir_aide_menagere_personne_handicap: 1
+    eure_et_loir_eligibilite_aide_menagere_personne_handicap: 1
 
-- name: Cas passant avec personne taux incapacité compris entre 50et 70 et avec restriction true
+- name: Eligibilité à l'aide-ménagère PH avec personne taux incapacité compris entre 50et 70 et avec restriction true
   period: 2020-10
   input:
     individus:
       p1:
-        asi_aspa_base_ressources_individu: 450
-        retraite_nette:
+        retraite_imposable:
           2020-09: 300
         age: 59
         nationalite: FR
@@ -35,16 +36,18 @@
         parents: p1
         rsa:
           2020-09: 0
+        aspa: 903.20
+    menage:
+      depcom: 28000
   output:
-    eure_et_loir_aide_menagere_personne_handicap: 1.
+    eure_et_loir_eligibilite_aide_menagere_personne_handicap: 1.
 
-- name: Cas passant avec personne originaire UE (IT)
+- name: Eligibilité à l'aide-ménagère PH avec personne originaire UE (IT)
   period: 2020-10
   input:
     individus:
       p1:
-        asi_aspa_base_ressources_individu: 450
-        retraite_nette:
+        retraite_imposable:
           2020-09: 300
         age: 59
         nationalite: IT
@@ -55,16 +58,18 @@
         parents: p1
         rsa:
           2020-09: 0
+        aspa: 903.20
+    menage:
+      depcom: 28000
   output:
-    eure_et_loir_aide_menagere_personne_handicap: 1
+    eure_et_loir_eligibilite_aide_menagere_personne_handicap: 1
 
-- name: Cas non passant avec personne >60 ans
+- name: Non Eligibilité à l'aide-ménagère PH avec personne >60 ans
   period: 2020-10
   input:
     individus:
       p1:
-        asi_aspa_base_ressources_individu: 450
-        retraite_nette:
+        retraite_imposable:
           2020-09: 300
         age: 69
         nationalite: FR
@@ -75,17 +80,19 @@
         parents: p1
         rsa:
           2020-09: 0
+        aspa: 903.20
+    menage:
+      depcom: 28000
   output:
-    eure_et_loir_aide_menagere_personne_handicap: 0
+    eure_et_loir_eligibilite_aide_menagere_personne_handicap: 0
 
-- name: Cas non passant avec personne ayant trop de ressources
+- name: Non Eligibilité à l'aide-ménagère PH avec personne ayant trop de ressources
   period: 2020-10
   input:
     individus:
       p1:
-        asi_aspa_base_ressources_individu: 150
-        retraite_nette:
-          2020-09: 300
+        retraite_imposable:
+          2020-09: 1300
         age: 59
         nationalite: FR
         taux_incapacite: 0.81
@@ -95,16 +102,18 @@
         parents: p1
         rsa:
           2020-09: 0
+        aspa: 903.20
+    menage:
+      depcom: 28000
   output:
-    eure_et_loir_aide_menagere_personne_handicap: 0
+    eure_et_loir_eligibilite_aide_menagere_personne_handicap: 0
 
-- name: Cas non passant avec personne taux incapacite trop faible
+- name: Non Eligibilité à l'aide-ménagère PH avec personne taux incapacite trop faible
   period: 2020-10
   input:
     individus:
       p1:
-        asi_aspa_base_ressources_individu: 450
-        retraite_nette:
+        retraite_imposable:
           2020-09: 300
         age: 59
         nationalite: FR
@@ -115,16 +124,18 @@
         parents: p1
         rsa:
           2020-09: 0
+        aspa: 903.20
+    menage:
+      depcom: 28000
   output:
-    eure_et_loir_aide_menagere_personne_handicap: 0
+    eure_et_loir_eligibilite_aide_menagere_personne_handicap: 0
 
-- name: Cas non passant avec personne non ressortissant UE
+- name: Non Eligibilité à l'aide-ménagère PH avec personne non ressortissant UE
   period: 2020-10
   input:
     individus:
       p1:
-        asi_aspa_base_ressources_individu: 450
-        retraite_nette:
+        retraite_imposable:
           2020-09: 300
         age: 59
         nationalite: LL
@@ -135,5 +146,32 @@
         parents: p1
         rsa:
           2020-09: 0
+        aspa: 903.20
+    menage:
+      depcom: 28000
   output:
-    eure_et_loir_aide_menagere_personne_handicap: 0
+    eure_et_loir_eligibilite_aide_menagere_personne_handicap: 0
+
+- name: Non Eligibilité à l'aide-ménagère PH avec personne ayant trop de ressources dont retraite complémentaire
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        retraite_imposable:
+          2020-09: 1300
+        age: 59
+        nationalite: FR
+        taux_incapacite: 0.81
+        aah_restriction_substantielle_durable_acces_emploi: 0
+        retraite_complementaire_profession_liberale:
+          2020: 1500
+    familles:
+      _:
+        parents: p1
+        rsa:
+          2020-09: 0
+        aspa: 903.20
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_aide_menagere_personne_handicap: 0
