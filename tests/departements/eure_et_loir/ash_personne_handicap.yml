@@ -1,4 +1,4 @@
-- name: Cas passant avec personne > 18 ans
+- name: Éligibilité à l'ash de l'eure-et-loir avec PH > 18 ans
   period: 2020-10
   input:
     individus:
@@ -7,11 +7,12 @@
         nationalite: FR
         titre_sejour: 0
         handicap: 1
-
+    menage:
+      depcom: 28000
   output:
-    eure_et_loir_ASH_personne_handicap: 1
+    eure_et_loir_eligibilite_ash_personne_handicap: 1
 
-- name: Cas passant avec personne = 18 ans
+- name: Éligibilité à l'ash de l'eure-et-loir avec PH = 18 ans
   period: 2020-10
   input:
     individus:
@@ -20,11 +21,12 @@
         nationalite: FR
         titre_sejour: 0
         handicap: 1
-
+    menage:
+      depcom: 28000
   output:
-    eure_et_loir_ASH_personne_handicap: 1
+    eure_et_loir_eligibilite_ash_personne_handicap: 1
 
-- name: Cas passant avec personne nationalité UE (IT)
+- name: Éligibilité à l'ash de l'eure-et-loir avec PH nationalité UE (IT)
   period: 2020-10
   input:
     individus:
@@ -33,11 +35,12 @@
         nationalite: IT
         titre_sejour: 0
         handicap: 1
-
+    menage:
+      depcom: 28000
   output:
-    eure_et_loir_ASH_personne_handicap: 1
+    eure_et_loir_eligibilite_ash_personne_handicap: 1
 
-- name: Cas passant avec personne nationalité hors UE et titre de séjour OK (LL)
+- name: Éligibilité à l'ash de l'eure-et-loir avec PH nationalité hors UE et titre de séjour OK (LL)
   period: 2020-10
   input:
     individus:
@@ -46,10 +49,12 @@
         nationalite: LL
         titre_sejour: 1
         handicap: 1
+    menage:
+      depcom: 28000
   output:
-    eure_et_loir_ASH_personne_handicap: 1
+    eure_et_loir_eligibilite_ash_personne_handicap: 1
 
-- name: Cas passant non passant personne < 18 ans
+- name: Non Éligibilité à l'ash de l'eure-et-loir avec PH < 18 ans
   period: 2020-10
   input:
     individus:
@@ -58,11 +63,12 @@
         nationalite: FR
         titre_sejour: 0
         handicap: 1
-
+    menage:
+      depcom: 28000
   output:
-    eure_et_loir_ASH_personne_handicap: 0
+    eure_et_loir_eligibilite_ash_personne_handicap: 0
 
-- name: Cas passant non passant personne non handicapée
+- name: Non Éligibilité à l'ash de l'eure-et-loir avec PH non handicapée
   period: 2020-10
   input:
     individus:
@@ -71,11 +77,12 @@
         nationalite: FR
         titre_sejour: 0
         handicap: 0
-
+    menage:
+      depcom: 28000
   output:
-    eure_et_loir_ASH_personne_handicap: 0
+    eure_et_loir_eligibilite_ash_personne_handicap: 0
 
-- name: Cas non passant personne nationalité hors UE sans titre de séjour
+- name: Non Éligibilité à l'ash de l'eure-et-loir avec PH nationalité hors UE sans titre de séjour
   period: 2020-10
   input:
     individus:
@@ -84,6 +91,7 @@
         nationalite: LL
         titre_sejour: 0
         handicap: 1
-
+    menage:
+      depcom: 28000
   output:
-    eure_et_loir_ASH_personne_handicap: 0
+    eure_et_loir_eligibilite_ash_personne_handicap: 0
