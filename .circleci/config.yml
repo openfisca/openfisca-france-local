@@ -13,6 +13,14 @@ install_dependencies: &install_dependencies
     name: Install dependencies
     command: pip install . --upgrade && pip install ".[test,excel-reader]"
 
+check_version_and_changelog: &check_version_and_changelog
+  run:
+    name: Check version number has been properly updated
+    command: |
+      git fetch
+      .circleci/is-version-number-acceptable.sh
+
+
 version: 2
 jobs:
   test:
@@ -24,9 +32,16 @@ jobs:
       - run:
           name: Run tests
           command: openfisca test `circleci tests glob "tests/**/*.{yml,yaml}"` --extensions openfisca_france_local
+  check_version:
+    <<: *defaults
+    steps:
+      - checkout
+      - *check_version_and_changelog
+
 
 workflows:
   version: 2
   test:
     jobs:
       - test
+      - check_version
