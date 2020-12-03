@@ -1,4 +1,4 @@
-- name: Eligibilité à l'aide FSL acces logement d'Eure-et-Loir avec ressources couple < 60 % seuil pauvreté
+- name: Eligibilité à l'aide FSL installation logement d'Eure-et-Loir avec ressources couple < 60 % seuil pauvreté
   period: 2020-10
   input:
     individus:
@@ -24,9 +24,9 @@
       en_couple: 1
       parents: [ "parent1", "parent2" ]
   output:
-    eure_et_loir_eligibilite_fsl_acces_logement: 1
+    eure_et_loir_fsl_eligibilite_installation_logement: 1
 
-- name: Eligibilité à l'aide FSL acces logement d'Eure-et-Loir avec ressources monoparent < 60 % seuil pauvreté
+- name: Eligibilité à l'aide FSL installation logement d'Eure-et-Loir avec ressources monoparent < 60 % seuil pauvreté
   period: 2020-10
   input:
     individus:
@@ -57,9 +57,9 @@
       en_couple: 0
       parents: [ "parent1" ]
   output:
-    eure_et_loir_eligibilite_fsl_acces_logement: 1
+    eure_et_loir_fsl_eligibilite_installation_logement: 1
 
-- name: Non Eligibilité à l'aide FSL acces logement d'Eure-et-Loir avec logement hors eure-et-loire
+- name: Non Eligibilité à l'aide FSL installation logement d'Eure-et-Loir avec logement hors eure-et-loire
   period: 2020-10
   input:
     individus:
@@ -90,9 +90,9 @@
       en_couple: 0
       parents: [ "parent1" ]
   output:
-    eure_et_loir_eligibilite_fsl_acces_logement: 0
+    eure_et_loir_fsl_eligibilite_installation_logement: 0
 
-- name: Non Eligibilité à l'aide FSL acces logement d'Eure-et-Loir avec ressources > seuil de pauvreté à 60 %
+- name: Non Eligibilité à l'aide FSL installation logement d'Eure-et-Loir avec ressources > seuil de pauvreté à 60 %
   period: 2020-10
   input:
     individus:
@@ -123,7 +123,7 @@
       en_couple: 0
       parents: [ "parent1" ]
   output:
-    eure_et_loir_eligibilite_fsl_acces_logement: 0
+    eure_et_loir_fsl_eligibilite_installation_logement: 0
 
 
 

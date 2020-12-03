@@ -1,0 +1,145 @@
+fsl:
+  reference: Annexe 5 Plafonds de ressources de réference du Règlement intérieur des Fonds de solidarité pour le logement d'Eure-et-Loir
+  en_0:
+    single:
+      description: "Seuil de pauvreté à 60 % pour une famille monoparentale avec 0 enfant"
+      values:
+        2020-01-01:
+          value: 1026
+    couple:
+      description: "Seuil de pauvreté à 60 % pour une couple avec 0 enfant"
+      values:
+        2020-01-01:
+          value: 1539
+  en_1:
+    single:
+      description: "Seuil de pauvreté à 60 % pour une famille monoparentale avec 1 enfant"
+      values:
+        2020-01-01:
+          value: 1539
+    couple:
+      description: "Seuil de pauvreté à 60 % pour un couple avec 1 enfant"
+      values:
+        2020-01-01:
+          value: 2052
+  en_2:
+    single:
+      description: "Seuil de pauvreté à 60 % pour une famille monoparentale avec 2 enfants"
+      values:
+        2020-01-01:
+          value: 2052
+    couple:
+      description: "Seuil de pauvreté à 60 % pour un couple avec 2 enfants"
+      values:
+        2020-01-01:
+          value: 2565
+  en_3:
+    single:
+      description: "Seuil de pauvreté à 60 % pour une famille monoparentale avec 3 enfants"
+      values:
+        2020-01-01:
+          value: 2565
+    couple:
+      description: "Seuil de pauvreté à 60 % pour un couple avec 3 enfants"
+      values:
+        2020-01-01:
+          value: 3078
+  en_4:
+    single:
+      description: "Seuil de pauvreté à 60 % pour une famille monoparentale avec 4 enfants"
+      values:
+        2020-01-01:
+          value: 3078
+    couple:
+      description: "Seuil de pauvreté à 60 % pour un couple avec 4 enfants"
+      values:
+        2020-01-01:
+          value: 3591
+  en_5:
+    single:
+      description: "Seuil de pauvreté à 60 % pour une famille monoparentale avec 5 enfants"
+      values:
+        2020-01-01:
+          value: 3591
+    couple:
+      description: "Seuil de pauvreté à 60 % pour un couple avec 5 enfants"
+      values:
+        2020-01-01:
+          value: 4104
+  en_6:
+    single:
+      description: "Seuil de pauvreté à 60 % pour une famille monoparentale avec 6 enfants"
+      values:
+        2020-01-01:
+          value: 4104
+    couple:
+      description: "Seuil de pauvreté à 60 % pour un couple avec 6 enfants"
+      values:
+        2020-01-01:
+          value: 4617
+  en_7:
+    single:
+      description: "Seuil de pauvreté à 60 % pour une famille monoparentale avec 7 enfants"
+      values:
+        2020-01-01:
+          value: 4617
+    couple:
+      description: "Seuil de pauvreté à 60 % pour un couple avec 7 enfants"
+      values:
+        2020-01-01:
+          value: 5130
+  en_8:
+    single:
+      description: "Seuil de pauvreté à 60 % pour une famille monoparentale avec 8 enfants"
+      values:
+        2020-01-01:
+          value: 5130
+    couple:
+      description: "Seuil de pauvreté à 60 % pour un couple avec 8 enfants"
+      values:
+        2020-01-01:
+          value: 5643
+  en_9:
+    single:
+      description: "Seuil de pauvreté à 60 % pour une famille monoparentale avec 9 enfants"
+      values:
+        2020-01-01:
+          value: 5643
+    couple:
+      description: "Seuil de pauvreté à 60 % pour un couple avec 9 enfants"
+      values:
+        2020-01-01:
+          value: 6156
+  en_10:
+    single:
+      description: "Seuil de pauvreté à 60 % pour une famille monoparentale avec 10 enfants"
+      values:
+        2020-01-01:
+          value: 6156
+    couple:
+      description: "Seuil de pauvreté à 60 % pour un couple avec 10 enfants"
+      values:
+        2020-01-01:
+          value: 6669
+  en_11:
+    single:
+      description: "Seuil de pauvreté à 60 % pour une famille monoparentale avec 11 enfants"
+      values:
+        2020-01-01:
+          value: 6669
+    couple:
+      description: "Seuil de pauvreté à 60 % pour un couple avec 11 enfants"
+      values:
+        2020-01-01:
+          value: 7182
+  en_12:
+    single:
+      description: "Seuil de pauvreté à 60 % pour une famille monoparentale avec 12 enfants"
+      values:
+        2020-01-01:
+          value: 7182
+    couple:
+      description: "Seuil de pauvreté à 60 % pour un couple avec 12 enfants"
+      values:
+        2020-01-01:
+          value: 7695
