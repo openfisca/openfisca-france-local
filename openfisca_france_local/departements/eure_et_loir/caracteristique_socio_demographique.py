@@ -34,3 +34,4 @@ class titre_sejour(Variable):
     entity = Individu
     definition_period = MONTH
     default_value = False
+
