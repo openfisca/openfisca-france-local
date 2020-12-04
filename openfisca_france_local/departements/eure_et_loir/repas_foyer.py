@@ -2,7 +2,6 @@
 from openfisca_france.model.base import Variable, Individu, MONTH, not_, DIVIDE
 from openfisca_france.model.prestations.autonomie import TypesGir
 
-
 class eure_et_loir_eligibilite_repas_foyer_personne_agee(Variable):
     value_type = bool
     entity = Individu
@@ -28,18 +27,18 @@ class eure_et_loir_eligibilite_repas_foyer_personne_agee(Variable):
 
         condition_residence = individu.menage('eure_et_loir_eligibilite_residence', period)
         condition_age = ((age >= repas_foyer_parameters.age_minimal_personne_agee_apte_travail) + (
-                age >= repas_foyer_parameters.age_minimal_personne_agee_inapte_travail and inapte_travail))
-        condition_nationalite = ressortissant_eee + individu('titre_sejour', period) + individu('refugie',
-                                                                                                period) + individu(
-            'apatride', period)
+            (age >= repas_foyer_parameters.age_minimal_personne_agee_inapte_travail) * inapte_travail))
+        condition_nationalite = ressortissant_eee + individu('titre_sejour', period) + individu('refugie',period) + individu('apatride', period)
         condition_gir = ((gir == TypesGir.gir_5) + (gir == TypesGir.gir_6))
-        condition_ressources = individu('asi_aspa_base_ressources_individu',
-                                        period) < repas_foyer_parameters.montant_aspa
-        conditions_aides_apa = 0 if individu('apa_domicile', period) != 0 else 1
-        condition_aides_actp = 0 if possede_actp else 1
-        condition_aides_mtp = 0 if possede_mtp else 1
+        condition_ressources = individu('asi_aspa_base_ressources_individu',period) < individu.famille('aspa', period)
 
-        return condition_residence * condition_age * condition_nationalite * condition_gir * condition_ressources * conditions_aides_apa * condition_aides_actp * condition_aides_mtp
+        condition_apa = individu('apa_domicile', period.last_month) <= 0
+        condition_aides_actp = False if possede_actp else True
+        condition_aides_mtp = False if possede_mtp else True
+        condition_aide_menagere_caisse_retraite = False if individu('aide_menagere_fournie_caisse_retraite',period.last_month) else True
+        conditions_aides = condition_apa * condition_aide_menagere_caisse_retraite * condition_aides_actp * condition_aides_mtp
+
+        return condition_residence * condition_age * condition_nationalite * condition_gir * condition_ressources * conditions_aides
 
 
 class eure_et_loir_eligibilite_repas_foyer_personne_handicape(Variable):
@@ -61,7 +60,6 @@ class eure_et_loir_eligibilite_repas_foyer_personne_handicape(Variable):
         restriction_substantielle_durable = individu('aah_restriction_substantielle_durable_acces_emploi', period)
         age = individu('age', period)
         ressortissant_eee = individu('ressortissant_eee', period)
-        condition_nationalite = ressortissant_eee + individu('titre_sejour', period) + individu('refugie',period) + individu('apatride', period)
 
         repas_foyer_parameters = parameters(
             period).departements.eure_et_loir.repas_foyer.repas_foyer
@@ -84,11 +82,11 @@ class eure_et_loir_eligibilite_repas_foyer_personne_handicape(Variable):
             [individu(resource, period, options=[DIVIDE]) for resource in ressources_annuelles]))
 
         condition_residence = individu.menage('eure_et_loir_eligibilite_residence', period)
-        condition_age = repas_foyer_parameters.age_minimal_personne_handicap
+        condition_age = age <= repas_foyer_parameters.age_minimal_personne_handicap
         condition_nationalite = ressortissant_eee + individu('titre_sejour', period) + individu('refugie',period) + individu('apatride', period)
         condition_taux_incapacite = ((taux_incapacite >= repas_foyer_parameters.taux_incapacite_superieur)
-                                     + (
-                                                 taux_incapacite < repas_foyer_parameters.taux_incapacite_maximum_restriction_acces_emploi and taux_incapacite > repas_foyer_parameters.taux_incapacite_minimum_restriction_acces_emploi and restriction_substantielle_durable))
-        condition_ressources = individu_resources < repas_foyer_parameters.montant_aspa
+                                     + ((taux_incapacite < repas_foyer_parameters.taux_incapacite_maximum_restriction_acces_emploi) * (
+                                         (taux_incapacite > repas_foyer_parameters.taux_incapacite_minimum_restriction_acces_emploi) * restriction_substantielle_durable)))
+        condition_ressources = individu_resources < individu.famille('aspa', period)
 
         return condition_residence * condition_age * condition_nationalite * condition_taux_incapacite * condition_ressources

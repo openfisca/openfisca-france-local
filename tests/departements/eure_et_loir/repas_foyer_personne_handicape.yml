@@ -8,7 +8,7 @@
         age: 59
         nationalite: FR
         taux_incapacite: 0.81
-        aah_restriction_substantielle_durable_acces_emploi: 0
+        aah_restriction_substantielle_durable_acces_emploi: False
     familles:
       _:
         parents: p1
@@ -18,7 +18,7 @@
     menage:
       depcom: 28000
   output:
-    eure_et_loir_eligibilite_repas_foyer_personne_handicape: 1
+    eure_et_loir_eligibilite_repas_foyer_personne_handicape: True
 
 - name: Eligibilité à l'aide repas foyer de l'Eure-et-Loir avec PH taux incapacité compris entre 50 et 70 et avec restriction true
   period: 2020-10
@@ -30,7 +30,7 @@
         age: 59
         nationalite: FR
         taux_incapacite: 0.68
-        aah_restriction_substantielle_durable_acces_emploi: 1
+        aah_restriction_substantielle_durable_acces_emploi: True
     familles:
       _:
         parents: p1
@@ -40,7 +40,7 @@
     menage:
       depcom: 28000
   output:
-    eure_et_loir_eligibilite_repas_foyer_personne_handicape: 1.
+    eure_et_loir_eligibilite_repas_foyer_personne_handicape: True
 
 - name: Eligibilité à l'aide repas foyer de l'Eure-et-Loir avec PH  originaire UE (IT)
   period: 2020-10
@@ -52,7 +52,7 @@
         age: 59
         nationalite: IT
         taux_incapacite: 0.81
-        aah_restriction_substantielle_durable_acces_emploi: 0
+        aah_restriction_substantielle_durable_acces_emploi: False
     familles:
       _:
         parents: p1
@@ -62,7 +62,7 @@
     menage:
       depcom: 28000
   output:
-    eure_et_loir_eligibilite_repas_foyer_personne_handicape: 1
+    eure_et_loir_eligibilite_repas_foyer_personne_handicape: True
 
 - name: Eligibilité à l'aide repas foyer de l'Eure-et-Loir avec PH  nationalité hors UE refugie
   period: 2020-10
@@ -73,9 +73,9 @@
           2020-09: 300
         age: 59
         nationalite: LYD
-        refugie: 1
+        refugie: True
         taux_incapacite: 0.81
-        aah_restriction_substantielle_durable_acces_emploi: 0
+        aah_restriction_substantielle_durable_acces_emploi: False
     familles:
       _:
         parents: p1
@@ -85,7 +85,7 @@
     menage:
       depcom: 28000
   output:
-    eure_et_loir_eligibilite_repas_foyer_personne_handicape: 1
+    eure_et_loir_eligibilite_repas_foyer_personne_handicape: True
 
 - name: Eligibilité à l'aide repas foyer de l'Eure-et-Loir avec PH  apatride
   period: 2020-10
@@ -95,9 +95,9 @@
         retraite_imposable:
           2020-09: 300
         age: 59
-        apatride: 1
+        apatride: True
         taux_incapacite: 0.81
-        aah_restriction_substantielle_durable_acces_emploi: 0
+        aah_restriction_substantielle_durable_acces_emploi: False
     familles:
       _:
         parents: p1
@@ -107,7 +107,7 @@
     menage:
       depcom: 28000
   output:
-    eure_et_loir_eligibilite_repas_foyer_personne_handicape: 1
+    eure_et_loir_eligibilite_repas_foyer_personne_handicape: True
 
 - name: Eligibilité à l'aide repas foyer de l'Eure-et-Loir avec PH habitant 28
   period: 2020-10
@@ -119,7 +119,7 @@
         age: 59
         nationalite: FR
         taux_incapacite: 0.81
-        aah_restriction_substantielle_durable_acces_emploi: 0
+        aah_restriction_substantielle_durable_acces_emploi: False
     familles:
       _:
         parents: p1
@@ -129,7 +129,7 @@
     menage:
       depcom: 28230
   output:
-    eure_et_loir_eligibilite_repas_foyer_personne_handicape: 1
+    eure_et_loir_eligibilite_repas_foyer_personne_handicape: True
 
 - name: Non Eligibilité à l'aide repas foyer de l'Eure-et-Loir avec PH >60 ans
   period: 2020-10
@@ -141,7 +141,7 @@
         age: 69
         nationalite: FR
         taux_incapacite: 0.81
-        aah_restriction_substantielle_durable_acces_emploi: 0
+        aah_restriction_substantielle_durable_acces_emploi: False
     familles:
       _:
         parents: p1
@@ -151,7 +151,7 @@
     menage:
       depcom: 28000
   output:
-    eure_et_loir_eligibilite_repas_foyer_personne_handicape: 0
+    eure_et_loir_eligibilite_repas_foyer_personne_handicape: False
 
 - name: Non Eligibilité à l'aide repas foyer de l'Eure-et-Loir avec PH ayant trop de ressources
   period: 2020-10
@@ -163,7 +163,7 @@
         age: 59
         nationalite: FR
         taux_incapacite: 0.81
-        aah_restriction_substantielle_durable_acces_emploi: 0
+        aah_restriction_substantielle_durable_acces_emploi: False
     familles:
       _:
         parents: p1
@@ -173,7 +173,7 @@
     menage:
       depcom: 28000
   output:
-    eure_et_loir_eligibilite_repas_foyer_personne_handicape: 0
+    eure_et_loir_eligibilite_repas_foyer_personne_handicape: False
 
 - name: Non Eligibilité à l'aide repas foyer de l'Eure-et-Loir avec PH taux incapacite trop faible
   period: 2020-10
@@ -185,7 +185,7 @@
         age: 59
         nationalite: FR
         taux_incapacite: 0.31
-        aah_restriction_substantielle_durable_acces_emploi: 0
+        aah_restriction_substantielle_durable_acces_emploi: False
     familles:
       _:
         parents: p1
@@ -195,7 +195,7 @@
     menage:
       depcom: 28000
   output:
-    eure_et_loir_eligibilite_repas_foyer_personne_handicape: 0
+    eure_et_loir_eligibilite_repas_foyer_personne_handicape: False
 
 - name: Non Eligibilité à l'aide repas foyer de l'Eure-et-Loir avec PH non ressortissant UE non apatride non refugie
   period: 2020-10
@@ -206,10 +206,10 @@
           2020-09: 300
         age: 59
         nationalite: LYD
-        refugie: 0
-        apatride: 0
+        refugie: False
+        apatride: False
         taux_incapacite: 0.81
-        aah_restriction_substantielle_durable_acces_emploi: 0
+        aah_restriction_substantielle_durable_acces_emploi: False
     familles:
       _:
         parents: p1
@@ -219,7 +219,7 @@
     menage:
       depcom: 28000
   output:
-    eure_et_loir_eligibilite_repas_foyer_personne_handicape: 0
+    eure_et_loir_eligibilite_repas_foyer_personne_handicape: False
 
 - name: Non Eligibilité à l'aide repas foyer de l'Eure-et-Loir avec PH ayant trop de ressources dont retraite complémentaire
   period: 2020-10
@@ -231,7 +231,7 @@
         age: 59
         nationalite: FR
         taux_incapacite: 0.81
-        aah_restriction_substantielle_durable_acces_emploi: 0
+        aah_restriction_substantielle_durable_acces_emploi: False
         retraite_complementaire_profession_liberale:
           2020: 1500
     familles:
@@ -243,7 +243,7 @@
     menage:
       depcom: 28000
   output:
-    eure_et_loir_eligibilite_repas_foyer_personne_handicape: 0
+    eure_et_loir_eligibilite_repas_foyer_personne_handicape: False
 
 - name: Non Eligibilité à l'aide repas foyer de l'Eure-et-Loir avec PH habitant hors 28
   period: 2020-10
@@ -255,7 +255,7 @@
         age: 59
         nationalite: FR
         taux_incapacite: 0.81
-        aah_restriction_substantielle_durable_acces_emploi: 0
+        aah_restriction_substantielle_durable_acces_emploi: False
     familles:
       _:
         parents: p1
@@ -265,4 +265,4 @@
     menage:
       depcom: 45000
   output:
-    eure_et_loir_eligibilite_repas_foyer_personne_handicape: 0
+    eure_et_loir_eligibilite_repas_foyer_personne_handicape: False

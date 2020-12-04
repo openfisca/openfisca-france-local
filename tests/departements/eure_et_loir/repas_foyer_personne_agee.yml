@@ -8,11 +8,11 @@
           2020-08: 300
           2020-09: 300
         age: 66
-        inapte_travail: 0
+        inapte_travail: False
         nationalite: FR
         gir: gir_5
-        actp: 0
-        mtp: 0
+        actp: False
+        mtp: False
     familles:
       _:
         parents: p1
@@ -22,7 +22,7 @@
     menage:
       depcom: 28000
   output:
-    eure_et_loir_eligibilite_repas_foyer_personne_agee: 1
+    eure_et_loir_eligibilite_repas_foyer_personne_agee: True
 
 - name: Éligibilité à l'aide repas foyer de l'Eure-et-Loir pour une PA > 60 ans et inapte_travail
   period: 2020-10
@@ -34,11 +34,11 @@
           2020-08: 300
           2020-09: 300
         age: 61
-        inapte_travail: 1
+        inapte_travail: True
         nationalite: FR
         gir: gir_5
-        actp: 0
-        mtp: 0
+        actp: False
+        mtp: False
     familles:
       _:
         parents: p1
@@ -48,7 +48,7 @@
     menage:
       depcom: 28000
   output:
-    eure_et_loir_eligibilite_repas_foyer_personne_agee: 1
+    eure_et_loir_eligibilite_repas_foyer_personne_agee: True
 
 - name: Éligibilité à l'aide repas foyer de l'Eure-et-Loir pour une PA gir_6
   period: 2020-10
@@ -60,11 +60,11 @@
           2020-08: 300
           2020-09: 300
         age: 66
-        inapte_travail: 0
+        inapte_travail: False
         nationalite: FR
         gir: gir_6
-        actp: 0
-        mtp: 0
+        actp: False
+        mtp: False
     familles:
       _:
         parents: p1
@@ -74,7 +74,7 @@
     menage:
       depcom: 28000
   output:
-    eure_et_loir_eligibilite_repas_foyer_personne_agee: 1
+    eure_et_loir_eligibilite_repas_foyer_personne_agee: True
 
 - name: Éligibilité à l'aide repas foyer de l'Eure-et-Loir pour une PA nationalité UE (IT)
   period: 2020-10
@@ -86,11 +86,11 @@
           2020-08: 300
           2020-09: 300
         age: 66
-        inapte_travail: 0
+        inapte_travail: False
         nationalite: IT
         gir: gir_6
-        actp: 0
-        mtp: 0
+        actp: False
+        mtp: False
     familles:
       _:
         parents: p1
@@ -100,7 +100,7 @@
     menage:
       depcom: 28000
   output:
-    eure_et_loir_eligibilite_repas_foyer_personne_agee: 1
+    eure_et_loir_eligibilite_repas_foyer_personne_agee: True
 
 - name: Éligibilité à l'aide repas foyer de l'Eure-et-Loir pour une PA nationalité hors UE réfugiée
   period: 2020-10
@@ -112,12 +112,12 @@
           2020-08: 300
           2020-09: 300
         age: 66
-        inapte_travail: 0
+        inapte_travail: False
         nationalite: LYD
-        refugie: 1
+        refugie: True
         gir: gir_6
-        actp: 0
-        mtp: 0
+        actp: False
+        mtp: False
     familles:
       _:
         parents: p1
@@ -127,7 +127,7 @@
     menage:
       depcom: 28000
   output:
-    eure_et_loir_eligibilite_repas_foyer_personne_agee: 1
+    eure_et_loir_eligibilite_repas_foyer_personne_agee: True
 
 - name: Éligibilité à l'aide repas foyer de l'Eure-et-Loir pour une PA apatride
   period: 2020-10
@@ -139,11 +139,11 @@
           2020-08: 300
           2020-09: 300
         age: 66
-        inapte_travail: 0
-        apatride: 1
+        inapte_travail: False
+        apatride: True
         gir: gir_6
-        actp: 0
-        mtp: 0
+        actp: False
+        mtp: False
     familles:
       _:
         parents: p1
@@ -153,7 +153,7 @@
     menage:
       depcom: 28000
   output:
-    eure_et_loir_eligibilite_repas_foyer_personne_agee: 1
+    eure_et_loir_eligibilite_repas_foyer_personne_agee: True
 
 - name: Éligibilité à l'aide repas foyer de l'Eure-et-Loir pour une PA habitant en Eure-et-Loir
   period: 2020-10
@@ -165,11 +165,11 @@
           2020-08: 300
           2020-09: 300
         age: 66
-        inapte_travail: 0
+        inapte_travail: False
         nationalite: FR
         gir: gir_6
-        actp: 0
-        mtp: 0
+        actp: False
+        mtp: False
     familles:
       _:
         parents: p1
@@ -179,7 +179,7 @@
     menage:
       depcom: 28230
   output:
-    eure_et_loir_eligibilite_repas_foyer_personne_agee: 1
+    eure_et_loir_eligibilite_repas_foyer_personne_agee: True
 
 - name: Non éligibilité à l'aide repas foyer de l'Eure-et-Loir pour une PA < 65 ans et apte_travail
   period: 2020-10
@@ -191,11 +191,11 @@
           2020-08: 300
           2020-09: 300
         age: 62
-        inapte_travail: 0
+        inapte_travail: False
         nationalite: FR
         gir: gir_5
-        actp: 0
-        mtp: 0
+        actp: False
+        mtp: False
     familles:
       _:
         parents: p1
@@ -205,7 +205,7 @@
     menage:
       depcom: 28000
   output:
-    eure_et_loir_eligibilite_repas_foyer_personne_agee: 0
+    eure_et_loir_eligibilite_repas_foyer_personne_agee: False
 
 - name: Non éligibilité à l'aide repas foyer de l'Eure-et-Loir pour une PA < 60 ans et inapte_travail
   period: 2020-10
@@ -217,11 +217,11 @@
           2020-08: 300
           2020-09: 300
         age: 59
-        inapte_travail: 1
+        inapte_travail: True
         nationalite: FR
         gir: gir_5
-        actp: 0
-        mtp: 0
+        actp: False
+        mtp: False
     familles:
       _:
         parents: p1
@@ -231,7 +231,7 @@
     menage:
       depcom: 28000
   output:
-    eure_et_loir_eligibilite_repas_foyer_personne_agee: 0
+    eure_et_loir_eligibilite_repas_foyer_personne_agee: False
 
 - name: Non éligibilité à l'aide repas foyer de l'Eure-et-Loir pour une PA ressources > aspa
   period: 2020-10
@@ -243,11 +243,11 @@
           2020-08: 1300
           2020-09: 1300
         age: 66
-        inapte_travail: 0
+        inapte_travail: False
         nationalite: FR
         gir: gir_6
-        actp: 0
-        mtp: 0
+        actp: False
+        mtp: False
     familles:
       _:
         parents: p1
@@ -257,7 +257,7 @@
     menage:
       depcom: 28000
   output:
-    eure_et_loir_eligibilite_repas_foyer_personne_agee: 0
+    eure_et_loir_eligibilite_repas_foyer_personne_agee: False
 
 - name: Non éligibilité à l'aide repas foyer de l'Eure-et-Loir pour une PA gir_2
   period: 2020-10
@@ -269,11 +269,11 @@
           2020-08: 300
           2020-09: 300
         age: 66
-        inapte_travail: 0
+        inapte_travail: False
         nationalite: FR
         gir: gir_2
-        actp: 0
-        mtp: 0
+        actp: False
+        mtp: False
     familles:
       _:
         parents: p1
@@ -283,7 +283,7 @@
     menage:
       depcom: 28000
   output:
-    eure_et_loir_eligibilite_repas_foyer_personne_agee: 0
+    eure_et_loir_eligibilite_repas_foyer_personne_agee: False
 
 - name: Non éligibilité à l'aide repas foyer de l'Eure-et-Loir pour une PA nationalité hors UE (LL) non refugie non apatride
   period: 2020-10
@@ -295,13 +295,13 @@
           2020-08: 300
           2020-09: 300
         age: 66
-        inapte_travail: 0
+        inapte_travail: False
         nationalite: LL
-        refugie: 0
-        apatride: 0
+        refugie: False
+        apatride: False
         gir: gir_6
-        actp: 0
-        mtp: 0
+        actp: False
+        mtp: False
     familles:
       _:
         parents: p1
@@ -311,7 +311,7 @@
     menage:
       depcom: 28000
   output:
-    eure_et_loir_eligibilite_repas_foyer_personne_agee: 0
+    eure_et_loir_eligibilite_repas_foyer_personne_agee: False
 
 - name: Non éligibilité à l'aide repas foyer de l'Eure-et-Loir pour une PA habitant hors 28
   period: 2020-10
@@ -323,11 +323,11 @@
           2020-08: 300
           2020-09: 300
         age: 66
-        inapte_travail: 0
+        inapte_travail: False
         nationalite: FR
         gir: gir_6
-        actp: 0
-        mtp: 0
+        actp: False
+        mtp: False
     familles:
       _:
         parents: p1
@@ -337,7 +337,7 @@
     menage:
       depcom: 45000
   output:
-    eure_et_loir_eligibilite_repas_foyer_personne_agee: 0
+    eure_et_loir_eligibilite_repas_foyer_personne_agee: False
 
 - name: Non éligibilité à l'aide repas foyer de l'Eure-et-Loir pour une PA possédant ACTP
   period: 2020-10
@@ -349,11 +349,11 @@
           2020-08: 300
           2020-09: 300
         age: 66
-        inapte_travail: 0
+        inapte_travail: False
         nationalite: FR
         gir: gir_6
-        actp: 1
-        mtp: 0
+        actp: True
+        mtp: False
     familles:
       _:
         parents: p1
@@ -363,7 +363,7 @@
     menage:
       depcom: 28000
   output:
-    eure_et_loir_eligibilite_repas_foyer_personne_agee: 0
+    eure_et_loir_eligibilite_repas_foyer_personne_agee: False
 
 - name: Non éligibilité à l'aide repas foyer de l'Eure-et-Loir pour une PA possédant MTP
   period: 2020-10
@@ -375,11 +375,11 @@
           2020-08: 300
           2020-09: 300
         age: 66
-        inapte_travail: 0
+        inapte_travail: False
         nationalite: FR
         gir: gir_6
-        actp: 0
-        mtp: 1
+        actp: False
+        mtp: True
     familles:
       _:
         parents: p1
@@ -389,7 +389,7 @@
     menage:
       depcom: 28000
   output:
-    eure_et_loir_eligibilite_repas_foyer_personne_agee: 0
+    eure_et_loir_eligibilite_repas_foyer_personne_agee: False
 
 - name: Non éligibilité à l'aide repas foyer de l'Eure-et-Loir pour une PA possédant APA
   period: 2020-10
@@ -401,12 +401,13 @@
           2020-08: 300
           2020-09: 300
         age: 66
-        inapte_travail: 0
+        inapte_travail: False
         nationalite: FR
         gir: gir_6
-        actp: 0
-        mtp: 0
-        apa_domicile: 1
+        actp: False
+        mtp: False
+        apa_domicile:
+          2020-09: 100
     familles:
       _:
         parents: p1
@@ -416,4 +417,4 @@
     menage:
       depcom: 28000
   output:
-    eure_et_loir_eligibilite_repas_foyer_personne_agee: 0
+    eure_et_loir_eligibilite_repas_foyer_personne_agee: False
