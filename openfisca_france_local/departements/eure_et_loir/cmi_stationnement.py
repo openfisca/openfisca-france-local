@@ -18,9 +18,11 @@ class eure_et_loir_eligibilite_cmi_stationnement(Variable):
     def formula_2020_01(individu, period):
         beneficiaire_apa = individu('apa_domicile', period)  # où apa_domicile est le montant de l'aide apa versé
         gir = individu('gir', period)
+        nationalite = individu('ressortissant_eee', period) + individu('titre_sejour', period) + individu('refugie',period) + individu('apatride', period)
 
+        condition_nationalite = nationalite
         condition_residence = individu.menage('eure_et_loir_eligibilite_residence', period)
         condition_apa = 1 if beneficiaire_apa else 0
         condition_gir = ((gir == TypesGir.gir_1) + (gir == TypesGir.gir_2))
 
-        return condition_residence * condition_apa * condition_gir
+        return condition_nationalite * condition_residence * condition_apa * condition_gir

@@ -4,3 +4,10 @@ cmi_invalidite:
     values:
       2020-01-01:
         value: 0.8
+
+cmi_priorite:
+  taux_incapacite_minimal:
+    reference: Titre 4 Chapitre 1 Article 197 du Règlement départemental d'Aide Sociale PA PH de l'Eure et Loir
+    values:
+      2020-01-01:
+        value: 0.8
