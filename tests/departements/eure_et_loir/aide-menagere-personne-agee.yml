@@ -1,4 +1,4 @@
-- name: Eligibilité à l'aide-ménagère avec personne > 65 ans
+- name: Eligibilité à l'aide-ménagère avec personne >= 65 ans
   period: 2020-10
   input:
     individus:
@@ -22,15 +22,13 @@
   output:
     eure_et_loir_eligibilite_aide_menagere_personne_agee: 1
 
-- name: Eligibilité à l'aide-ménagère avec personne > 60 ans et inapte_travail
+- name: Eligibilité à l'aide-ménagère avec personne >= 60 ans et inapte_travail
   period: 2020-10
   input:
     individus:
       p1:
         retraite_brute:
-          2020-07: 300
-          2020-08: 300
-          2020-09: 300
+          month:2020-07:3: 300
         age: 61
         inapte_travail: 1
         nationalite: FR
@@ -52,9 +50,7 @@
     individus:
       p1:
         retraite_brute:
-          2020-07: 300
-          2020-08: 300
-          2020-09: 300
+          month:2020-07:3: 300
         age: 66
         inapte_travail: 0
         nationalite: IT
@@ -172,9 +168,7 @@
     individus:
       p1:
         retraite_brute:
-          2020-07: 300
-          2020-08: 300
-          2020-09: 300
+          month:2020-07:3: 300
         age: 66
         inapte_travail: 0
         nationalite: FR
@@ -215,3 +209,14 @@
       depcom: 28000
   output:
     eure_et_loir_eligibilite_aide_menagere_personne_agee: 0
+
+- name: Test erroné car personne trop jeune
+  period: 2020-10
+  input:
+    nationalite: FR
+    gir: gir_5
+    asi_aspa_base_ressources_individu: 200
+    depcom: 28000
+  output:
+    age: 50
+    eure_et_loir_eligibilite_aide_menagere_personne_agee: False
