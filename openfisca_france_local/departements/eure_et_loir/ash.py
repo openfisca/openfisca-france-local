@@ -25,7 +25,7 @@ class eure_et_loir_eligibilite_ash_personne_agee(Variable):
             'retraite_imposable'
         }
         ash_parameters = parameters(
-            period).departements.eure_et_loir.ash.ASH
+            period).departements.eure_et_loir.ash.ash
         individu_resources = sum([individu(resource, period.last_month) for resource in individual_resource_names])
 
         condition_residence = individu.menage('eure_et_loir_eligibilite_residence', period)
@@ -53,20 +53,15 @@ class eure_et_loir_eligibilite_ash_personne_handicap(Variable):
                     """
 
     def formula_2020_10(individu, period, parameters):
-        print("age", individu('age',period))
         age = individu('age', period)
         ressortissant_eee = individu('ressortissant_eee', period)
         situation_handicap = individu('handicap', period)
         ash_parameters = parameters(
-            period).departements.eure_et_loir.ash.ASH
+            period).departements.eure_et_loir.ash.ash
 
         condition_residence = individu.menage('eure_et_loir_eligibilite_residence', period)
         condition_age = (age >= ash_parameters.age_minimal_personne_handicap)
         condition_nationalite = ressortissant_eee + individu('titre_sejour', period) + individu('refugie', period) + individu('apatride', period)
-        print('condi natio', condition_nationalite)
-        print('titre sejour',individu('titre_sejour', period))
-        print('refugie',individu('refugie',period))
-        print('apatride', individu('apatride',period))
         condition_handicap = situation_handicap
 
         return condition_residence * condition_age * condition_nationalite * condition_handicap
