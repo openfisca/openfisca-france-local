@@ -2,7 +2,6 @@
 from openfisca_france.model.base import Variable, Individu, MONTH
 from openfisca_france.model.prestations.autonomie import TypesGir
 
-
 class eure_et_loir_eligibilite_cmi_stationnement(Variable):
     value_type = bool
     entity = Individu
@@ -16,13 +15,13 @@ class eure_et_loir_eligibilite_cmi_stationnement(Variable):
                     """
 
     def formula_2020_01(individu, period):
-        beneficiaire_apa = individu('apa_domicile', period)  # où apa_domicile est le montant de l'aide apa versé
+        beneficiaire_apa = individu('apa_domicile', period) > 0  # où apa_domicile est le montant de l'aide apa versé
         gir = individu('gir', period)
         nationalite = individu('ressortissant_eee', period) + individu('titre_sejour', period) + individu('refugie',period) + individu('apatride', period)
 
         condition_nationalite = nationalite
         condition_residence = individu.menage('eure_et_loir_eligibilite_residence', period)
-        condition_apa = 1 if beneficiaire_apa else 0
+        condition_apa = True if beneficiaire_apa else False
         condition_gir = ((gir == TypesGir.gir_1) + (gir == TypesGir.gir_2))
 
         return condition_nationalite * condition_residence * condition_apa * condition_gir
