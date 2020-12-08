@@ -7,6 +7,7 @@
         nationalite: FR
         titre_sejour: 0
         handicap: 1
+        refugie: 0
     menage:
       depcom: 28000
   output:
@@ -54,6 +55,38 @@
   output:
     eure_et_loir_eligibilite_ash_personne_handicap: 1
 
+- name : Éligibilité à l'aide ash de l'eure-et-loir pour une PH apatride
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        age: 19
+        handicap: 1
+        nationalite: LYD
+        titre_sejour: 0
+        apatride: 1
+    menage:
+      personne_de_reference:
+        - p1
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_ash_personne_handicap: 1
+
+- name: Éligibilité à l'ash de l'eure-et-loir avec PH refugie
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        age: 19
+        refugie: 1
+        nationalite: LL
+        titre_sejour: 0
+        handicap: 1
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_ash_personne_handicap: 1
+
 - name: Non Éligibilité à l'ash de l'eure-et-loir avec PH < 18 ans
   period: 2020-10
   input:
@@ -89,6 +122,22 @@
       p1:
         age: 19
         nationalite: LL
+        titre_sejour: 0
+        handicap: 1
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_ash_personne_handicap: 0
+
+- name: Non Éligibilité à l'ash de l'eure-et-loir avec PH non UE non refugie non apatride non titre_sejour
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        age: 19
+        nationalite: LYD
+        refugie: 0
+        apatride: 0
         titre_sejour: 0
         handicap: 1
     menage:
