@@ -9,23 +9,23 @@
       Toto:
         age: 8
         enfant_a_charge:
-          2020: 1
+          2020: True
       Tata:
         age: 6
         enfant_a_charge:
-          2020: 1
+          2020: True
     menage:
       personne_de_reference:
         - parent1
       conjoint: "parent2"
       enfants: [ "Toto", "Tata" ]
-      eure_et_loir_eligibilite_residence: 1
+      eure_et_loir_eligibilite_residence: True
       statut_occupation_logement: proprietaire
     famille:
       en_couple: 1
       parents: [ "parent1", "parent2" ]
   output:
-    eure_et_loir_fsl_eligibilite_maintien_logement: 1
+    eure_et_loir_fsl_eligibilite_maintien_logement: True
 
 - name: Eligibilité à l'aide FSL maintien logement d'Eure-et-Loir avec ressources monoparent < 60 % seuil pauvreté
   period: 2020-10
@@ -36,30 +36,30 @@
       Toto:
         age: 8
         enfant_a_charge:
-          2020: 1
+          2020: True
       Tata:
         age: 6
         enfant_a_charge:
-          2020: 1
+          2020: True
       Titi:
         age: 4
         enfant_a_charge:
-          2020: 1
+          2020: True
       Tutu:
         age: 3
         enfant_a_charge:
-          2020: 1
+          2020: True
     menage:
       personne_de_reference:
         - parent1
       enfants: [ "Toto", "Tata","Titi","Tutu" ]
-      eure_et_loir_eligibilite_residence: 1
+      eure_et_loir_eligibilite_residence: True
       statut_occupation_logement: proprietaire
     famille:
       en_couple: 0
       parents: [ "parent1" ]
   output:
-    eure_et_loir_fsl_eligibilite_maintien_logement: 1
+    eure_et_loir_fsl_eligibilite_maintien_logement: True
 
 - name: Eligibilité à l'aide FSL maintien logement d'Eure-et-Loir avec  monoparent locataire
   period: 2020-10
@@ -70,30 +70,30 @@
       Toto:
         age: 8
         enfant_a_charge:
-          2020: 1
+          2020: True
       Tata:
         age: 6
         enfant_a_charge:
-          2020: 1
+          2020: True
       Titi:
         age: 4
         enfant_a_charge:
-          2020: 1
+          2020: True
       Tutu:
         age: 3
         enfant_a_charge:
-          2020: 1
+          2020: True
     menage:
       personne_de_reference:
         - parent1
       enfants: [ "Toto", "Tata","Titi","Tutu" ]
-      eure_et_loir_eligibilite_residence: 1
+      eure_et_loir_eligibilite_residence: True
       statut_occupation_logement: locataire_vide
     famille:
       en_couple: 0
       parents: [ "parent1" ]
   output:
-    eure_et_loir_fsl_eligibilite_maintien_logement: 1
+    eure_et_loir_fsl_eligibilite_maintien_logement: True
 
 - name: Non Eligibilité à l'aide FSL maintien logement d'Eure-et-Loir avec logement hors eure-et-loire
   period: 2020-10
@@ -104,30 +104,30 @@
       Toto:
         age: 8
         enfant_a_charge:
-          2020: 1
+          2020: True
       Tata:
         age: 6
         enfant_a_charge:
-          2020: 1
+          2020: True
       Titi:
         age: 4
         enfant_a_charge:
-          2020: 1
+          2020: True
       Tutu:
         age: 3
         enfant_a_charge:
-          2020: 1
+          2020: True
     menage:
       personne_de_reference:
         - parent1
       enfants: [ "Toto", "Tata","Titi","Tutu" ]
-      eure_et_loir_eligibilite_residence: 0
+      eure_et_loir_eligibilite_residence: False
       statut_occupation_logement: proprietaire
     famille:
       en_couple: 0
       parents: [ "parent1" ]
   output:
-    eure_et_loir_fsl_eligibilite_maintien_logement: 0
+    eure_et_loir_fsl_eligibilite_maintien_logement: False
 
 - name: Non Eligibilité à l'aide FSL maintien logement d'Eure-et-Loir avec ressources > seuil de pauvreté à 60 %
   period: 2020-10
@@ -138,30 +138,30 @@
       Toto:
         age: 8
         enfant_a_charge:
-          2020: 1
+          2020: True
       Tata:
         age: 6
         enfant_a_charge:
-          2020: 1
+          2020: True
       Titi:
         age: 4
         enfant_a_charge:
-          2020: 1
+          2020: True
       Tutu:
         age: 3
         enfant_a_charge:
-          2020: 1
+          2020: True
     menage:
       personne_de_reference:
         - parent1
       enfants: [ "Toto", "Tata","Titi","Tutu" ]
-      eure_et_loir_eligibilite_residence: 1
+      eure_et_loir_eligibilite_residence: True
       statut_occupation_logement: proprietaire
     famille:
       en_couple: 0
       parents: [ "parent1" ]
   output:
-    eure_et_loir_fsl_eligibilite_maintien_logement: 0
+    eure_et_loir_fsl_eligibilite_maintien_logement: False
 
 - name: Non Eligibilité à l'aide FSL maintien logement d'Eure-et-Loir avec pas locataire/proprietaire
   period: 2020-10
@@ -172,27 +172,27 @@
       Toto:
         age: 8
         enfant_a_charge:
-          2020: 1
+          2020: True
       Tata:
         age: 6
         enfant_a_charge:
-          2020: 1
+          2020: True
       Titi:
         age: 4
         enfant_a_charge:
-          2020: 1
+          2020: True
       Tutu:
         age: 3
         enfant_a_charge:
-          2020: 1
+          2020: True
     menage:
       personne_de_reference:
         - parent1
       enfants: [ "Toto", "Tata","Titi","Tutu" ]
-      eure_et_loir_eligibilite_residence: 1
+      eure_et_loir_eligibilite_residence: True
       statut_occupation_logement: primo_accedant
     famille:
       en_couple: 0
       parents: [ "parent1" ]
   output:
-    eure_et_loir_fsl_eligibilite_maintien_logement: 0
+    eure_et_loir_fsl_eligibilite_maintien_logement: False

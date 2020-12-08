@@ -62,10 +62,11 @@ class eure_et_loir_fsl_eligibilite_maintien_logement(Variable):
     def formula_2020_10(menage, period):
         statut_occupation_logement = menage('statut_occupation_logement', period)
 
-        if statut_occupation_logement == TypesStatutOccupationLogement.proprietaire or statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm or statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide or statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble or statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer:
-            condition_locataire_proprietaire = 1
-        else:
-            condition_locataire_proprietaire = 0
+        condition_locataire_proprietaire = (       statut_occupation_logement == TypesStatutOccupationLogement.proprietaire) + (
+                                                   statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm) + (
+                                                   statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide) + (
+                                                   statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble) + (
+                                                   statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer)
         condition_residence = menage('eure_et_loir_eligibilite_residence', period)
         condition_ressources = menage('eure_et_loir_ressources_menage_inférieure_seuil_pauvrete_60', period)
 
@@ -87,10 +88,11 @@ class eure_et_loir_fsl_eligibilite_maintien_fourniture(Variable):
 
     def formula_2020_10(menage, period, parameters):
         statut_occupation_logement = menage('statut_occupation_logement', period)
-        if statut_occupation_logement == TypesStatutOccupationLogement.proprietaire or statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm or statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide or statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble or statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer:
-            condition_locataire_proprietaire = 1
-        else:
-            condition_locataire_proprietaire = 0
+        condition_locataire_proprietaire = (statut_occupation_logement == TypesStatutOccupationLogement.proprietaire) + (
+                                            statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm) + (
+                                            statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide) + (
+                                            statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble) + (
+                                            statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer)
         condition_residence = menage('eure_et_loir_eligibilite_residence', period)
         condition_ressources = menage('eure_et_loir_ressources_menage_inférieure_seuil_pauvrete_60', period)
 
@@ -156,5 +158,5 @@ class eure_et_loir_ressources_menage_inférieure_seuil_pauvrete_60(Variable):
             seuil_pauvrete = fsl_parameters["en_" + str(nb_enf_charge)].couple
         else:
             seuil_pauvrete = fsl_parameters["en_" + str(nb_enf_charge)].single
-        condition_ressources = 1 if menage_resources <= seuil_pauvrete else 0
+        condition_ressources = True if menage_resources <= seuil_pauvrete else False
         return condition_ressources
