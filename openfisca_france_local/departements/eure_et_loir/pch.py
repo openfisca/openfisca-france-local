@@ -19,16 +19,16 @@ class eure_et_loir_eligibilite_pch_domicile(Variable):
     def formula_2020_01(individu, period):
         ressortissant_eee = individu('ressortissant_eee', period)
         situation_handicap = individu('handicap', period)
-        possede_aeeh = individu.famille('aeeh', period)
-        possede_apa = individu('apa_domicile', period)
+        possede_aeeh = individu.famille('aeeh', period) > 0
+        possede_apa = individu('apa_domicile', period) > 0
         possede_actp = individu('actp', period)
 
         condition_residence = individu.menage('eure_et_loir_eligibilite_residence', period)
-        condition_nationalite = ressortissant_eee + individu('titre_sejour', period)
+        condition_nationalite = ressortissant_eee + individu('titre_sejour', period) + individu('refugie',period) + individu('apatride',period)
         condition_handicap = situation_handicap
-        condition_aides_aeeh = 0 if possede_aeeh else 1
-        condition_aides_apa = 0 if possede_apa else 1
-        condition_aides_actp = 0 if possede_actp else 1
+        condition_aides_aeeh = False if possede_aeeh else True
+        condition_aides_apa = False if possede_apa else True
+        condition_aides_actp = False if possede_actp else True
 
         return condition_residence * condition_nationalite * condition_handicap * condition_aides_aeeh * condition_aides_apa * condition_aides_actp
 
@@ -50,7 +50,7 @@ class eure_et_loir_eligibilite_pch_etablissement(Variable):
     def formula_2020_01(individu, period):
         ressortissant_eee = individu('ressortissant_eee', period)
         condition_residence = individu.menage('eure_et_loir_eligibilite_residence', period)
-        condition_nationalite = ressortissant_eee + individu('titre_sejour', period)
+        condition_nationalite = ressortissant_eee + individu('titre_sejour', period) + individu('refugie',period) + individu('apatride',period)
         condition_handicap = individu('handicap', period)
         condition_hebergement = individu.famille('place_hebergement', period)
 
