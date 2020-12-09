@@ -1,4 +1,4 @@
-- name: Éligibilité à l'aide repas foyer de l'Eure-et-Loir pour une PA > 65 ans
+- name: Éligibilité à l'aide repas foyer de l'Eure-et-Loir pour une PA >= 65 ans
   period: 2020-10
   input:
     individus:
@@ -24,7 +24,7 @@
   output:
     eure_et_loir_eligibilite_repas_foyer_personne_agee: True
 
-- name: Éligibilité à l'aide repas foyer de l'Eure-et-Loir pour une PA > 60 ans et inapte_travail
+- name: Éligibilité à l'aide repas foyer de l'Eure-et-Loir pour une PA >= 60 ans et inapte_travail
   period: 2020-10
   input:
     individus:
