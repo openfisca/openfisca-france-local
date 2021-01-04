@@ -31,15 +31,18 @@ class eure_et_loir_eligibilite_aide_menagere_personne_agee(Variable):
 
         condition_residence = individu.menage('eure_et_loir_eligibilite_residence', period)
         condition_age = ((age >= parameters_chemin.age_minimal_personne_agee_apte_travail) + (
-            (age >= parameters_chemin.age_minimal_personne_agee_inapte_travail) * inapte_travail))
-        condition_nationalite = ressortissant_eee + individu('refugie',period) + individu('apatride', period)
+                (age >= parameters_chemin.age_minimal_personne_agee_inapte_travail) * inapte_travail))
+        condition_nationalite = ressortissant_eee + individu('refugie', period) + individu('apatride', period)
+
+        # condition non intégrée : Les personnes de nationalité étrangère doivent justifier d'une résidence
+        # en France métropolitaine ininterrompue depuis au moins 15 ans, et ce avant l'âge de 70 ans.
         condition_gir = ((gir == TypesGir.gir_5) + (gir == TypesGir.gir_6))
         condition_ressources = individu('asi_aspa_base_ressources_individu', period) <= individu.famille('aspa', period)
 
-        condition_apa = individu('apa_domicile', period.last_month) <=0
-        condition_aides_actp = False if possede_actp else True
-        condition_aides_mtp = False if possede_mtp else True
-        condition_aide_menagere_caisse_retraite = False if individu('aide_menagere_fournie_caisse_retraite',period.last_month) else True
+        condition_apa = individu('apa_domicile', period.last_month) <= 0
+        condition_aides_actp = not_(possede_actp)
+        condition_aides_mtp = not_(possede_mtp)
+        condition_aide_menagere_caisse_retraite = not_(individu('aide_menagere_fournie_caisse_retraite', period))
         conditions_aides = condition_apa * condition_aide_menagere_caisse_retraite * condition_aides_actp * condition_aides_mtp
 
         return condition_residence * condition_age * condition_nationalite * condition_gir * condition_ressources * conditions_aides
@@ -64,6 +67,8 @@ class eure_et_loir_eligibilite_aide_menagere_personne_handicap(Variable):
         restriction_substantielle_durable = individu('aah_restriction_substantielle_durable_acces_emploi', period)
         age = individu('age', period)
         ressortissant_eee = individu('ressortissant_eee', period)
+        possede_actp = individu('actp', period)
+        possede_mtp = individu('mtp', period)
 
         individual_resource_names = {
             'aah',
@@ -76,19 +81,27 @@ class eure_et_loir_eligibilite_aide_menagere_personne_handicap(Variable):
         ressources_annuelles = {'retraite_complementaire_artisan_commercant',
                                 'retraite_complementaire_profession_liberale'
                                 }
-        individu_resources_month = sum(sum([individu(resource, period.last_month) for resource in individual_resource_names]),
-                                 sum([individu.famille(resource, period.last_month) for resource in ressources_famille]))
-        individu_resources = sum(individu_resources_month,sum([individu(resource, period, options = [DIVIDE]) for resource in ressources_annuelles]))
+        individu_resources_month = sum(
+            sum([individu(resource, period.last_month) for resource in individual_resource_names]),
+            sum([individu.famille(resource, period.last_month) for resource in ressources_famille]))
+        individu_resources = sum(individu_resources_month, sum(
+            [individu(resource, period, options=[DIVIDE]) for resource in ressources_annuelles]))
 
         condition_residence = individu.menage('eure_et_loir_eligibilite_residence', period)
         parameters_chemin = parameters(
             period).departements.eure_et_loir.aide_menagere
 
         condition_taux_incapacite = ((taux_incapacite >= parameters_chemin.taux_incapacite_superieur)
-                                     + ((taux_incapacite < parameters_chemin.taux_incapacite_maximum_restriction_acces_emploi) * ((taux_incapacite > parameters_chemin.taux_incapacite_minimum_restriction_acces_emploi) * restriction_substantielle_durable)))
+                                     + ((taux_incapacite < parameters_chemin.taux_incapacite_maximum_restriction_acces_emploi) *
+                                        ((taux_incapacite > parameters_chemin.taux_incapacite_minimum_restriction_acces_emploi) * restriction_substantielle_durable)))
         condition_age = (age <= parameters_chemin.age_minimal_personne_handicap)
-        condition_nationalite = ressortissant_eee + individu('refugie',period) + individu('apatride', period)
-        condition_ressources = individu_resources < individu.famille('aspa', period)
+        condition_nationalite = ressortissant_eee + individu('refugie', period) + individu('apatride', period)
+        # condition non intégrée : Les personnes de nationalité étrangère doivent justifier d'une résidence
+        # en France métropolitaine ininterrompue depuis au moins 15 ans, et ce avant l'âge de 70 ans.
+        condition_ressources = individu_resources <= individu.famille('aspa', period)
+        condition_aides_actp = not_(possede_actp)
+        condition_aides_mtp = not_(possede_mtp)
+        condition_aide_menagere_caisse_retraite = not_(individu('aide_menagere_fournie_caisse_retraite', period))
+        conditions_aides = condition_aide_menagere_caisse_retraite * condition_aides_actp * condition_aides_mtp
 
-        return condition_residence * condition_taux_incapacite * condition_age * condition_nationalite * condition_ressources
-
+        return condition_residence * condition_taux_incapacite * condition_age * condition_nationalite * condition_ressources * conditions_aides

@@ -239,8 +239,7 @@
         inapte_travail: False
         nationalite: FR
         gir: gir_5
-        aide_menagere_fournie_caisse_retraite:
-          2020-09: True
+        aide_menagere_fournie_caisse_retraite: True
     familles:
       _:
         parents: p1
