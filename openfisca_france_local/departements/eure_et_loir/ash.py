@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from openfisca_france.model.base import Variable, Individu, MONTH
+from openfisca_france.model.base import Variable, Individu, MONTH, DIVIDE
+
 
 class eure_et_loir_eligibilite_ash_personne_agee(Variable):
     value_type = bool
@@ -15,29 +16,39 @@ class eure_et_loir_eligibilite_ash_personne_agee(Variable):
                     Cette aide fait l’objet d’une récupération sur succession.
                     """
 
-    def formula_2020_10(individu, period, parameters):
+    def formula_2020_01(individu, period, parameters):
         age = individu('age', period)
         inapte_travail = individu('inapte_travail', period)
         ressortissant_eee = individu('ressortissant_eee', period)
         individual_resource_names = {
-            'retraite_nette',
             'retraite_brute',
-            'retraite_imposable'
+            'pensions_alimentaires_percues',
+            'revenus_locatifs'
         }
-        ash_parameters = parameters(
-            period).departements.eure_et_loir.ash.ash
-        individu_resources = sum([individu(resource, period.last_month) for resource in individual_resource_names])
+        individual_resource_names_annuelles = {
+            'revenus_nets_du_capital'
+        }
 
+        ash_parameters = parameters(
+            period).departements.eure_et_loir.ash
+
+        individu_resources = sum([individu(resource, period.last_month) for resource in individual_resource_names])
+        foyer_fiscal_resources = individu.foyer_fiscal('rente_viagere_titre_onereux_net', period, options=[DIVIDE])
+        individu_resources_annuelles = sum([individu(resource, period, options=[DIVIDE]) for resource in individual_resource_names_annuelles])
+        resources = sum(sum(individu_resources, foyer_fiscal_resources), individu_resources_annuelles)
+
+        # les ressources des obligés alimentaires ne sont ici pas prises en compte
         condition_residence = individu.menage('eure_et_loir_eligibilite_residence', period)
         condition_age = ((age >= ash_parameters.age_minimal_personne_agee_apte_travail) + (
                 (age >= ash_parameters.age_minimal_personne_agee_inapte_travail) * inapte_travail))
-        condition_nationalite = ressortissant_eee + individu('titre_sejour', period) + individu('refugie',period) + individu('apatride', period)
-        condition_ressources = individu_resources <= individu.menage('loyer', period)
+        condition_nationalite = ressortissant_eee + individu('titre_sejour', period) + individu('refugie', period) + individu('apatride', period)
+        condition_ressources = resources <= individu.menage('loyer', period)
 
         # Attention le loyer ici est défini sur un mois alors que les tarifs des établissements sont journaliers
         # Auquel sera ajouté individu('dependance_tarif_etablissement_gir_5_6',period) * nb de jours * tarif_journalier
 
         return condition_residence * condition_age * condition_nationalite * condition_ressources
+
 
 class eure_et_loir_eligibilite_ash_personne_handicap(Variable):
     value_type = bool
@@ -52,15 +63,15 @@ class eure_et_loir_eligibilite_ash_personne_handicap(Variable):
                     Cette aide doit faire l’objet d’une décision d’orientation de la Maison départementale de l’autonomie (MDA).
                     """
 
-    def formula_2020_10(individu, period, parameters):
+    def formula_2020_01(individu, period, parameters):
         age = individu('age', period)
         ressortissant_eee = individu('ressortissant_eee', period)
         situation_handicap = individu('handicap', period)
         ash_parameters = parameters(
-            period).departements.eure_et_loir.ash.ash
+            period).departements.eure_et_loir.ash
 
         condition_residence = individu.menage('eure_et_loir_eligibilite_residence', period)
-        condition_age = (age >= ash_parameters.age_minimal_personne_handicap)
+        condition_age = (age >= ash_parameters.age_minimal_personne_handicapee)
         condition_nationalite = ressortissant_eee + individu('titre_sejour', period) + individu('refugie', period) + individu('apatride', period)
         condition_handicap = situation_handicap
 

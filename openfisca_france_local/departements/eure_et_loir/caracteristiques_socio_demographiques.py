@@ -9,7 +9,7 @@ class titre_sejour(Variable):
 
 class refugie(Variable):
     value_type = bool
-    label = "La personne est réfugié"
+    label = "La personne dispose du statut de réfugié"
     entity = Individu
     definition_period = MONTH
     default_value = False
