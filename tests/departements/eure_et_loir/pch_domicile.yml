@@ -7,7 +7,8 @@
         titre_sejour: False
         handicap: True
         apa_domicile: 0
-        actp: False
+        beneficiaire_actp: False
+        beneficiaire_acfp: False
     famille:
       aeeh: 0
     menage:
@@ -24,7 +25,7 @@
         titre_sejour: False
         handicap: True
         apa_domicile: 0
-        actp: False
+        beneficiaire_actp: False
     famille:
       aeeh: 0
     menage:
@@ -41,7 +42,7 @@
         titre_sejour: True
         handicap: True
         apa_domicile: 0
-        actp: False
+        beneficiaire_actp: False
     famille:
       aeeh: 0
     menage:
@@ -59,7 +60,7 @@
         handicap: True
         refugie: True
         apa_domicile: 0
-        actp: False
+        beneficiaire_actp: False
     famille:
       aeeh: 0
     menage:
@@ -77,7 +78,7 @@
         handicap: True
         apatride: True
         apa_domicile: 0
-        actp: False
+        beneficiaire_actp: False
     famille:
       aeeh: 0
     menage:
@@ -94,7 +95,7 @@
         titre_sejour: False
         handicap: True
         apa_domicile: 0
-        actp: False
+        beneficiaire_actp: False
     famille:
       aeeh: 0
     menage:
@@ -111,7 +112,7 @@
         titre_sejour: False
         handicap: False
         apa_domicile: 0
-        actp: False
+        beneficiaire_actp: False
     famille:
       aeeh: 0
     menage:
@@ -128,7 +129,7 @@
         titre_sejour: False
         handicap: True
         apa_domicile: 1
-        actp: False
+        beneficiaire_actp: False
     famille:
       aeeh: 0
     menage:
@@ -145,9 +146,9 @@
         titre_sejour: False
         handicap: True
         apa_domicile: 0
-        actp: False
+        beneficiaire_actp: False
     famille:
-      aeeh: 1
+      beneficiaire_complement_aeeh: True
     menage:
       depcom: 28000
   output:
@@ -162,7 +163,24 @@
         titre_sejour: False
         handicap: True
         apa_domicile: 0
-        actp: True
+        beneficiaire_actp: True
+    famille:
+      aeeh: 0
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_pch_domicile: False
+
+- name: Non Éligibilité à l'aide PCH de l'Eure-et-Loir à domicile avec PH possédant acfp
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        nationalite: FR
+        titre_sejour: False
+        handicap: True
+        apa_domicile: 0
+        beneficiaire_acfp: True
     famille:
       aeeh: 0
     menage:
@@ -181,7 +199,7 @@
         titre_sejour: False
         handicap: True
         apa_domicile: 0
-        actp: False
+        beneficiaire_actp: False
     famille:
       aeeh: 0
     menage:
@@ -198,7 +216,7 @@
         titre_sejour: False
         handicap: True
         apa_domicile: 0
-        actp: False
+        beneficiaire_actp: False
     famille:
       aeeh: 0
     menage:

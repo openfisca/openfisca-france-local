@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from openfisca_france.model.base import Variable, Individu, MONTH
+from openfisca_france.model.base import Variable, Individu, MONTH, not_
 
 
 class eure_et_loir_eligibilite_pch_domicile(Variable):
@@ -19,16 +19,14 @@ class eure_et_loir_eligibilite_pch_domicile(Variable):
     def formula_2020_01(individu, period):
         ressortissant_eee = individu('ressortissant_eee', period)
         situation_handicap = individu('handicap', period)
-        possede_aeeh = individu.famille('aeeh', period) > 0
-        possede_apa = individu('apa_domicile', period) > 0
-        possede_actp = individu('actp', period)
 
         condition_residence = individu.menage('eure_et_loir_eligibilite_residence', period)
         condition_nationalite = ressortissant_eee + individu('titre_sejour', period) + individu('refugie',period) + individu('apatride',period)
         condition_handicap = situation_handicap
-        condition_aides_aeeh = False if possede_aeeh else True
-        condition_aides_apa = False if possede_apa else True
-        condition_aides_actp = False if possede_actp else True
+        #condition_aides_aeeh = not_(individu.famille('aeeh', period) > 0)
+        condition_aides_aeeh = not_(individu.famille('beneficiaire_complement_aeeh', period))
+        condition_aides_apa =  not_(individu('apa_domicile', period) > 0)
+        condition_aides_actp = not_(individu('beneficiaire_actp', period)) * not_(individu('beneficiaire_acfp',period))
 
         return condition_residence * condition_nationalite * condition_handicap * condition_aides_aeeh * condition_aides_apa * condition_aides_actp
 
