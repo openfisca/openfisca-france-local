@@ -16,18 +16,16 @@ class eure_et_loir_eligibilite_cmi_invalidite(Variable):
 
     def formula_2020_01(individu, period, parameters):
         taux_incapacite = individu('taux_incapacite', period)
-        beneficiaire_apa = individu('apa_domicile', period) > 0 # où apa_domicile est le montant de l'aide apa versé
+
         gir = individu('gir', period)
-        nationalite = individu('ressortissant_eee', period) + individu('titre_sejour', period) + individu('refugie',period) + individu('apatride', period)
+        condition_nationalite = individu('ressortissant_eee', period) + individu('titre_sejour', period) + individu('refugie',period) + individu('apatride', period)
 
         parameters_chemin = parameters(
             period).departements.eure_et_loir.transports
 
-        condition_nationalite = nationalite
         condition_residence = individu.menage('eure_et_loir_eligibilite_residence', period)
-        condition_incapacite = (taux_incapacite >= parameters_chemin.cmi_invalidite.taux_incapacite_minimal)
-        condition_apa = True if beneficiaire_apa else False
+        condition_incapacite = (taux_incapacite >= parameters_chemin.taux_incapacite_minimal)
+        condition_apa = (individu('apa_domicile', period) > 0) # où apa_domicile est le montant de l'aide apa versée
         condition_gir = ((gir == TypesGir.gir_1) + (gir == TypesGir.gir_2))
-        conditions = condition_nationalite * condition_residence * (condition_incapacite + (condition_gir * condition_apa))
 
-        return conditions
+        return condition_nationalite * condition_residence * (condition_incapacite + (condition_gir * condition_apa))

@@ -15,9 +15,9 @@ class eure_et_loir_eligibilite_cmi_priorite(Variable):
 
     def formula_2020_01(individu, period, parameters):
 
-        parameters_chemin = parameters(period).departements.eure_et_loir.transports.cmi_priorite
+        parameters_chemin = parameters(period).departements.eure_et_loir.transports
         condition_residence = individu.menage('eure_et_loir_eligibilite_residence', period)
-        conditions_taux_incapacite = individu('taux_incapacite', period) <= parameters_chemin.taux_incapacite_minimal
+        conditions_taux_incapacite = individu('taux_incapacite', period) < parameters_chemin.taux_incapacite_minimal
         conditions_station_debout = individu('station_debout_penible',period)
         condition_nationalite = individu('ressortissant_eee',period) + individu('titre_sejour',period) + individu('refugie',period) + individu('apatride', period)
 

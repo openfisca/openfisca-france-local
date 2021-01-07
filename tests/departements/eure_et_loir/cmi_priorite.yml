@@ -1,9 +1,9 @@
-- name: Éligibilité à la CMI priorite de l'Eure-et-Loir avec personne incapacité 79 %
+- name: Éligibilité à la CMI priorite de l'Eure-et-Loir avec personne incapacité 74 %
   period: 2020-10
   input:
     individus:
       p1:
-        taux_incapacite: 0.79
+        taux_incapacite: 0.74
         nationalite: FR
         station_debout_penible: True
     menage:
@@ -16,7 +16,7 @@
   input:
     individus:
       p1:
-        taux_incapacite: 0.79
+        taux_incapacite: 0.74
         nationalite: IT
         station_debout_penible: True
     menage:
@@ -29,7 +29,7 @@
   input:
     individus:
       p1:
-        taux_incapacite: 0.79
+        taux_incapacite: 0.74
         nationalite: LYD
         titre_sejour: True
         station_debout_penible: True
@@ -43,7 +43,7 @@
   input:
     individus:
       p1:
-        taux_incapacite: 0.79
+        taux_incapacite: 0.74
         refugie: True
         station_debout_penible: True
     menage:
@@ -56,7 +56,7 @@
   input:
     individus:
       p1:
-        taux_incapacite: 0.79
+        taux_incapacite: 0.74
         apatride: True
         station_debout_penible: True
     menage:
@@ -82,7 +82,7 @@
   input:
     individus:
       p1:
-        taux_incapacite: 0.79
+        taux_incapacite: 0.74
         nationalite: FR
         station_debout_penible: False
     menage:
@@ -95,7 +95,7 @@
   input:
     individus:
       p1:
-        taux_incapacite: 0.79
+        taux_incapacite: 0.74
         nationalite: FR
         station_debout_penible: True
     menage:
@@ -108,7 +108,7 @@
   input:
     individus:
       p1:
-        taux_incapacite: 0.79
+        taux_incapacite: 0.74
         nationalite: LYD
         refugie: False
         apatride: False

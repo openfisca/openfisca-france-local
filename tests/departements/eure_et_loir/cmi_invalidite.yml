@@ -172,19 +172,3 @@
       depcom: 45000
   output:
     eure_et_loir_eligibilite_cmi_invalidite: False
-
-- name: Non Éligibilité à la CMI invalidité de l'Eure-et-Loir avec personne non UE, non refugie, non apatride
-  period: 2020-10
-  input:
-    individus:
-      p1:
-        taux_incapacite: 0.80
-        apa_domicile: 0
-        gir: gir_2
-        nationalite: LYD
-        refugie: False
-        apatride: False
-    menage:
-      depcom: 28000
-  output:
-    eure_et_loir_eligibilite_cmi_invalidite: False

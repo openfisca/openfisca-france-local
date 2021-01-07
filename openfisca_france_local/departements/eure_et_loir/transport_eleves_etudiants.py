@@ -5,7 +5,7 @@ class eure_et_loir_eligibilite_transport_eleves_etudiants(Variable):
     value_type = bool
     entity = Individu
     definition_period = MONTH
-    label = "En Eure-et-Loir,éligibilité à l'aide au Transport des élèves et étudiants en situation de handicap"
+    label = "En Eure-et-Loir, éligibilité à l'aide au Transport des élèves et étudiants en situation de handicap"
     reference = [" Titre 3 Chapitre 3 du Règlement départemental d'Aide Sociale PA PH de l'Eure-et-Loir",
                  "https://github.com/openfisca/openfisca-france-local/wiki/files/departements/eure-et-loir/RDAS_valide__decembre_2019.pdf"
                  ]
@@ -15,7 +15,7 @@ class eure_et_loir_eligibilite_transport_eleves_etudiants(Variable):
                     """
 
     def formula_2020_01(individu, period):
-        etudiant = individu('etudiant', period) # individu('etudiant', period) regroupe les 2 activités : étudiant ET élève
+        etudiant = individu('etudiant', period) # regroupe les 2 activités : étudiant ET élève
         handicap = individu('handicap',period)
         condition_residence = individu.menage('eure_et_loir_eligibilite_residence', period)
 
