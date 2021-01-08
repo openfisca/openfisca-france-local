@@ -23,11 +23,3 @@ then
     echo "Look at the CONTRIBUTING.md file to learn how the version number should be updated."
     exit 1
 fi
-
-if ! $(dirname "$BASH_SOURCE")/has-functional-changes.sh | grep --quiet CHANGELOG.md
-then
-    echo "CHANGELOG.md has not been modified, while functional changes were made."
-    echo "Explain what you changed before merging this branch into master."
-    echo "Look at the CONTRIBUTING.md file to learn how to write the changelog."
-    exit 2
-fi

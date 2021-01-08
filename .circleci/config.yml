@@ -13,7 +13,7 @@ install_dependencies: &install_dependencies
     name: Install dependencies
     command: pip install . --upgrade && pip install ".[test,excel-reader]"
 
-check_version_and_changelog: &check_version_and_changelog
+check_version: &check_version
   run:
     name: Check version number has been properly updated
     command: |
@@ -36,7 +36,7 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - *check_version_and_changelog
+      - *check_version
 
 
 workflows:
