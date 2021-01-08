@@ -1,0 +1,249 @@
+- name: Eligibilité à l'aide-ménagère PH avec personne <60 ans
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        retraite_imposable:
+          2020-09: 300
+        age: 59
+        nationalite: FR
+        taux_incapacite: 0.81
+        aah_restriction_substantielle_durable_acces_emploi: False
+    familles:
+      _:
+        parents: p1
+        rsa:
+          2020-09: 0
+        aspa: 903.20
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_aide_menagere_personne_handicap: True
+
+- name: Eligibilité à l'aide-ménagère PH avec personne taux incapacité compris entre 50et 79 et avec restriction true
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        retraite_imposable:
+          2020-09: 300
+        age: 59
+        nationalite: FR
+        taux_incapacite: 0.68
+        aah_restriction_substantielle_durable_acces_emploi: True
+    familles:
+      _:
+        parents: p1
+        rsa:
+          2020-09: 0
+        aspa: 903.20
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_aide_menagere_personne_handicap: True
+
+- name: Eligibilité à l'aide-ménagère PH avec personne originaire UE (IT)
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        retraite_imposable:
+          2020-09: 300
+        age: 59
+        nationalite: IT
+        taux_incapacite: 0.81
+        aah_restriction_substantielle_durable_acces_emploi: False
+    familles:
+      _:
+        parents: p1
+        rsa:
+          2020-09: 0
+        aspa: 903.20
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_aide_menagere_personne_handicap: True
+
+- name: Eligibilité à l'aide-ménagère PH avec PH refugie
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        retraite_imposable:
+          2020-09: 300
+        age: 59
+        nationalite: LY
+        refugie: True
+        taux_incapacite: 0.81
+        aah_restriction_substantielle_durable_acces_emploi: False
+    familles:
+      _:
+        parents: p1
+        rsa:
+          2020-09: 0
+        aspa: 903.20
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_aide_menagere_personne_handicap: True
+
+- name: Eligibilité à l'aide-ménagère PH avec PH apatride
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        retraite_imposable:
+          2020-09: 300
+        age: 59
+        nationalite: LY
+        apatride: True
+        taux_incapacite: 0.81
+        aah_restriction_substantielle_durable_acces_emploi: False
+    familles:
+      _:
+        parents: p1
+        rsa:
+          2020-09: 0
+        aspa: 903.20
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_aide_menagere_personne_handicap: True
+
+- name: Non Eligibilité à l'aide-ménagère PH avec personne >60 ans
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        retraite_imposable:
+          2020-09: 300
+        age: 69
+        nationalite: FR
+        taux_incapacite: 0.81
+        aah_restriction_substantielle_durable_acces_emploi: False
+    familles:
+      _:
+        parents: p1
+        rsa:
+          2020-09: 0
+        aspa: 903.20
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_aide_menagere_personne_handicap: False
+
+- name: Non Eligibilité à l'aide-ménagère PH avec personne ayant trop de ressources
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        retraite_imposable:
+          2020-07: 1300
+          2020-08: 1300
+          2020-09: 1300
+        age: 59
+        nationalite: FR
+        taux_incapacite: 0.81
+        aah_restriction_substantielle_durable_acces_emploi: False
+    familles:
+      _:
+        parents: p1
+        rsa:
+          2020-09: 0
+        aspa: 903.20
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_aide_menagere_personne_handicap: False
+
+- name: Non Eligibilité à l'aide-ménagère PH avec personne taux incapacite trop faible
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        retraite_imposable:
+          2020-09: 300
+        age: 59
+        nationalite: FR
+        taux_incapacite: 0.31
+        aah_restriction_substantielle_durable_acces_emploi: False
+    familles:
+      _:
+        parents: p1
+        rsa:
+          2020-09: 0
+        aspa: 903.20
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_aide_menagere_personne_handicap: False
+
+- name: Non Eligibilité à l'aide-ménagère PH avec personne non ressortissant UE
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        retraite_imposable:
+          2020-09: 300
+        age: 59
+        nationalite: LL
+        taux_incapacite: 0.81
+        aah_restriction_substantielle_durable_acces_emploi: False
+    familles:
+      _:
+        parents: p1
+        rsa:
+          2020-09: 0
+        aspa: 903.20
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_aide_menagere_personne_handicap: False
+
+- name: Non Eligibilité à l'aide-ménagère PH avec personne ayant trop de ressources dont retraite complémentaire
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        retraite_imposable:
+          2020-09: 1300
+        age: 59
+        nationalite: FR
+        taux_incapacite: 0.81
+        aah_restriction_substantielle_durable_acces_emploi: False
+        retraite_complementaire_profession_liberale:
+          2020: 1500
+    familles:
+      _:
+        parents: p1
+        rsa:
+          2020-09: 0
+        aspa: 903.20
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_aide_menagere_personne_handicap: False
+
+- name: Non Eligibilité à l'aide-ménagère PH avec PH non UE non refugie non apatride
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        retraite_imposable:
+          2020-09: 300
+        age: 59
+        nationalite: LY
+        refugie: False
+        apatride: False
+        taux_incapacite: 0.81
+        aah_restriction_substantielle_durable_acces_emploi: False
+    familles:
+      _:
+        parents: p1
+        rsa:
+          2020-09: 0
+        aspa: 903.20
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_aide_menagere_personne_handicap: False

@@ -1,0 +1,359 @@
+- name: Eligibilité à l'aide-ménagère avec personne >= 65 ans
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        retraite_brute:
+          month:2020-07:3: 300
+        age: 66
+        inapte_travail: False
+        nationalite: FR
+        gir: gir_5
+    familles:
+      _:
+        parents: p1
+        rsa:
+          2020-09: 0
+        aspa: 903.20
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_aide_menagere_personne_agee: True
+
+- name: Eligibilité à l'aide-ménagère avec personne >= 60 ans et inapte_travail
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        retraite_brute:
+          month:2020-07:3: 300
+        age: 61
+        inapte_travail: True
+        nationalite: FR
+        gir: gir_5
+    familles:
+      _:
+        parents: p1
+        rsa:
+          2020-09: 0
+        aspa: 903.20
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_aide_menagere_personne_agee: True
+
+- name: Eligibilité à l'aide-ménagère avec personne de l'UE (IT)
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        retraite_brute:
+          month:2020-07:3: 300
+        age: 66
+        inapte_travail: False
+        nationalite: IT
+        gir: gir_5
+    familles:
+      _:
+        parents: p1
+        rsa:
+          2020-09: 0
+        aspa: 903.20
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_aide_menagere_personne_agee: True
+
+- name: Eligibilité à l'aide-ménagère avec personne refugie
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        retraite_brute:
+          month:2020-07:3: 300
+        age: 66
+        inapte_travail: False
+        nationalite: LY
+        refugie: True
+        gir: gir_5
+    familles:
+      _:
+        parents: p1
+        rsa:
+          2020-09: 0
+        aspa: 903.20
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_aide_menagere_personne_agee: True
+
+- name: Eligibilité à l'aide-ménagère avec personne de apatride
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        retraite_brute:
+          month:2020-07:3: 300
+        age: 66
+        inapte_travail: False
+        nationalite: LY
+        apatride: True
+        gir: gir_5
+    familles:
+      _:
+        parents: p1
+        rsa:
+          2020-09: 0
+        aspa: 903.20
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_aide_menagere_personne_agee: True
+
+- name: Eligibilité à l'aide-ménagère avec personne gir_6
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        retraite_brute:
+          month:2020-07:3: 300
+        age: 66
+        inapte_travail: False
+        nationalite: FR
+        gir: gir_6
+    familles:
+      _:
+        parents: p1
+        rsa:
+          2020-09: 0
+        aspa: 903.20
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_aide_menagere_personne_agee: True
+
+- name: Non eligibilité à l'aide-ménagère ressource > minimum
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        retraite_brute:
+          2020-07: 1300
+          2020-08: 1300
+          2020-09: 1300
+        age: 66
+        inapte_travail: False
+        nationalite: FR
+        gir: gir_6
+    familles:
+      _:
+        parents: p1
+        rsa:
+          2020-09: 0
+        aspa: 903.20
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_aide_menagere_personne_agee: False
+
+- name: Non eligibilité à l'aide-ménagère avec personne <65 ans et non inapte_travail
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        retraite_brute:
+          2020-07: 300
+          2020-08: 300
+          2020-09: 300
+        age: 64
+        inapte_travail: False
+        nationalite: FR
+        gir: gir_5
+    familles:
+      _:
+        parents: p1
+        rsa:
+          2020-09: 0
+        aspa: 903.20
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_aide_menagere_personne_agee: False
+
+- name: Non eligibilité à l'aide-ménagère avec personne gir_2
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        retraite_brute:
+          month:2020-07:3: 300
+        age: 66
+        inapte_travail: False
+        nationalite: FR
+        gir: gir_2
+    familles:
+      _:
+        parents: p1
+        rsa:
+          2020-09: 0
+        aspa: 903.20
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_aide_menagere_personne_agee: False
+
+- name: Non Eligibilité à l'aide-ménagère avec personne possédant apa
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        retraite_brute:
+          month:2020-07:3: 300
+        age: 66
+        inapte_travail: False
+        nationalite: FR
+        gir: gir_5
+        apa_domicile:
+          2020-09: 100
+    familles:
+      _:
+        parents: p1
+        rsa:
+          2020-09: 0
+        aspa: 903.20
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_aide_menagere_personne_agee: False
+
+- name: Non Eligibilité à l'aide-ménagère avec personne possédant aide ménagère fourni caisse retraite
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        retraite_brute:
+          2020-07: 300
+          2020-08: 300
+          2020-09: 300
+        age: 66
+        inapte_travail: False
+        nationalite: FR
+        gir: gir_5
+        aide_menagere_fournie_caisse_retraite: True
+    familles:
+      _:
+        parents: p1
+        rsa:
+          2020-09: 0
+        aspa: 903.20
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_aide_menagere_personne_agee: False
+
+- name: Non Eligibilité à l'aide-ménagère avec personne possédant actp
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        retraite_brute:
+          2020-07: 300
+          2020-08: 300
+          2020-09: 300
+        age: 66
+        inapte_travail: False
+        nationalite: FR
+        gir: gir_5
+        actp: True
+    familles:
+      _:
+        parents: p1
+        rsa:
+          2020-09: 0
+        aspa: 903.20
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_aide_menagere_personne_agee: False
+
+- name: Non Eligibilité à l'aide-ménagère avec personne possédant mtp
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        retraite_brute:
+          2020-07: 300
+          2020-08: 300
+          2020-09: 300
+        age: 66
+        inapte_travail: False
+        nationalite: FR
+        gir: gir_5
+        mtp: True
+    familles:
+      _:
+        parents: p1
+        rsa:
+          2020-09: 0
+        aspa: 903.20
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_aide_menagere_personne_agee: False
+
+- name: Non eligibilité à l'aide-ménagère avec personne hors UE (LL)
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        retraite_brute:
+          month:2020-07:3: 300
+        age: 66
+        inapte_travail: False
+        nationalite: LL
+        gir: gir_5
+    familles:
+      _:
+        parents: p1
+        rsa:
+          2020-09: 0
+        aspa: 903.20
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_aide_menagere_personne_agee: False
+
+- name: Non eligibilité à l'aide-ménagère avec personne ni UE ni refugie ni apatride
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        retraite_brute:
+          month:2020-07:3: 300
+        age: 66
+        inapte_travail: False
+        nationalite: LY
+        refugie: False
+        apatride: False
+        gir: gir_5
+    familles:
+      _:
+        parents: p1
+        rsa:
+          2020-09: 0
+        aspa: 903.20
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_aide_menagere_personne_agee: False
+
+- name: Test erroné car personne trop jeune
+  period: 2020-10
+  input:
+    nationalite: FR
+    gir: gir_5
+    asi_aspa_base_ressources_individu: 200
+    depcom: 28000
+  output:
+    age: 50
+    eure_et_loir_eligibilite_aide_menagere_personne_agee: False

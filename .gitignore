@@ -4,3 +4,6 @@ build
 # Développement local
 *.egg-info
 *.pyc
+
+# Développement sur PyCharm IDEA
+.idea
