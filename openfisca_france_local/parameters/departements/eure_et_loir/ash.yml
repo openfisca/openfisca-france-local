@@ -1,0 +1,18 @@
+age_minimal_personne_agee_apte_travail:
+  reference: Titre 2 Chapitre 2-1 Article 65-1 du Règlement départemental d'Aide Sociale PA PH de l'Eure et Loir
+  description: Âge minimal à partir duquel l'ASH peut être accordée à une PA si elle est apte au travail
+  values:
+    2020-01-01:
+      value: 65
+age_minimal_personne_agee_inapte_travail:
+  reference: Titre 2 Chapitre 2-1 Article 65-1 du Règlement départemental d'Aide Sociale PA PH de l'Eure et Loir
+  description: Âge minimal à partir duquel l'ASH peut être accordée à une PA si elle est inapte au travail
+  values:
+    2020-01-01:
+      value: 60
+age_minimal_personne_handicapee:
+  reference: Titre 3 Chapitre 2-1 Article 162-1 du Règlement départemental d'Aide Sociale PA PH de l'Eure et Loir
+  description: Âge minimal à partir duquel l'ASH peut être accordée à une PH
+  values:
+    2020-01-01:
+      value: 18

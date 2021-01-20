@@ -1,0 +1,312 @@
+- name: Éligibilité à l'ash de l'eure-et-loir avec personne > 65 ans
+  period: 2020-10
+  input:
+    foyer_fiscal:
+      declarants:
+        - parent1
+    individus:
+      parent1:
+        retraite_brute:
+          2020-09: 300
+        age: 66
+        inapte_travail: False
+        nationalite: FR
+        titre_sejour: False
+    menage:
+      personne_de_reference:
+        - parent1
+      loyer: 410
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_ash_personne_agee: True
+
+- name: Éligibilité à l'ash de l'eure-et-loir avec personne = 65 ans
+  period: 2020-10
+  input:
+    foyer_fiscal:
+      declarants:
+        - parent1
+    individus:
+      parent1:
+        retraite_brute:
+          2020-09: 300
+        age: 65
+        inapte_travail: False
+        nationalite: FR
+        titre_sejour: False
+    menage:
+      personne_de_reference:
+        - parent1
+      loyer: 410
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_ash_personne_agee: True
+
+- name: Éligibilité à l'ash de l'eure-et-loir avec personne = 60 ans et inapte_travail
+  period: 2020-10
+  input:
+    foyer_fiscal:
+      declarants:
+        - parent1
+    individus:
+      parent1:
+        retraite_brute:
+          2020-09: 300
+        age: 60
+        inapte_travail: True
+        nationalite: FR
+        titre_sejour: False
+    menage:
+      personne_de_reference:
+        - parent1
+      loyer: 410
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_ash_personne_agee: True
+
+- name: Éligibilité à l'ash de l'eure-et-loir avec personne > 60 ans et inapte_travail
+  period: 2020-10
+  input:
+    foyer_fiscal:
+      declarants:
+        - parent1
+    individus:
+      parent1:
+        retraite_brute:
+          2020-09: 300
+        age: 61
+        inapte_travail: True
+        nationalite: FR
+        titre_sejour: False
+    menage:
+      personne_de_reference:
+        - parent1
+      loyer: 410
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_ash_personne_agee: True
+
+- name: Éligibilité à l'ash de l'eure-et-loir avec personne nationalité UE (IT)
+  period: 2020-10
+  input:
+    foyer_fiscal:
+      declarants:
+        - parent1
+    individus:
+      parent1:
+        retraite_brute:
+          2020-09: 300
+        age: 66
+        inapte_travail: False
+        nationalite: IT
+        titre_sejour: False
+    menage:
+      personne_de_reference:
+        - parent1
+      loyer: 410
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_ash_personne_agee: True
+
+- name: Éligibilité à l'ash de l'eure-et-loir avec personne nationalité non UE (LL) mais titre de séjour OK
+  period: 2020-10
+  input:
+    foyer_fiscal:
+      declarants:
+        - parent1
+    individus:
+      parent1:
+        retraite_brute:
+          2020-09: 300
+        age: 66
+        inapte_travail: False
+        nationalite: LL
+        titre_sejour: True
+    menage:
+      personne_de_reference:
+        - parent1
+      loyer: 410
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_ash_personne_agee: True
+
+- name: Éligibilité à l'ash de l'eure-et-loir avec PA refugie
+  period: 2020-10
+  input:
+    foyer_fiscal:
+      declarants:
+        - parent1
+    individus:
+      parent1:
+        retraite_brute:
+          2020-09: 300
+        age: 66
+        inapte_travail: False
+        refugie: True
+        nationalite: LY
+        titre_sejour: False
+    menage:
+      personne_de_reference:
+        - parent1
+      loyer: 410
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_ash_personne_agee: True
+
+- name: Éligibilité à l'ash de l'eure-et-loir avec PA apatride
+  period: 2020-10
+  input:
+    foyer_fiscal:
+      declarants:
+        - parent1
+    individus:
+      parent1:
+        retraite_brute:
+          2020-09: 300
+        age: 66
+        nationalite: LY
+        inapte_travail: False
+        apatride: True
+    menage:
+      personne_de_reference:
+        - parent1
+      loyer: 410
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_ash_personne_agee: True
+
+- name: Non Éligibilité à l'ash de l'eure-et-loir avec personne <65 et non inapte_travail
+  period: 2020-10
+  input:
+    foyer_fiscal:
+      declarants:
+        - parent1
+    individus:
+      parent1:
+        retraite_brute:
+          2020-09: 300
+        age: 63
+        inapte_travail: False
+        nationalite: FR
+        titre_sejour: False
+    menage:
+      personne_de_reference:
+        - parent1
+      loyer: 410
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_ash_personne_agee: False
+
+- name: Non Éligibilité à l'ash de l'eure-et-loir avec personne <60 ans
+  period: 2020-10
+  input:
+    foyer_fiscal:
+      declarants:
+        - parent1
+    individus:
+      parent1:
+        retraite_brute:
+          2020-09: 300
+        age: 58
+        inapte_travail: False
+        nationalite: FR
+        titre_sejour: False
+    menage:
+      personne_de_reference:
+        - parent1
+      loyer: 410
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_ash_personne_agee: False
+
+- name: Non Éligibilité à l'ash de l'eure-et-loir avec personne resssources > loyer
+  period: 2020-10
+  input:
+    foyer_fiscal:
+      declarants:
+        - parent1
+    individus:
+      parent1:
+        retraite_brute:
+          2020-09: 500
+        age: 66
+        inapte_travail: False
+        nationalite: FR
+        titre_sejour: False
+    menage:
+      personne_de_reference:
+        - parent1
+      loyer: 410
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_ash_personne_agee: False
+
+- name: Non Éligibilité à l'ash de l'eure-et-loir avec une personne nationalité non UE et pas de titre de séjour
+  period: 2020-10
+  input:
+    foyer_fiscal:
+      declarants:
+        - parent1
+    individus:
+      parent1:
+        retraite_brute:
+          2020-09: 300
+        age: 66
+        inapte_travail: False
+        nationalite: LL
+        titre_sejour: False
+    menage:
+      personne_de_reference:
+        - parent1
+      loyer: 410
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_ash_personne_agee: False
+
+- name: Non Éligibilité à l'ash de l'eure-et-loir avec PA non UE non réfugié non apatride
+  period: 2020-10
+  input:
+    foyer_fiscal:
+      declarants:
+        - parent1
+    individus:
+      parent1:
+        retraite_brute:
+          2020-09: 300
+        age: 66
+        inapte_travail: False
+        nationalite: LYD
+        refugie: False
+        apatride: False
+        titre_sejour: False
+    menage:
+      personne_de_reference:
+        - parent1
+      loyer: 410
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_ash_personne_agee: False
+
+- name: Non Éligibilité à l'ash de l'eure-et-loir avec PA hors 28
+  period: 2020-10
+  input:
+    foyer_fiscal:
+      declarants:
+        - parent1
+    individus:
+      parent1:
+        retraite_brute:
+          2020-09: 300
+        age: 66
+        inapte_travail: False
+        nationalite: FR
+        refugie: False
+        apatride: False
+        titre_sejour: False
+    menage:
+      personne_de_reference:
+        - parent1
+      loyer: 410
+      depcom: 45000
+  output:
+    eure_et_loir_eligibilite_ash_personne_agee: False

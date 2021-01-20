@@ -1,0 +1,36 @@
+age_minimal_personne_agee_apte_travail:
+  reference: Titre 2 Chapitre 1-1 Article 23 du Règlement départemental d'Aide Sociale PA PH de l'Eure et Loir
+  description: Age minimal pris en compte pour une PA apte au travail demandant l'aide-ménagère
+  values:
+    2020-01-01:
+      value: 65
+age_minimal_personne_agee_inapte_travail:
+  reference: Titre 2 Chapitre 1-1 Article 23 du Règlement départemental d'Aide Sociale PA PH de l'Eure et Loir
+  description: Age minimal pris en compte pour une PA inapte au travail demandant l'aide-ménagère
+  values:
+    2020-01-01:
+      value: 60
+age_minimal_personne_handicap:
+  reference: Titre 3 Chapitre 1-1  Article 94-1 du Règlement départemental d'Aide Sociale PA PH de l'Eure et Loir
+  description: Age minimal pris en compte pour une PH demandant l'aide-ménagère
+  values:
+    2020-01-01:
+      value: 60
+taux_incapacite_superieur:
+  description: Taux d'incapacité au-dessus duquel l'aide-ménagère est allouée pour un PH
+  reference: Titre 3 Chapitre 1-1 Article 94-4 du Règlement départemental d'Aide Sociale PA PH de l'Eure et Loir
+  values:
+    2020-01-01:
+      value: 0.8
+taux_incapacite_minimum_restriction_acces_emploi:
+  description: Taux d'incapacité minimal au-dessus duquel l'aide-ménagère est allouée pour un PH ayant une restriction à l'emploi
+  reference: Titre 3 Chapitre 1-1 Article 94-4 du Règlement départemental d'Aide Sociale PA PH de l'Eure et Loir
+  values:
+    2020-01-01:
+      value: 0.5
+taux_incapacite_maximum_restriction_acces_emploi:
+  description: Taux d'incapacité maximal au-dessous duquel l'aide-ménagère est allouée pour un PH ayant une restriction à l'meploi
+  reference: Titre 3 Chapitre 1-1 Article 94-4 du Règlement départemental d'Aide Sociale PA PH de l'Eure et Loir
+  values:
+    2020-01-01:
+      value: 0.79
