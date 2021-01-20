@@ -23,9 +23,9 @@ class eure_et_loir_eligibilite_pch_domicile(Variable):
         condition_handicap = individu('handicap', period)
         condition_aides_aeeh = not_(individu.famille('beneficiaire_complement_aeeh', period))
         condition_aides_apa =  not_(individu('apa_domicile', period) > 0)
-        condition_aides_actp = not_(individu('beneficiaire_actp', period)) * not_(individu('beneficiaire_acfp',period))
+        conditions_aides_actp_acfp = not_(individu('beneficiaire_actp', period)) * not_(individu('beneficiaire_acfp',period))
 
-        return condition_residence * condition_nationalite * condition_handicap * condition_aides_aeeh * condition_aides_apa * condition_aides_actp
+        return condition_residence * condition_nationalite * condition_handicap * condition_aides_aeeh * condition_aides_apa * conditions_aides_actp_acfp
 
 
 class eure_et_loir_eligibilite_pch_etablissement(Variable):
@@ -50,7 +50,7 @@ class eure_et_loir_eligibilite_pch_etablissement(Variable):
 
         condition_aides_aeeh = not_(individu.famille('beneficiaire_complement_aeeh', period))
         condition_aides_apa = not_(individu('apa_domicile', period) > 0)
-        condition_aides_actp = not_(individu('beneficiaire_actp', period)) * not_(individu('beneficiaire_acfp', period))
+        conditions_aides_actp_acfp = not_(individu('beneficiaire_actp', period)) * not_(individu('beneficiaire_acfp', period))
 
-        return condition_residence * condition_nationalite * condition_handicap * condition_hebergement * condition_aides_aeeh * condition_aides_apa * condition_aides_actp
+        return condition_residence * condition_nationalite * condition_handicap * condition_hebergement * condition_aides_aeeh * condition_aides_apa * conditions_aides_actp_acfp
 
