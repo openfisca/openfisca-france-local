@@ -17,7 +17,6 @@ class eure_et_loir_eligibilite_pch_domicile(Variable):
                     """
 
     def formula_2020_01(individu, period):
-
         condition_residence = individu.menage('eure_et_loir_eligibilite_residence', period)
         condition_nationalite = individu('ressortissant_eee', period)+ individu('titre_sejour', period) + individu('refugie',period) + individu('apatride',period)
         condition_handicap = individu('handicap', period)
@@ -53,4 +52,3 @@ class eure_et_loir_eligibilite_pch_etablissement(Variable):
         conditions_aides_actp_acfp = not_(individu('beneficiaire_actp', period)) * not_(individu('beneficiaire_acfp', period))
 
         return condition_residence * condition_nationalite * condition_handicap * condition_hebergement * condition_aides_aeeh * condition_aides_apa * conditions_aides_actp_acfp
-
