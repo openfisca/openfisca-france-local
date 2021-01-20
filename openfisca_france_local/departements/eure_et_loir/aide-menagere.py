@@ -23,7 +23,7 @@ class eure_et_loir_eligibilite_aide_menagere_personne_agee(Variable):
         inapte_travail = individu('inapte_travail', period)
         ressortissant_eee = individu('ressortissant_eee', period)
         gir = individu('gir', period)
-        possede_actp = individu('actp', period)
+        possede_actp = individu('beneficiaire_actp', period)
         possede_mtp = individu('mtp', period)
 
         parameters_chemin = parameters(
@@ -67,7 +67,7 @@ class eure_et_loir_eligibilite_aide_menagere_personne_handicap(Variable):
         restriction_substantielle_durable = individu('aah_restriction_substantielle_durable_acces_emploi', period)
         age = individu('age', period)
         ressortissant_eee = individu('ressortissant_eee', period)
-        possede_actp = individu('actp', period)
+        possede_actp = individu('beneficiaire_actp', period)
         possede_mtp = individu('mtp', period)
 
         individual_resource_names = {
