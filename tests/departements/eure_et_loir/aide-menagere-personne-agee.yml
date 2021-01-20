@@ -264,7 +264,7 @@
         inapte_travail: False
         nationalite: FR
         gir: gir_5
-        actp: True
+        beneficiaire_actp: True
     familles:
       _:
         parents: p1

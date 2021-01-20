@@ -1,0 +1,233 @@
+- name: Éligibilité à l'aide PCH de l'Eure-et-Loir en établissement avec PH handicapée
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        nationalite: FR
+        titre_sejour: False
+        handicap: True
+        apa_domicile: 0
+        beneficiaire_actp: False
+        beneficiaire_acfp: False
+    famille:
+      place_hebergement: True
+      beneficiaire_complement_aeeh: False
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_pch_etablissement: True
+
+- name: Éligibilité à l'aide PCH de l'Eure-et-Loir en établissement avec PH  nationalité UE (IT)
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        nationalite: IT
+        titre_sejour: False
+        handicap: True
+        apa_domicile: 0
+    famille:
+      place_hebergement: True
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_pch_etablissement: True
+
+- name: Éligibilité à l'aide PCH de l'Eure-et-Loir en établissement avec PH  nationalité non UE (LL) mais titre séjour OK
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        nationalite: LL
+        titre_sejour: True
+        handicap: True
+        apa_domicile: 0
+    famille:
+      place_hebergement: True
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_pch_etablissement: True
+
+- name: Éligibilité à l'aide PCH de l'Eure-et-Loir en établissement avec PH refugie
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        nationalite: LY
+        titre_sejour: False
+        refugie: True
+        handicap: True
+        apa_domicile: 0
+    famille:
+      place_hebergement: True
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_pch_etablissement: True
+
+- name: Éligibilité à l'aide PCH de l'Eure-et-Loir en établissement avec PH apatride
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        nationalite: LY
+        titre_sejour: False
+        apatride: True
+        handicap: True
+        apa_domicile: 0
+    famille:
+      place_hebergement: True
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_pch_etablissement: True
+
+- name: Non Éligibilité à l'aide PCH de l'Eure-et-Loir en établissement avec PH nationalité non UE et titre séjour KO
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        nationalite: LL
+        titre_sejour: False
+        handicap: True
+        apa_domicile: 0
+    famille:
+      place_hebergement: True
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_pch_etablissement: False
+
+- name: Non Éligibilité à l'aide PCH de l'Eure-et-Loir en établissement avec PH non UE titre séjour KO non refugie non apatride
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        nationalite: LL
+        titre_sejour: False
+        refugie: False
+        apatride: False
+        handicap: True
+        apa_domicile: 0
+    famille:
+      place_hebergement: True
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_pch_etablissement: False
+
+- name: Non Éligibilité à l'aide PCH de l'Eure-et-Loir en établissement avec PH non handicapée
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        nationalite: FR
+        titre_sejour: False
+        handicap: False
+        apa_domicile: 0
+    famille:
+      place_hebergement: True
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_pch_etablissement: False
+
+- name: Non Éligibilité à l'aide PCH de l'Eure-et-Loir en établissement avec PH sans place hébergement
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        nationalite: FR
+        titre_sejour: False
+        handicap: True
+        apa_domicile: 0
+    famille:
+      place_hebergement: False
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_pch_etablissement: False
+
+- name: Non Éligibilité à l'aide PCH de l'Eure-et-Loir en établissement avec PH hors 28
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        nationalite: FR
+        titre_sejour: False
+        handicap: True
+        apa_domicile: 0
+    famille:
+      place_hebergement: True
+    menage:
+      depcom: 45000
+  output:
+    eure_et_loir_eligibilite_pch_etablissement: False
+
+- name: Non Éligibilité à l'aide PCH de l'Eure-et-Loir en établissement avec PH possédant complément aeeh
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        nationalite: FR
+        titre_sejour: False
+        handicap: True
+        apa_domicile: 0
+    famille:
+      place_hebergement: True
+      beneficiaire_complement_aeeh: True
+    menage:
+      depcom: 45000
+  output:
+    eure_et_loir_eligibilite_pch_etablissement: False
+
+- name: Non Éligibilité à l'aide PCH de l'Eure-et-Loir en établissement avec PH possédant apa
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        nationalite: FR
+        titre_sejour: False
+        handicap: True
+        apa_domicile: 500
+    famille:
+      place_hebergement: True
+    menage:
+      depcom: 45000
+  output:
+    eure_et_loir_eligibilite_pch_etablissement: False
+
+- name: Non Éligibilité à l'aide PCH de l'Eure-et-Loir en établissement avec PH bénéficiaire actp
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        nationalite: FR
+        titre_sejour: False
+        handicap: True
+        apa_domicile: 0
+        beneficiaire_actp: True
+    famille:
+      place_hebergement: True
+    menage:
+      depcom: 45000
+  output:
+    eure_et_loir_eligibilite_pch_etablissement: False
+
+- name: Non Éligibilité à l'aide PCH de l'Eure-et-Loir en établissement avec PH bénéficiaire acfp
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        nationalite: FR
+        titre_sejour: False
+        handicap: True
+        apa_domicile: 0
+        beneficiaire_acfp: True
+    famille:
+      place_hebergement: True
+    menage:
+      depcom: 45000
+  output:
+    eure_et_loir_eligibilite_pch_etablissement: False
