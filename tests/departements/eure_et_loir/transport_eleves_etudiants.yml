@@ -1,0 +1,47 @@
+- name: Éligibilité à l'aide transport Eleves/Etudiant pour les PH avec etudiant handicapé
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        etudiant: True
+        handicap: True
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_transport_eleves_etudiants: True
+
+- name: Non Éligibilité à l'aide transport Eleves/Etudiant pour les PH avec etudiant non handicapé
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        etudiant: True
+        handicap: False
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_transport_eleves_etudiants: False
+
+- name: Non Éligibilité à l'aide transport Eleves/Etudiant pour les PH avec personne handicapée non étudiante
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        etudiant: False
+        handicap: True
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_transport_eleves_etudiants: False
+
+- name: Non Éligibilité à l'aide transport Eleves/Etudiant pour les PH avec personne hors département
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        etudiant: True
+        handicap: True
+    menage:
+      depcom : 45000
+  output:
+    eure_et_loir_eligibilite_transport_eleves_etudiants: False

@@ -1,0 +1,119 @@
+- name: Éligibilité à la CMI priorite de l'Eure-et-Loir avec personne incapacité 74 %
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        taux_incapacite: 0.74
+        nationalite: FR
+        station_debout_penible: True
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_cmi_priorite: True
+
+- name: Éligibilité à la CMI priorite de l'Eure-et-Loir avec personne nationalité IT
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        taux_incapacite: 0.74
+        nationalite: IT
+        station_debout_penible: True
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_cmi_priorite: True
+
+- name: Éligibilité à la CMI priorite de l'Eure-et-Loir avec personne nationalité hors UE et titre_sejour
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        taux_incapacite: 0.74
+        nationalite: LYD
+        titre_sejour: True
+        station_debout_penible: True
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_cmi_priorite: True
+
+- name: Éligibilité à la CMI priorite de l'Eure-et-Loir avec personne refugie
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        taux_incapacite: 0.74
+        refugie: True
+        station_debout_penible: True
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_cmi_priorite: True
+
+- name: Éligibilité à la CMI priorite de l'Eure-et-Loir avec personne apatride
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        taux_incapacite: 0.74
+        apatride: True
+        station_debout_penible: True
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_cmi_priorite: True
+
+- name: Non Éligibilité à la CMI priorite de l'Eure-et-Loir avec personne taux incapacite > 80 %
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        taux_incapacite: 0.81
+        nationalite: FR
+        station_debout_penible: True
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_cmi_priorite: False
+
+- name: Non Éligibilité à la CMI priorite de l'Eure-et-Loir avec personne non station_debout_penible
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        taux_incapacite: 0.74
+        nationalite: FR
+        station_debout_penible: False
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_cmi_priorite: False
+
+- name: Non Éligibilité à la CMI priorite de l'Eure-et-Loir avec personne hors 28
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        taux_incapacite: 0.74
+        nationalite: FR
+        station_debout_penible: True
+    menage:
+      depcom: 45000
+  output:
+    eure_et_loir_eligibilite_cmi_priorite: False
+
+- name: Non Éligibilité à la CMI priorite de l'Eure-et-Loir avec personne non UE, non refugie, non apatride
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        taux_incapacite: 0.74
+        nationalite: LYD
+        refugie: False
+        apatride: False
+        station_debout_penible: True
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_cmi_priorite: False

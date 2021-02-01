@@ -1,0 +1,174 @@
+- name: Éligibilité à la CMI invalidité de l'Eure-et-Loir avec personne incapacité 81 %
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        taux_incapacite: 0.81
+        apa_domicile: 100
+        gir: gir_1
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_cmi_invalidite: True
+
+- name: Éligibilité à la CMI invalidité de l'Eure-et-Loir avec personne incapacité 80 %
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        taux_incapacite: 0.80
+        apa_domicile: 100
+        gir: gir_1
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_cmi_invalidite: True
+
+- name: Éligibilité à la CMI invalidité de l'Eure-et-Loir avec personne incapacité 70 % et apa OK
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        taux_incapacite: 0.70
+        apa_domicile: 100
+        gir: gir_1
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_cmi_invalidite: True
+
+- name: Éligibilité à la CMI invalidité de l'Eure-et-Loir avec personne incapacité 70 % et apa OK et gir_2
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        taux_incapacite: 0.70
+        apa_domicile: 100
+        gir: gir_2
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_cmi_invalidite: True
+
+- name: Éligibilité à la CMI invalidité de l'Eure-et-Loir avec personne incapacité 80 % et apa KO
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        taux_incapacite: 0.80
+        apa_domicile: 0
+        gir: gir_2
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_cmi_invalidite: True
+
+- name: Éligibilité à la CMI invalidité de l'Eure-et-Loir avec personne nationalité IT
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        taux_incapacite: 0.80
+        apa_domicile: 0
+        gir: gir_2
+        nationalite: IT
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_cmi_invalidite: True
+
+- name: Éligibilité à la CMI invalidité de l'Eure-et-Loir avec personne nationalité hors UE et titre_sejour
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        taux_incapacite: 0.80
+        apa_domicile: 0
+        gir: gir_2
+        nationalite: LYD
+        titre_sejour: True
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_cmi_invalidite: True
+
+- name: Éligibilité à la CMI invalidité de l'Eure-et-Loir avec personne refugie
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        taux_incapacite: 0.80
+        apa_domicile: 0
+        gir: gir_2
+        refugie: True
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_cmi_invalidite: True
+
+- name: Éligibilité à la CMI invalidité de l'Eure-et-Loir avec personne apatride
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        taux_incapacite: 0.80
+        apa_domicile: 0
+        gir: gir_2
+        apatride: True
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_cmi_invalidite: True
+
+- name: Non Éligibilité à la CMI invalidité de l'Eure-et-Loir avec personne incapacité < 80 % et apa KO
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        taux_incapacite: 0.70
+        apa_domicile: 0
+        gir: gir_2
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_cmi_invalidite: False
+
+- name: Non Éligibilité à la CMI invalidité de l'Eure-et-Loir avec personne incapacité < 80 % et apa OK et gir_3
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        taux_incapacite: 0.70
+        apa_domicile: 100
+        gir: gir_3
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_cmi_invalidite: False
+
+- name: Non Éligibilité à la CMI invalidité de l'Eure-et-Loir avec personne incapacité < 80 % et apa KO et gir_3
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        taux_incapacite: 0.70
+        apa_domicile: 0
+        gir: gir_3
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_cmi_invalidite: False
+
+- name: Non Éligibilité à la CMI invalidité de l'Eure-et-Loir avec personne hors 28
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        taux_incapacite: 0.80
+        apa_domicile: 0
+        gir: gir_2
+        nationalite: FR
+    menage:
+      depcom: 45000
+  output:
+    eure_et_loir_eligibilite_cmi_invalidite: False

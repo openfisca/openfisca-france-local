@@ -1,0 +1,127 @@
+- name: Éligibilité à la CMI stationnement de l'Eure-et-Loir avec personne apa ok et gir_1
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        apa_domicile: 100
+        gir: gir_1
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_cmi_stationnement: True
+
+- name: Éligibilité à la CMI stationnement de l'Eure-et-Loir avec personne  apa ok et gir_2
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        apa_domicile: 100
+        gir: gir_2
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_cmi_stationnement: True
+
+- name: Éligibilité à la CMI stationnement de l'Eure-et-Loir avec personne nationalité UE (IT)
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        apa_domicile: 100
+        nationalite: IT
+        gir: gir_2
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_cmi_stationnement: True
+
+- name: Éligibilité à la CMI stationnement de l'Eure-et-Loir avec personne nationalité non UE (LY) et titre_sejour OK
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        apa_domicile: 100
+        nationalite: LY
+        titre_sejour: True
+        gir: gir_2
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_cmi_stationnement: True
+
+- name: Éligibilité à la CMI stationnement de l'Eure-et-Loir avec personne refugie
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        apa_domicile: 100
+        nationalite: LY
+        refugie: True
+        gir: gir_2
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_cmi_stationnement: True
+
+- name: Éligibilité à la CMI stationnement de l'Eure-et-Loir avec personne apatride
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        apa_domicile: 100
+        nationalite: LY
+        apatride: True
+        gir: gir_2
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_cmi_stationnement: True
+
+- name: Non Éligibilité à la CMI stationnement de l'Eure-et-Loir avec personne apa ok et gir_3
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        apa_domicile: 100
+        gir: gir_3
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_cmi_stationnement: False
+
+- name: Non Éligibilité à la CMI stationnement de l'Eure-et-Loir avec personne apa ko
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        apa_domicile: False
+        gir: gir_1
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_cmi_stationnement: False
+
+- name: Non Éligibilité à la CMI stationnement de l'Eure-et-Loir avec personne apa ko et gir_3
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        apa_domicile: False
+        gir: gir_3
+    menage:
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_cmi_stationnement: False
+
+- name: Non éligibilité à la CMI stationnement de l'Eure-et-Loir avec personne hors 28
+  period: 2020-10
+  input:
+    individus:
+      p1:
+        apa_domicile: 100
+        nationalite: FR
+        gir: gir_2
+    menage:
+      depcom: 45000
+  output:
+    eure_et_loir_eligibilite_cmi_stationnement: False
