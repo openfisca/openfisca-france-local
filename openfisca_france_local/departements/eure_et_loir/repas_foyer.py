@@ -15,7 +15,7 @@ class eure_et_loir_eligibilite_repas_foyer_personne_agee(Variable):
                         Cette aide fait l’objet d’une récupération sur succession et n’est pas cumulable avec l’Allocation compensatrice pour tierce personne (ACTP), la Majoration Tierce Personne (MTP versée par la CPAM), l’Allocation personnalisée d’autonomie (APA), les prestations d’aide-ménagère servie par les caisses de retraite.
                     """
 
-    def formula(individu, period, parameters):
+    def formula_2020_01(individu, period, parameters):
         age = individu('age', period)
         inapte_travail = individu('inapte_travail', period)
         ressortissant_eee = individu('ressortissant_eee', period)
@@ -55,7 +55,7 @@ class eure_et_loir_eligibilite_repas_foyer_personne_handicape(Variable):
                         Cette aide n’est pas cumulable avec l’Allocation compensatrice pour tierce personne (ACTP), la Majoration Tierce Personne (MTP versée par la CPAM) et les prestations d’aide-ménagère servies par les caisses de retraite
                     """
 
-    def formula(individu, period, parameters):
+    def formula_2020_01(individu, period, parameters):
         taux_incapacite = individu('taux_incapacite', period)
         restriction_substantielle_durable = individu('aah_restriction_substantielle_durable_acces_emploi', period)
         age = individu('age', period)
