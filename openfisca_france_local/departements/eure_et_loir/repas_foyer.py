@@ -20,8 +20,6 @@ class eure_et_loir_eligibilite_repas_foyer_personne_agee(Variable):
         inapte_travail = individu('inapte_travail', period)
         ressortissant_eee = individu('ressortissant_eee', period)
         gir = individu('gir', period)
-        possede_actp = individu('actp', period)
-        possede_mtp = individu('mtp', period)
         repas_foyer_parameters = parameters(
             period).departements.eure_et_loir.repas_foyer.repas_foyer
 
@@ -33,8 +31,8 @@ class eure_et_loir_eligibilite_repas_foyer_personne_agee(Variable):
         condition_ressources = individu('asi_aspa_base_ressources_individu',period) < individu.famille('aspa', period)
 
         condition_apa = individu('apa_domicile', period.last_month) <= 0
-        condition_aides_actp = False if possede_actp else True
-        condition_aides_mtp = False if possede_mtp else True
+        condition_aides_actp = not_(individu('actp', period))
+        condition_aides_mtp = not_(individu('mtp', period))
         condition_aide_menagere_caisse_retraite = False if individu('aide_menagere_fournie_caisse_retraite',period.last_month) else True
         conditions_aides = condition_apa * condition_aide_menagere_caisse_retraite * condition_aides_actp * condition_aides_mtp
 
