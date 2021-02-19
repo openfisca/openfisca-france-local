@@ -128,6 +128,7 @@ class eure_et_loir_ressources_menage_inférieure_seuil_pauvrete_60(Variable):
         menage_resource_names_famille = {
             'asf',
             'paje',
+            'paje_cmg',
             'aeeh',
             'aide_logement',
             'aspa',
