@@ -37,7 +37,7 @@ class eure_et_loir_eligibilite_repas_foyer_personne_agee(Variable):
         return condition_residence * condition_age * condition_nationalite * condition_ressources * conditions_aides
 
 
-class eure_et_loir_eligibilite_repas_foyer_personne_handicape(Variable):
+class eure_et_loir_eligibilite_repas_foyer_personne_handicapee(Variable):
     value_type = bool
     entity = Individu
     definition_period = MONTH

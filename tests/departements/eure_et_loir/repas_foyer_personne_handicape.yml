@@ -18,7 +18,7 @@
     menage:
       depcom: 28000
   output:
-    eure_et_loir_eligibilite_repas_foyer_personne_handicape: True
+    eure_et_loir_eligibilite_repas_foyer_personne_handicapee: True
 
 - name: Eligibilité à l'aide repas foyer de l'Eure-et-Loir avec PH taux incapacité compris entre 50 et 70 et avec restriction true
   period: 2020-10
@@ -40,7 +40,7 @@
     menage:
       depcom: 28000
   output:
-    eure_et_loir_eligibilite_repas_foyer_personne_handicape: True
+    eure_et_loir_eligibilite_repas_foyer_personne_handicapee: True
 
 - name: Eligibilité à l'aide repas foyer de l'Eure-et-Loir avec PH  originaire UE (IT)
   period: 2020-10
@@ -62,7 +62,7 @@
     menage:
       depcom: 28000
   output:
-    eure_et_loir_eligibilite_repas_foyer_personne_handicape: True
+    eure_et_loir_eligibilite_repas_foyer_personne_handicapee: True
 
 - name: Eligibilité à l'aide repas foyer de l'Eure-et-Loir avec PH  nationalité hors UE refugie
   period: 2020-10
@@ -85,7 +85,7 @@
     menage:
       depcom: 28000
   output:
-    eure_et_loir_eligibilite_repas_foyer_personne_handicape: True
+    eure_et_loir_eligibilite_repas_foyer_personne_handicapee: True
 
 - name: Eligibilité à l'aide repas foyer de l'Eure-et-Loir avec PH  apatride
   period: 2020-10
@@ -107,7 +107,7 @@
     menage:
       depcom: 28000
   output:
-    eure_et_loir_eligibilite_repas_foyer_personne_handicape: True
+    eure_et_loir_eligibilite_repas_foyer_personne_handicapee: True
 
 - name: Eligibilité à l'aide repas foyer de l'Eure-et-Loir avec PH habitant 28
   period: 2020-10
@@ -129,7 +129,7 @@
     menage:
       depcom: 28230
   output:
-    eure_et_loir_eligibilite_repas_foyer_personne_handicape: True
+    eure_et_loir_eligibilite_repas_foyer_personne_handicapee: True
 
 - name: Non Eligibilité à l'aide repas foyer de l'Eure-et-Loir avec PH >60 ans
   period: 2020-10
@@ -151,7 +151,7 @@
     menage:
       depcom: 28000
   output:
-    eure_et_loir_eligibilite_repas_foyer_personne_handicape: False
+    eure_et_loir_eligibilite_repas_foyer_personne_handicapee: False
 
 - name: Non Eligibilité à l'aide repas foyer de l'Eure-et-Loir avec PH ayant trop de ressources
   period: 2020-10
@@ -173,7 +173,7 @@
     menage:
       depcom: 28000
   output:
-    eure_et_loir_eligibilite_repas_foyer_personne_handicape: False
+    eure_et_loir_eligibilite_repas_foyer_personne_handicapee: False
 
 - name: Non Eligibilité à l'aide repas foyer de l'Eure-et-Loir avec PH taux incapacite trop faible
   period: 2020-10
@@ -195,7 +195,7 @@
     menage:
       depcom: 28000
   output:
-    eure_et_loir_eligibilite_repas_foyer_personne_handicape: False
+    eure_et_loir_eligibilite_repas_foyer_personne_handicapee: False
 
 - name: Non Eligibilité à l'aide repas foyer de l'Eure-et-Loir avec PH non ressortissant UE non apatride non refugie
   period: 2020-10
@@ -219,7 +219,7 @@
     menage:
       depcom: 28000
   output:
-    eure_et_loir_eligibilite_repas_foyer_personne_handicape: False
+    eure_et_loir_eligibilite_repas_foyer_personne_handicapee: False
 
 - name: Non Eligibilité à l'aide repas foyer de l'Eure-et-Loir avec PH ayant trop de ressources dont retraite complémentaire
   period: 2020-10
@@ -243,7 +243,7 @@
     menage:
       depcom: 28000
   output:
-    eure_et_loir_eligibilite_repas_foyer_personne_handicape: False
+    eure_et_loir_eligibilite_repas_foyer_personne_handicapee: False
 
 - name: Non Eligibilité à l'aide repas foyer de l'Eure-et-Loir avec PH habitant hors 28
   period: 2020-10
@@ -265,4 +265,4 @@
     menage:
       depcom: 45000
   output:
-    eure_et_loir_eligibilite_repas_foyer_personne_handicape: False
+    eure_et_loir_eligibilite_repas_foyer_personne_handicapee: False
