@@ -67,7 +67,6 @@ class fsl_reform(reforms.Reform):
         self.add_variable(fsl_factory_departement('doubs', 'du Doubs', b'25'))
         self.add_variable(fsl_factory_departement('drome', 'de la Drôme', b'26'))
         self.add_variable(fsl_factory_departement('eure', 'de l’Eure', b'27'))
-        self.add_variable(fsl_factory_departement('eure_et_loir', 'de l’Eure-et-Loir', b'28'))
         self.add_variable(fsl_factory_departement('finistere', 'du Finistère', b'29', 242900314))
         self.add_variable(fsl_factory_metropole('brest', 'de Brest Métropole', 242900314))
         self.add_variable(fsl_factory_departement('gard', 'du Gard', b'30'))
