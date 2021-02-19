@@ -48,7 +48,7 @@ class eure_et_loir_eligibilite_repas_foyer_personne_handicapee(Variable):
     documentation = """
                         Les personnes en situation de handicap peuvent bénéficier d’une prise en charge des frais de repas servis par des foyers restaurant créés par les communes, les CCAS ou les CIAS habilités à l’aide sociale. 
                         La participation financière du bénéficiaire est déterminée en fonction de ses ressources et du prix du repas.
-                        Cette aide n’est pas cumulable avec l’Allocation compensatrice pour tierce personne (ACTP), la Majoration Tierce Personne (MTP versée par la CPAM) et les prestations d’aide-ménagère servies par les caisses de retraite
+                        Cette aide n’est pas cumulable avec l’Allocation compensatrice pour tierce personne (ACTP), la Majoration Tierce Personne (MTP versée par la CPAM) et les prestations d’aide-ménagère servies par les caisses de retraite.
                     """
 
     def formula_2020_01(individu, period, parameters):
@@ -60,6 +60,7 @@ class eure_et_loir_eligibilite_repas_foyer_personne_handicapee(Variable):
         repas_foyer_parameters = parameters(
             period).departements.eure_et_loir.repas_foyer.repas_foyer
 
+        # Base de ressources identique à celle pour l'aide ménagère PH.
         individual_resource_names = {
             'aah',
             'salaire_imposable',
