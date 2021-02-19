@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from openfisca_france.model.base import Variable, Individu, MONTH, not_, DIVIDE
-from openfisca_france.model.prestations.autonomie import TypesGir
+
 
 class eure_et_loir_eligibilite_repas_foyer_personne_agee(Variable):
     value_type = bool
@@ -19,7 +19,6 @@ class eure_et_loir_eligibilite_repas_foyer_personne_agee(Variable):
         age = individu('age', period)
         inapte_travail = individu('inapte_travail', period)
         ressortissant_eee = individu('ressortissant_eee', period)
-        gir = individu('gir', period)
         repas_foyer_parameters = parameters(
             period).departements.eure_et_loir.repas_foyer.repas_foyer
 
@@ -27,7 +26,6 @@ class eure_et_loir_eligibilite_repas_foyer_personne_agee(Variable):
         condition_age = ((age >= repas_foyer_parameters.age_minimal_personne_agee_apte_travail) + (
             (age >= repas_foyer_parameters.age_minimal_personne_agee_inapte_travail) * inapte_travail))
         condition_nationalite = ressortissant_eee + individu('titre_sejour', period) + individu('refugie',period) + individu('apatride', period)
-        condition_gir = ((gir == TypesGir.gir_5) + (gir == TypesGir.gir_6))
         condition_ressources = individu('asi_aspa_base_ressources_individu',period) < individu.famille('aspa', period)
 
         condition_apa = individu('apa_domicile', period.last_month) <= 0
@@ -36,7 +34,7 @@ class eure_et_loir_eligibilite_repas_foyer_personne_agee(Variable):
         condition_aide_menagere_caisse_retraite = False if individu('aide_menagere_fournie_caisse_retraite',period.last_month) else True
         conditions_aides = condition_apa * condition_aide_menagere_caisse_retraite * condition_aides_actp * condition_aides_mtp
 
-        return condition_residence * condition_age * condition_nationalite * condition_gir * condition_ressources * conditions_aides
+        return condition_residence * condition_age * condition_nationalite * condition_ressources * conditions_aides
 
 
 class eure_et_loir_eligibilite_repas_foyer_personne_handicape(Variable):
