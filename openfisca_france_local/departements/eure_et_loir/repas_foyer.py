@@ -20,7 +20,7 @@ class eure_et_loir_eligibilite_repas_foyer_personne_agee(Variable):
         inapte_travail = individu('inapte_travail', period)
         ressortissant_eee = individu('ressortissant_eee', period)
         repas_foyer_parameters = parameters(
-            period).departements.eure_et_loir.repas_foyer.repas_foyer
+            period).departements.eure_et_loir.repas_foyer
 
         condition_residence = individu.menage('eure_et_loir_eligibilite_residence', period)
         condition_age = ((age >= repas_foyer_parameters.age_minimal_personne_agee_apte_travail) + (
@@ -64,7 +64,7 @@ class eure_et_loir_eligibilite_repas_foyer_personne_handicapee(Variable):
         ressortissant_eee = individu('ressortissant_eee', period)
 
         repas_foyer_parameters = parameters(
-            period).departements.eure_et_loir.repas_foyer.repas_foyer
+            period).departements.eure_et_loir.repas_foyer
 
         # Base de ressources identique à celle pour l'aide ménagère PH.
         individual_resource_names = {
