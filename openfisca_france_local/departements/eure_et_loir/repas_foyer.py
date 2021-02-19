@@ -6,7 +6,7 @@ class eure_et_loir_eligibilite_repas_foyer_personne_agee(Variable):
     value_type = bool
     entity = Individu
     definition_period = MONTH
-    label = "En Eure-et-Loir, éligibilité à l'aide Repas Foyer de l'Eure-et-Loir pour les personnes âgées"
+    label = "En Eure-et-Loir, éligibilité à l'aide Repas Foyer pour les personnes âgées"
     reference = ["Titre 2 Chapitre 1-2 du règlement départementl d'Aide Sociale PA PH de l'Eure-et-Loir",
                  "https://github.com/openfisca/openfisca-france-local/wiki/files/departements/eure-et-loir/RDAS_valide__decembre_2019.pdf"
                  ]
