@@ -31,7 +31,7 @@ class eure_et_loir_eligibilite_repas_foyer_personne_agee(Variable):
         condition_apa = individu('apa_domicile', period.last_month) <= 0
         condition_aides_actp = not_(individu('actp', period))
         condition_aides_mtp = not_(individu('mtp', period))
-        condition_aide_menagere_caisse_retraite = False if individu('aide_menagere_fournie_caisse_retraite',period.last_month) else True
+        condition_aide_menagere_caisse_retraite = not_(individu('aide_menagere_fournie_caisse_retraite', period))
         conditions_aides = condition_apa * condition_aide_menagere_caisse_retraite * condition_aides_actp * condition_aides_mtp
 
         return condition_residence * condition_age * condition_nationalite * condition_ressources * conditions_aides
