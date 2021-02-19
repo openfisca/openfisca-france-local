@@ -20,7 +20,7 @@ class eure_et_loir_eligibilite_fsl_acces_logement(Variable):
                      l’achat d’appareils ménagers et de mobilier de première nécessité.
                     """
 
-    def formula_2020_10(menage, period):
+    def formula_2020_01(menage, period):
         condition_residence = menage('eure_et_loir_eligibilite_residence', period)
         condition_ressources = menage('eure_et_loir_ressources_menage_inférieure_seuil_pauvrete_60', period)
         return condition_residence * condition_ressources
@@ -39,7 +39,7 @@ class eure_et_loir_fsl_eligibilite_installation_logement(Variable):
                         Il s’agit d’un aide pour des équipements de première nécessité.
                     """
 
-    def formula_2020_10(menage, period):
+    def formula_2020_01(menage, period):
         condition_residence = menage('eure_et_loir_eligibilite_residence', period)
         condition_ressources = menage('eure_et_loir_ressources_menage_inférieure_seuil_pauvrete_60', period)
         return condition_residence * condition_ressources
@@ -59,7 +59,7 @@ class eure_et_loir_fsl_eligibilite_maintien_logement(Variable):
                          les impayés de loyer et le nettoyage et les petits travaux du logement.
                     """
 
-    def formula_2020_10(menage, period):
+    def formula_2020_01(menage, period):
         statut_occupation_logement = menage('statut_occupation_logement', period)
 
         condition_locataire_proprietaire = (       statut_occupation_logement == TypesStatutOccupationLogement.proprietaire) + (
@@ -86,7 +86,7 @@ class eure_et_loir_fsl_eligibilite_maintien_fourniture(Variable):
                         A ce titre, une aide peut être accordée et versée au créancier.
                     """
 
-    def formula_2020_10(menage, period, parameters):
+    def formula_2020_01(menage, period, parameters):
         statut_occupation_logement = menage('statut_occupation_logement', period)
         condition_locataire_proprietaire = (statut_occupation_logement == TypesStatutOccupationLogement.proprietaire) + (
                                             statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm) + (
@@ -104,7 +104,7 @@ class eure_et_loir_ressources_menage_inférieure_seuil_pauvrete_60(Variable):
     entity = Menage
     definition_period = MONTH
 
-    def formula(menage, period, parameters):
+    def formula_2020_01(menage, period, parameters):
 
         menage_resource_names = {
             'salaire_imposable',
