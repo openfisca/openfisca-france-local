@@ -1,15 +1,14 @@
-# -*- coding: utf-8 -*-
+import numpy as np
 
 from openfisca_france.model.base import Variable, Menage, MONTH, TypesStatutOccupationLogement
-import numpy as np
 
 
 class eure_et_loir_eligibilite_fsl_acces_logement(Variable):
     value_type = bool
     entity = Menage
     definition_period = MONTH
-    label = "En Eure-et-Loir, éligibilité au Fonds de solidarité pour le logement (FSL) – Accès au logement pour les personnes précarisées"
-    reference = ["Chapitre 2 du règlement intérieur des Fonds de Solidarité pour le logement d'Eure-et-Loir",
+    label = "En Eure-et-Loir, éligibilité au Fonds de solidarité pour le Logement (FSL) – Accès au logement pour les personnes précarisées"
+    reference = ["Chapitre 2 du règlement intérieur des Fonds de Solidarité pour le Logement d'Eure-et-Loir",
                  "https://github.com/openfisca/openfisca-france-local/wiki/files/departements/eure-et-loir/RI_FSL28_2020_valide_AD_16.12.2019.pdf"
                  ]
     documentation = """
@@ -22,7 +21,7 @@ class eure_et_loir_eligibilite_fsl_acces_logement(Variable):
 
     def formula_2020_01(menage, period):
         condition_residence = menage('eure_et_loir_eligibilite_residence', period)
-        condition_ressources = menage('eure_et_loir_ressources_menage_inférieure_seuil_pauvrete_60', period)
+        condition_ressources = menage('eure_et_loir_fsl_base_ressources', period)
         return condition_residence * condition_ressources
 
 
@@ -30,8 +29,8 @@ class eure_et_loir_fsl_eligibilite_installation_logement(Variable):
     value_type = bool
     entity = Menage
     definition_period = MONTH
-    label = "En Eure-et-Loir, éligibilité au Fonds de solidarité pour le logement (FSL) – Installation dans le logement pour les personnes précarisées"
-    reference = ["Chapitre 2 du règlement intérieur des Fonds de Solidarité pour le logement d'Eure-et-Loir",
+    label = "En Eure-et-Loir, éligibilité au Fonds de solidarité pour le Logement (FSL) – Installation dans le logement pour les personnes précarisées"
+    reference = ["Chapitre 2 du règlement intérieur des Fonds de Solidarité pour le Logement d'Eure-et-Loir",
                  "https://github.com/openfisca/openfisca-france-local/wiki/files/departements/eure-et-loir/RI_FSL28_2020_valide_AD_16.12.2019.pdf"
                  ]
     documentation = """
@@ -41,7 +40,7 @@ class eure_et_loir_fsl_eligibilite_installation_logement(Variable):
 
     def formula_2020_01(menage, period):
         condition_residence = menage('eure_et_loir_eligibilite_residence', period)
-        condition_ressources = menage('eure_et_loir_ressources_menage_inférieure_seuil_pauvrete_60', period)
+        condition_ressources = menage('eure_et_loir_fsl_base_ressources', period)
         return condition_residence * condition_ressources
 
 
@@ -49,8 +48,8 @@ class eure_et_loir_fsl_eligibilite_maintien_logement(Variable):
     value_type = bool
     entity = Menage
     definition_period = MONTH
-    label = "En Eure-et-Loir, éligibilité au Fonds de solidarité pour le logement (FSL) – Maintien dans le logement pour les personnes précarisées"
-    reference = ["Chapitre 2 du règlement intérieur des Fonds de Solidarité pour le logement d'Eure-et-Loir",
+    label = "En Eure-et-Loir, éligibilité au Fonds de solidarité pour le Logement (FSL) – Maintien dans le logement pour les personnes précarisées"
+    reference = ["Chapitre 2 du règlement intérieur des Fonds de Solidarité pour le Logement d'Eure-et-Loir",
                  "https://github.com/openfisca/openfisca-france-local/wiki/files/departements/eure-et-loir/RI_FSL28_2020_valide_AD_16.12.2019.pdf"
                  ]
     documentation = """
@@ -68,7 +67,7 @@ class eure_et_loir_fsl_eligibilite_maintien_logement(Variable):
                                                    statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble) + (
                                                    statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer)
         condition_residence = menage('eure_et_loir_eligibilite_residence', period)
-        condition_ressources = menage('eure_et_loir_ressources_menage_inférieure_seuil_pauvrete_60', period)
+        condition_ressources = menage('eure_et_loir_fsl_base_ressources', period)
 
         return condition_residence * condition_locataire_proprietaire * condition_ressources
 
@@ -77,8 +76,8 @@ class eure_et_loir_fsl_eligibilite_maintien_fourniture(Variable):
     value_type = bool
     entity = Menage
     definition_period = MONTH
-    label = "En Eure-et-Loir, éligibilité au Fonds de solidarité pour le logement (FSL) – Maintien des fournitures  « Energie-Eau-Téléphone » pour les personnes précarisées"
-    reference = ["Chapitre 2 du règlement intérieur des Fonds de Solidarité pour le logement d'Eure-et-Loir",
+    label = "En Eure-et-Loir, éligibilité au Fonds de solidarité pour le Logement (FSL) – Maintien des fournitures  « Energie-Eau-Téléphone » pour les personnes précarisées"
+    reference = ["Chapitre 2 du règlement intérieur des Fonds de Solidarité pour le Logement d'Eure-et-Loir",
                  "https://github.com/openfisca/openfisca-france-local/wiki/files/departements/eure-et-loir/RI_FSL28_2020_valide_AD_16.12.2019.pdf"
                  ]
     documentation = """
@@ -94,15 +93,20 @@ class eure_et_loir_fsl_eligibilite_maintien_fourniture(Variable):
                                             statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble) + (
                                             statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer)
         condition_residence = menage('eure_et_loir_eligibilite_residence', period)
-        condition_ressources = menage('eure_et_loir_ressources_menage_inférieure_seuil_pauvrete_60', period)
+        condition_ressources = menage('eure_et_loir_fsl_base_ressources', period)
 
         return condition_residence * condition_locataire_proprietaire * condition_ressources
 
 
-class eure_et_loir_ressources_menage_inférieure_seuil_pauvrete_60(Variable):
+class eure_et_loir_fsl_base_ressources(Variable):
     value_type = bool
     entity = Menage
     definition_period = MONTH
+    label = "Base de ressources prises en compte pour l'éligibilité au Fonds de solidarité pour le Logement (FSL)"
+    reference = [
+        "Annexe 1 du règlement intérieur des Fonds de Solidarité pour le Logement d'Eure-et-Loir",
+        "https://github.com/openfisca/openfisca-france-local/wiki/files/departements/eure-et-loir/RI_FSL28_2020_valide_AD_16.12.2019.pdf"
+    ]
 
     def formula_2020_01(menage, period, parameters):
 
