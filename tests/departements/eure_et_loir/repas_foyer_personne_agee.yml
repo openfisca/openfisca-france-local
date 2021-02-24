@@ -10,7 +10,7 @@
         age: 66
         inapte_travail: False
         nationalite: FR
-        actp: False
+        beneficiaire_actp: False
         mtp: False
     familles:
       _:
@@ -35,7 +35,7 @@
         age: 61
         inapte_travail: True
         nationalite: FR
-        actp: False
+        beneficiaire_actp: False
         mtp: False
     familles:
       _:
@@ -60,7 +60,7 @@
         age: 66
         inapte_travail: False
         nationalite: FR
-        actp: False
+        beneficiaire_actp: False
         mtp: False
     familles:
       _:
@@ -85,7 +85,7 @@
         age: 66
         inapte_travail: False
         nationalite: IT
-        actp: False
+        beneficiaire_actp: False
         mtp: False
     familles:
       _:
@@ -111,7 +111,7 @@
         inapte_travail: False
         nationalite: LYD
         refugie: True
-        actp: False
+        beneficiaire_actp: False
         mtp: False
     familles:
       _:
@@ -136,7 +136,7 @@
         age: 66
         inapte_travail: False
         apatride: True
-        actp: False
+        beneficiaire_actp: False
         mtp: False
     familles:
       _:
@@ -161,7 +161,7 @@
         age: 62
         inapte_travail: False
         nationalite: FR
-        actp: False
+        beneficiaire_actp: False
         mtp: False
     familles:
       _:
@@ -186,7 +186,7 @@
         age: 59
         inapte_travail: True
         nationalite: FR
-        actp: False
+        beneficiaire_actp: False
         mtp: False
     familles:
       _:
@@ -211,7 +211,7 @@
         age: 66
         inapte_travail: False
         nationalite: FR
-        actp: False
+        beneficiaire_actp: False
         mtp: False
     familles:
       _:
@@ -239,7 +239,7 @@
         nationalite: LL
         refugie: False
         apatride: False
-        actp: False
+        beneficiaire_actp: False
         mtp: False
     familles:
       _:
@@ -264,7 +264,7 @@
         age: 66
         inapte_travail: False
         nationalite: FR
-        actp: False
+        beneficiaire_actp: False
         mtp: False
     familles:
       _:
@@ -289,7 +289,7 @@
         age: 66
         inapte_travail: False
         nationalite: FR
-        actp: True
+        beneficiaire_actp: True
         mtp: False
     familles:
       _:
@@ -314,7 +314,7 @@
         age: 66
         inapte_travail: False
         nationalite: FR
-        actp: False
+        beneficiaire_actp: False
         mtp: True
     familles:
       _:
@@ -339,7 +339,7 @@
         age: 66
         inapte_travail: False
         nationalite: FR
-        actp: False
+        beneficiaire_actp: False
         mtp: False
         apa_domicile:
           2020-09: 100

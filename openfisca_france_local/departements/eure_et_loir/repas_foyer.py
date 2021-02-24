@@ -29,7 +29,7 @@ class eure_et_loir_eligibilite_repas_foyer_personne_agee(Variable):
         condition_ressources = individu('asi_aspa_base_ressources_individu', period) <= individu.famille('aspa', period)
 
         condition_apa = individu('apa_domicile', period.last_month) <= 0
-        condition_aides_actp = not_(individu('actp', period))
+        condition_aides_actp = not_(individu('beneficiaire_actp', period))
         condition_aides_mtp = not_(individu('mtp', period))
         condition_aide_menagere_caisse_retraite = not_(individu('aide_menagere_fournie_caisse_retraite', period))
         conditions_non_cumul = condition_apa * condition_aide_menagere_caisse_retraite * condition_aides_actp * condition_aides_mtp
@@ -92,7 +92,7 @@ class eure_et_loir_eligibilite_repas_foyer_personne_handicapee(Variable):
                                          (taux_incapacite >= repas_foyer_parameters.taux_incapacite_minimum_restriction_acces_emploi) * restriction_substantielle_durable)))
         condition_ressources = individu_resources <= individu.famille('aspa', period)
 
-        condition_aides_actp = not_(individu('actp', period))
+        condition_aides_actp = not_(individu('beneficiaire_actp', period))
         condition_aides_mtp = not_(individu('mtp', period))
         condition_aide_menagere_caisse_retraite = not_(individu('aide_menagere_fournie_caisse_retraite', period))
         conditions_non_cumul = condition_aide_menagere_caisse_retraite * condition_aides_actp * condition_aides_mtp
