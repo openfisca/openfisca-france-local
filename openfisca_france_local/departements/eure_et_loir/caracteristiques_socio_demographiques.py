@@ -25,14 +25,6 @@ class apatride(Variable):
     default_value = False
 
 
-class aide_menagere_fournie_caisse_retraite(Variable):
-    value_type = bool
-    label = "Bénéficiaire de prestations d’aide-ménagère servie par les caisses de retraite"
-    entity = Individu
-    definition_period = MONTH
-    default_value = False
-
-
 class beneficiaire_actp(Variable):
     value_type = bool
     label = "Bénéficiaire de l'Allocation compensatrice pour tierce personne"

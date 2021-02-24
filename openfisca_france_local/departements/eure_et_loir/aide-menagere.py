@@ -3,6 +3,14 @@ from openfisca_france.model.base import Variable, Individu, MONTH, not_, DIVIDE
 from openfisca_france.model.prestations.autonomie import TypesGir
 
 
+class aide_menagere_fournie_caisse_retraite(Variable):
+    value_type = bool
+    label = "Bénéficiaire de prestations d’aide-ménagère servie par les caisses de retraite"
+    entity = Individu
+    definition_period = MONTH
+    default_value = False
+
+
 class eure_et_loir_eligibilite_aide_menagere_personne_agee(Variable):
     value_type = bool
     entity = Individu
