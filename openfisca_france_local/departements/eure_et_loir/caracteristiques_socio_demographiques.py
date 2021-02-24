@@ -1,4 +1,4 @@
-from openfisca_france.model.base import Variable, Individu, MONTH, Famille
+from openfisca_france.model.base import Variable, Individu, Famille, MONTH
 
 
 class titre_sejour(Variable):
@@ -25,14 +25,6 @@ class apatride(Variable):
     default_value = False
 
 
-class aide_menagere_fournie_caisse_retraite(Variable):
-    value_type = bool
-    label = "Bénéficiaire de prestations d’aide-ménagère servie par les caisses de retraite"
-    entity = Individu
-    definition_period = MONTH
-    default_value = False
-
-
 class beneficiaire_actp(Variable):
     value_type = bool
     label = "Bénéficiaire de l'Allocation compensatrice pour tierce personne"
@@ -43,7 +35,7 @@ class beneficiaire_actp(Variable):
 
 class mtp(Variable):
     value_type = bool
-    label = "Bénéficiaire de la Majoration Tierce Personne"
+    label ="Bénéficiaire de la Majoration Tierce Personne"
     entity = Individu
     definition_period = MONTH
     default_value = False
@@ -64,13 +56,13 @@ class beneficiaire_complement_aeeh(Variable):
     definition_period = MONTH
     default_value = False
 
-
-class actp(Variable):
+class mtp(Variable):
     value_type = bool
-    label ="Bénéficiaire de l'Allocation compensatrice pour tierce personne"
+    label ="Bénéficiaire de la Majoration Tierce Personne"
     entity = Individu
     definition_period = MONTH
     default_value = False
+
 
 class station_debout_penible(Variable):
     value_type = bool
@@ -78,6 +70,7 @@ class station_debout_penible(Variable):
     entity = Individu
     definition_period = MONTH
     default_value = False
+
 
 class refugie(Variable):
     value_type = bool

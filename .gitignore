@@ -8,5 +8,6 @@ build
 *.egg-info
 *.pyc
 
-# Développement sur PyCharm IDEA
+# Edition de code en local
 .idea
+/.vscode
