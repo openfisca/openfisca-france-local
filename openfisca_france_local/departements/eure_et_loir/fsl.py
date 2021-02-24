@@ -1,6 +1,9 @@
-import numpy as np
-
-from openfisca_france.model.base import Variable, Menage, MONTH, TypesStatutOccupationLogement, where
+from openfisca_france.model.base import (
+    Variable, Menage,
+    MONTH,
+    TypesStatutOccupationLogement,
+    where
+    )
 
 
 class eure_et_loir_eligibilite_fsl_acces_logement(Variable):
@@ -109,10 +112,10 @@ class eure_et_loir_fsl_base_ressources(Variable):
     ]
 
     def formula_2020_01(menage, period, parameters):
-
-        menage_resource_names = {
+        individu_resources_names = {
             'salaire_imposable',
             'chomage_imposable',
+            'bourse_enseignement_sup',
             'revenus_stage_formation_pro',
             'rsa_base_ressources_patrimoine_individu',
             'indemnites_journalieres',
@@ -125,11 +128,12 @@ class eure_et_loir_fsl_base_ressources(Variable):
             'pch'
         }
 
-        menage_resources_annuelle_names = {
+        individu_resources_annuelle_names = {
             'retraite_complementaire_artisan_commercant',
             'retraite_complementaire_profession_liberale'
         }
-        menage_resource_names_famille = {
+
+        famille_resources_names = {
             'asf',
             'paje',
             'paje_cmg',
@@ -140,18 +144,26 @@ class eure_et_loir_fsl_base_ressources(Variable):
             'bourse_college',
             'bourse_lycee'
         }
-        menage_resource_names_famille_annuelles = {
+        famille_resources_names_annuelles = {
             'ars'
         }
-        menage_resources_mensuelles = np.sum(
-            sum([menage.members(resource, period) for resource in menage_resource_names]))
-        menage_resources_annuelles = np.sum(
-            sum([menage.members(resource, period.this_year) for resource in menage_resources_annuelle_names]))
-        menage_resources_mensuelles_famille = np.sum(
-            sum([menage.members.famille(resource, period) for resource in menage_resource_names_famille]))
-        menage_resources_annuelles_famille = np.sum(
-            sum([menage.members.famille(resource, period.this_year) for resource in
-                 menage_resource_names_famille_annuelles]))
+
+        menage_resources_mensuelles = menage.sum(sum([
+            menage.members(resource, period)
+            for resource in individu_resources_names
+        ]))
+        menage_resources_annuelles = menage.sum(sum([
+            menage.members(resource, period.this_year)
+            for resource in individu_resources_annuelle_names
+        ]))
+        menage_resources_mensuelles_famille = menage.sum(sum([
+            menage.members.famille(resource, period)
+            for resource in famille_resources_names
+        ]))
+        menage_resources_annuelles_famille = menage.sum(sum([
+            menage.members.famille(resource, period.this_year) 
+            for resource in famille_resources_names_annuelles
+        ]))
 
         menage_resources = ( 
             menage_resources_mensuelles
