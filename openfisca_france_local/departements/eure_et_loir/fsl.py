@@ -148,24 +148,24 @@ class eure_et_loir_fsl_base_ressources(Variable):
             'ars'
         }
 
-        menage_resources_mensuelles = menage.sum(sum([
+        menage_resources_mensuelles = sum([
             menage.members(resource, period)
             for resource in individu_resources_names
-        ]))
-        menage_resources_annuelles = menage.sum(sum([
+        ])
+        menage_resources_annuelles = sum([
             menage.members(resource, period.this_year)
             for resource in individu_resources_annuelle_names
-        ]))
-        menage_resources_mensuelles_famille = menage.sum(sum([
+        ])
+        menage_resources_mensuelles_famille = sum([
             menage.members.famille(resource, period)
             for resource in famille_resources_names
-        ]))
-        menage_resources_annuelles_famille = menage.sum(sum([
+        ])
+        menage_resources_annuelles_famille = sum([
             menage.members.famille(resource, period.this_year) 
             for resource in famille_resources_names_annuelles
-        ]))
+        ])
 
-        menage_resources = ( 
+        menage_resources = menage.sum( 
             menage_resources_mensuelles
             + menage_resources_annuelles
             + menage_resources_mensuelles_famille
