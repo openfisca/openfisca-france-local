@@ -1,6 +1,6 @@
 import numpy as np
 
-from openfisca_france.model.base import Variable, Menage, MONTH, TypesStatutOccupationLogement
+from openfisca_france.model.base import Variable, Menage, MONTH, TypesStatutOccupationLogement, where
 
 
 class eure_et_loir_eligibilite_fsl_acces_logement(Variable):
@@ -153,14 +153,26 @@ class eure_et_loir_fsl_base_ressources(Variable):
             sum([menage.members.famille(resource, period.this_year) for resource in
                  menage_resource_names_famille_annuelles]))
 
-        menage_resources = menage_resources_mensuelles + menage_resources_annuelles + menage_resources_mensuelles_famille + menage_resources_annuelles_famille
-        nbenf = menage.members('enfant_a_charge', period.this_year)
-        nb_enf_charge = int(menage.sum(nbenf))
-        is_en_couple = menage.members.famille('en_couple', period)
-        fsl_parameters = parameters(period).departements.eure_et_loir.fsl.fsl
-        if is_en_couple[0]:
-            seuil_pauvrete = fsl_parameters["en_" + str(nb_enf_charge)].couple
-        else:
-            seuil_pauvrete = fsl_parameters["en_" + str(nb_enf_charge)].single
-        condition_ressources = True if menage_resources <= seuil_pauvrete else False
+        menage_resources = ( 
+            menage_resources_mensuelles
+            + menage_resources_annuelles
+            + menage_resources_mensuelles_famille
+            + menage_resources_annuelles_famille
+            )
+
+        enfants_a_charge = menage.members('enfant_a_charge', period.this_year)
+        nb_enfants_a_charge = menage.sum(enfants_a_charge)
+        en_couple = menage.sum(menage.members.famille('en_couple', period))
+
+        fsl_parameters = parameters(period).departements.eure_et_loir.fsl
+        bareme_ressources_seul = fsl_parameters.bareme_ressources_seul
+        bareme_ressources_couple = fsl_parameters.bareme_ressources_couple
+
+        seuil_pauvrete = where(
+            en_couple,
+            bareme_ressources_couple.calc(nb_enfants_a_charge),
+            bareme_ressources_seul.calc(nb_enfants_a_charge)
+            )
+
+        condition_ressources = menage_resources <= seuil_pauvrete
         return condition_ressources
