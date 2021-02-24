@@ -15,15 +15,17 @@
         enfant_a_charge:
           2020: True
     menage:
-      personne_de_reference:
-        - parent1
-      conjoint: "parent2"
+      personne_de_reference: parent1
+      conjoint: parent2
       enfants: [ "Toto", "Tata" ]
       eure_et_loir_eligibilite_residence: True
       statut_occupation_logement: proprietaire
     famille:
-      en_couple: 1
+      en_couple: True
       parents: [ "parent1", "parent2" ]
+    foyer_fiscal:
+      declarants: [ parent1, parent2 ]
+      personnes_a_charge: [ Toto, Tata ]
   output:
     eure_et_loir_fsl_eligibilite_maintien_logement: True
 
@@ -50,14 +52,16 @@
         enfant_a_charge:
           2020: True
     menage:
-      personne_de_reference:
-        - parent1
+      personne_de_reference: parent1
       enfants: [ "Toto", "Tata","Titi","Tutu" ]
       eure_et_loir_eligibilite_residence: True
       statut_occupation_logement: proprietaire
     famille:
-      en_couple: 0
-      parents: [ "parent1" ]
+      en_couple: False
+      parents: [ parent1 ]
+    foyer_fiscal:
+      declarants: [ parent1 ]
+      personnes_a_charge: [ Toto, Tata, Titi, Tutu ]
   output:
     eure_et_loir_fsl_eligibilite_maintien_logement: True
 
@@ -84,14 +88,16 @@
         enfant_a_charge:
           2020: True
     menage:
-      personne_de_reference:
-        - parent1
+      personne_de_reference: parent1
       enfants: [ "Toto", "Tata","Titi","Tutu" ]
       eure_et_loir_eligibilite_residence: True
       statut_occupation_logement: locataire_vide
     famille:
-      en_couple: 0
-      parents: [ "parent1" ]
+      en_couple: False
+      parents: [ parent1 ]
+    foyer_fiscal:
+      declarants: [ parent1 ]
+      personnes_a_charge: [ Toto, Tata, Titi, Tutu ]
   output:
     eure_et_loir_fsl_eligibilite_maintien_logement: True
 
@@ -118,14 +124,16 @@
         enfant_a_charge:
           2020: True
     menage:
-      personne_de_reference:
-        - parent1
+      personne_de_reference: parent1
       enfants: [ "Toto", "Tata","Titi","Tutu" ]
       eure_et_loir_eligibilite_residence: False
       statut_occupation_logement: proprietaire
     famille:
-      en_couple: 0
-      parents: [ "parent1" ]
+      en_couple: False
+      parents: [ parent1 ]
+    foyer_fiscal:
+      declarants: [ parent1 ]
+      personnes_a_charge: [ Toto, Tata, Titi, Tutu ]
   output:
     eure_et_loir_fsl_eligibilite_maintien_logement: False
 
@@ -152,14 +160,16 @@
         enfant_a_charge:
           2020: True
     menage:
-      personne_de_reference:
-        - parent1
+      personne_de_reference: parent1
       enfants: [ "Toto", "Tata","Titi","Tutu" ]
       eure_et_loir_eligibilite_residence: True
       statut_occupation_logement: proprietaire
     famille:
-      en_couple: 0
-      parents: [ "parent1" ]
+      en_couple: False
+      parents: [ parent1 ]
+    foyer_fiscal:
+      declarants: [ parent1 ]
+      personnes_a_charge: [ Toto, Tata, Titi, Tutu ]
   output:
     eure_et_loir_fsl_eligibilite_maintien_logement: False
 
@@ -186,13 +196,15 @@
         enfant_a_charge:
           2020: True
     menage:
-      personne_de_reference:
-        - parent1
+      personne_de_reference: parent1
       enfants: [ "Toto", "Tata","Titi","Tutu" ]
       eure_et_loir_eligibilite_residence: True
       statut_occupation_logement: primo_accedant
     famille:
-      en_couple: 0
-      parents: [ "parent1" ]
+      en_couple: False
+      parents: [ parent1 ]
+    foyer_fiscal:
+      declarants: [ parent1 ]
+      personnes_a_charge: [ Toto, Tata, Titi, Tutu ]
   output:
     eure_et_loir_fsl_eligibilite_maintien_logement: False

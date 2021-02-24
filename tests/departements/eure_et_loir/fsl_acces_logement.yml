@@ -15,14 +15,16 @@
         enfant_a_charge:
           2020: True
     menage:
-      personne_de_reference:
-        - parent1
-      conjoint: "parent2"
+      personne_de_reference: parent1
+      conjoint: parent2
       enfants: [ "Toto", "Tata" ]
       eure_et_loir_eligibilite_residence: True
     famille:
       en_couple: True
       parents: [ "parent1", "parent2" ]
+    foyer_fiscal:
+      declarants: [ parent1, parent2 ]
+      personnes_a_charge: [ Toto, Tata ]
   output:
     eure_et_loir_eligibilite_fsl_acces_logement: True
 
@@ -49,13 +51,15 @@
         enfant_a_charge:
           2020: True
     menage:
-      personne_de_reference:
-        - parent1
+      personne_de_reference: parent1
       enfants: [ "Toto", "Tata","Titi","Tutu" ]
       eure_et_loir_eligibilite_residence: True
     famille:
       en_couple: False
       parents: [ "parent1" ]
+    foyer_fiscal:
+      declarants: [ parent1 ]
+      personnes_a_charge: [ Toto, Tata, Titi, Tutu ]
   output:
     eure_et_loir_eligibilite_fsl_acces_logement: True
 
@@ -82,13 +86,15 @@
         enfant_a_charge:
           2020: True
     menage:
-      personne_de_reference:
-        - parent1
+      personne_de_reference: parent1
       enfants: [ "Toto", "Tata","Titi","Tutu" ]
       eure_et_loir_eligibilite_residence: False
     famille:
       en_couple: False
       parents: [ "parent1" ]
+    foyer_fiscal:
+      declarants: [ parent1]
+      personnes_a_charge: [ Toto, Tata, Titi, Tutu ]
   output:
     eure_et_loir_eligibilite_fsl_acces_logement: False
 
@@ -115,12 +121,14 @@
         enfant_a_charge:
           2020: True
     menage:
-      personne_de_reference:
-        - parent1
+      personne_de_reference: parent1
       enfants: [ "Toto", "Tata","Titi","Tutu" ]
       eure_et_loir_eligibilite_residence: True
     famille:
       en_couple: False
       parents: [ "parent1" ]
+    foyer_fiscal:
+      declarants: [ parent1 ]
+      personnes_a_charge: [ Toto, Tata, Titi, Tutu ]
   output:
     eure_et_loir_eligibilite_fsl_acces_logement: False
