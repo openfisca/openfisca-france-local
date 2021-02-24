@@ -109,28 +109,6 @@
   output:
     eure_et_loir_eligibilite_repas_foyer_personne_handicapee: True
 
-- name: Eligibilité à l'aide repas foyer de l'Eure-et-Loir avec PH habitant 28
-  period: 2020-10
-  input:
-    individus:
-      p1:
-        retraite_imposable:
-          2020-09: 300
-        age: 59
-        nationalite: FR
-        taux_incapacite: 0.81
-        aah_restriction_substantielle_durable_acces_emploi: False
-    familles:
-      _:
-        parents: p1
-        rsa:
-          2020-09: 0
-        aspa: 903.20
-    menage:
-      depcom: 28230
-  output:
-    eure_et_loir_eligibilite_repas_foyer_personne_handicapee: True
-
 - name: Non Eligibilité à l'aide repas foyer de l'Eure-et-Loir avec PH >60 ans
   period: 2020-10
   input:
