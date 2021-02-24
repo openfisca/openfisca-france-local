@@ -117,7 +117,6 @@ class eure_et_loir_fsl_base_ressources(Variable):
             'chomage_imposable',
             'bourse_enseignement_sup',
             'revenus_stage_formation_pro',
-            'rsa_base_ressources_patrimoine_individu',
             'indemnites_journalieres',
             'pensions_alimentaires_percues',
             'prestation_compensatoire',
@@ -129,11 +128,15 @@ class eure_et_loir_fsl_base_ressources(Variable):
         }
 
         individu_resources_annuelle_names = {
+            # Selon le règlement, tous types de retraites complémentaires
             'retraite_complementaire_artisan_commercant',
             'retraite_complementaire_profession_liberale'
         }
 
         famille_resources_names = {
+            'rsa_socle',
+            'rsa_socle_majore',
+            'af',
             'asf',
             'paje',
             'paje_cmg',
