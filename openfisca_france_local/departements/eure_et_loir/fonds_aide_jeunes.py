@@ -1,7 +1,7 @@
 from openfisca_france.model.base import Variable, Individu, MONTH
 
 
-class eure_et_loir_eligibilite_FAJ(Variable):
+class eure_et_loir_eligibilite_faj(Variable):
     value_type = bool
     entity = Individu
     definition_period = MONTH
