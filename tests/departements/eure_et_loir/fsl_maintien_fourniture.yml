@@ -101,7 +101,7 @@
   output:
     eure_et_loir_fsl_eligibilite_maintien_fourniture: True
 
-- name: Non Eligibilité à l'aide FSL maintien fourniture d'Eure-et-Loir avec logement hors eure-et-loire
+- name: Non Eligibilité à l'aide FSL maintien fourniture d'Eure-et-Loir avec logement hors Eure-et-Loir
   period: 2020-10
   input:
     individus:

@@ -9,7 +9,7 @@ class eure_et_loir_eligibilite_transportsocial(Variable):
     reference = "https://github.com/openfisca/openfisca-france-local/wiki/files/departements/eure-et-loir/Procedure_transport_social_2019.pdf"
 
     def formula(individu, period, parameters):
-        reside_eure_et_loir = individu.menage('eure_loire_eligibilite_residence', period)
+        reside_eure_et_loir = individu.menage('eure_et_loir_eligibilite_residence', period)
         recoit_rsa = individu.famille('rsa', period) > 0
         a_entre_18_28_ans = 18 <= individu('age', period) <= 25
         rsa = parameters(period).prestations.minima_sociaux.rsa
