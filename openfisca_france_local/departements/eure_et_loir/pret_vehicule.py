@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from openfisca_france.model.base import Variable, Individu, MONTH
 
 
