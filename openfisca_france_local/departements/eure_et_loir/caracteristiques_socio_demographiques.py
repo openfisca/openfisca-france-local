@@ -85,3 +85,16 @@ class apatride(Variable):
     entity = Individu
     definition_period = MONTH
     default_value = False
+
+
+
+class eure_et_loir_revenus_nets_du_travail(Variable):
+    value_type = float
+    entity = Individu
+    definition_period = MONTH
+    label = "Montant des revenus nets du travail"
+
+    def formula(individu, period):
+        # Il faudra ajouter des revenus ici
+        return individu('salaire_net', period)
+
