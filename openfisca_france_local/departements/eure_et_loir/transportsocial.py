@@ -11,8 +11,9 @@ class eure_et_loir_eligibilite_transportsocial(Variable):
     def formula(individu, period, parameters):
         reside_eure_et_loir = individu.menage('eure_et_loir_eligibilite_residence', period)
         recoit_rsa = individu.famille('rsa', period) > 0
-        a_entre_18_28_ans = 18 <= individu('age', period) <= 25
+        age = individu('age', period)
+        a_entre_18_25_ans = (18 <= age) * (age <= 25)
         rsa = parameters(period).prestations.minima_sociaux.rsa
-        revenue_inferieur_RSA = individu('eure_et_loir_revenus_nets_du_travail', period) < rsa.montant_de_base_du_rsa
+        revenus_inferieurs_rsa = individu('eure_et_loir_revenus_nets_du_travail', period) < rsa.montant_de_base_du_rsa
 
-        return reside_eure_et_loir * (recoit_rsa + a_entre_18_25_ans * revenue_inferieur_RSA)
+        return reside_eure_et_loir * (recoit_rsa + a_entre_18_25_ans * revenus_inferieurs_rsa)
