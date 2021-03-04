@@ -18,6 +18,7 @@ class eure_et_loir_eligibilite_transportsocial(Variable):
     entity = Individu
     definition_period = MONTH
     label = "Transport social"
+    reference = "https://github.com/openfisca/openfisca-france-local/wiki/files/departements/eure-et-loir/Procedure_transport_social_2019.pdf"
 
     def formula(individu, period, parameters):
         reside_eure_et_loir = individu.menage('eure_loire_eligibilite_residence', period)

@@ -6,7 +6,8 @@ class eure_et_loir_eligibilite_pretvehicule(Variable):
     value_type = bool
     entity = Individu
     definition_period = MONTH
-    label = "Pret de vehicule"
+    label = "Prêt de véhicule"
+    reference = "https://github.com/openfisca/openfisca-france-local/wiki/files/departements/eure-et-loir/Reglement_pret_de_vehicules_juin_2019.pdf"
 
     def formula(individu, period):
         recoit_rsa = individu.famille('rsa', period) > 0
