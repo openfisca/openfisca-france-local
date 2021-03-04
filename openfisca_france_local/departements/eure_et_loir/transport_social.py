@@ -5,7 +5,7 @@ class eure_et_loir_eligibilite_transport_social(Variable):
     value_type = bool
     entity = Individu
     definition_period = MONTH
-    label = "Éligibilité à l'aide de transport social"
+    label = "En Eure-et-Loir, éligibilité à l'aide de transport social"
     reference = "https://github.com/openfisca/openfisca-france-local/wiki/files/departements/eure-et-loir/Procedure_transport_social_2019.pdf"
 
     def formula(individu, period, parameters):

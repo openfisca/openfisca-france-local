@@ -5,7 +5,7 @@ class eure_et_loir_eligibilite_faj(Variable):
     value_type = bool
     entity = Individu
     definition_period = MONTH
-    label = "Éligibilité au Fonds d'Aide aux Jeunes en difficulté (FAJ)"
+    label = "En Eure-et-Loir, éligibilité au Fonds d'Aide aux Jeunes en difficulté (FAJ)"
     reference = "https://github.com/openfisca/openfisca-france-local/wiki/files/departements/eure-et-loir/Reglement_FAJ_adopte_et_affiche_sept_2018.pdf"
 
     def formula(individu, period, parameters):
