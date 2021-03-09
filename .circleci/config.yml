@@ -1,13 +1,3 @@
-python2: &python2
-  working_directory: ~/openfisca-brestmetropole
-  docker:
-    - image: python:2.7.12
-
-python3: &python3
-  working_directory: ~/openfisca-brestmetropole
-  docker:
-    - image: python:3.6.7
-
 upgrade_pip: &upgrade_pip
   run:
     name: Upgrade pip
@@ -20,17 +10,10 @@ install_dependencies: &install_dependencies
 
 version: 2
 jobs:
-  test_python2:
-    <<: *python2
-    steps:
-      - checkout
-      - *upgrade_pip
-      - *install_dependencies
-      - run:
-          name: Run unit tests
-          command: make test
-  test_python3:
-    <<: *python3
+  test:
+    working_directory: ~/openfisca-brestmetropole
+    docker:
+      - image: python:3.7
     steps:
       - checkout
       - *upgrade_pip
@@ -43,5 +26,4 @@ workflows:
   version: 2
   test:
     jobs:
-      - test_python2
-      - test_python3
+      - test
