@@ -1,7 +1,7 @@
 defaults: &defaults
   working_directory: ~/openfisca-rennesmetropole
   docker:
-    - image: python:3.6.7
+    - image: python:3.7
 
 upgrade_pip: &upgrade_pip
   run:
