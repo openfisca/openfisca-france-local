@@ -57,7 +57,7 @@ class loire_atlantique_aide_mobilite_permis_b(Variable):
     value_type = float
     entity = Individu
     definition_period = MONTH
-    label = u"Montant pour l'aide à la mobilité du département de Loire Atlantique pour le permis B"
+    label = "Montant pour l'aide à la mobilité du département de Loire-Atlantique pour le permis B"
 
     def formula(individu, period):
         fin = individu('loire_atlantique_aide_mobilite_eligibilite_financiere', period)
