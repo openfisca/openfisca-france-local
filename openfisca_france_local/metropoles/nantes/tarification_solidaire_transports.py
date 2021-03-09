@@ -37,7 +37,7 @@ class nantes_metropole_tarification_solidaire_transport(Variable):
     value_type = float
     entity = Menage
     definition_period = MONTH
-    label = u"Ta tarification solidaire des transports de Nantes Métropole"
+    label = "La tarification solidaire des transports de Nantes Métropole"
 
     def formula(menage, period):
         metro = menage('nantes_metropole_tarification_solidaire_transport_eligibilite_geographique', period)
