@@ -36,6 +36,7 @@ class illkirch_graffenstaden_coupon_arts_et_sports_quotient_familial(Variable):
     value_type = float
     entity = Famille
     definition_period = MONTH
+    label = "Quotient familial pour le calcul du coupon Arts et Sports d'Illkirch Graffenstaden"
 
     def formula(famille, period):
       return famille.demandeur.foyer_fiscal('rfr', period.n_2) / 12 / famille.demandeur.foyer_fiscal('nbptr', period.n_2)

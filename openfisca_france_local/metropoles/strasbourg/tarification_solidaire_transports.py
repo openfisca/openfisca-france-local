@@ -5,7 +5,7 @@ class eurometropole_strasbourg_tarification_solidaire_transport_eligibilite_geog
     value_type = bool
     entity = Menage
     definition_period = MONTH
-    label = u"Éligibilité géographique pour la tarification solidaire des transports de l'Eurométropole de Strasbourg"
+    label = "Éligibilité géographique pour la tarification solidaire des transports de l'Eurométropole de Strasbourg"
 
     def formula(menage, period):
         return menage('menage_dans_epci_siren_246700488', period)
@@ -15,7 +15,7 @@ class eurometropole_strasbourg_tarification_solidaire_transport_quotient_familia
     value_type = float
     entity = Individu
     definition_period = MONTH
-    label = u"Quotient familial pour la tarification solidaire des transports de l'Eurométropole de Strasbourg"
+    label = "Quotient familial pour la tarification solidaire des transports de l'Eurométropole de Strasbourg"
 
     def formula(individu, period):
         return individu.foyer_fiscal('rfr', period.n_2) / 12 / individu.foyer_fiscal('nbptr', period.n_2)
@@ -25,7 +25,7 @@ class eurometropole_strasbourg_tarification_solidaire_transport_quotient_familia
     value_type = float
     entity = Individu
     definition_period = MONTH
-    label = u"Quotient familial pour la tarification solidaire des transports de l'Eurométropole de Strasbourg"
+    label = "Quotient familial pour la tarification solidaire des transports de l'Eurométropole de Strasbourg"
 
 
     def formula(individu, period):
@@ -39,7 +39,7 @@ class eurometropole_strasbourg_tarification_solidaire_transport_quotient_familia
     value_type = float
     entity = Individu
     definition_period = MONTH
-    label = u"Équivalence du quotient familial d'étudiants pour la tarification solidaire des transports de l'Eurométropole de Strasbourg"
+    label = "Équivalence du quotient familial d'étudiants pour la tarification solidaire des transports de l'Eurométropole de Strasbourg"
 
 
     def formula(individu, period):
@@ -67,7 +67,7 @@ class eurometropole_strasbourg_tarification_solidaire_transport_eligible_tarif_r
     value_type = bool
     entity = Individu
     definition_period = MONTH
-    label = u"Quotient familial pour la tarification solidaire des transports de l'Eurométropole de Strasbourg"
+    label = "Quotient familial pour la tarification solidaire des transports de l'Eurométropole de Strasbourg"
 
     def formula(individu, period):
         age = individu('age', period)
@@ -79,7 +79,10 @@ class eurometropole_strasbourg_tarification_solidaire_transport_montant(Variable
     value_type = float
     entity = Individu
     definition_period = MONTH
-    label = u"Tarif de tarification solidaire des transports de l'Eurométropole de Strasbourg"
+    label = "Tarif de tarification solidaire des transports de l'Eurométropole de Strasbourg"
+    reference = [
+        "https://www.strasbourg.eu/tarification-solidaire-transports-en-commun"
+        ]
 
     def formula(individu, period):
         geo = individu.menage('eurometropole_strasbourg_tarification_solidaire_transport_eligibilite_geographique', period)

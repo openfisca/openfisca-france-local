@@ -5,7 +5,7 @@ class nantes_metropole_tarification_solidaire_transport_eligibilite_geographique
     value_type = bool
     entity = Menage
     definition_period = MONTH
-    label = u"Éligibilité géographique pour la tarification solidaire des transports de Nantes Métropole"
+    label = "Éligibilité géographique pour la tarification solidaire des transports de Nantes Métropole"
 
     def formula(menage, period):
         return menage('menage_dans_epci_siren_244400404', period)
@@ -15,7 +15,7 @@ class nantes_metropole_tarification_solidaire_transport_quotient_familial(Variab
     value_type = float
     entity = FoyerFiscal
     definition_period = YEAR
-    label = u"Quotient familial pour la tarification solidaire des transports de Nantes Métropole"
+    label = "Quotient familial pour la tarification solidaire des transports de Nantes Métropole"
 
     def formula(foyer_fiscal, period):
         return foyer_fiscal('rfr', period) / 12 / foyer_fiscal('nbptr', period)
@@ -25,7 +25,7 @@ class nantes_metropole_tarification_solidaire_transport_montant(Variable):
     value_type = float
     entity = Menage
     definition_period = MONTH
-    label = u"Montant de la réduction pour la tarification solidaire des transports de Nantes Métropole"
+    label = "Montant de la réduction pour la tarification solidaire des transports de Nantes Métropole"
 
     def formula(menage, period):
         aah = menage.sum(menage.members('aah', period))
@@ -38,6 +38,9 @@ class nantes_metropole_tarification_solidaire_transport(Variable):
     entity = Menage
     definition_period = MONTH
     label = "La tarification solidaire des transports de Nantes Métropole"
+    reference = [
+        "https://data.nantesmetropole.fr/pages/algorithmes_nantes_metropole/"
+        ]
 
     def formula(menage, period):
         metro = menage('nantes_metropole_tarification_solidaire_transport_eligibilite_geographique', period)

@@ -6,7 +6,7 @@ class grand_est_fluo_67_pertinence_geographique(Variable):
     value_type = bool
     entity = Menage
     definition_period = MONTH
-    label = u"Pertinence d'afficher les dispositifs pour le réseau Fluo 67"
+    label = "Pertinence d'afficher les dispositifs pour le réseau Fluo 67"
 
     def formula(menage, period):
         depcom = menage('depcom', period)
@@ -17,7 +17,10 @@ class grand_est_fluo_67_tarification_solidaire(Variable):
     value_type = float
     entity = Individu
     definition_period = MONTH
-    label = u"Tarification solidaire des transports du réseau Fluo 67"
+    label = "Tarification solidaire des transports du réseau Fluo 67"
+    reference = [
+        "https://www.ctbr67.fr/tarifs/tarifs-reduits-gratuite/"
+        ]
 
     def formula(individu, period):
         geo = individu.menage('grand_est_fluo_67_pertinence_geographique', period)
@@ -31,7 +34,10 @@ class grand_est_fluo_67_eligible_gratuite(Variable):
     value_type = bool
     entity = Individu
     definition_period = MONTH
-    label = u"Éligibilité à la gratuité des transports du réseau Fluo 67"
+    label = "Éligibilité à la gratuité des transports du réseau Fluo 67"
+    reference = [
+        "https://www.ctbr67.fr/tarifs/tarifs-reduits-gratuite/"
+        ]
 
     def formula(individu, period):
         geo = individu.menage('grand_est_fluo_67_pertinence_geographique', period)
