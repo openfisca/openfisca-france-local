@@ -1,4 +1,4 @@
-- name: Éligibilité à l'ash de l'eure-et-loir avec PH > 18 ans
+- name: Éligibilité à l'ash de l'Eure-et-Loir avec PH > 18 ans
   period: 2020-10
   input:
     individus:
@@ -13,7 +13,7 @@
   output:
     eure_et_loir_eligibilite_ash_personne_handicap: True
 
-- name: Éligibilité à l'ash de l'eure-et-loir avec PH = 18 ans
+- name: Éligibilité à l'ash de l'Eure-et-Loir avec PH = 18 ans
   period: 2020-10
   input:
     individus:
@@ -27,7 +27,7 @@
   output:
     eure_et_loir_eligibilite_ash_personne_handicap: True
 
-- name: Éligibilité à l'ash de l'eure-et-loir avec PH nationalité UE (IT)
+- name: Éligibilité à l'ash de l'Eure-et-Loir avec PH nationalité UE (IT)
   period: 2020-10
   input:
     individus:
@@ -41,7 +41,7 @@
   output:
     eure_et_loir_eligibilite_ash_personne_handicap: True
 
-- name: Éligibilité à l'ash de l'eure-et-loir avec PH nationalité hors UE et titre de séjour OK (LL)
+- name: Éligibilité à l'ash de l'Eure-et-Loir avec PH nationalité hors UE et titre de séjour OK (LL)
   period: 2020-10
   input:
     individus:
@@ -55,7 +55,7 @@
   output:
     eure_et_loir_eligibilite_ash_personne_handicap: True
 
-- name : Éligibilité à l'aide ash de l'eure-et-loir pour une PH apatride
+- name : Éligibilité à l'aide ash de l'Eure-et-Loir pour une PH apatride
   period: 2020-10
   input:
     individus:
@@ -72,7 +72,7 @@
   output:
     eure_et_loir_eligibilite_ash_personne_handicap: True
 
-- name: Éligibilité à l'ash de l'eure-et-loir avec PH refugie
+- name: Éligibilité à l'ash de l'Eure-et-Loir avec PH refugie
   period: 2020-10
   input:
     individus:
@@ -87,7 +87,7 @@
   output:
     eure_et_loir_eligibilite_ash_personne_handicap: True
 
-- name: Non Éligibilité à l'ash de l'eure-et-loir avec PH < 18 ans
+- name: Non Éligibilité à l'ash de l'Eure-et-Loir avec PH < 18 ans
   period: 2020-10
   input:
     individus:
@@ -101,7 +101,7 @@
   output:
     eure_et_loir_eligibilite_ash_personne_handicap: False
 
-- name: Non Éligibilité à l'ash de l'eure-et-loir avec PH non handicapée
+- name: Non Éligibilité à l'ash de l'Eure-et-Loir avec PH non handicapée
   period: 2020-10
   input:
     individus:
@@ -115,7 +115,7 @@
   output:
     eure_et_loir_eligibilite_ash_personne_handicap: False
 
-- name: Non Éligibilité à l'ash de l'eure-et-loir avec PH nationalité hors UE sans titre de séjour
+- name: Non Éligibilité à l'ash de l'Eure-et-Loir avec PH nationalité hors UE sans titre de séjour
   period: 2020-10
   input:
     individus:
@@ -129,7 +129,7 @@
   output:
     eure_et_loir_eligibilite_ash_personne_handicap: False
 
-- name: Non Éligibilité à l'ash de l'eure-et-loir avec PH non UE non refugie non apatride non titre_sejour
+- name: Non Éligibilité à l'ash de l'Eure-et-Loir avec PH non UE non refugie non apatride non titre_sejour
   period: 2020-10
   input:
     individus:
@@ -145,7 +145,7 @@
   output:
     eure_et_loir_eligibilite_ash_personne_handicap: False
 
-- name: Non Éligibilité à l'ash de l'eure-et-loir avec PH hors 28
+- name: Non Éligibilité à l'ash de l'Eure-et-Loir avec PH hors 28
   period: 2020-10
   input:
     individus:
