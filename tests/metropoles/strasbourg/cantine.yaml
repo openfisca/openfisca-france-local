@@ -1,0 +1,5 @@
+    - period: 2021-03
+  input:
+    depcom: 67482
+  output:
+    strasbourg_metropole_eligibilite_geographique: true
