@@ -1,5 +1,5 @@
-    - period: 2021-03
+- period: 2020-09
   input:
-    depcom: 67482
+    strasbourg_metropole_quotient_familial: [409, 411] # [409, 410, 411, 510, 511, 620, 621, 720, 721, 820, 821, 920, 921, 1030, 1031, 1540, 1541, 2050, 2051]
   output:
-    strasbourg_metropole_eligibilite_geographique: true
+    strasbourg_metropole_tarification_cantine: [1.50, 2.15] # [1.50, 1.50, 2.15, 2.15, 2.70, 2.70, 3.25, 3.25, 3.80, 3.80, 4.40, 4.40, 5.10, 5.10, 5.80, 5.80, 6.30, 6.30, 6.90, 6.90]

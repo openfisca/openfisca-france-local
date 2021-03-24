@@ -1,0 +1,18 @@
+metadata:
+    type: single_amount
+brackets: 
+- threshold:
+    2010-10-01:
+      value: 0
+  amount: 
+    2010-10-01:
+      value: 1.5
+- threshold:
+    2010-10-01:
+      value: 410
+  amount: 
+    2010-10-01:
+      value: 2.15
+
+
+

@@ -1,0 +1,7 @@
+- period: 2021-03
+  input:
+    menage_dans_epci_siren_246700488: [true, false]
+  reforms:
+    - openfisca_france_local.epci_test_factory.epci_reform
+  output:
+    strasbourg_metropole_eligibilite_geographique: [true, false]
