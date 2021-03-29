@@ -4,19 +4,24 @@
   output:
     strasbourg_metropole_tarification_cantine: [1.50, 1.50, 1.50, 2.15, 2.15]
 
-# - period: 2021-03
-#   input:
-#     individus:
-#       parent: {}
-#       enf1:
-#         strasbourg_metropole_nombre_repas_cantine: 15
-#       enf2:
-#         strasbourg_metropole_nombre_repas_cantine: 20
-#     familles:
-#       famille1:
-#         demandeur: [parent]
-#         enfants: [enf1, enf2]
-#         strasbourg_metropole_quotient_familial: 12
-#   output:
-#     strasbourg_metropole_tarification_cantine: 1.5
-#     strasbourg_metropole_cout_cantine: 1.5*(20+15)
+- period: 2021-03
+  input:
+    individus:
+      parent1: {}
+      parent2: {}
+      enf1:
+        strasbourg_metropole_nombre_repas_cantine: 15
+      enf2:
+        strasbourg_metropole_nombre_repas_cantine: 20
+    familles:
+      famille1:
+        parents: [parent1]
+        enfants: [enf1]
+        strasbourg_metropole_quotient_familial: 12
+      famille2:
+        parents: [parent2]
+        enfants: [enf2]
+        strasbourg_metropole_quotient_familial: 500
+  output:
+    strasbourg_metropole_tarification_cantine: [1.5, 2.15]
+    strasbourg_metropole_cout_cantine: [22.5, 43]
