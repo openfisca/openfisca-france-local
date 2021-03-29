@@ -1,4 +1,4 @@
-from openfisca_france.model.base import Variable, Individu, MONTH, select
+from openfisca_france.model.base import Variable, Individu, MONTH, select, max_
 
 
 class strasbourg_metropole_quotient_familial(Variable):
@@ -6,6 +6,9 @@ class strasbourg_metropole_quotient_familial(Variable):
     entity = Individu
     definition_period = MONTH
     label = "Quotient familial pour la tarification solidaire de la cantine de l'Eurométropole de Strasbourg"
+
+    def formula(individu, period):
+        return individu.foyer_fiscal('rfr', period.n_2) / 12 / individu.foyer_fiscal('nbptr', period.n_2)
 
 
 class strasbourg_metropole_tarification_cantine(Variable):
@@ -17,10 +20,4 @@ class strasbourg_metropole_tarification_cantine(Variable):
     def formula(individu, period, parameters):
         qf = individu('strasbourg_metropole_quotient_familial', period)
         tarif = parameters(period).metropoles.strasbourg.tarifs_cantine
-        return tarif.calc(qf)
-        # return (qf <= 410) + (qf <= 510) + (qf <= 620) + (qf <= 720) + (qf <= 820) + (qf <= 920) + (qf <= 1030) + (qf <= 1540) + (qf <= 2050)
-        return select(
-            [qf <= 410],
-            [1.50],
-            default=2.15)
-          
+        return tarif.calc(max_(0, qf), right=True)
