@@ -9,49 +9,75 @@
     individus:
       parent1: {}
       parent2: {}
+      parent3: {}
+      parent4: {}
+      parent5: {}
+      parent6: {}
+      parent7: {}
+      parent8: {}
+      parent9: {}
+      parent10: {}
       enf1:
         strasbourg_metropole_nombre_repas_cantine: 15
       enf2:
+        strasbourg_metropole_nombre_repas_cantine: 20
+      enf3:
+        strasbourg_metropole_nombre_repas_cantine: 18
+      enf4:
+        strasbourg_metropole_nombre_repas_cantine: 20
+      enf5:
+        strasbourg_metropole_nombre_repas_cantine: 17
+      enf6:
+        strasbourg_metropole_nombre_repas_cantine: 15
+      enf7:
+        strasbourg_metropole_nombre_repas_cantine: 18
+      enf8:
+        strasbourg_metropole_nombre_repas_cantine: 20
+      enf9:
+        strasbourg_metropole_nombre_repas_cantine: 16
+      enf10:
         strasbourg_metropole_nombre_repas_cantine: 20
     familles:
       famille1:
         parents: [parent1]
         enfants: [enf1]
-        strasbourg_metropole_quotient_familial: 12
+        strasbourg_metropole_quotient_familial: 409
       famille2:
         parents: [parent2]
         enfants: [enf2]
-        strasbourg_metropole_quotient_familial: 500
+        strasbourg_metropole_quotient_familial: 501
+      famille3:
+        parents: [parent3]
+        enfants: [enf3]
+        strasbourg_metropole_quotient_familial: 590
+      famille4:
+        parents: [parent4]
+        enfants: [enf4]
+        strasbourg_metropole_quotient_familial: 701
+      famille5:
+        parents: [parent5]
+        enfants: [enf5]
+        strasbourg_metropole_quotient_familial: 798
+      famille6:
+        parents: [parent6]
+        enfants: [enf6]
+        strasbourg_metropole_quotient_familial: 915
+      famille7:
+        parents: [parent7]
+        enfants: [enf7]
+        strasbourg_metropole_quotient_familial: 1025
+      famille8:
+        parents: [parent8]
+        enfants: [enf8]
+        strasbourg_metropole_quotient_familial: 1523
+      famille9:
+        parents: [parent9]
+        enfants: [enf9]
+        strasbourg_metropole_quotient_familial: 2030
+      famille10:
+        parents: [parent10]
+        enfants: [enf10]
+        strasbourg_metropole_quotient_familial: 2060
   output:
-    strasbourg_metropole_tarification_cantine: [1.5, 2.15]
-    strasbourg_metropole_cout_cantine: [22.5, 43]
-
-- period: 2021-03
-  input:
-    individus:
-      parent1: {}
-      enf1:
-        strasbourg_metropole_nombre_repas_cantine: 15
-    familles:
-      famille1:
-        parents: [parent1]
-        enfants: [enf1]
-        strasbourg_metropole_quotient_familial: 12
-  output:
-    strasbourg_metropole_tarification_cantine: [1.5]
-    strasbourg_metropole_cout_cantine: [22.5]
-
-- period: 2021-03
-  input:
-    individus:
-      parent2: {}
-      enf2:
-        strasbourg_metropole_nombre_repas_cantine: 20
-    familles:
-      famille2:
-        parents: [parent2]
-        enfants: [enf2]
-        strasbourg_metropole_quotient_familial: 500
-  output:
-    strasbourg_metropole_tarification_cantine: [2.15]
-    strasbourg_metropole_cout_cantine: [43]
+    strasbourg_metropole_tarification_cantine: [1.5, 2.15, 2.70, 3.25, 3.80, 4.40, 5.10, 5.80, 6.30, 6.90]
+    strasbourg_metropole_cout_cantine: [22.5, 43, 48.6, 65, 64.6, 66, 91.8, 116, 100.8, 138]
