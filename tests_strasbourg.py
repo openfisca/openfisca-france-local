@@ -1,8 +1,9 @@
 from openfisca_core.simulation_builder import SimulationBuilder
 from openfisca_france import CountryTaxBenefitSystem
 
-qf = [410, 510, 620, 720, 820, 920, 1030, 1540, 2050]
-counts = [10, 10, 20, 20, 20, 20, 30, 40, 50]
+qf = [410, 510, 620, 720, 820, 920, 1030, 1540, 2050, 2051, 2052]
+#counts = [10, 10, 20, 20, 20, 20, 30, 40, 50]
+counts2 = [4025, 2113, 1832, 1603, 962, 638, 566, 1990, 1157, 2090, 45]
 
 # TEST_CASE = {
 #   'individus': { 'individu'+str(q): { 'strasbourg_metropole_quotient_familial': { '2021-03': q } } for q in qf }
@@ -15,7 +16,7 @@ TEST_CASE = {
       'strasbourg_metropole_nombre_repas_cantine': {
         '2021-03': 15
       }
-    }
+    },
     'Jacques': {},
     'Pauline': {
       'strasbourg_metropole_nombre_repas_cantine': {
@@ -30,7 +31,7 @@ TEST_CASE = {
       'strasbourg_metropole_quotient_familial': {
         '2021-03': 10000
       }
-    }
+    },
     'Dupuis': {
        'parents': ['Jacques'],
        'enfants': ['Pauline'],
