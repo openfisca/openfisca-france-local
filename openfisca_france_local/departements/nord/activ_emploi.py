@@ -32,4 +32,4 @@ class nord_activ_emploi_maximum(Variable):
 
     def formula(individu, period):
         eligible = individu('nord_activ_emploi_eligibilite', period)
-        return 300 * eligible
+        return 150 * eligible
