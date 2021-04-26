@@ -2,6 +2,6 @@
   input:
     etudiant: [true]
     boursier: [true]
-    echelon_bourse: [0]
+    bourse_criteres_sociaux_echelon: [0]
   output:
     eurometropole_strasbourg_tarification_solidaire_transport_quotient_familial_etudiant: [765]

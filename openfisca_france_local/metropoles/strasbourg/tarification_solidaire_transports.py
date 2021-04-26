@@ -45,13 +45,13 @@ class eurometropole_strasbourg_tarification_solidaire_transport_quotient_familia
     def formula(individu, period):
         etudiant = individu('etudiant', period)
         boursier = individu('boursier', period)
-        echelon_bourse = individu('echelon_bourse', period)
+        bourse_criteres_sociaux_echelon = individu('bourse_criteres_sociaux_echelon', period)
         return etudiant * select([boursier],[
             select(
             [
-            5 <= echelon_bourse,
-            3 <= echelon_bourse,
-            1 <= echelon_bourse,
+            5 <= bourse_criteres_sociaux_echelon,
+            3 <= bourse_criteres_sociaux_echelon,
+            1 <= bourse_criteres_sociaux_echelon,
             ],
             [
             355,
