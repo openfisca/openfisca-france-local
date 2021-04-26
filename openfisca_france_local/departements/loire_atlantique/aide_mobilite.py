@@ -44,10 +44,10 @@ class loire_atlantique_aide_mobilite_permis_am(Variable):
         ]
 
     def formula(individu, period):
-        fin = individu('loire_atlantique_aide_mobilite_eligibilite_financiere', period)
-        resid = individu.menage('loire_atlantique_eligibilite_residence', period)
-        age = individu('loire_atlantique_aide_mobilite_eligibilite_age_permis_am', period)
-        return 150 * resid * fin * age
+        eligibilite_financiere = individu('loire_atlantique_aide_mobilite_eligibilite_financiere', period)
+        eligibilite_residentielle = individu.menage('loire_atlantique_eligibilite_residence', period)
+        eligibilite_age = individu('loire_atlantique_aide_mobilite_eligibilite_age_permis_am', period)
+        return 150 * eligibilite_residentielle * eligibilite_financiere * eligibilite_age
 
 
 class loire_atlantique_aide_mobilite_eligibilite_age_permis_b(Variable):
@@ -72,7 +72,7 @@ class loire_atlantique_aide_mobilite_permis_b(Variable):
         ]
 
     def formula(individu, period):
-        fin = individu('loire_atlantique_aide_mobilite_eligibilite_financiere', period)
-        resid = individu.menage('loire_atlantique_eligibilite_residence', period)
-        age = individu('loire_atlantique_aide_mobilite_eligibilite_age_permis_b', period)
-        return 750 * resid * fin * age
+        eligibilite_financiere = individu('loire_atlantique_aide_mobilite_eligibilite_financiere', period)
+        eligibilite_residentielle = individu.menage('loire_atlantique_eligibilite_residence', period)
+        eligibilite_age = individu('loire_atlantique_aide_mobilite_eligibilite_age_permis_b', period)
+        return 750 * eligibilite_residentielle * eligibilite_financiere * eligibilite_age
