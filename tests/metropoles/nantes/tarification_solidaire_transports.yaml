@@ -1,0 +1,7 @@
+- period: 2020-10
+  input:
+    aah: [0, 0, 0, 0]
+    nantes_metropole_tarification_solidaire_transport_quotient_familial:
+      2018: [0, 351, 501, 601]
+  output:
+    nantes_metropole_tarification_solidaire_transport_montant: [100, 90, 70, 0]

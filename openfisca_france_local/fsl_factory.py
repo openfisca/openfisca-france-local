@@ -109,6 +109,8 @@ class fsl_reform(reforms.Reform):
         self.add_variable(fsl_factory_departement('moselle', 'de la Moselle', b'57', 200039865))
         self.add_variable(fsl_factory_metropole('metz', 'de Metz Métropole', 200039865))
         self.add_variable(fsl_factory_departement('nievre', 'de la Nièvre', b'58'))
+        self.add_variable(fsl_factory_departement('nord', 'du Nord', b'59', 245900410))
+        self.add_variable(fsl_factory_metropole('lille', 'de la Métropole Européenne de Lille', 245900410))
         self.add_variable(fsl_factory_departement('oise', 'de l’Oise', b'60'))
         self.add_variable(fsl_factory_departement('orne', 'de l’Orne', b'61'))
         self.add_variable(fsl_factory_departement('pas_de_calais', 'du Pas-de-Calais', b'62'))
