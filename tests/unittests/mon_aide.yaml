@@ -71,7 +71,7 @@
       personne1:
         etudiant: 1
         date_naissance: 1992-01-01
-        echelon_bourse: 4
+        bourse_criteres_sociaux_echelon: 4
     foyer_fiscal:
       declarants:
       - personne1
