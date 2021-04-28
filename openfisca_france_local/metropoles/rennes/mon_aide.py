@@ -1,11 +1,10 @@
- # -*- coding: utf-8 -*-
 from __future__ import division
 
 from numpy import (maximum as max_, logical_not as not_, absolute as abs_, minimum as min_, select, where, logical_or as or_, round as round_)
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
-from openfisca_rennesmetropole.communes import communes
+from openfisca_france_local.metropoles.rennes.communes import communes
 
 
 class residence_rennes_metropole(Variable):
@@ -97,17 +96,17 @@ class rennes_metropole_transport(Variable):
     def formula(individu, period, parameters):
         nombre_enfants = individu.famille('af_nbenf', period)
         ressources_familiales = individu('rennes_metropole_transport_base_ressource', period)
-        # montant_par_enfant = simulation.legislation_at(period.start).rennesmetropole.mon_aide.montant
+        # montant_par_enfant = simulation.legislation_at(period.start).metropoles.rennes.mon_aide.montant
 
 
 
-        seuil1 = parameters(period.start).rennesmetropole.tarification_solidaire.seuil.seuil1
-        seuil2 = parameters(period.start).rennesmetropole.tarification_solidaire.seuil.seuil2
-        seuil3 = parameters(period.start).rennesmetropole.tarification_solidaire.seuil.seuil3
+        seuil1 = parameters(period.start).metropoles.rennes.tarification_solidaire.seuil.seuil1
+        seuil2 = parameters(period.start).metropoles.rennes.tarification_solidaire.seuil.seuil2
+        seuil3 = parameters(period.start).metropoles.rennes.tarification_solidaire.seuil.seuil3
 
-        taux1 = parameters(period.start).rennesmetropole.tarification_solidaire.taux_reduction.taux1
-        taux2 = parameters(period.start).rennesmetropole.tarification_solidaire.taux_reduction.taux2
-        taux3 = parameters(period.start).rennesmetropole.tarification_solidaire.taux_reduction.taux3
+        taux1 = parameters(period.start).metropoles.rennes.tarification_solidaire.taux_reduction.taux1
+        taux2 = parameters(period.start).metropoles.rennes.tarification_solidaire.taux_reduction.taux2
+        taux3 = parameters(period.start).metropoles.rennes.tarification_solidaire.taux_reduction.taux3
 
         # determine si une personne seule a des enfants qui est considéré de fait comme un couple
         individu_en_couple = or_(individu.famille('en_couple', period), nombre_enfants >= 1)
@@ -122,7 +121,7 @@ class rennes_metropole_transport(Variable):
         result_non_etudiant = select([ressources_familiales <= seuil1 * seuil_evolutif, ressources_familiales <= seuil2 * seuil_evolutif, ressources_familiales <= seuil3 * seuil_evolutif], [taux1, taux2, taux3])
 
         etudiant = individu('etudiant', period)
-        echelon = individu('bourse_criteres_sociaux_echelon', period)
+        echelon = individu('echelon_bourse', period)
         result_etudiant = select([echelon >= 5, echelon >= 3, echelon >= 2], [taux1, taux2, taux3])
         result = where(etudiant, result_etudiant, result_non_etudiant)
 
