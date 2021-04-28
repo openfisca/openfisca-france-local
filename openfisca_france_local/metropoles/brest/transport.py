@@ -3,7 +3,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 from numpy import (logical_not as not_)
 
-from openfisca_brestmetropole.communes import communes
+from openfisca_france_local.metropoles.brest.communes import communes
 
 
 class residence_brest_metropole(Variable):
