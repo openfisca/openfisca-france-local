@@ -1,0 +1,45 @@
+- name: "Hors Métropole"
+  period: 2018-01
+  input:
+    depcom: 75019
+  output:
+    residence_brest_metropole: false
+
+- name: "Dans Métropole"
+  period: 2018-01
+  input:
+    depcom: 29019
+  output:
+    residence_brest_metropole: true
+
+- name: "QF CAF nul"
+  period: 2018-01
+  input:
+    cmu_c: false
+    quotient_familial_caf: 0
+  output:
+    brest_metropole_transport_montant: 6.2
+
+- name: "QF CAF 500"
+  period: 2018-01
+  input:
+    cmu_c: false
+    quotient_familial_caf: 500
+  output:
+    brest_metropole_transport_montant: 15
+
+- name: "QF CAF 600"
+  period: 2018-01
+  input:
+    cmu_c: false
+    quotient_familial_caf: 600
+  output:
+    brest_metropole_transport_montant: 22.5
+
+- name: "QF CAF 600 avec CMUC"
+  period: 2018-01
+  input:
+    cmu_c: true
+    quotient_familial_caf: 600
+  output:
+    brest_metropole_transport_montant: 15
