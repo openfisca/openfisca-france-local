@@ -91,5 +91,11 @@ class strasbourg_metropole_cout_cantine_individu_repas_vegetarien(Variable):
 
     def formula(individu, period, parameters):
         tarif = individu.famille('strasbourg_metropole_tarification_cantine_vegetarien', period)
-        repas = individu('strasbourg_metropole_nombre_repas_cantine', period)
+        repas = individu('strasbourg_metropole_nombre_repas_cantine_vegetarien', period)
         return tarif * repas
+
+class strasbourg_metropole_nombre_repas_cantine_vegetarien(Variable):
+    value_type = float
+    entity = Individu
+    definition_period = MONTH
+    
