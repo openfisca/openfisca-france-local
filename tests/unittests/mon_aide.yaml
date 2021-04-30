@@ -1,0 +1,335 @@
+- name: Une personne seule à 100%
+  period: 2016-01
+  input:
+    famille:
+      parents: [personne1]
+    menage:
+      depcom: 35001
+      personne_de_reference: personne1
+    individus:
+      personne1:
+        date_naissance: 1972-01-01
+        salaire_net:
+          2016-01: 700
+          2016-02: 700
+          2016-03: 700
+          2016-04: 700
+          2016-05: 700
+          2016-06: 700
+          2016-07: 700
+          2016-08: 700
+          2016-09: 700
+          2016-10: 700
+          2016-11: 700
+          2016-12: 700
+          2017-01: 700
+    foyer_fiscal:
+      declarants:
+      - personne1
+  output:
+    rennes_metropole_transport: 100
+
+- name: Une personne seule à 85% 1000euros/mois 8000/an
+  period: 2016-12
+  input:
+    famille:
+      parents: [personne1]
+    menage:
+      depcom: 35001
+      personne_de_reference: personne1
+    individus:
+      personne1:
+        salaire_net:
+          2015-12: 0
+          2016-01: 0
+          2016-02: 0
+          2016-03: 0
+          2016-04: 1000
+          2016-05: 1000
+          2016-06: 1000
+          2016-07: 1000
+          2016-08: 1000
+          2016-09: 1000
+          2016-10: 1000
+          2016-11: 1000
+          2016-12: 1000
+    foyer_fiscal:
+      declarants:
+      - personne1
+  output:
+    rennes_metropole_transport: [85]
+
+- name: Etudiant boursier
+  period: 2016-12
+  input:
+    famille:
+      parents: [personne1]
+    menage:
+      depcom: 35001
+      personne_de_reference: personne1
+    individus:
+      personne1:
+        etudiant: 1
+        date_naissance: 1992-01-01
+        bourse_criteres_sociaux_echelon: 4
+    foyer_fiscal:
+      declarants:
+      - personne1
+  output:
+    rennes_metropole_transport: 85
+
+- name: Salairé avec un enfant de 10 ans
+  period: 2016-12
+  input:
+    famille:
+      parents: [personne1]
+      enfants: [enfant1]
+    menage:
+      depcom: 35001
+      personne_de_reference: personne1
+      enfants: [enfant1]
+    individus:
+      personne1:
+        salaire_net:
+          2015-12: 0
+          2016-01: 0
+          2016-02: 0
+          2016-03: 0
+          2016-04: 1100
+          2016-05: 1100
+          2016-06: 1100
+          2016-07: 1100
+          2016-08: 1100
+          2016-09: 1100
+          2016-10: 1100
+          2016-11: 1100
+          2016-12: 1100
+      enfant1:
+        date_naissance: 2006-01-01
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - personne1
+        personnes_a_charge:
+        - enfant1
+  output:
+    rennes_metropole_transport: [100, 100]
+
+- name: Une personne seule retraité à 0%
+  period: 2016-12
+  input:
+    famille:
+      parents: [personne1]
+    menage:
+      depcom: 35001
+      personne_de_reference: personne1
+    individus:
+      personne1:
+        date_naissance: 1952-01-01
+        salaire_net:
+          2015-12: 1500
+          2016-01: 1500
+          2016-02: 1500
+          2016-03: 1500
+          2016-04: 1500
+          2016-05: 1500
+          2016-06: 1500
+          2016-07: 1500
+          2016-08: 1500
+          2016-09: 1500
+          2016-10: 1500
+          2016-11: 1500
+          2016-12: 1500
+    foyer_fiscal:
+      declarants:
+      - personne1
+  output:
+    rennes_metropole_transport: 0
+
+- name: Chomeur avec deux enfants de 10 ans
+  period: 2016-12
+  input:
+    famille:
+      parents: [personne1]
+      enfants: [enfant1, enfant2]
+    menage:
+      depcom: 35001
+      personne_de_reference: personne1
+      enfants: [enfant1, enfant2]
+    individus:
+      personne1:
+        salaire_net:
+      enfant1:
+        date_naissance: 2006-01-01
+      enfant2:
+        date_naissance: 2006-01-01
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - personne1
+        personnes_a_charge:
+        - enfant1
+        - enfant2
+  output:
+    rennes_metropole_transport: [100, 100, 100]
+
+- name: 'Couple : Salarié + 1 adulte handicapé'
+  period: 2017-03
+  input:
+    famille:
+      parents: [personne1, personne2]
+      aide_logement:
+        2016-01: 275
+        2016-02: 275
+        2016-03: 275
+        2016-04: 275
+        2016-05: 275
+        2016-06: 275
+        2016-07: 275
+        2016-08: 275
+        2016-09: 275
+        2016-10: 275
+        2016-11: 275
+        2016-12: 275
+        2017-01: 275
+        2017-02: 275
+    individus:
+      personne1:
+        date_naissance: 1964-01-01
+        salaire_net:
+          2016-01: 808
+          2016-02: 808
+          2016-03: 808
+          2016-04: 808
+          2016-05: 808
+          2016-06: 808
+          2016-07: 808
+          2016-08: 808
+          2016-09: 808
+          2016-10: 808
+          2016-11: 808
+          2016-12: 808
+          2017-01: 808
+          2017-02: 808
+      personne2:
+        date_naissance: 1963-01-01
+        aah:
+          2016-01: 808
+          2016-02: 808
+          2016-03: 808
+          2016-04: 808
+          2016-05: 808
+          2016-06: 808
+          2016-07: 808
+          2016-08: 808
+          2016-09: 808
+          2016-10: 808
+          2016-11: 808
+          2016-12: 808
+          2017-01: 808
+          2017-02: 808
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - personne1
+        - personne2
+    menages:
+      menage_0:
+        personne_de_reference:
+        - personne1
+        conjoint:
+        - personne2
+  output:
+    rennes_metropole_transport: [0, 0]
+
+- name: 'Personne : 1 adulte handicapé'
+  period: 2017-02
+  input:
+    famille:
+      cmu_forfait_logement_al: 770.64477539
+      parents: [personne1]
+      aide_logement: 3300
+    menage:
+      depcom: 35001
+      personne_de_reference: personne1
+    individus:
+      personne1:
+        date_naissance: 1964-01-01
+        aah:
+          2016-01: 600
+          2016-02: 600
+          2016-03: 600
+          2016-04: 600
+          2016-05: 600
+          2016-06: 600
+          2016-07: 600
+          2016-08: 600
+          2016-09: 600
+          2016-10: 600
+          2016-11: 600
+          2016-12: 600
+          2017-01: 600
+          2017-02: 600
+          2017-03: 600
+    foyer_fiscal:
+      declarants:
+      - personne1
+  output:
+    rennes_metropole_transport: 100
+
+- name: 'Couple : retraités'
+  period: 2017-03
+  input:
+    famille:
+      parents: [personne1, personne2]
+      aide_logement: 3960
+      cmu_forfait_logement_al: 770.64477539
+      aspa:
+        2016-01: 1500
+        2016-02: 1500
+        2016-03: 1500
+        2016-04: 1500
+        2016-05: 1500
+        2016-06: 1500
+        2016-07: 1500
+        2016-08: 1500
+        2016-09: 1500
+        2016-10: 1500
+        2016-11: 1500
+        2016-12: 1500
+        2017-01: 1500
+        2017-02: 1500
+        2017-03: 1500
+    menage:
+      depcom: 35001
+      personne_de_reference: personne1
+      conjoint: personne2
+    individus:
+      personne1:
+        date_naissance: 1964-01-02
+      personne2:
+        date_naissance: 1963-01-01
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - personne1
+        - personne2
+  output:
+    rennes_metropole_transport: [85, 85]
+
+- name: Personne qui n'habite pas à Rennes Métropole
+  period: 2016-12
+  input:
+    famille:
+      parents: [personne1]
+    menage:
+      depcom: 36001
+      personne_de_reference: personne1
+    individus:
+      personne1:
+        date_naissance: 1972-01-01
+    foyer_fiscal:
+      declarants:
+      - personne1
+  output:
+    rennes_metropole_transport: 0
