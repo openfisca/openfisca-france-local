@@ -1,0 +1,82 @@
+- name: "Isolé sans enfant"
+  period: 2018-01
+  input:
+    af_nbenf: 0
+  output:
+    quotient_familial_caf_parts: 1
+
+- name: "Isolé avec 1 enfant"
+  period: 2018-01
+  input:
+    af_nbenf: 1
+  output:
+    quotient_familial_caf_parts: 2
+
+- name: "Isolé avec 2 enfants"
+  period: 2018-01
+  input:
+    af_nbenf: 2
+  output:
+    quotient_familial_caf_parts: 2.5
+
+- name: "Isolé avec 3 enfants"
+  period: 2018-01
+  input:
+    af_nbenf: 3
+  output:
+    quotient_familial_caf_parts: 3.5
+
+- name: "Isolé avec 4 enfants"
+  period: 2018-01
+  input:
+    af_nbenf: 4
+  output:
+    quotient_familial_caf_parts: 4
+
+- name: "En couple avec 2 enfant"
+  period: 2018-01
+  input:
+    af_nbenf: 2
+    en_couple: true
+  output:
+    quotient_familial_caf_parts: 3
+
+- name: "Isolé avec 1 enfant handicappé"
+  period: 2018-01
+  input:
+    individus:
+      parent: {}
+      enfant:
+        age: 10
+        handicap: true
+    familles:
+      famille:
+        parents:
+        - parent
+        enfants:
+        - enfant
+    foyers_fiscaux:
+      ff:
+        declarants: [parent]
+        personnes_a_charge: [enfant]
+    menages:
+      m:
+        personne_de_reference: parent
+        enfants: [enfant]
+  output:
+    quotient_familial_caf_parts: 2.5
+
+- name: "Isolé avec 12000"
+  period: 2018-01
+  input:
+    prestations_familiales_base_ressources: 12000
+  output:
+    quotient_familial_caf: 1000
+
+- name: "1 enfant avec 12000"
+  period: 2018-01
+  input:
+    prestations_familiales_base_ressources: 12000
+    af_nbenf: 1
+  output:
+    quotient_familial_caf: 500
