@@ -1,4 +1,3 @@
- # -*- coding: utf-8 -*-
 communes = [
     b'29019', # Brest
     b'29011', #Bohars
