@@ -1,133 +1,94 @@
-- period: 2019-01
+- name: Adefip - Formation
+  period: 2021-01
   input:
-    rsa: [0, 410.40, 0, 410.40]
-    eure_et_loir_eligibilite_residence: [true, true, false, false]
+    depcom: 28000
+    rsa: 200
+    cer_ou_ppae: true
+    adefip:
+      2020-12: 0
+      2020-11: 0
+      2020-10: 0
+      2020-09: 0
+      2020-08: 0
+      2020-07: 0
+      2020-06: 0
+      2020-05: 0
+      2020-04: 0
+      2020-03: 0
+      2020-02: 0
+      2020-01: 0
+    formation: true
+    duree_contrat_ou_formation: 3
   output:
-    eure_et_loir_eligibilite_adefip: [false, true, false, false]
+    adefip: 500
 
-
-- name: Cas réel 1. [500€ AdéFIP attribué.] \
-    En CDD plus de 6 mois, en action d'insertion de 2019-12 à 2020-03. \
-    Personne seule et trois enfants. Perçoit le RSA.
-  period: 2020-02
+- name: Adefip - CDD
+  period: 2021-01
   input:
-    individus:
-      cas_reel_1:
-        date_naissance: '1990-12-01'
-      enfant_1:
-        date_naissance: '2018-01-01'
-      enfant_2:
-        date_naissance: '2017-01-01'
-      enfant_3:
-        date_naissance: '2016-01-01'
-    famille:
-       parents:
-       - cas_reel_1
-       enfants: [enfant_1, enfant_2, enfant_3]
-       rsa:
-        2020-02: 333.65
-        2019-12: 704.65
-    menage:
-      personne_de_reference:
-      - cas_reel_1
-      enfants: [enfant_1, enfant_2, enfant_3]
-      depcom: 28400
-    foyer_fiscal:
-      declarants:
-      - cas_reel_1
-      personnes_a_charge: [enfant_1, enfant_2, enfant_3]
+    depcom: [28000, 28000]
+    rsa: [200, 200]
+    cer_ou_ppae: [true, true]
+    adefip:
+      2020-12: [0, 0]
+      2020-11: [0, 0]
+      2020-10: [0, 0]
+      2020-09: [0, 0]
+      2020-08: [0, 0]
+      2020-07: [0, 0]
+      2020-06: [0, 0]
+      2020-05: [0, 0]
+      2020-04: [0, 0]
+      2020-03: [0, 0]
+      2020-02: [0, 0]
+      2020-01: [0, 0]
+    contrat_de_travail_duree: [cdd, cdd]
+    duree_contrat_ou_formation: [6, 7]
   output:
-    eure_et_loir_eligibilite_residence: true
-    eure_et_loir_eligibilite_adefip: true
+    adefip: [400, 500]
 
-
-- name: Cas réel 2. [700€ AdéFIP attribué.] \
-    En création d'entreprise en 2019-11. En couple et 3 enfants. Perçoit le RSA.
-  period: 2019-12
+- name: Adefip - CDI
+  period: 2021-01
   input:
-    individus:
-      cas_reel_2:
-        date_naissance: '1986-09-01'
-      enfant_1:
-        date_naissance: '2012-01-01'
-      enfant_2:
-        date_naissance: '2015-01-01'
-      enfant_3:
-        date_naissance: '2016-01-01'
-    famille:
-       parents:
-       - cas_reel_2
-       enfants: [enfant_1, enfant_2, enfant_3]
-       rsa:
-        2019-11: 759.42
-    menage:
-      personne_de_reference:
-      - cas_reel_2
-      enfants: [enfant_1, enfant_2, enfant_3]
-      depcom: 28100
-    foyer_fiscal:
-      declarants:
-      - cas_reel_2
-      personnes_a_charge: [enfant_1, enfant_2, enfant_3]
+    depcom: [28000, 28000]
+    rsa: [200, 200]
+    cer_ou_ppae: [true, true]
+    adefip:
+      2020-12: [0, 0]
+      2020-11: [0, 0]
+      2020-10: [0, 0]
+      2020-09: [0, 0]
+      2020-08: [0, 0]
+      2020-07: [0, 0]
+      2020-06: [0, 0]
+      2020-05: [0, 0]
+      2020-04: [0, 0]
+      2020-03: [0, 0]
+      2020-02: [0, 0]
+      2020-01: [0, 0]
+    contrat_de_travail_duree: [cdi, cdi]
+    contrat_de_travail: [temps_plein, temps_partiel]
   output:
-    eure_et_loir_eligibilite_residence: true
-    eure_et_loir_eligibilite_adefip: true
+    adefip: [600, 300]
 
-
-- name: Cas réel 3. AdéFIP non attribuée. \
-    A déjà bénéficié de l'AdéFIP en mars 2019 et formation 2019-12 à 2020-03 non qualifiante. \
-    Personne seule. Perçoit le RSA.
-  period: 2020-02
+- name: Adefip - Entreprise
+  period: 2021-01
   input:
-    individus:
-      cas_reel_3:
-        date_naissance: '1988-08-01'
-        eure_et_loir_adefip_versee: true
-    famille:
-       parents:
-       - cas_reel_3
-       rsa:
-        2020-01: 705.27
-    menage:
-      personne_de_reference:
-      - cas_reel_3
-      depcom: 28000
-    foyer_fiscal:
-      declarants:
-      - cas_reel_3
+    depcom: 28000
+    rsa: 200
+    cer_ou_ppae: true
+    adefip:
+      2020-12: 0
+      2020-11: 0
+      2020-10: 0
+      2020-09: 0
+      2020-08: 0
+      2020-07: 0
+      2020-06: 0
+      2020-05: 0
+      2020-04: 0
+      2020-03: 0
+      2020-02: 0
+      2020-01: 0
+    creation_ou_reprise_entreprise: true
   output:
-    eure_et_loir_eligibilite_residence: true
-    eure_et_loir_eligibilite_adefip: false
-
-- name: Cas réel 4. [400€ AdéFIP attribué.] \
-    En CDD de 3-6mois. En action d'insertionde 2019-12 à 04-2020. \
-    Personne seule. Perçoit le RSA.
-  period: 2020-02
-  input:
-    individus:
-      cas_reel_4:
-        date_naissance: '1968-06-01'
-      enfant_1:
-        date_naissance: '2012-01-01'
-      enfant_2:
-        date_naissance: '2015-01-01'
-      enfant_3:
-        date_naissance: '2016-01-01'
-    famille:
-       parents:
-       - cas_reel_4
-       enfants: [enfant_1, enfant_2, enfant_3]
-       rsa:
-        2019-12: 559.74
-    menage:
-      personne_de_reference:
-      - cas_reel_4
-      enfants: [enfant_1, enfant_2, enfant_3]
-      depcom: 28000
-    foyer_fiscal:
-      declarants:
-      - cas_reel_4
-      personnes_a_charge: [enfant_1, enfant_2, enfant_3]
-  output:
-    eure_et_loir_eligibilite_residence: true
-    eure_et_loir_eligibilite_adefip: true
+    adefip: 700
