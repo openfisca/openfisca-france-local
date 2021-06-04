@@ -98,4 +98,43 @@ class strasbourg_metropole_nombre_repas_cantine_vegetarien(Variable):
     value_type = float
     entity = Individu
     definition_period = MONTH
-    
+
+
+    # variables panier 
+
+class strasbourg_metropole_tarification_cantine_panier(Variable):
+    value_type = float
+    entity = Famille
+    definition_period = MONTH
+    label = "Quotient familial pour la tarification solidaire de la cantine pour un panier de l'Eurométropole de Strasbourg"
+
+    def formula(famille, period, parameters):
+        qf = famille('strasbourg_metropole_quotient_familial', period)
+        tarif = parameters(period).metropoles.strasbourg.tarifs_repas_panier
+        return tarif.calc(max_(0, qf), right=True)
+
+
+class strasbourg_metropole_cout_cantine_repas_panier(Variable):
+    value_type = float
+    entity = Famille
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        cout_individu = famille.members('strasbourg_metropole_cout_cantine_individu_repas_panier', period)
+        return famille.sum(cout_individu)
+
+
+class strasbourg_metropole_cout_cantine_individu_repas_panier(Variable):
+    value_type = float
+    entity = Individu
+    definition_period = MONTH
+
+    def formula(individu, period, parameters):
+        tarif = individu.famille('strasbourg_metropole_tarification_cantine_panier', period)
+        repas = individu('strasbourg_metropole_nombre_repas_cantine_panier', period)
+        return tarif * repas
+
+class strasbourg_metropole_nombre_repas_cantine_panier(Variable):
+    value_type = float
+    entity = Individu
+    definition_period = MONTH

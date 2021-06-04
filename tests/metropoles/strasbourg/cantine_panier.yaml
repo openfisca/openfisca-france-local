@@ -1,0 +1,7 @@
+  # repas panier 
+
+- period: 2020-09
+  input:
+   strasbourg_metropole_quotient_familial: [0, 409, 410, 411, 621]
+  output:
+    strasbourg_metropole_tarification_cantine_panier: [0.75, 0.75, 0.75, 1.08, 1.63]
