@@ -1,0 +1,18 @@
+- period: 2021-04
+  input:
+    depcom: [59102, 33401]
+  output:
+    nord_eligibilite_residence: [true, false]
+
+- period: 2021-04
+  input:
+    nord_eligibilite_residence: [true, true]
+    rsa: [200, 0]
+  output:
+    nord_activ_emploi_eligibilite: [true, false]
+
+- period: 2021-04
+  input:
+    nord_activ_emploi_eligibilite: [true, false]
+  output:
+    nord_activ_emploi_maximum: [150, 0]
