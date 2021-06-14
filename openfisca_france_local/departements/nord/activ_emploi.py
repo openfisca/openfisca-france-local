@@ -28,7 +28,7 @@ class nord_activ_emploi_maximum(Variable):
     value_type = float
     entity = Individu
     definition_period = MONTH
-    reference = "https://github.com/openfisca/openfisca-france-local/wiki/files/departements/nord/Brochure Activ Emploi.pdf"
+    reference = "https://lenord.fr/jcms/prd1_608417/activ-emploi"
     label = "Montant maximum de l'aide financière Activ'Emploi du département du Nord"
 
     def formula(individu, period):
