@@ -33,8 +33,8 @@ class tisseo_transport_etudiant_reduction(Variable):
         aide_non_boursier = (20 <= age) * ( age < 26) * eligible * 80
 
         boursier = individu('boursier', period)
-        echelon_bourse = individu('echelon_bourse', period)
-        aide_boursier = etudiant * boursier * (echelon_bourse == 7) * (age < 35) * 100
+        bourse_criteres_sociaux_echelon = individu('bourse_criteres_sociaux_echelon', period)
+        aide_boursier = etudiant * boursier * (bourse_criteres_sociaux_echelon == 7) * (age < 35) * 100
 
         return max_(
           aide_boursier,

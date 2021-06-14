@@ -121,7 +121,7 @@ class rennes_metropole_transport(Variable):
         result_non_etudiant = select([ressources_familiales <= seuil1 * seuil_evolutif, ressources_familiales <= seuil2 * seuil_evolutif, ressources_familiales <= seuil3 * seuil_evolutif], [taux1, taux2, taux3])
 
         etudiant = individu('etudiant', period)
-        echelon = individu('echelon_bourse', period)
+        echelon = individu('bourse_criteres_sociaux_echelon', period)
         result_etudiant = select([echelon >= 5, echelon >= 3, echelon >= 2], [taux1, taux2, taux3])
         result = where(etudiant, result_etudiant, result_non_etudiant)
 

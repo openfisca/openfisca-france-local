@@ -9,6 +9,6 @@
     age: [20, 26, 34, 35]
     etudiant: [true, true, true, true]
     boursier: [false, false, true, true]
-    echelon_bourse: [-1, -1, 7, 7]
+    bourse_criteres_sociaux_echelon: [-1, -1, 7, 7]
   output:
     tisseo_transport_etudiant_reduction: [80, 0, 100, 0]
