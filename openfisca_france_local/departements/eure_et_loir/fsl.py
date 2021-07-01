@@ -167,13 +167,13 @@ class eure_et_loir_fsl_base_ressources(Variable):
         ])
 
         # projette les ressources de la famille sur un individu quelconque pour éviter les doublons
-        masque_un_membre_par_groupe = menage.members.has_role(Menage.PERSONNE_DE_REFERENCE)
+        selectionne_un_membre_par_groupe = menage.members.has_role(Menage.PERSONNE_DE_REFERENCE)
 
         menage_resources = menage.sum( 
             resources_mensuelles_individus
             + (resources_annuelles_individus / 12)
-            + resources_mensuelles_famille_members * masque_un_membre_par_groupe
-            + (resources_annuelles_famille_members * masque_un_membre_par_groupe/ 12)
+            + resources_mensuelles_famille_members * selectionne_un_membre_par_groupe
+            + (resources_annuelles_famille_members * selectionne_un_membre_par_groupe/ 12)
             )
 
         enfants_a_charge = menage.members('enfant_a_charge', period.this_year)
