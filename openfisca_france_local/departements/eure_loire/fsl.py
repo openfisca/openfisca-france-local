@@ -168,9 +168,9 @@ class eure_et_loir_fsl_base_ressources(Variable):
 
         menage_resources = menage.sum( 
             menage_resources_mensuelles
-            + menage_resources_annuelles
+            + menage_resources_annuelles / 12
             + menage_resources_mensuelles_famille
-            + menage_resources_annuelles_famille
+            + menage_resources_annuelles_famille / 12
             )
 
         enfants_a_charge = menage.members('enfant_a_charge', period.this_year)
