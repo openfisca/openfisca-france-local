@@ -138,7 +138,6 @@ class eure_et_loir_fsl_base_ressources(Variable):
             'af',
             'asf',
             'paje',
-            'paje_cmg',
             'aeeh',
             'aide_logement',
             'aspa',
