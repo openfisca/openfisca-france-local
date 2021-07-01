@@ -134,8 +134,7 @@ class eure_et_loir_fsl_base_ressources(Variable):
         }
 
         famille_resources_names = {
-            'rsa_socle',
-            'rsa_socle_majore',
+            'rsa',
             'af',
             'asf',
             'paje',
