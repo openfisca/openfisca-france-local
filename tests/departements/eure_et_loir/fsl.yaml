@@ -1,0 +1,54 @@
+- name: Les ressources de l'aide FSL Eure-et-Loir ne sont prises en compte qu'une seule fois
+  period: 2021-06
+  input:
+    individus:
+      parent1:
+        salaire_imposable: 100
+        chomage_imposable: 100
+        bourse_enseignement_sup: 100
+        revenus_stage_formation_pro: 100
+        indemnites_journalieres: 100
+        pensions_alimentaires_percues: 100
+        prestation_compensatoire: 100
+        retraite_imposable: 100
+        aah: 100
+        pensions_invalidite: 100
+        apa_domicile: 100
+        pch: 100
+        retraite_complementaire_artisan_commercant:
+          2021: 100
+        retraite_complementaire_profession_liberale:
+          2021: 100
+      parent2:
+        salaire_imposable: 0
+      toto:
+        age: 8
+        enfant_a_charge:
+          2021: True
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [ "toto" ]
+      eure_et_loir_eligibilite_residence: True
+    famille:
+      parents: [ "parent1", "parent2" ]
+      en_couple: True
+      rsa_socle: 100
+      rsa_socle_majore: 100
+      af: 100
+      asf: 100
+      paje: 100
+      paje_cmg: 100
+      aeeh: 100
+      aide_logement: 100
+      aspa: 100
+      ppa: 100
+      bourse_college: 100
+      bourse_lycee: 100
+      ars:
+        2021: 100
+    foyer_fiscal:
+      declarants: [ parent1, parent2 ]
+      personnes_a_charge: [ toto ]
+  output:
+    eure_et_loir_fsl_base_ressources: False  # ressources = 27 * 100  > 2052 (seuil pauvreté un enfant)
