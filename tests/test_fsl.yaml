@@ -1,0 +1,6 @@
+- name: Test FSL eligibilite
+  period: 2018-01
+  input:
+    statut_occupation_logement: ['loge_gratuitement', 'primo_accedant', 'sans_domicile']
+  output:
+    fsl_eligibilite: [false, true, false]
