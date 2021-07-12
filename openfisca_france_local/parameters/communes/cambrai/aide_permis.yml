@@ -1,0 +1,11 @@
+age:
+  minimum:
+    values:
+      2019-01-01: 18
+  maximum:
+    values:
+      2019-01-01: 25
+montant:
+  reference: "https://www.villedecambrai.com/jeunesse/bourses-et-aides/aide-au-permis-de-conduire"
+  values:
+    2019-01-01: 400
