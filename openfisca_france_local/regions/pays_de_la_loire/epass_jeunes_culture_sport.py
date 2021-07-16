@@ -10,6 +10,9 @@ class pays_de_la_loire_epass_jeunes_culture_sport(Variable):
     entity = Individu
     definition_period = MONTH
     label = u"E.pass Culture Sport de la région Pays de la Loire"
+    reference = [
+        "https://www.epassjeunes-paysdelaloire.fr/cest-quoi/"
+    ]
 
     def formula(individu, period):
         age = individu('age', period)
