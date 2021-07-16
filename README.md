@@ -7,7 +7,7 @@
 
 [OpenFisca](https://www.openfisca.fr/) est un logiciel libre de micro-simulation. Ce dépôt contient la modélisation des aides locales françaises. Celles-ci enrichissent le modèle national de la France, [openfisca-france](https://github.com/openfisca/openfisca-france#openfisca-france).
 
-Pour plus d'information sur les fonctionnalités et la manière d'utiliser OpenFisca, vous pouvez consulter la [documentation générale](https:/openfisca.org/doc/).
+Pour plus d'information sur les fonctionnalités et la manière d'utiliser OpenFisca, vous pouvez consulter la [documentation générale](https://openfisca.org/doc/).
 
 
 ## Installation
