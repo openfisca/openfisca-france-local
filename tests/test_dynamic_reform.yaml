@@ -1,0 +1,17 @@
+- name: Test dynamic reform
+  period: 2018-01
+  reforms:
+    - openfisca_france_local.dynamic_factory.dynamic_reform
+  input:
+    age: [17, 18]
+  output:
+    dynamic_majeur: [false, true]
+
+- name: Test str matching in dynamic reform
+  period: 2018-01
+  reforms:
+    - openfisca_france_local.dynamic_factory.dynamic_reform
+  input:
+    depcom: ['33090', '12345']
+  output:
+    dynamic_menage_in_canejan: [true, false]

@@ -1,0 +1,2 @@
+name: Version dynamique du calcul de la majorité
+formula: (age >= P.demographie.age_majorite)
