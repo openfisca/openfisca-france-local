@@ -1,0 +1,6 @@
+- period: 2021-07
+  input:
+    depcom: ['85100', '44200', '85400']
+    age: [17, 32, 20]
+  output:
+    vendee_bourses_jeunes_benevoles_montant_max: [800, 0, 800]
