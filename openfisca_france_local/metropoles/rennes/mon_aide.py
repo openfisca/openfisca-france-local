@@ -29,14 +29,14 @@ class rennes_metropole_transport_base_ressource(Variable):
 
         #renvenus BIC ou B
         def revenus_tns():
-            revenus_auto_entrepreneur = individu('tns_auto_entrepreneur_benefice', period.last_3_months, options = [ADD])
+            revenus_auto_entrepreneur = individu('rpns_auto_entrepreneur_benefice', period.last_3_months, options = [ADD])
 
 
             # Les revenus TNS hors AE sont estimés en se basant sur le revenu N-1
-            tns_micro_entreprise_benefice = individu('tns_micro_entreprise_benefice', period.last_year, options = [ADD])
-            tns_benefice_exploitant_agricole = individu('tns_benefice_exploitant_agricole', period.last_year, options = [ADD])
-            tns_autres_revenus = individu('tns_autres_revenus', period.last_year, options = [ADD])
-            return (revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus) * (3 / 12)
+            rpns_micro_entreprise_benefice = individu('rpns_micro_entreprise_benefice', period.last_year, options = [ADD])
+            rpns_benefice_exploitant_agricole = individu('rpns_benefice_exploitant_agricole', period.last_year, options = [ADD])
+            rpns_autres_revenus = individu('rpns_autres_revenus', period.last_year, options = [ADD])
+            return (revenus_auto_entrepreneur + rpns_micro_entreprise_benefice + rpns_benefice_exploitant_agricole + rpns_autres_revenus) * (3 / 12)
 
         #on prend en compte le salaire du conjoint
         last_year = period.start.period('year').offset(-1)
