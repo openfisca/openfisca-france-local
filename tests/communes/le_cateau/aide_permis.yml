@@ -1,0 +1,7 @@
+- period: 2021-07
+  input:
+    age: [15, 18, 18, 18]
+    activite: ["etudiant", "etudiant", "etudiant", "actif"]
+    depcom: ["59136", "59136", "59350", "59136"]
+  output:
+    le_cateau_aide_mobilite_permis: [0, 400, 0, 0]
