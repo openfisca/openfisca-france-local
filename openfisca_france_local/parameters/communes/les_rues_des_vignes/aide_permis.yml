@@ -1,0 +1,11 @@
+age:
+  minimum:
+    values:
+      2019-01-01: 16
+  maximum:
+    values:
+      2019-01-01: 25
+montant:
+  reference: "https://www.lesruesdesvignes.fr/vie-pratique/demarches-administratives/aides-sociales"
+  values:
+    2019-01-01: 400
