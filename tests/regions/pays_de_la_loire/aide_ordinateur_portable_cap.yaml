@@ -1,0 +1,7 @@
+- period: 2021-07
+  input:
+    depcom: ['49244', '59350', '49244', '49244']
+    annee_etude: ['premiere', 'premiere', 'terminale', 'premiere']
+    niveau_diplome_formation: ['niveau_3', 'niveau_3', 'niveau_3', 'non_renseigne']
+  output:
+    eligibilite_aide_ordinateur_portable_cap_pays_de_la_loire: [True, False, False, False]
