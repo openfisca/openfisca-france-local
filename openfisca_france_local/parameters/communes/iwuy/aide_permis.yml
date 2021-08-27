@@ -1,0 +1,11 @@
+age:
+  minimum:
+    values:
+      2019-01-01: 18
+  maximum:
+    values:
+      2019-01-01: 26
+montant:
+  reference: "https://www.cjoint.com/doc/21_04/KDBkatIrrMr_Guide-Mobilit%C3%A9-Edition-2021-MAJ-Avril.pdf"
+  values:
+    2019-01-01: 180
