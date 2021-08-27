@@ -1,0 +1,6 @@
+- period: 2021-07
+  input:
+    age: [15, 18, 18]
+    depcom: ["59322", "59322", "59350"]
+  output:
+    iwuy_aide_mobilite_permis: [0, 180, 0]
