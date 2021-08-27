@@ -1,0 +1,6 @@
+- period: 2021-07
+  input:
+    age: [15, 18, 18]
+    depcom: ["59517", "59517", "59350"]
+  output:
+    les_rues_des_vignes_aide_mobilite_permis: [0, 400, 0]
