@@ -1,0 +1,6 @@
+plafond_quotient_familial:
+  description: Montant maximal du quotient familial pour l'obtention de la Carte Blanche à Nantes
+  reference: https://metropole.nantes.fr/carte-blanche#serviceTocEntry0
+  values:
+    2021-09-01:
+      value: 650
