@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="OpenFisca-France-Local",
-    version="0.19.1",
+    version="0.19.2",
     description="Extension OpenFisca pour nos partenariats avec les collectivités territoriales",
     license="http://www.fsf.org/licensing/licenses/agpl-3.0.html",
     author="",
