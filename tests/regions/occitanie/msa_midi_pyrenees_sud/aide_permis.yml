@@ -1,0 +1,13 @@
+- period: 2021-09
+  input:
+    regime_securite_sociale: [regime_agricole, regime_general, regime_general, regime_agricole, regime_agricole, regime_agricole]
+    depcom: [31000, 31000, 95160, 31000, 31000, 31000]
+    age: [18, 18, 18, 30, 18, 18]
+    rfr:
+      2021:
+        [12000, 12000, 12000, 12000, 100000, 13000]
+    nbptr:
+      2021:
+        [2, 2, 2, 2, 2, 1]
+  output:
+    msa_midi_pyrenees_sud_aide_permis: [400, 0, 0, 0, 0, 0]
