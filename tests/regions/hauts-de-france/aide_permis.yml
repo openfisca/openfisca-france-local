@@ -1,0 +1,33 @@
+- period: 2021-03
+  input:
+    age: [31, 18, 21, 21, 21, 21, 21]
+    depcom: [60, 95, 60, 60, 60, 60, 60]
+    statut_marital: [celibataire, celibataire, celibataire, marie, marie, celibataire, celibataire]
+    contrat_de_travail_duree: [cdd, cdd, cdd, cdd, cdd, cdi, non_defini]
+    rfr:
+      2019:
+        [1, 1, 1, 50000, 32000, 1, 1]
+    nbptr:
+      2019:
+        [1, 1, 1, 2, 2, 1, 1]
+    activite: [actif, actif, actif, actif, actif, actif, etudiant]
+  output:
+    hauts_de_france_aide_permis: [0, 0, 1000, 0, 1000, 0, 1000]
+
+
+- period: 2021-09
+  input:
+    age: [31, 18, 21, 21, 21, 21, 21]
+    depcom: [60, 95, 60, 60, 60, 60, 60]
+    statut_marital: [celibataire, celibataire, celibataire, marie, marie, celibataire, celibataire]
+    rfr:
+      2019:
+        [1, 1, 1, 50000, 32000, 1, 1]
+    nbptr:
+      2019:
+        [1, 1, 1, 2, 2, 1, 1]
+    stagiaire: [ false, false, true, false, false, false, false ]
+    activite: [actif, actif, actif, actif, etudiant, actif, chomeur]
+    apprenti: [false, false, false, false, true, false, false]
+  output:
+    hauts_de_france_aide_permis: [0, 0, 1500, 0, 1500, 0, 1500]
