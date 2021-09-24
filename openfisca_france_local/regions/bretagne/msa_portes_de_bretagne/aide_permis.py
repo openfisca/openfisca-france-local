@@ -28,12 +28,11 @@ class msa_portes_de_bretagne_aide_permis(Variable):
 
         smic = parameters(period).marche_travail.salaire_minimum
         smic_brut_mensuel = smic.smic_h_b * smic.nb_heure_travail_mensuel
-        eligibilite_salaire_alternant = individu('salaire_de_base', period.last_3_months, options = [ADD]) / 3 / smic_brut_mensuel * 100 <= params.pourcentage_ressources_maximum_alternant
-        eligibilite_alternant = individu('alternant', period) * eligibilite_salaire_alternant
+        eligibilite_salaire = individu('salaire_de_base', period.last_3_months, options = [ADD]) / 3 / smic_brut_mensuel * 100 <= params.pourcentage_ressources_maximum_jeune
 
         quotient_familial = individu.foyer_fiscal('rfr', period.this_year) / 12 / individu.foyer_fiscal('nbptr', period.this_year)
-        eligibilite_quotient_familial = quotient_familial <= params.plafond_quotient_familial
-
         enfant_a_charge = individu('enfant_a_charge', period.this_year)
+        eligibilite_famillle = (quotient_familial <= params.plafond_quotient_familial) * enfant_a_charge
 
-        return eligibilite_geographique * allocataire_msa * eligibilite_age * (eligibilite_alternant + eligibilite_quotient_familial) * enfant_a_charge * montant
+
+        return eligibilite_geographique * allocataire_msa * eligibilite_age * (eligibilite_salaire + eligibilite_famillle) * montant
