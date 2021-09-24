@@ -1,6 +1,6 @@
 montant:
   reference: https://portesdebretagne.msa.fr/lfy/aide-au-permis-de-conduire
-  description: Montant de l'aide au permis de la MSA Nord Portes de Bretagne
+  description: Montant de l'aide au permis de la MSA Portes de Bretagne
   values:
     2020-01-20:
       value: 300
