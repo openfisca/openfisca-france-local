@@ -1,12 +1,12 @@
 montant:
-  description: Montant de l'aide au permis de la msa Nord Pas-de-Calais
+  description: Montant de l'aide au permis de la MSA Haute Normandie
   reference: https://hautenormandie.msa.fr/lfy/aide-au-permis-de-conduire
   values:
     2020-01-20:
       value: 300
 
 age:
-  description: Limite d'âge de l'aide au permis de la msa Nord Pas-de-Calais
+  description: Limite d'âge de l'aide au permis de la MSA Haute Normandie
   reference: https://hautenormandie.msa.fr/lfy/aide-au-permis-de-conduire
   minimum:
     2020-01-20:
