@@ -1,0 +1,16 @@
+- period: 2021-09
+  input:
+    regime_securite_sociale: [regime_agricole, regime_general, regime_general, regime_agricole, regime_agricole, regime_agricole, regime_agricole]
+    enfant_a_charge:
+      2021:
+        [false, true, true, true, true, true, true]
+    alternant: [false, true, false, true, true, true, true]
+    depcom: [27000, 27000, 27000, 95160, 27000, 27000, 27000]
+    age: [18, 18, 18, 18, 30, 18, 18]
+    af_nbenf: [3, 3, 3, 3, 3, 1, 3]
+    rfr:
+      2021:
+        [35000, 35000, 35000, 35000, 35000, 35000, 35000]
+    salaire_de_base: [1000, 1000, 1000, 1000, 1000, 1000, 3000]
+  output:
+    msa_haute_normandie_aide_permis: [300, 300, 0, 0, 0, 0, 0]
