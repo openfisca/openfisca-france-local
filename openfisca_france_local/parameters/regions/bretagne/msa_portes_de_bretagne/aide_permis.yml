@@ -1,0 +1,27 @@
+montant:
+  reference: https://portesdebretagne.msa.fr/lfy/aide-au-permis-de-conduire
+  description: Montant de l'aide au permis de la msa Nord Portes de Bretagne
+  values:
+    2020-01-20:
+      value: 300
+
+age:
+  description: Limite d'âge de l'aide au permis de la msa Portes de Bretagne
+  reference: https://portesdebretagne.msa.fr/lfy/aide-au-permis-de-conduire
+  maximum:
+    2020-01-20:
+      value: 25
+
+pourcentage_ressources_maximum_jeune:
+  description: Montant maximal des ressources des alternants de l'aide au permis de la msa Portes de Bretagne
+  reference: https://portesdebretagne.msa.fr/lfy/aide-au-permis-de-conduire
+  values:
+    2020-01-20:
+      value: 55
+
+plafond_quotient_familial:
+  description: Montant maximal du quotient familial de l'aide au permis de la msa Portes de Bretagne
+  reference: https://portesdebretagne.msa.fr/lfy/aide-au-permis-de-conduire
+  values:
+    2020-01-20:
+      value: 909
