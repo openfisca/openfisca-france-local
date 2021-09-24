@@ -20,7 +20,7 @@ class cambrai_aide_mobilite_permis_b(Variable):
         eligibilite_activite = (activite == TypesActivite.chomeur) + (activite == TypesActivite.etudiant) + (activite == TypesActivite.inactif)
 
         eligibilite_commune = individu.menage('depcom', period) == b"59122"
-        eligibilite =  eligibilite_age * eligibilite_activite * eligibilite_commune
+        eligibilite = eligibilite_age * eligibilite_activite * eligibilite_commune
 
         montant = parameters(period).communes.cambrai.aide_permis.montant
         return montant * eligibilite
