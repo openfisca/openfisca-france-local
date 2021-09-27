@@ -1,0 +1,27 @@
+montant:
+  reference: https://armorique.msa.fr/lfy/l-aide-au-permis-de-conduire
+  description: Montant de l'aide au permis de la MSA Armorique
+  values:
+    2020-01-20:
+      value: 300
+
+age:
+  description: Limite d'âge de l'aide au permis de la MSA Armorique
+  reference: https://armorique.msa.fr/lfy/l-aide-au-permis-de-conduire
+  maximum:
+    2020-01-20:
+      value: 25
+
+pourcentage_ressources_maximum_jeune:
+  description: Montant maximal des ressources pour l'obtention de l'aide au permis de la MSA Armorique
+  reference: https://armorique.msa.fr/lfy/l-aide-au-permis-de-conduire
+  values:
+    2020-01-20:
+      value: 55
+
+plafond_quotient_familial:
+  description: Montant maximal du quotient familial de l'aide au permis de la MSA Armorique
+  reference: hhttps://armorique.msa.fr/lfy/l-aide-au-permis-de-conduire
+  values:
+    2020-01-20:
+      value: 1000
