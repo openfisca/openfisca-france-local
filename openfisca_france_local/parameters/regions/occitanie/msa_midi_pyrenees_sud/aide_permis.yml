@@ -1,0 +1,23 @@
+montant:
+  reference: https://mps.msa.fr/lfy/famille/aide-permis-de-conduire
+  description: Montant de l'aide au permis de la MSA Midi-Pyrénées Sud
+  values:
+    2020-01-20:
+      value: 400
+
+age:
+  description: Limite d'âge de l'aide au permis de la MSA Midi-Pyrénées Sud
+  reference: https://mps.msa.fr/lfy/famille/aide-permis-de-conduire
+  minimum:
+    2020-01-20:
+      value: 17
+  maximum:
+    2020-01-20:
+      value: 25
+
+plafond_quotient_familial:
+  description: Montant maximal du quotient familial de l'aide au permis de la MSA Midi-Pyrénées Sud
+  reference: https://mps.msa.fr/lfy/famille/aide-permis-de-conduire
+  values:
+    2020-01-20:
+      value: 1000
