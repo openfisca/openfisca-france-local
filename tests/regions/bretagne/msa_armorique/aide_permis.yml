@@ -1,0 +1,20 @@
+- period: 2021-09
+  input:
+    depcom: [22000, 22000, 95160, 22000, 22000, 22000, 22000]
+    regime_securite_sociale: [regime_agricole, regime_agricole, regime_general, regime_agricole, regime_agricole, regime_agricole, regime_agricole]
+    age: [15, 15, 15, 30, 15, 15, 15]
+    salaire_de_base:
+      2021-06: [500, 500, 500, 500, 1000, 1000, 1000]
+      2021-07: [500, 500, 500, 500, 1000, 1000, 1000]
+      2021-08: [500, 500, 500, 500, 1000, 1000, 1000]
+    rfr:
+      2021:
+        [13000, 6000, 13000, 13000, 120000, 13000, 13000]
+    nbptr:
+      2021:
+        [2, 2, 2, 2, 2, 1, 2]
+    enfant_a_charge:
+      2021:
+        [true, true, true, true, true, true, false]
+  output:
+    msa_armorique_aide_permis: [300, 300, 0, 0, 0, 0, 0]
