@@ -4,10 +4,10 @@
     activite: ["etudiant", "chomeur", "etudiant", "etudiant"]
     depcom: ["44109", "44109", "59000","44109"]
     rfr:
-      2021:
+      2019:
         [12000, 12000, 12000, 20000]
     nbptr:
-      2021:
+      2019:
         [2, 2, 2, 2]
   output:
     aide_carte_blanche: [true, true, false, false]
