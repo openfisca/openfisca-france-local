@@ -1,0 +1,6 @@
+- period: 2021-03
+  input:
+    age: [19, 18, 18]
+    depcom: ["01000", "02000", "01000"]
+  output:
+    auvergne_rhone_alpes_aide_permis: [0, 0, 200]

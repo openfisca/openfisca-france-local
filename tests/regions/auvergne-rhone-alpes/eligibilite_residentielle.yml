@@ -1,0 +1,5 @@
+- period: 2021-03
+  input:
+    depcom: ["01100", "02000"]
+  output:
+    auvergne_rhone_alpes_eligibilite_residence: [true, false]

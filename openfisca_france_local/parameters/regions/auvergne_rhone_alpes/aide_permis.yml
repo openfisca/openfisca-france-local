@@ -1,0 +1,16 @@
+montant:
+  reference:
+    - https://www.auvergnerhonealpes.fr/aide/385/289-financer-ma-formation-au-permis-de-conduire-orientation-formation.htm
+  description: Montant obtenu pour l'aide au permis de conduire en région Auvergne-Rhône-Alpes.
+  values:
+    2020-01-20:
+      value: 200
+
+age:
+  description: Eligibilité d'âge pour l'aide au permis de conduire en région Auvergne-Rhône-Alpes.
+  reference:
+    - https://www.auvergnerhonealpes.fr/aide/385/289-financer-ma-formation-au-permis-de-conduire-orientation-formation.htm
+  values:
+    2020-01-20:
+      value: 18
+
