@@ -7,10 +7,7 @@ class occitanie_carte_transport_scolaire_lio(Variable):
     entity = Individu
     definition_period = MONTH
     label = "Eligibilité à la carte de transport scolaire liO"
-    reference = [
-        "https://lio.laregion.fr/-transport-scolaire-",
-        ]
-
+    reference = "https://lio.laregion.fr/-transport-scolaire-"
 
     def formula(individu, period):
         occitanie_eligibilite_residence = individu('occitanie_eligibilite_residence', period)
