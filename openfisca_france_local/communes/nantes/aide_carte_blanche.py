@@ -6,9 +6,8 @@ class aide_carte_blanche(Variable):
     entity = Individu
     definition_period = MONTH
     label = "Éligibilité à l'obtention d'une carte blanche donnant accès à de nombreuses offres de loisirs culturelles et sportives à tarif réduit."
-    reference = [
-        "https://metropole.nantes.fr/carte-blanche",
-    ]
+    reference = "https://metropole.nantes.fr/carte-blanche",
+
     def formula(individu, period, parameters):
 
         eligibilite_commune = individu.menage('depcom', period) == b"44109"
