@@ -3,4 +3,4 @@ clean:
 	find . -name '*.pyc' -exec rm \{\} \;
 
 test:
-	openfisca-run-test tests --country-package openfisca_france --extensions openfisca_france_local
+	openfisca_local_test tests
