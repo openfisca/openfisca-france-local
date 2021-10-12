@@ -8,7 +8,7 @@ class auvergne_rhone_alpes_eligibilite_residence(Variable):
     value_type = bool
     entity = Menage
     definition_period = MONTH
-    label = u"Éligibilité résidentielle d'un ménage aux dipositifs de la région Auvergne-Rhône-Alpes."
+    label = "Éligibilité résidentielle d'un ménage aux dipositifs de la région Auvergne-Rhône-Alpes."
 
     def formula(menage, period):
         depcom = menage('depcom', period)
