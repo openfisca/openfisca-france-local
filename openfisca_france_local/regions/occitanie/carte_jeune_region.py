@@ -6,15 +6,15 @@ class occitanie_carte_jeune_region(Variable):
     value_type = bool
     entity = Individu
     definition_period = MONTH
-    label = "Eligibilité à la carte jeune région"
+    label = "Eligibilité à la Carte Jeune Région"
     reference = [
-        "https://www.laregion.fr/-cartejeune-",
+        "https://www.laregion.fr/cartejeune",
         "https://www.laregion.fr/la-carte-jeune-region-c-est-quoi-35189"
         ]
 
 
     def formula(individu, period):
-        eligibilite_occitanie = individu('eligibilite_occitanie', period)
+        occitanie_eligibilite_residence = individu.menage('occitanie_eligibilite_residence', period)
 
         eligibilite_etudiant = (individu('activite', period) == TypesActivite.etudiant)
 
@@ -30,4 +30,4 @@ class occitanie_carte_jeune_region(Variable):
         statuts_etablissement_scolaire = individu('statuts_etablissement_scolaire', period)
         eligibilite_statuts_etablissement_scolaire = (statuts_etablissement_scolaire == StatutsEtablissementScolaire.public) + (statuts_etablissement_scolaire == StatutsEtablissementScolaire.prive_sous_contrat)
 
-        return eligibilite_occitanie * eligibilite_annee_etude * eligibilite_etudiant * eligibilite_statuts_etablissement_scolaire
+        return occitanie_eligibilite_residence * eligibilite_annee_etude * eligibilite_etudiant * eligibilite_statuts_etablissement_scolaire
