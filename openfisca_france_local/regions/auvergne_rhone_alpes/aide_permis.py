@@ -14,7 +14,6 @@ class auvergne_rhone_alpes_aide_permis(Variable):
 
         eligibilite_residentielle = individu.menage("auvergne_rhone_alpes_eligibilite_residence", period)
 
-        age = individu('age', period)
-        eligibilite_age = (age == params.age)
+        eligibilite_age = individu('age', period) == params.age
 
         return eligibilite_residentielle * eligibilite_age * montant
