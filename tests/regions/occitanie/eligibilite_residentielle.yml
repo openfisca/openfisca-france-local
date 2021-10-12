@@ -2,4 +2,4 @@
   input:
     depcom: [31555, 95563]
   output:
-    eligibilite_occitanie: [true, false]
+    occitanie_eligibilite_residence: [true, false]

@@ -1,6 +1,6 @@
 - period: 2021-10
   input:
-    eligibilite_occitanie: [true, false, true, true]
+    occitanie_eligibilite_residence: [true, false, true, true]
     scolarite: [college, college, enseignement_superieur, college]
     statuts_etablissement_scolaire: [public, public, public, prive_hors_contrat]
   output:

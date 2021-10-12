@@ -13,7 +13,7 @@ class occitanie_carte_transport_scolaire_lio(Variable):
 
 
     def formula(individu, period):
-        eligibilite_occitanie = individu('eligibilite_occitanie', period)
+        occitanie_eligibilite_residence = individu('occitanie_eligibilite_residence', period)
 
         scolarite = individu('scolarite', period)
         eligibilite_scolarite = (scolarite == TypesScolarite.maternelle) + \
@@ -24,4 +24,4 @@ class occitanie_carte_transport_scolaire_lio(Variable):
         statuts_etablissement_scolaire = individu('statuts_etablissement_scolaire', period)
         eligibilite_statuts_etablissement_scolaire = (statuts_etablissement_scolaire == StatutsEtablissementScolaire.public) + (statuts_etablissement_scolaire == StatutsEtablissementScolaire.prive_sous_contrat)
 
-        return eligibilite_occitanie * eligibilite_scolarite * eligibilite_statuts_etablissement_scolaire
+        return occitanie_eligibilite_residence * eligibilite_scolarite * eligibilite_statuts_etablissement_scolaire
