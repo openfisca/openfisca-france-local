@@ -10,7 +10,7 @@ class occitanie_carte_transport_scolaire_lio(Variable):
     reference = "https://lio.laregion.fr/-transport-scolaire-"
 
     def formula(individu, period):
-        occitanie_eligibilite_residence = individu('occitanie_eligibilite_residence', period)
+        occitanie_eligibilite_residence = individu.menage('occitanie_eligibilite_residence', period)
 
         scolarite = individu('scolarite', period)
         eligibilite_scolarite = (scolarite == TypesScolarite.maternelle) + \

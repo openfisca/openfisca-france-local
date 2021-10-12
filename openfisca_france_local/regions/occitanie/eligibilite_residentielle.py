@@ -1,4 +1,4 @@
-from openfisca_france.model.base import Variable, Individu, MONTH
+from openfisca_france.model.base import Variable, Menage, MONTH
 from numpy.core.defchararray import startswith
 
 DEPARTEMENTS_OCCITANIE = [
@@ -7,10 +7,11 @@ DEPARTEMENTS_OCCITANIE = [
 
 class occitanie_eligibilite_residence(Variable):
     value_type = bool
-    entity = Individu
+    entity = Menage
     definition_period = MONTH
     label = "Éligibilité résidentielle d'un ménage aux dipositifs de la région Occitanie"
 
-    def formula(individu, period):
-        depcom = individu.menage('depcom', period)
+    def formula(menage, period):
+        depcom = menage('depcom', period)
         return sum([startswith(depcom, code_departement) for code_departement in DEPARTEMENTS_OCCITANIE]) > 0
+
