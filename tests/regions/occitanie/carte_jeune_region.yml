@@ -1,6 +1,6 @@
 - period: 2021-09
   input:
-    eligibilite_occitanie: [true, false, true, true, true]
+    occitanie_eligibilite_residence: [true, false, true, true, true]
     activite: [etudiant, etudiant, actif, etudiant, etudiant]
     annee_etude: [seconde, seconde, seconde, licence_1, seconde]
     statuts_etablissement_scolaire: [public, public, public, public, prive_hors_contrat]
