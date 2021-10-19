@@ -1,0 +1,7 @@
+- period: 2021-10
+  input:
+    occitanie_eligibilite_residence: [true, false, true, true]
+    scolarite: [college, college, enseignement_superieur, college]
+    statuts_etablissement_scolaire: [public, public, public, prive_hors_contrat]
+  output:
+    occitanie_carte_transport_scolaire_lio: [true, false, false, false]

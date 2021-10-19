@@ -1,0 +1,5 @@
+- period: 2021-10
+  input:
+    depcom: [31555, 95563]
+  output:
+    occitanie_eligibilite_residence: [true, false]
