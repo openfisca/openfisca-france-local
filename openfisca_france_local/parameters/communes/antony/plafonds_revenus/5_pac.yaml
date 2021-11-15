@@ -1,0 +1,5 @@
+description: Plafond de ressources pour les aides d'Antony pour une famille avec cinq enfants
+unit: currency
+values:
+  2021-11-01:
+    value: 5961
