@@ -1,0 +1,48 @@
+bareme_ressources_par_enfant:
+  description: Barème des plafond de ressources pour le droit aux aides de la ville de Antony
+  metadata:
+    type: single_amount
+    amount_unit: currency
+  brackets:
+  - amount:
+      2021-06-01:
+        value: 2732
+    threshold:
+      2021-06-01:
+        value: 1
+  - amount:
+      2021-06-01:
+        value: 3559
+    threshold:
+      2021-06-01:
+        value: 2
+  - amount:
+      2021-06-01:
+        value: 4394
+    threshold:
+      2021-06-01:
+        value: 3
+  - amount:
+      2021-06-01:
+        value: 5180
+    threshold:
+      2021-06-01:
+        value: 4
+  - amount:
+      2021-06-01:
+        value: 5961
+    threshold:
+      2021-06-01:
+        value: 5
+  - amount:
+      2021-06-01:
+        value: 6745
+    threshold:
+      2021-06-01:
+        value: 6
+  - amount:
+      2021-06-01:
+        value: 7528
+    threshold:
+      2021-06-01:
+        value: 7
