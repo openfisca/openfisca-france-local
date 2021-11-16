@@ -9,4 +9,4 @@ class antony_eligibilite_residence(Variable):
     label = "Éligibilité résidentielle d'un ménage aux dipositifs d'Antony"
 
     def formula(menage, period, parameters):
-        return (menage('depcom', period) == b'92160')
+        return (menage('depcom', period) == b'92002')
