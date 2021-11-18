@@ -1,0 +1,6 @@
+- name: Famille antony éligible
+  period: 2021-11
+  input:
+    depcom: [92002, 31000]
+  output:
+    antony_eligibilite_residence: [true, false]
