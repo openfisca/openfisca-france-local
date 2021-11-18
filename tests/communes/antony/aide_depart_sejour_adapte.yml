@@ -1,0 +1,16 @@
+- name: Montant de Aide-depart-sejour-adapte
+  period: 2021-11
+  input:
+    antony_base_ressources: [4300, 5000, 7528]
+  output:
+    antony_aide_depart_sejour_adapte_montant_individuel: [600, 300, 0]
+
+- name: Aide-depart-sejour-adapte
+  period: 2021-11
+  input:
+    antony_eligibilite_residence: [true, false, true, true, true]
+    handicap: [true, true, false, true, true]
+    antony_eligibilite_ressources: [true, true, true, false, true]
+    antony_aide_depart_sejour_adapte_montant_individuel: [300, 300, 300, 300, 600]
+  output:
+    antony_aide_depart_sejour_adapte: [300, 0, 0, 0, 600]
