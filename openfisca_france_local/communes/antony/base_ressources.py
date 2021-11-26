@@ -67,7 +67,9 @@ class antony_base_ressources(Variable):
                           + (ressources_annuelles_famille_n_1 / 4)
                           )
 
-        ressources_considerees = min_(ressources_m_3, ressources_n_1)
+        # on ne compare les ressources recentes avec le N-1
+        # que si on a effectivement des ressources N-1
+        ressources_considerees = where(ressources_n_1 > 0, min_(ressources_m_3, ressources_n_1), ressources_m_3)
 
         return ressources_considerees
 
