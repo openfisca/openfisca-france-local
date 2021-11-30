@@ -1,7 +1,7 @@
 - name: Montant de Aide-depart-sejour-adapte
   period: 2021-11
   input:
-    antony_base_ressources: [4300, 5000, 7528]
+    antony_base_ressources: [12900, 15000, 22584]
   output:
     antony_aide_depart_sejour_adapte_montant_individuel: [600, 300, 0]
 
