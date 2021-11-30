@@ -75,4 +75,6 @@ class antony_eligibilite_ressources(Variable):
             [parameters_antony.personne_seule, parameters_antony.couple, baremes_enfants.calc(min_(nb_enfants, 7))]
         )
 
-        return ressources_considerees < plafond_considere
+        # Les plafonds sont mensuels et les ressources sont considérées sur 3 mois
+        # On remet donc les ressources à un niveau mensuel pour la comparaison
+        return (ressources_considerees / 3) < plafond_considere
