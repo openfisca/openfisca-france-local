@@ -29,12 +29,14 @@ class antony_aide_depart_sejour_adapte_montant_individuel(Variable):
     def formula(famille, period, parameters):
         parameters_antony = parameters(period).communes.antony.plafonds_revenus.sejour_adapte
 
-        ressources_famille = famille('antony_base_ressources', period)
+        # Les plafonds sont mensuels et les ressources sont considérées sur 3 mois
+        # On remet donc les ressources à un niveau mensuel pour la comparaison
+        ressources_considerees_famille = famille('antony_base_ressources', period) / 3
 
         montant = select(
             [
-                ressources_famille < parameters_antony.tranches.tranche_1,
-                ressources_famille < parameters_antony.tranches.tranche_2
+                ressources_considerees_famille < parameters_antony.tranches.tranche_1,
+                ressources_considerees_famille < parameters_antony.tranches.tranche_2
             ],
             [
                 parameters_antony.montants.montant_tranche_1,
