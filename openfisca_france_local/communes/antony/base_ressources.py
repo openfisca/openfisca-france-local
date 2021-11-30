@@ -45,9 +45,13 @@ class antony_base_ressources(Variable):
         ])
         ressources_m_3 = ressources_mensuelles_famille_m_3 + famille.sum(resources_mensuelles_individus_m_3)
 
-        revenu_fiscal_de_reference_n_2 = famille.demandeur.foyer_fiscal('rfr', period.n_2)
+        rfr_equivalent_m_3 = famille.demandeur.foyer_fiscal('rfr', period.n_2) / 4
 
-        ressources_considerees = where(revenu_fiscal_de_reference_n_2 > 0, min_(ressources_m_3, revenu_fiscal_de_reference_n_2), ressources_m_3)
+        ressources_considerees = select(
+            [((ressources_m_3 > 0) * (rfr_equivalent_m_3 > 0)), (ressources_m_3 > 0), (rfr_equivalent_m_3 > 0)],
+            [min_(ressources_m_3, rfr_equivalent_m_3), ressources_m_3, rfr_equivalent_m_3],
+            default=0
+        )
 
         return ressources_considerees
 
