@@ -35,11 +35,6 @@ class antony_base_ressources(Variable):
             'ppa'
         ]
 
-        # This is a comment
-        ressources_famille_annuelles_a_inclure = [
-            'ars'
-        ]
-
         resources_mensuelles_individus_m_3 = sum([
             famille.members(resource, last_three_months, options=[ADD])
             for resource in ressources_individus_a_inclure
@@ -50,25 +45,13 @@ class antony_base_ressources(Variable):
         ])
         ressources_m_3 = ressources_mensuelles_famille_m_3 + famille.sum(resources_mensuelles_individus_m_3)
 
-        resources_mensuelles_individus_n_1 = sum([
-            famille.members(resource, last_year, options=[ADD])
-            for resource in ressources_individus_a_inclure
-        ])
-        ressources_mensuelles_famille_n_1 = sum([
-            famille(resource, last_year, options=[ADD])
-            for resource in ressources_famille_a_inclure
-        ])
-        ressources_annuelles_famille_n_1 = sum([
-            famille(resource, last_year)
-            for resource in ressources_famille_annuelles_a_inclure
-        ])
-        ressources_n_1 = (famille.sum((resources_mensuelles_individus_n_1 / 4))
-                          + (ressources_mensuelles_famille_n_1 / 4)
-                          + (ressources_annuelles_famille_n_1 / 4)
-                          )
-        # on ne compare les ressources recentes avec le N-1
-        # que si on a effectivement des ressources N-1
-        ressources_considerees = where(ressources_n_1 > 0, min_(ressources_m_3, ressources_n_1), ressources_m_3)
+        rfr_equivalent_m_3 = famille.demandeur.foyer_fiscal('rfr', period.n_2) / 4
+
+        ressources_considerees = select(
+            [((ressources_m_3 > 0) * (rfr_equivalent_m_3 > 0)), (ressources_m_3 > 0), (rfr_equivalent_m_3 > 0)],
+            [min_(ressources_m_3, rfr_equivalent_m_3), ressources_m_3, rfr_equivalent_m_3],
+            default=0
+        )
 
         return ressources_considerees
 
@@ -96,4 +79,6 @@ class antony_eligibilite_ressources(Variable):
             [parameters_antony.personne_seule, parameters_antony.couple, baremes_enfants.calc(min_(nb_enfants, 7))]
         )
 
-        return ressources_considerees < plafond_considere
+        # Les plafonds sont mensuels et les ressources sont considérées sur 3 mois
+        # On remet donc les ressources à un niveau mensuel pour la comparaison
+        return (ressources_considerees / 3) < plafond_considere
