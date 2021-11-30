@@ -1,5 +1,6 @@
  # -*- coding: utf-8 -*-
 from openfisca_france.model.base import *  # noqa analysis:ignore
+from openfisca_france.model.prestations.education import TypesScolarite
 
 
 class antony_bourse_conservatoire(Variable):
@@ -13,7 +14,12 @@ class antony_bourse_conservatoire(Variable):
 
         condition_ressources_remplies = famille('antony_eligibilite_ressources', period)
 
-        age_i = famille.members('age', period)
-        au_moins_un_enfant_moins_de_18_ans = famille.any(age_i < 18, role=Famille.ENFANT)
+        scolarite = famille.members('scolarite', period)
+        scolarise_i = ((scolarite == TypesScolarite.college) + (scolarite == TypesScolarite.lycee))
 
-        return residence_antony * condition_ressources_remplies * au_moins_un_enfant_moins_de_18_ans
+        age_i = famille.members('age', period)
+        moins_de_18_ans_scolarise = scolarise_i * (age_i < 18)
+
+        au_moins_un_scolarise_18_ans = famille.any(moins_de_18_ans_scolarise, role=Famille.ENFANT)
+
+        return residence_antony * condition_ressources_remplies * au_moins_un_scolarise_18_ans
