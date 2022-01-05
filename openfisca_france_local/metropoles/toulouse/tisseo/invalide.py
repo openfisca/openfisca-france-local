@@ -11,7 +11,7 @@ class tisseo_transport_invalide_reduction(Variable):
         taux_incapacite = individu('taux_incapacite', period)
         ressources = individu.foyer_fiscal('tisseo_transport_reduction_ressources_fiscales', period.n_2)
 
-        aah = parameters(period).prestations.minima_sociaux.aah.montant
+        aah = parameters(period).prestations_sociales.prestations_etat_de_sante.invalidite.aah.montant
         smic_net_mensuel = individu('tisseo_transport_reduction_plafond_smic_net', period)
 
         reduction_50_80 = select([
