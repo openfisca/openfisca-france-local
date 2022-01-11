@@ -15,8 +15,8 @@ class msa_haute_normandie_aide_permis(Variable):
 
     def formula(individu, period, parameters):
         params = parameters(period).regions.normandie.msa_haute_normandie.aide_permis
-        ars_params = parameters(period).prestations.prestations_familiales.ars
-        smic = parameters(period).marche_travail.salaire_minimum
+        ars_params = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.ars
+        smic = parameters(period).marche_travail.salaire_minimum.smic
 
         montant = params.montant
 
@@ -34,7 +34,7 @@ class msa_haute_normandie_aide_permis(Variable):
         af_nbenf = individu.famille('af_nbenf', period)
         plafond_ressources = ars_params.plafond_ressources * (1 + af_nbenf * ars_params.majoration_par_enf_supp)
         eligibilite_plafond_ressources = individu.foyer_fiscal('rfr', period.this_year) <= plafond_ressources
-        smic_brut_mensuel = smic.smic_h_b * smic.nb_heure_travail_mensuel
+        smic_brut_mensuel = smic.smic_b_horaire * smic.nb_heures_travail_mensuel
         eligibilite_salaire = individu('salaire_de_base', period) <= smic_brut_mensuel
 
         return (allocataire_msa + (enfant_a_charge * alternant)) * eligibilite_geographique * eligibilite_age * eligibilite_plafond_ressources * eligibilite_salaire * montant

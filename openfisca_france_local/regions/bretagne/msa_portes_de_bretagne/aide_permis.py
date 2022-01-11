@@ -26,8 +26,8 @@ class msa_portes_de_bretagne_aide_permis(Variable):
         age = individu('age', period)
         eligibilite_age = age <= params.age.maximum
 
-        smic = parameters(period).marche_travail.salaire_minimum
-        smic_brut_mensuel = smic.smic_h_b * smic.nb_heure_travail_mensuel
+        smic = parameters(period).marche_travail.salaire_minimum.smic
+        smic_brut_mensuel = smic.smic_b_horaire * smic.nb_heures_travail_mensuel
         eligibilite_salaire = individu('salaire_de_base', period.last_3_months, options = [ADD]) / 3 / smic_brut_mensuel * 100 <= params.pourcentage_ressources_maximum_jeune
 
         quotient_familial = individu.foyer_fiscal('rfr', period.this_year) / 12 / individu.foyer_fiscal('nbptr', period.this_year)
