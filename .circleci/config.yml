@@ -23,8 +23,8 @@ jobs:
     steps:
       - checkout
 
-#      - restore_cache:
-#          key: v1-py3-deps-{{ .Branch }}-{{ checksum "setup.py" }}
+      - restore_cache:
+          key: v1-py3-deps-{{ .Branch }}-{{ checksum "setup.py" }}
 
       - run:
           name: Create a virtualenv
