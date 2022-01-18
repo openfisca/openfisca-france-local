@@ -37,6 +37,10 @@ jobs:
           command: |
             make build
             # pip install --editable git+https://github.com/openfisca/openfisca-core.git@BRANCH_NAME#egg=OpenFisca-Core  # use a specific branch of OpenFisca-Core
+      - run:
+          name: Install test dependencies
+          command: |
+            make install-test
       - save_cache:
           key: v1-py3-deps-{{ .Branch }}-{{ checksum "setup.py" }}
           paths:
