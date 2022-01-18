@@ -47,8 +47,8 @@ jobs:
           paths:
             - dist
       - run:
-        name: Run tests
-        command: openfisca test `circleci tests glob "tests/**/*.{yml,yaml}"` --extensions openfisca_france_local
+          name: Run tests
+          command: openfisca test `circleci tests glob "tests/**/*.{yml,yaml}"` --extensions openfisca_france_local
 
   deploy:
     <<: *defaults
