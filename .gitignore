@@ -12,3 +12,6 @@ build
 # Edition de code en local
 .idea
 /.vscode
+
+# Publication de la librairie
+dist/
