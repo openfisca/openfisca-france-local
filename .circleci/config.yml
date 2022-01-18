@@ -3,16 +3,6 @@ defaults: &defaults
   docker:
     - image: python:3.7
 
-upgrade_pip: &upgrade_pip
-  run:
-    name: Upgrade pip
-    command: pip install --upgrade pip wheel
-
-install_dependencies: &install_dependencies
-  run:
-    name: Install dependencies
-    command: pip install . --upgrade && pip install ".[test,excel-reader]"
-
 check_version: &check_version
   run:
     name: Check version number has been properly updated
@@ -20,28 +10,81 @@ check_version: &check_version
       git fetch
       .circleci/is-version-number-acceptable.sh
 
-
 version: 2
 jobs:
-  test:
-    <<: *defaults
-    steps:
-      - checkout
-      - *upgrade_pip
-      - *install_dependencies
-      - run:
-          name: Run tests
-          command: openfisca test `circleci tests glob "tests/**/*.{yml,yaml}"` --extensions openfisca_france_local
   check_version:
     <<: *defaults
     steps:
       - checkout
       - *check_version
+  build:
+    <<: *defaults
 
+    steps:
+      - checkout
+
+      - restore_cache:
+          key: v1-py3-deps-{{ .Branch }}-{{ checksum "setup.py" }}
+
+      - run:
+          name: Create a virtualenv
+          command: |
+            mkdir -p /tmp/venv/openfisca_france_local
+            python -m venv /tmp/venv/openfisca_france_local
+            echo "source /tmp/venv/openfisca_france_local/bin/activate" >> $BASH_ENV
+      - run:
+          name: Install dependencies
+          command: |
+            make build
+            # pip install --editable git+https://github.com/openfisca/openfisca-core.git@BRANCH_NAME#egg=OpenFisca-Core  # use a specific branch of OpenFisca-Core
+      - save_cache:
+          key: v1-py3-deps-{{ .Branch }}-{{ checksum "setup.py" }}
+          paths:
+            - /tmp/venv/openfisca_france_local
+
+      - save_cache:
+          key: v1-py3-build-{{ .Revision }}
+          paths:
+            - dist
+      - run:
+        name: Run tests
+        command: openfisca test `circleci tests glob "tests/**/*.{yml,yaml}"` --extensions openfisca_france_local
+
+  deploy:
+    <<: *defaults
+
+    environment:
+      PYPI_USERNAME: openfisca-bot
+      # PYPI_PASSWORD: this value is set in CircleCI's web interface; do not set it here, it is a secret!
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          key: v1-py3-deps-{{ .Branch }}-{{ checksum "setup.py" }}
+
+      - restore_cache:
+          key: v1-py3-build-{{ .Revision }}
+
+      - run:
+          name: Check for functional changes
+          command: if ! .circleci/has-functional-changes.sh ; then circleci step halt ; fi
+
+      - run:
+          name: Upload a Python package to Pypi
+          command: |
+            source /tmp/venv/openfisca_france/bin/activate
+            twine upload dist/* --username $PYPI_USERNAME --password $PYPI_PASSWORD
 
 workflows:
   version: 2
-  test:
+  build:
     jobs:
-      - test
       - check_version
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master

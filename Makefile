@@ -5,11 +5,14 @@ clean:
 deps:
 	pip install --upgrade pip build twine
 
+installtest: deps
+	pip install ".[test,excel-reader]"
+
 install: deps
 	@# Install OpenFisca-France-Local for development.
 	@# `make install` installs the editable version of OpenFisca-France-Local.
 	@# This allows contributors to test as they code.
-	pip install --editable . --upgrade
+	pip install --editable . --upgrade && pip install ".[test,excel-reader]"
 
 build: clean deps
 	@# Install OpenFisca-France-Local for deployment and publishing.
