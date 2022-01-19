@@ -77,7 +77,7 @@ jobs:
       - run:
           name: Upload a Python package to Pypi
           command: |
-            source /tmp/venv/openfisca_france/bin/activate
+            source /tmp/venv/openfisca_france_local/bin/activate
             twine upload dist/* --username $PYPI_USERNAME --password $PYPI_PASSWORD
 
 workflows:
