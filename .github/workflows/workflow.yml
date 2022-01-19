@@ -85,7 +85,7 @@ jobs:
   check-for-functional-changes:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master' # Only triggered for the `master` branch
-    needs: [ check-version-and-changelog ]
+    needs: [ check-version ]
     outputs:
       status: ${{ steps.stop-early.outputs.status }}
     steps:
