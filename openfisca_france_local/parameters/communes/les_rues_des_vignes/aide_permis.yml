@@ -5,6 +5,7 @@ age:
   maximum:
     values:
       2019-01-01: 25
+      2020-01-01: 26
 montant:
   reference: "https://www.lesruesdesvignes.fr/vie-pratique/demarches-administratives/aides-sociales"
   values:
