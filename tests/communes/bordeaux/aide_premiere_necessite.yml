@@ -1,17 +1,18 @@
 - period: 2022-02
   input:
-    age: [25, 25]
-    nationalite: [FR, FR]
-    depcom: ["75056", "33063"]
-    bordeaux_aide_premiere_necessite_base_ressources: [0, 0]
+    #majeur: [true, true, false]
+    age: [25, 19, 17]
+    nationalite: [FR, FR, FR]
+    depcom: ["75056", "33063", "33063"]
+    bordeaux_aide_premiere_necessite_base_ressources: [0, 0, 0]
   output:
-    bordeaux_aide_premiere_necessite_eligibilite: [false, true]
+    bordeaux_aide_premiere_necessite_eligibilite: [false, true, false]
 
 - period: 2022-02
   input:
     individus:
       jeune:
-        age: 25
+        majeur: true
         nationalite: FR
         bordeaux_aide_premiere_necessite_base_ressources: 0
     menages:
@@ -25,4 +26,4 @@
       foyer_fiscal_du_jeune:
         declarants: [jeune]
   output:
-    bordeaux_aide_premiere_necessite_eligibilite: [false]
+    bordeaux_aide_premiere_necessite_eligibilite: [true]

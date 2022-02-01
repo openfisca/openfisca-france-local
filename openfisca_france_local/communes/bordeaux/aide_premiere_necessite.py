@@ -15,4 +15,4 @@ class bordeaux_aide_premiere_necessite_eligibilite(Variable):
     label = "Éligibilité à l'aide de première nécessité de la ville de Bordeaux"
 
     def formula(individu, period):
-        return individu.menage('depcom', period) == b"33063"
+        return (individu.menage('depcom', period) == b"33063") * individu("majeur", period)
