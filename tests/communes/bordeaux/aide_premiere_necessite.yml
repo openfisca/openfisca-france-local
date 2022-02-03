@@ -1,29 +1,61 @@
 - period: 2022-02
   input:
-    #majeur: [true, true, false]
-    age: [25, 19, 17]
-    nationalite: [FR, FR, FR]
-    depcom: ["75056", "33063", "33063"]
-    bordeaux_aide_premiere_necessite_base_ressources: [0, 0, 0]
+    majeur: [true, true, false, true, true]
+    nationalite: [FR, FR, FR, FR, FR]
+    depcom: ["75056", "33063", "33063", "33063", "33063"]
+    bordeaux_aide_premiere_necessite_base_ressources: [0, 0, 0, 1041, 1042]
+    unites_consommation:
+      2022: [1, 1, 1, 1, 1]
   output:
-    bordeaux_aide_premiere_necessite_eligibilite: [false, true, false]
+    bordeaux_aide_premiere_necessite_eligibilite: [false, true, false, true, false]
 
 - period: 2022-02
   input:
     individus:
-      jeune:
+      adulte:
         majeur: true
         nationalite: FR
-        bordeaux_aide_premiere_necessite_base_ressources: 0
     menages:
-      menage_du_jeune:
-        personne_de_reference: [jeune]
+      menage_du_adulte:
+        personne_de_reference: [adulte]
         depcom: "33063"
     familles:
-      famille_du_jeune:
-        parents: [jeune]
+      famille_du_adulte:
+        parents: [adulte]
     foyers_fiscaux:
-      foyer_fiscal_du_jeune:
-        declarants: [jeune]
+      foyer_fiscal_du_adulte:
+        declarants: [adulte]
   output:
+    bordeaux_aide_premiere_necessite_base_ressources: [0]
+    bordeaux_aide_premiere_necessite_eligibilite: [true]
+
+- period: 2022-02
+  input:
+    individus:
+      p1:
+        age: 40
+      p2:
+        age: 40
+      enf1:
+        age: 15
+      enf2:
+        age: 12
+    menages:
+      menage:
+        personne_de_reference: [p1]
+        conjoint: [p2]
+        enfants: [enf1, enf2]
+        depcom: "33063"
+        bordeaux_aide_premiere_necessite_base_ressources: 2300
+    familles:
+      famille:
+        parents: [p1, p2]
+        enfants: [enf1, enf2]
+    foyers_fiscaux:
+      foyer_fiscal:
+        declarants: [p1, p2]
+        personnes_a_charge: [enf1, enf2]
+  output:
+    unites_consommation:
+      2022: [2.3]
     bordeaux_aide_premiere_necessite_eligibilite: [true]
