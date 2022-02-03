@@ -1,7 +1,7 @@
 from numpy.core.defchararray import startswith
 
 from openfisca_france.model.base import *
-from openfisca_france.model.revenus.activite.salarie import TypesContratDeTravailDuree
+from openfisca_france.model.revenus.activite.salarie import TypesContrat
 
 
 code_departements = [b'02', b'59', b'60', b'62', b'80']
@@ -34,7 +34,7 @@ class hauts_de_france_aide_permis_eligibilite(Variable):
         nbptr = individu.foyer_fiscal('nbptr', period.n_2)
 
         activite_eligible = (individu('activite', period) == TypesActivite.chomeur) + (individu('activite', period) == TypesActivite.inactif) + (individu('activite', period) == TypesActivite.etudiant)
-        en_cdd = individu('contrat_de_travail_duree', period) == TypesContratDeTravailDuree.cdd
+        en_cdd = individu('contrat_de_travail_type', period) == TypesContrat.cdd
         stagiaire = individu('stagiaire', period)
         eligibilite_situation = activite_eligible + en_cdd + stagiaire
 
