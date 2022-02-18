@@ -15,7 +15,7 @@ class msa_haute_normandie_aide_permis(Variable):
 
     def formula(individu, period, parameters):
         params = parameters(period).regions.normandie.msa_haute_normandie.aide_permis
-        ars_params = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.ars
+        ars_params = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.ars.ars_plaf
         smic = parameters(period).marche_travail.salaire_minimum.smic
 
         montant = params.montant
