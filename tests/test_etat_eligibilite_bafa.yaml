@@ -1,0 +1,26 @@
+- name: "Age exacte"
+  period: 2022-11
+  input:
+    individus:
+      personne1:
+        age: 16
+  output:
+    etat_eligibilite_bafa: true
+
+- name: "Trop jeune"
+  period: 2022-11
+  input:
+    individus:
+      personne1:
+        age: 15
+  output:
+    etat_eligibilite_bafa: false
+
+- name: "+ de 17 ans"
+  period: 2022-11
+  input:
+    individus:
+      personne1:
+        age: 17
+  output:
+    etat_eligibilite_bafa: true
