@@ -1,5 +1,0 @@
-- period: 2022-11
-  input:
-    age: [15, 16, 17]
-  output:
-    etat_eligibilite_bafa: [false, true, true]
