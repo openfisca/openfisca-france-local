@@ -32,9 +32,14 @@ def generate_variable(benefit):
 
 class aides_jeunes_reform_dynamic(reforms.Reform):
 
+    def extract_benefit_file_content(self, benefit_path):
+        benefit: dict = yaml.safe_load(open(benefit_path))
+        benefit['slug'] = benefit_path.split(
+            '/')[-1].replace('-', '_').split('.')[0]
+        return benefit
+
     def apply(self):
         benefit_file_path = '../git_aides-jeunes/data/benefits/javascript/etat-aide-nationale-exceptionnelle-au-brevet-daptitude-aux-fonctions-danimateur-bafa.yml'
-        benefit: dict = yaml.safe_load(open(benefit_file_path))
-        benefit['slug'] = benefit_file_path.split(
-            '/')[-1].replace('-', '_').split('.')[0]
-        self.add_variable(generate_variable(benefit))
+
+        self.add_variable(generate_variable(
+            self.extract_benefit_file_content(benefit_file_path)))
