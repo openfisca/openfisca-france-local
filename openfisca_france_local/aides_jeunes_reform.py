@@ -39,8 +39,10 @@ class aides_jeunes_reform_dynamic(reforms.Reform):
         return benefit
 
     def apply(self):
-        # benefit_file_path = '../git_aides-jeunes/data/benefits/javascript/etat-aide-nationale-exceptionnelle-au-brevet-daptitude-aux-fonctions-danimateur-bafa.yml'
-        benefit_file_path = '../git_aides-jeunes/data/benefits/javascript/caf-aide-nationale-bafa.yml'
-
-        self.add_variable(generate_variable(
-            self.extract_benefit_file_content(benefit_file_path)))
+        benefit_files_paths = [
+            '../git_aides-jeunes/data/benefits/javascript/etat-aide-nationale-exceptionnelle-au-brevet-daptitude-aux-fonctions-danimateur-bafa.yml',
+            '../git_aides-jeunes/data/benefits/javascript/caf-aide-nationale-bafa.yml'
+        ]
+        for path in benefit_files_paths:
+            self.add_variable(generate_variable(
+                self.extract_benefit_file_content(path)))
