@@ -9,6 +9,11 @@ from numpy import array as np_array
 
 import yaml
 
+condition_table = {
+    'age': lambda individu, period, condition: individu(condition['type'], period) >= condition['value'],
+    'departements': lambda individu, period, condition: startswith(individu.menage('depcom', period), condition["values"][0].encode('UTF-8')),
+}
+
 
 def generate_variable(benefit):
 
@@ -18,19 +23,13 @@ def generate_variable(benefit):
         definition_period = MONTH
 
         def formula(individu, period):
-            eligibilitys = []
+
             amount = benefit['montant']
             conditions = benefit['conditions_generales']
-            for condition in conditions:
-                # age
-                if condition['type'] == 'age':
-                    variable_name = condition['type']
-                    eligibilitys.append(individu(
-                        variable_name, period) >= condition['value'])
-                # departement
-                if condition['type'] == 'departements':
-                    eligibilitys.append(startswith(individu.menage(
-                        'depcom', period), condition["values"][0].encode('UTF-8')))
+
+            eligibilitys = [condition_table[condition['type']](
+                individu, period, condition) for condition in conditions]
+
             total_eligibility = np_array(list(map(all, zip(*eligibilitys))))
 
             return amount * total_eligibility
