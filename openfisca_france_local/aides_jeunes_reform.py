@@ -32,14 +32,17 @@ def generate_variable(benefit):
         definition_period = MONTH
 
         def formula(individu, period):
-            amount = benefit['montant']
-            conditions = benefit['conditions_generales']
+            try:
+                amount = benefit['montant']
+                conditions = benefit['conditions_generales']
 
-            eligibilities = [condition_table[condition['type']](
-                individu, period, condition) for condition in conditions]
+                eligibilities = [condition_table[condition['type']](
+                    individu, period, condition) for condition in conditions]
 
-            total_eligibility = sum(eligibilities) == len(conditions)
+                total_eligibility = sum(eligibilities) == len(conditions)
 
+            except KeyError as e:
+                raise KeyError(f"field {e} missing in file: {benefit['slug']}")
             return amount * total_eligibility
 
     NewAidesJeunesBenefitVariable.__name__ = benefit['slug']
