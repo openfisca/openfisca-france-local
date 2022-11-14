@@ -2,7 +2,7 @@
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
-    age: [16, 17, 18]
+    age: [15, 16, 17]
   output:
     caf_aide_nationale_bafa: [0, 106, 106]
     etat_aide_nationale_exceptionnelle_au_brevet_daptitude_aux_fonctions_danimateur_bafa: [0, 200, 200]
@@ -11,7 +11,7 @@
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
-    age: [16, 17, 18, 18]
+    age: [15, 16, 17, 18]
     depcom: ["01123", "01123","01123","33123"]
   output:
     caf_ain_aide_bafa_session_generale: [0, 160, 160, 0]
