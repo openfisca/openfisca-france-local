@@ -5,7 +5,6 @@ from openfisca_core import reforms
 
 
 from numpy.core.defchararray import startswith
-from numpy import array as np_array
 
 import yaml
 
@@ -25,7 +24,8 @@ def is_age_eligible(individu, period, condition):
 
 
 def is_department_eligible(individu, period, condition):
-    return startswith(individu.menage('depcom', period), condition["values"][0].encode('UTF-8'))
+    depcom = individu.menage('depcom', period)
+    return sum([startswith(depcom, code.encode('UTF-8'))for code in condition['values']])
 
 
 condition_table = {
