@@ -11,7 +11,17 @@ import yaml
 
 
 def is_age_eligible(individu, period, condition):
-    return individu('age', period) >= condition['value']
+
+    condition_age = condition['value']
+    individus_age = individu('age', period)
+
+    operators = {
+        '<': lambda individus_age, condition_age: individus_age < condition_age,
+        '<=': lambda individus_age, condition_age: individus_age <= condition_age,
+        '>': lambda individus_age, condition_age: individus_age > condition_age,
+        '>=': lambda individus_age, condition_age: individus_age >= condition_age,
+    }
+    return operators[condition['operator']](individus_age, condition_age)
 
 
 def is_department_eligible(individu, period, condition):
