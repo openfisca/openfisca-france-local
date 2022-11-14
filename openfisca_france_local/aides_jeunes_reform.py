@@ -32,14 +32,13 @@ def generate_variable(benefit):
         definition_period = MONTH
 
         def formula(individu, period):
-
             amount = benefit['montant']
             conditions = benefit['conditions_generales']
 
             eligibilities = [condition_table[condition['type']](
                 individu, period, condition) for condition in conditions]
 
-            total_eligibility = np_array(list(map(all, zip(*eligibilities))))
+            total_eligibility = sum(eligibilities) == len(conditions)
 
             return amount * total_eligibility
 
