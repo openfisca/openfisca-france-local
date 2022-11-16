@@ -15,3 +15,11 @@
     depcom: ["01123", "01123","01123","33123"]
   output:
     caf_ain_aide_bafa_session_generale: [0, 160, 160, 0]
+
+- period: 2022-11
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    regcom: ["32", "11"]
+  output:
+    hauts_de_france_carte_generation_apprentis_aide_transport: [200, 0]
