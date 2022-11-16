@@ -61,6 +61,14 @@ def generate_variable(benefit):
 
 class aides_jeunes_reform_dynamic(reforms.Reform):
 
+    class regcom(Variable):
+        value_type = str
+        max_length = 2
+        entity = Menage
+        label = 'Code INSEE (regcom) du lieu de résidence'
+        definition_period = MONTH
+        set_input = set_input_dispatch_by_period
+
     def extract_benefit_file_content(self, benefit_path):
         benefit: dict = yaml.safe_load(open(benefit_path))
         benefit['slug'] = benefit_path.split(
@@ -68,10 +76,12 @@ class aides_jeunes_reform_dynamic(reforms.Reform):
         return benefit
 
     def apply(self):
+        self.add_variable(self.regcom)
         benefit_files_paths = [
             '../git_aides-jeunes/data/benefits/javascript/etat-aide-nationale-exceptionnelle-au-brevet-daptitude-aux-fonctions-danimateur-bafa.yml',
             '../git_aides-jeunes/data/benefits/javascript/caf-aide-nationale-bafa.yml',
             '../git_aides-jeunes/data/benefits/javascript/caf-ain-aide-bafa-session-generale.yml',
+            '../git_aides-jeunes/data/benefits/javascript/hauts-de-france-carte-generation-apprentis-aide-transport.yml'
         ]
         for path in benefit_files_paths:
             self.add_variable(generate_variable(
