@@ -32,3 +32,12 @@
     regcom: ["84", "84", "84", "32"]
   output:
     region_auvergne_rhone_alpes_abonnement_illico: [True, True, False, False]
+
+- period: 2022-11
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    age: [25,26, 27, 27]
+    regcom: ["32", "32", "32", "84"]
+  output:
+    hauts_de_france_ma_carte_ter: [False, True, True, False]
