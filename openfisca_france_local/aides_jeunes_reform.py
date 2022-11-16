@@ -8,6 +8,8 @@ from numpy.core.defchararray import startswith
 
 import yaml
 
+from pathlib import Path
+
 
 def is_age_eligible(individu, period, condition):
 
@@ -67,6 +69,10 @@ def generate_variable(benefit):
 
 class aides_jeunes_reform_dynamic(reforms.Reform):
 
+    root = '.'
+    path = '../git_aides-jeunes/data/benefits/javascript/'
+    current_path = f'{root}/{path}'
+
     class regcom(Variable):
         value_type = str
         max_length = 2
@@ -81,14 +87,16 @@ class aides_jeunes_reform_dynamic(reforms.Reform):
             '/')[-1].replace('-', '_').split('.')[0]
         return benefit
 
+    def extract_benefits_paths(self, benefits_folder: str) -> "list[str]":
+        def isYAMLfile(path: str): return str(path).endswith(
+            '.yml') or str(path).endswith('.yaml')
+        liste_fichiers = [
+            str(benefit) for benefit in Path(benefits_folder).iterdir() if isYAMLfile(benefit)]
+        return liste_fichiers
+
     def apply(self):
         self.add_variable(self.regcom)
-        benefit_files_paths = [
-            '../git_aides-jeunes/data/benefits/javascript/etat-aide-nationale-exceptionnelle-au-brevet-daptitude-aux-fonctions-danimateur-bafa.yml',
-            '../git_aides-jeunes/data/benefits/javascript/caf-aide-nationale-bafa.yml',
-            '../git_aides-jeunes/data/benefits/javascript/caf-ain-aide-bafa-session-generale.yml',
-            '../git_aides-jeunes/data/benefits/javascript/hauts-de-france-carte-generation-apprentis-aide-transport.yml'
-        ]
+        benefit_files_paths = self.extract_benefits_paths(self.current_path)
         for path in benefit_files_paths:
             self.add_variable(generate_variable(
                 self.extract_benefit_file_content(path)))
