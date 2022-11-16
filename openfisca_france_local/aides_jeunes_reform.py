@@ -41,17 +41,22 @@ condition_table = {
     'regions': is_region_eligible,
 }
 
+type_table = {
+    'float': float,
+    'bool': bool,
+}
+
 
 def generate_variable(benefit):
 
     class NewAidesJeunesBenefitVariable(Variable):
-        value_type = float  # Hardcoded
+        value_type = type_table[benefit['type']]
         entity = Individu
         definition_period = MONTH
 
         def formula(individu, period):
             try:
-                amount = benefit['montant']
+                amount = benefit.get('montant')
                 conditions = benefit['conditions_generales']
 
                 eligibilities = [condition_table[condition['type']](
@@ -61,7 +66,10 @@ def generate_variable(benefit):
 
             except KeyError as e:
                 raise KeyError(f"field {e} missing in file: {benefit['slug']}")
-            return amount * total_eligibility
+            return amount * total_eligibility if amount else total_eligibility
+        # Ce return me semble dangereux !
+        # "if amount" se substitue à la comparaison avec "value_type == float"
+        # car nous n'avons pas accès à value_type
 
     NewAidesJeunesBenefitVariable.__name__ = benefit['slug']
     return NewAidesJeunesBenefitVariable
