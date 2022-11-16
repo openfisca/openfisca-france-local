@@ -31,6 +31,7 @@ def is_department_eligible(individu, period, condition):
 condition_table = {
     'age': is_age_eligible,
     'departements': is_department_eligible,
+    'regions': lambda a, b, c: True
 }
 
 
