@@ -28,10 +28,15 @@ def is_department_eligible(individu, period, condition):
     return sum([startswith(depcom, code.encode('UTF-8'))for code in condition['values']])
 
 
+def is_region_eligible(individu, period, condition):
+    regcom = individu.menage('regcom', period)
+    return sum([startswith(regcom, code.encode('UTF-8'))for code in condition['values']])
+
+
 condition_table = {
     'age': is_age_eligible,
     'departements': is_department_eligible,
-    'regions': lambda a, b, c: True
+    'regions': is_region_eligible,
 }
 
 
