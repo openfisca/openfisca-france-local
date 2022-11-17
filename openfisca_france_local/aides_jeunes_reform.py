@@ -59,8 +59,11 @@ def generate_variable(benefit):
             amount = benefit.get('montant')
             conditions = benefit['conditions_generales']
 
-            eligibilities = [condition_table[condition['type']](
-                individu, period, condition) for condition in conditions]
+            test_conditions = [(condition_table[condition['type']], condition)
+                               for condition in conditions]
+
+            eligibilities = [test[0](
+                individu, period, test[1]) for test in test_conditions]
 
             total_eligibility = sum(eligibilities) == len(conditions)
 
