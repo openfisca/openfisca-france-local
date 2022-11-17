@@ -55,18 +55,15 @@ def generate_variable(benefit):
         definition_period = MONTH
 
         def formula(individu, period):
-            try:
-                value_type = type_table[benefit['type']]
-                amount = benefit.get('montant')
-                conditions = benefit['conditions_generales']
+            value_type = type_table[benefit['type']]
+            amount = benefit.get('montant')
+            conditions = benefit['conditions_generales']
 
-                eligibilities = [condition_table[condition['type']](
-                    individu, period, condition) for condition in conditions]
+            eligibilities = [condition_table[condition['type']](
+                individu, period, condition) for condition in conditions]
 
-                total_eligibility = sum(eligibilities) == len(conditions)
+            total_eligibility = sum(eligibilities) == len(conditions)
 
-            except KeyError as e:
-                raise KeyError(f"field {e} missing in file: {benefit['slug']}")
             return amount * total_eligibility if value_type == float else total_eligibility
         # Ce return fonctionnera car nos aides n'ont que deux types : bool et float
         # mais ce n'est pas élégant. (surtout qu'il faut créer une deuxième variable value_type)
@@ -76,7 +73,6 @@ def generate_variable(benefit):
 
 
 class aides_jeunes_reform_dynamic(reforms.Reform):
-
     root = '.'
     path = '../git_aides-jeunes/data/benefits/javascript/'
     current_path = f'{root}/{path}'
@@ -103,8 +99,12 @@ class aides_jeunes_reform_dynamic(reforms.Reform):
         return liste_fichiers
 
     def apply(self):
-        self.add_variable(self.regcom)
-        benefit_files_paths = self.extract_benefits_paths(self.current_path)
-        for path in benefit_files_paths:
-            self.add_variable(generate_variable(
-                self.extract_benefit_file_content(path)))
+        try:
+            self.add_variable(self.regcom)
+            benefit_files_paths = self.extract_benefits_paths(
+                self.current_path)
+            for path in benefit_files_paths:
+                self.add_variable(generate_variable(
+                    self.extract_benefit_file_content(path)))
+        except KeyError as e:
+            raise KeyError(f"field {e} missing in file: {path}")
