@@ -50,7 +50,7 @@ type_table = {
 def generate_variable(benefit):
 
     class NewAidesJeunesBenefitVariable(Variable):
-        value_type = type_table[benefit['type']]
+        value_type = float
         entity = Individu
         definition_period = MONTH
 
