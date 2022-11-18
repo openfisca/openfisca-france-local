@@ -35,10 +35,15 @@ def is_region_eligible(individu, period, condition):
     return sum([startswith(regcom, code.encode('UTF-8'))for code in condition['values']])
 
 
+def is_regime_securite_sociale_eligible(individu, period, condition):
+    return True
+
+
 condition_table = {
     'age': is_age_eligible,
     'departements': is_department_eligible,
     'regions': is_region_eligible,
+    'regime_securite_sociale': is_regime_securite_sociale_eligible,
 }
 
 type_table = {
