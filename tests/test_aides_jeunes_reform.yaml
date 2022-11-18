@@ -46,8 +46,9 @@
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
-    age:  [18]
-    depcom: ["56"]
-    regime_securite_sociale: [regime_general]
+    age:  [18, 19]
+    depcom: ["56", "56"]
+    regime_securite_sociale: [regime_general, regime_agricole]
   output:
-    caf_morbihan_aide_au_brevet_daptitude_aux_fonctions_de_directeur_bafd: [286]
+    caf_morbihan_aide_au_brevet_daptitude_aux_fonctions_de_directeur_bafd: [286, 0]
+    
