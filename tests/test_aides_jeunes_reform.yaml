@@ -56,9 +56,9 @@
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
-    age:  [18]
-    depcom: ["38"]
-    quotient_familial_caf: [800]
+    age:  [18, 18]
+    depcom: ["38", "38"]
+    quotient_familial_caf: [800, 801]
   output:
-    caf_isere_aide_au_bafa_pour_une_session_de_formation_générale_et_dapprofondissement: [200]
+    caf_isere_aide_au_bafa_pour_une_session_de_formation_générale_et_dapprofondissement: [200, 0]
     
