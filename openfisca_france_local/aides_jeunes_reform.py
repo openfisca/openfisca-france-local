@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
+import yaml
+
+from pathlib import Path
+from numpy.core.defchararray import startswith
 
 from openfisca_france.model.base import *
 from openfisca_core import reforms
 
-
-from numpy.core.defchararray import startswith
-
-import yaml
-
-from pathlib import Path
+from openfisca_france.model.caracteristiques_socio_demographiques.demographie import RegimeSecuriteSociale
 
 
 def is_age_eligible(individu, period, condition):
@@ -36,7 +35,8 @@ def is_region_eligible(individu, period, condition):
 
 
 def is_regime_securite_sociale_eligible(individu, period, condition):
-    return True
+    regime_securite_sociale = individu('regime_securite_sociale', period)
+    return sum([regime_securite_sociale == RegimeSecuriteSociale[regime] for regime in condition['includes']])
 
 
 condition_table = {
