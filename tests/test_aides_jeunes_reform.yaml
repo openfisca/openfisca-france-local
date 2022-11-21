@@ -52,3 +52,13 @@
   output:
     caf_morbihan_aide_au_brevet_daptitude_aux_fonctions_de_directeur_bafd: [286, 0]
     
+- period: 2022-11
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    age:  [18]
+    depcom: ["38"]
+    quotient_familial_caf: [800]
+  output:
+    caf_isere_aide_au_bafa_pour_une_session_de_formation_générale_et_dapprofondissement: [200]
+    
