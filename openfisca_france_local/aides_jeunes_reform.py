@@ -40,7 +40,8 @@ def is_regime_securite_sociale_eligible(individu, period, condition):
 
 
 def is_quotient_familial_eligible(individu, period, condition):
-    return True
+    quotient_familial = individu.famille('quotient_familial_caf', period)
+    return quotient_familial <= condition["floor"]
 
 
 condition_table = {
