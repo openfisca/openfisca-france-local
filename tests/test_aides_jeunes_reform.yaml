@@ -16,7 +16,7 @@
   output:
     caf_ain_aide_bafa_session_generale: [0, 160, 160, 0]
 
-- period: 2022-11
+- period: 2022
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
@@ -33,7 +33,7 @@
   output:
     region_auvergne_rhone_alpes_abonnement_illico: [True, True, False, False]
 
-- period: 2022-11
+- period: 2022
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
@@ -52,23 +52,22 @@
   output:
     caf_morbihan_aide_au_brevet_daptitude_aux_fonctions_de_directeur_bafd: [286, 0]
     
-- period: 2022-11
+- period: 2022
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
     age:  [18, 18]
     depcom: ["38", "38"]
-    quotient_familial_caf: [800, 801]
+    rfr: [800, 801]
+    nbptr: [1, 1]
   output:
     caf_isere_aide_au_bafa_pour_une_session_de_formation_générale_et_dapprofondissement: [200, 0]
     
-- period: 2022-11
-  reforms:
-  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
-  input:
-    regcom: ["01"]
-    formation_sanitaire_sociale: [True]
-  output:
-    guadeloupe_bourse_sanitaire: [5736]
-    
-    
+# - period: 2022-11
+#   reforms:
+#   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+#   input:
+#     regcom: ["01"]
+#     formation_sanitaire_sociale: [True]
+#   output:
+#     guadeloupe_bourse_sanitaire: [5736]
