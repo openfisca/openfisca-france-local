@@ -46,12 +46,17 @@ def is_quotient_familial_eligible(individu, period, condition):
     return quotient_familial <= condition["floor"]
 
 
+def is_formation_sanitaire_social_eligible(individu, period, condition):
+    return True
+
+
 condition_table = {
-    'age': is_age_eligible,
-    'departements': is_department_eligible,
-    'regions': is_region_eligible,
-    'regime_securite_sociale': is_regime_securite_sociale_eligible,
-    'quotient_familial': is_quotient_familial_eligible
+    "age": is_age_eligible,
+    "departements": is_department_eligible,
+    "regions": is_region_eligible,
+    "regime_securite_sociale": is_regime_securite_sociale_eligible,
+    "quotient_familial": is_quotient_familial_eligible,
+    "formation_sanitaire_social": is_formation_sanitaire_social_eligible,
 }
 
 type_table = {
