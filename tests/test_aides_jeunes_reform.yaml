@@ -67,7 +67,7 @@
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
-    regcom: ["01"]
-    groupe_specialites_formation: ["330. Spécialités plurivalentes sanitaires et sociales."]
+    regcom: ["01", "01"]
+    groupe_specialites_formation: ["groupe_330", "326. Informatique, traitement de l'information, réseau de transmission des données."]
   output:
-    guadeloupe_bourse_sanitaire: [5736]
+    guadeloupe_bourse_sanitaire: [5736, 0]

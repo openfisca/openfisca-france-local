@@ -8,6 +8,7 @@ from openfisca_france.model.base import *
 from openfisca_core import reforms
 
 from openfisca_france.model.caracteristiques_socio_demographiques.demographie import RegimeSecuriteSociale
+from openfisca_france.model.caracteristiques_socio_demographiques.demographie import GroupeSpecialitesFormation
 
 
 def is_age_eligible(individu, period, condition):
@@ -47,7 +48,10 @@ def is_quotient_familial_eligible(individu, period, condition):
 
 
 def is_formation_sanitaire_social_eligible(individu, period, condition):
-    return True
+    id_formation_sanitaire_social = GroupeSpecialitesFormation.groupe_330
+    id_formation_groupe = individu(
+        'groupe_specialites_formation', period.first_month)
+    return id_formation_groupe == id_formation_sanitaire_social
 
 
 condition_table = {
