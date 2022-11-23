@@ -13,7 +13,7 @@ from openfisca_france.model.caracteristiques_socio_demographiques.demographie im
 def is_age_eligible(individu, period, condition):
 
     condition_age = condition['value']
-    individus_age = individu('age', period)
+    individus_age = individu('age', period.first_month)
 
     operators = {
         '<': lambda individus_age, condition_age: individus_age < condition_age,
@@ -25,12 +25,12 @@ def is_age_eligible(individu, period, condition):
 
 
 def is_department_eligible(individu, period, condition):
-    depcom = individu.menage('depcom', period)
+    depcom = individu.menage('depcom', period.first_month)
     return sum([startswith(depcom, code.encode('UTF-8'))for code in condition['values']])
 
 
 def is_region_eligible(individu, period, condition):
-    regcom = individu.menage('regcom', period)
+    regcom = individu.menage('regcom', period.first_month)
     return sum([startswith(regcom, code.encode('UTF-8'))for code in condition['values']])
 
 
@@ -40,7 +40,9 @@ def is_regime_securite_sociale_eligible(individu, period, condition):
 
 
 def is_quotient_familial_eligible(individu, period, condition):
-    quotient_familial = individu.famille('quotient_familial_caf', period)
+    rfr = individu.foyer_fiscal('rfr', period.this_year)
+    nbptr = individu.foyer_fiscal('nbptr', period.this_year)
+    quotient_familial = rfr / nbptr
     return quotient_familial <= condition["floor"]
 
 
@@ -57,13 +59,21 @@ type_table = {
     'bool': bool,
 }
 
+period_table = {
+    'ponctuelle': ETERNITY,
+    'mensuelle': MONTH,
+    'annuelle': YEAR,
+    'autre': ETERNITY,
+}
+
 
 def generate_variable(benefit):
 
     class NewAidesJeunesBenefitVariable(Variable):
         value_type = float  # hardcoded
         entity = Individu
-        definition_period = MONTH
+        # definition_period = MONTH
+        definition_period = period_table[benefit['periodicite']]
 
         def formula(individu, period):
             value_type = type_table[benefit['type']]
@@ -99,6 +109,13 @@ class aides_jeunes_reform_dynamic(reforms.Reform):
         definition_period = MONTH
         set_input = set_input_dispatch_by_period
 
+    class formation_sanitaire_sociale(Variable):
+        value_type = bool
+        entity = Individu
+        label = "L'individu est inscrit dans un dispositifs de formation dans le domaine sanitaire et sociale"
+        definition_period = YEAR
+        set_input = set_input_dispatch_by_period
+
     def extract_benefit_file_content(self, benefit_path):
         benefit: dict = yaml.safe_load(open(benefit_path))
         benefit['slug'] = benefit_path.split(
@@ -115,6 +132,7 @@ class aides_jeunes_reform_dynamic(reforms.Reform):
     def apply(self):
         try:
             self.add_variable(self.regcom)
+            self.add_variable(self.formation_sanitaire_sociale)
             benefit_files_paths = self.extract_benefits_paths(
                 self.current_path)
             for path in benefit_files_paths:
