@@ -54,6 +54,11 @@ def is_formation_sanitaire_social_eligible(individu, period, condition):
     return id_formation_groupe == id_formation_sanitaire_social
 
 
+def is_beneficiaire_rsa_eligible(individu, period, condition):
+    rsa = individu.famille('rsa', period)
+    return rsa > 0
+
+
 condition_table = {
     "age": is_age_eligible,
     "departements": is_department_eligible,
@@ -61,6 +66,7 @@ condition_table = {
     "regime_securite_sociale": is_regime_securite_sociale_eligible,
     "quotient_familial": is_quotient_familial_eligible,
     "formation_sanitaire_social": is_formation_sanitaire_social_eligible,
+    "beneficiaire_rsa": is_beneficiaire_rsa_eligible,
 }
 
 type_table = {
