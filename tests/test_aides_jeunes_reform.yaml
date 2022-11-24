@@ -76,8 +76,8 @@
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
-    regcom: ["76"]
-    age: [18]
-    rsa: [1]
+    regcom: ["76", "76"]
+    age: [18, 19]
+    rsa: [1, 0]
   output:
-    region_occitanie_revenu_ecologique_jeune: [1000]
+    region_occitanie_revenu_ecologique_jeune: [1000, 0]
