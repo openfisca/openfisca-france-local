@@ -71,3 +71,13 @@
     groupe_specialites_formation: ["groupe_330", "326. Informatique, traitement de l'information, réseau de transmission des données."]
   output:
     guadeloupe_bourse_sanitaire: [5736, 0]
+
+- period: 2022-11
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    regcom: ["76"]
+    age: [18]
+    rsa: [1]
+  output:
+    region_occitanie_revenu_ecologique_jeune: [1000]
