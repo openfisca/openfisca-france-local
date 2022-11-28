@@ -81,3 +81,12 @@
     rsa: [1, 0]
   output:
     region_occitanie_revenu_ecologique_jeune: [1000, 0]
+
+- period: 2022
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    regcom: ["24"]
+    activite: ["etudiant"]
+  output:
+    centre_val_de_loire_cheque_emploi: [0]
