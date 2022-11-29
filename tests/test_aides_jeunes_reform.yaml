@@ -67,10 +67,11 @@
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
-    regcom: ["01", "01"]
-    groupe_specialites_formation: ["groupe_330", "326. Informatique, traitement de l'information, réseau de transmission des données."]
+    regcom: ["01", "01", "01"]
+    groupe_specialites_formation: ["groupe_330", "FOrmation non reconnue", "groupe_330"]
+    activite: ["stagiaire", "stagiaire", "chomeur"]
   output:
-    guadeloupe_bourse_sanitaire: [5736, 0]
+    guadeloupe_bourse_sanitaire: [5736, 0, 0]
 
 - period: 2022-11
   reforms:
@@ -86,7 +87,7 @@
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
-    regcom: ["24"]
-    activite: ["etudiant"]
+    regcom: ["24", "24"]
+    activite: ["etudiant", "chomeur"]
   output:
-    centre_val_de_loire_cheque_emploi: [0]
+    centre_val_de_loire_cheque_emploi: [0, 1]

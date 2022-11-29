@@ -141,7 +141,6 @@ def generate_variable(benefit: dict):
 
             profils = benefit["profils"]
             profils_types_eligible = [profil["type"] for profil in profils]
-            print(f"profils_types_eligible : {profils_types_eligible}")
 
             is_profile_eligible = sum(np.array([profil_table[activity](
                 individu, period) for activity in profils_types_eligible])) >= 1
