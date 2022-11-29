@@ -1,11 +1,16 @@
 # -*- coding: utf-8 -*-
+
 import yaml
 
 from pathlib import Path
 from numpy.core.defchararray import startswith
+import numpy as np
 
 from openfisca_france.model.base import *
 from openfisca_core import reforms
+from openfisca_core.entities import Entity
+from openfisca_core.periods import Period
+
 
 from openfisca_france.model.caracteristiques_socio_demographiques.demographie import RegimeSecuriteSociale
 from openfisca_france.model.caracteristiques_socio_demographiques.demographie import GroupeSpecialitesFormation
@@ -44,7 +49,7 @@ def is_quotient_familial_eligible(individu, period, condition):
     rfr = individu.foyer_fiscal('rfr', period.this_year)
     nbptr = individu.foyer_fiscal('nbptr', period.this_year)
     quotient_familial = rfr / nbptr
-    return quotient_familial <= condition["floor"]
+    return quotient_familial <= condition["ceiling"]
 
 
 def is_formation_sanitaire_social_eligible(individu, period, condition):
@@ -59,6 +64,39 @@ def is_beneficiaire_rsa_eligible(individu, period, condition):
     return rsa > 0
 
 
+def is_chomeur(individu: Entity, period: Period):
+    return individu('activite', period.first_month) == TypesActivite.chomeur
+
+
+def is_stagiaire(individu: Entity, period: Period):
+    template = individu(
+        'activite', period.first_month) == TypesActivite.chomeur
+    ret: np.ndarray = np.ones_like(template)
+    return ret
+
+
+def is_independant(individu: Entity, period: Period):
+    template = individu(
+        'activite', period.first_month) == TypesActivite.chomeur
+    ret: np.ndarray = np.ones_like(template)
+    return ret
+
+
+def is_apprenti(individu: Entity, period: Period):
+    template = individu(
+        'activite', period.first_month) == TypesActivite.chomeur
+    ret: np.ndarray = np.ones_like(template)
+    print(f"ret:{ret}")
+    return ret
+
+
+def is_enseignement_superieur(individu: Entity, period: Period):
+    template = individu(
+        'activite', period.first_month) == TypesActivite.chomeur
+    ret: np.ndarray = np.ones_like(template)
+    return ret
+
+
 condition_table = {
     "age": is_age_eligible,
     "departements": is_department_eligible,
@@ -67,6 +105,14 @@ condition_table = {
     "quotient_familial": is_quotient_familial_eligible,
     "formation_sanitaire_social": is_formation_sanitaire_social_eligible,
     "beneficiaire_rsa": is_beneficiaire_rsa_eligible,
+}
+
+profil_table = {
+    "chomeur": is_chomeur,
+    "stagiaire": is_stagiaire,
+    "independant": is_independant,
+    "apprenti": is_apprenti,
+    "enseignement_superieur": is_enseignement_superieur,
 }
 
 type_table = {
@@ -82,7 +128,7 @@ period_table = {
 }
 
 
-def generate_variable(benefit):
+def generate_variable(benefit: dict):
 
     class NewAidesJeunesBenefitVariable(Variable):
         value_type = float  # hardcoded
@@ -92,6 +138,16 @@ def generate_variable(benefit):
         def formula(individu, period):
             value_type = type_table[benefit['type']]
             amount = benefit.get('montant')
+
+            profils = benefit["profils"]
+            profils_types_eligible = [profil["type"] for profil in profils]
+            print(f"profils_types_eligible : {profils_types_eligible}")
+
+            is_profile_eligible = sum(np.array([profil_table[activity](
+                individu, period) for activity in profils_types_eligible])) >= 1
+            if len(profils_types_eligible) == 0:
+                is_profile_eligible = True
+
             conditions = benefit['conditions_generales']
 
             test_conditions = [(condition_table[condition['type']], condition)
@@ -102,7 +158,7 @@ def generate_variable(benefit):
 
             total_eligibility = sum(eligibilities) == len(conditions)
 
-            return amount * total_eligibility if value_type == float else total_eligibility
+            return amount * is_profile_eligible * total_eligibility if value_type == float else total_eligibility * is_profile_eligible * is_profile_eligible
         # Ce return fonctionnera car nos aides n'ont que deux types : bool et float
         # mais ce n'est pas élégant. (surtout qu'il faut créer une deuxième variable value_type)
 
