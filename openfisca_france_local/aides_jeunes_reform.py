@@ -14,6 +14,7 @@ from openfisca_core.periods import Period
 
 from openfisca_france.model.caracteristiques_socio_demographiques.demographie import RegimeSecuriteSociale
 from openfisca_france.model.caracteristiques_socio_demographiques.demographie import GroupeSpecialitesFormation
+from openfisca_france.model.prestations.education import TypesScolarite
 
 
 def is_age_eligible(individu, period, condition):
@@ -84,11 +85,8 @@ def is_apprenti(individu: Entity, period: Period):
 
 
 def is_enseignement_superieur(individu: Entity, period: Period):
-    template = individu(
-        'activite', period.first_month) == TypesActivite.chomeur
-    ret: np.ndarray = np.ones_like(template)
-    ret[ret] = False
-    return ret
+    return individu(
+        'scolarite', period.first_month) == TypesScolarite.enseignement_superieur
 
 
 condition_table = {
