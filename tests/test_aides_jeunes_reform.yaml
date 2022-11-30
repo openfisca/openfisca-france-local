@@ -110,9 +110,9 @@
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
-    regcom: ["44"]
-    groupe_specialites_formation: ["groupe_330"]
-    activite: ["inactif"]
+    regcom: ["44", "44"]
+    groupe_specialites_formation: ["groupe_330", "groupe_330"]
+    activite: ["inactif", "etudiant"]
   output:
-    grand_est_bourse_du_secteur_sanitaire_et_social: [0]
+    grand_est_bourse_du_secteur_sanitaire_et_social: [0, 1]
 
