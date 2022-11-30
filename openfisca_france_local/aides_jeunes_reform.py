@@ -89,6 +89,16 @@ def is_enseignement_superieur(individu: Entity, period: Period):
         'scolarite', period.first_month) == TypesScolarite.enseignement_superieur
 
 
+def is_lyceen(individu: Entity, period: Period):
+    template = individu(
+        'activite', period.first_month) == TypesActivite.chomeur
+    ret: np.ndarray = np.ones_like(template)
+    ret[ret] = False
+    return ret
+    # return individu(
+    #     'scolarite', period.first_month) == TypesScolarite.lyceen
+
+
 condition_table = {
     "age": is_age_eligible,
     "departements": is_department_eligible,
@@ -105,6 +115,7 @@ profil_table = {
     "independant": is_independant,
     "apprenti": is_apprenti,
     "enseignement_superieur": is_enseignement_superieur,
+    "lyceen": is_lyceen,
 }
 
 type_table = {
