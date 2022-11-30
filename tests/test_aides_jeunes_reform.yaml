@@ -70,12 +70,13 @@
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
-    regcom: ["01", "01", "01"]
-    groupe_specialites_formation: ["groupe_330", "FOrmation non reconnue", "groupe_330"]
-    activite: ["stagiaire", "stagiaire", "chomeur"]
-    stage_duree_heures: [12,12,0]
+    regcom: ["01", "01", "01", "01"]
+    groupe_specialites_formation: ["groupe_330", "FOrmation non reconnue", "groupe_330", "groupe_330"]
+    activite: ["stagiaire", "stagiaire", "chomeur", "etudiant"]
+    stage_duree_heures: [12,12,0, 0]
+    scolarite: ["inconnue", "inconnue", "inconnue", "enseignement_superieur"]
   output:
-    guadeloupe_bourse_sanitaire: [5736, 0, 0]
+    guadeloupe_bourse_sanitaire: [5736, 0, 0, 5736]
 
 - period: 2022-11
   reforms:
