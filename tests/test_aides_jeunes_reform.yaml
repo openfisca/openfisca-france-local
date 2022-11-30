@@ -101,7 +101,7 @@
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
-    regcom: ["24"]
-    scolarite: ["inconnue"]
+    regcom: ["24", "24"]
+    scolarite: ["inconnue", "lycee"]
   output:
-    centre_val_de_loire_aide_au_1er_equipement_professionnel: [0]
+    centre_val_de_loire_aide_au_1er_equipement_professionnel: [0, 1]
