@@ -95,11 +95,8 @@ def is_lyceen(individu: Entity, period: Period):
 
 
 def is_etudiant(individu: Entity, period: Period):
-    template = individu(
-        'activite', period.first_month) == TypesActivite.chomeur
-    ret: np.ndarray = np.ones_like(template)
-    ret[ret] = False
-    return ret
+    return individu(
+        'etudiant', period.first_month)
 
 
 condition_table = {
