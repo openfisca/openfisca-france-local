@@ -104,4 +104,4 @@
     regcom: ["24", "24"]
     scolarite: ["inconnue", "lycee"]
   output:
-    centre_val_de_loire_aide_au_1er_equipement_professionnel: [0, 1]
+    centre_val_de_loire_aide_au_1er_equipement_professionnel: [0, 50]

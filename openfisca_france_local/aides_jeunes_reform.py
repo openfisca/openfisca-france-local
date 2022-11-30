@@ -90,13 +90,8 @@ def is_enseignement_superieur(individu: Entity, period: Period):
 
 
 def is_lyceen(individu: Entity, period: Period):
-    template = individu(
-        'activite', period.first_month) == TypesActivite.chomeur
-    ret: np.ndarray = np.ones_like(template)
-    ret[ret] = False
-    return ret
-    # return individu(
-    #     'scolarite', period.first_month) == TypesScolarite.lyceen
+    return individu(
+        'scolarite', period.first_month) == TypesScolarite.lycee
 
 
 condition_table = {
