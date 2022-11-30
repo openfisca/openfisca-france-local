@@ -20,9 +20,12 @@
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
-    regcom: ["32", "11"]
+    age: [18,18, 18]
+    regcom: ["32", "11", "32"]
+    apprentissage_contrat_debut: ["2022-01-01", "2022-01-01", null]
+    activite: ["actif", "chomeur", "actif"]
   output:
-    hauts_de_france_carte_generation_apprentis_aide_transport: [200, 0]
+    hauts_de_france_carte_generation_apprentis_aide_transport: [200, 0, 0]
 
 - period: 2022-11
   reforms:
