@@ -80,6 +80,14 @@ def is_independant(individu: Entity, period: Period):
     return ret
 
 
+def is_etudiant(individu: Entity, period: Period):
+    template = individu(
+        'activite', period.first_month) == TypesActivite.chomeur
+    ret: np.ndarray = np.ones_like(template)
+    ret[ret] = False
+    return ret
+
+
 def is_apprenti(individu: Entity, period: Period):
     return individu('apprenti', period.first_month)
 
@@ -111,6 +119,7 @@ profil_table = {
     "apprenti": is_apprenti,
     "enseignement_superieur": is_enseignement_superieur,
     "lyceen": is_lyceen,
+    "etudiant": is_etudiant,
 }
 
 type_table = {
