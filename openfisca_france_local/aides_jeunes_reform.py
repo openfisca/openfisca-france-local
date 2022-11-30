@@ -80,10 +80,7 @@ def is_independant(individu: Entity, period: Period):
 
 
 def is_apprenti(individu: Entity, period: Period):
-    template = individu(
-        'activite', period.first_month) == TypesActivite.chomeur
-    ret: np.ndarray = np.ones_like(template)
-    return ret
+    return individu('apprenti', period.first_month)
 
 
 def is_enseignement_superieur(individu: Entity, period: Period):
