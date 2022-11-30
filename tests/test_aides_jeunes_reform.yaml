@@ -96,3 +96,12 @@
     activite: ["etudiant", "chomeur"]
   output:
     centre_val_de_loire_cheque_emploi: [0, 1]
+
+- period: 2022
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    regcom: ["24"]
+    scolarite: ["inconnue"]
+  output:
+    centre_val_de_loire_aide_au_1er_equipement_professionnel: [0]
