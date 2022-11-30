@@ -69,10 +69,7 @@ def is_chomeur(individu: Entity, period: Period):
 
 
 def is_stagiaire(individu: Entity, period: Period):
-    template = individu(
-        'activite', period.first_month) == TypesActivite.chomeur
-    ret: np.ndarray = np.ones_like(template)
-    return ret
+    return individu('stagiaire', period.first_month)
 
 
 def is_independant(individu: Entity, period: Period):
@@ -86,7 +83,6 @@ def is_apprenti(individu: Entity, period: Period):
     template = individu(
         'activite', period.first_month) == TypesActivite.chomeur
     ret: np.ndarray = np.ones_like(template)
-    print(f"ret:{ret}")
     return ret
 
 
@@ -94,6 +90,7 @@ def is_enseignement_superieur(individu: Entity, period: Period):
     template = individu(
         'activite', period.first_month) == TypesActivite.chomeur
     ret: np.ndarray = np.ones_like(template)
+    ret[ret] = False
     return ret
 
 
@@ -136,16 +133,21 @@ def generate_variable(benefit: dict):
         definition_period = period_table[benefit['periodicite']]
 
         def formula(individu, period):
+
             value_type = type_table[benefit['type']]
             amount = benefit.get('montant')
 
             profils = benefit["profils"]
             profils_types_eligible = [profil["type"] for profil in profils]
-
-            is_profile_eligible = sum(np.array([profil_table[activity](
-                individu, period) for activity in profils_types_eligible])) >= 1
             if len(profils_types_eligible) == 0:
                 is_profile_eligible = True
+            else:
+                def eval_profil(profil):
+                    predicate = profil_table[profil]
+                    return predicate(individu, period)
+                eligibilities = [eval_profil(profil)
+                                 for profil in profils_types_eligible]
+                is_profile_eligible = sum(eligibilities) >= 1
 
             conditions = benefit['conditions_generales']
 
