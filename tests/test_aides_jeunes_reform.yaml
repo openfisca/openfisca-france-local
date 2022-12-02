@@ -121,9 +121,9 @@
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
-    regcom: ["53"]
-    professionnalisation: [false]
+    regcom: ["53", "53"]
+    professionnalisation: [false, true]
 
   output:
-    region_pays_de_la_loire_ehop_emploi: [0]
+    region_pays_de_la_loire_ehop_emploi: [0, 1]
 
