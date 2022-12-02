@@ -84,6 +84,7 @@
   input:
     regcom: ["76", "76"]
     age: [18, 19]
+    stagiaire: [true,true]
     rsa: [1, 0]
   output:
     region_occitanie_revenu_ecologique_jeune: [1000, 0]

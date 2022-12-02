@@ -73,13 +73,6 @@ def is_stagiaire(individu: Entity, period: Period):
     return individu('stagiaire', period.first_month)
 
 
-def is_independant(individu: Entity, period: Period):
-    template = individu(
-        'activite', period.first_month) == TypesActivite.chomeur
-    ret: np.ndarray = np.ones_like(template)
-    return ret
-
-
 def is_apprenti(individu: Entity, period: Period):
     return individu('apprenti', period.first_month)
 
@@ -99,6 +92,14 @@ def is_etudiant(individu: Entity, period: Period):
         'etudiant', period.first_month)
 
 
+def is_to_implement(individu: Entity, period: Period):
+    template = individu(
+        'activite', period.first_month) == TypesActivite.chomeur
+    ret: np.ndarray = np.ones_like(template)
+    ret[ret] = False
+    return ret
+
+
 condition_table = {
     "age": is_age_eligible,
     "departements": is_department_eligible,
@@ -116,7 +117,10 @@ profil_table = {
     "lyceen": is_lyceen,
     "etudiant": is_etudiant,
     "stagiaire": is_stagiaire,
-    "independant": is_independant,
+    "independant": is_to_implement,
+    "professionnalisation": is_to_implement,
+    "salarie": is_to_implement,
+    "service_civique": is_to_implement,
 }
 
 type_table = {
@@ -150,8 +154,11 @@ def generate_variable(benefit: dict):
                 is_profile_eligible = True
             else:
                 def eval_profil(profil):
+
                     predicate = profil_table[profil]
-                    return predicate(individu, period)
+                    ret = predicate(individu, period)
+                    print(f"{profil} : {ret}")
+                    return ret
                 eligibilities = [eval_profil(profil)
                                  for profil in profils_types_eligible]
                 is_profile_eligible = sum(eligibilities) >= 1
@@ -165,8 +172,9 @@ def generate_variable(benefit: dict):
                 individu, period, test[1]) for test in test_conditions]
 
             total_eligibility = sum(eligibilities) == len(conditions)
-
-            return amount * is_profile_eligible * total_eligibility if value_type == float else total_eligibility * is_profile_eligible * is_profile_eligible
+            print(f"total_eligibility: {total_eligibility}")
+            print(f"is_profile_eligible: {is_profile_eligible}")
+            return amount * is_profile_eligible * total_eligibility if value_type == float else total_eligibility * is_profile_eligible
         # Ce return fonctionnera car nos aides n'ont que deux types : bool et float
         # mais ce n'est pas élégant. (surtout qu'il faut créer une deuxième variable value_type)
 
