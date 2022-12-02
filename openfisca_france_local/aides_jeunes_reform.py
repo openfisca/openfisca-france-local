@@ -110,13 +110,13 @@ condition_table = {
 }
 
 profil_table = {
-    "chomeur": is_chomeur,
-    "stagiaire": is_stagiaire,
-    "independant": is_independant,
-    "apprenti": is_apprenti,
     "enseignement_superieur": is_enseignement_superieur,
+    "chomeur": is_chomeur,
+    "apprenti": is_apprenti,
     "lyceen": is_lyceen,
     "etudiant": is_etudiant,
+    "stagiaire": is_stagiaire,
+    "independant": is_independant,
 }
 
 type_table = {
