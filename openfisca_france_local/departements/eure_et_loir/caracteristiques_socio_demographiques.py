@@ -30,7 +30,7 @@ class station_debout_penible(Variable):
     label = "La station debout est pénible pour cet individu"
     entity = Individu
     definition_period = MONTH
-    default_value = False
+    default_value = True
 
 
 class eure_et_loir_revenus_nets_du_travail(Variable):
