@@ -92,6 +92,14 @@ def is_etudiant(individu: Entity, period: Period):
         'etudiant', period.first_month)
 
 
+def is_professionnalisation(individu: Entity, period: Period):
+    return individu('professionnalisation', period.first_month)
+
+
+def is_actif(individu: Entity, period: Period):
+    return individu('activite', period.first_month) == TypesActivite.actif
+
+
 def is_to_implement(individu: Entity, period: Period):
     template = individu(
         'activite', period.first_month) == TypesActivite.chomeur
@@ -117,8 +125,8 @@ profil_table = {
     "lyceen": is_lyceen,
     "etudiant": is_etudiant,
     "stagiaire": is_stagiaire,
-    "independant": is_to_implement,
-    "professionnalisation": is_to_implement,
+    "professionnalisation": is_professionnalisation,
+    "independant": is_actif,
     "salarie": is_to_implement,
     "service_civique": is_to_implement,
 }
@@ -157,7 +165,6 @@ def generate_variable(benefit: dict):
 
                     predicate = profil_table[profil]
                     ret = predicate(individu, period)
-                    print(f"{profil} : {ret}")
                     return ret
                 eligibilities = [eval_profil(profil)
                                  for profil in profils_types_eligible]
@@ -172,8 +179,6 @@ def generate_variable(benefit: dict):
                 individu, period, test[1]) for test in test_conditions]
 
             total_eligibility = sum(eligibilities) == len(conditions)
-            print(f"total_eligibility: {total_eligibility}")
-            print(f"is_profile_eligible: {is_profile_eligible}")
             return amount * is_profile_eligible * total_eligibility if value_type == float else total_eligibility * is_profile_eligible
         # Ce return fonctionnera car nos aides n'ont que deux types : bool et float
         # mais ce n'est pas élégant. (surtout qu'il faut créer une deuxième variable value_type)
