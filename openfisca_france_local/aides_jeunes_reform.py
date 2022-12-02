@@ -151,29 +151,32 @@ def generate_variable(benefit: dict):
         entity = Individu
         definition_period = period_table[benefit['periodicite']]
 
-        def formula(individu, period):
+        def formula(individu: Entity, period: Period):
 
             value_type = type_table[benefit['type']]
             amount = benefit.get('montant')
 
-            profils = benefit["profils"]
-            profils_types_eligible = [profil["type"] for profil in profils]
-            if len(profils_types_eligible) == 0:
+            profils_eligible: dict = benefit["profils"]
+            if len(profils_eligible) == 0:
                 is_profile_eligible = True
             else:
-                def eval_profil(profil):
+                def eval_profil(profil: dict):
 
-                    predicate = profil_table[profil]
-                    ret = predicate(individu, period)
-                    return ret
+                    predicate = profil_table[profil['type']]
+
+                    profil_match = predicate(individu, period)
+                    # conditions_satisfied =
+                    return profil_match
                 eligibilities = [eval_profil(profil)
-                                 for profil in profils_types_eligible]
+                                 for profil in profils_eligible]
                 is_profile_eligible = sum(eligibilities) >= 1
 
             conditions = benefit['conditions_generales']
 
-            test_conditions = [(condition_table[condition['type']], condition)
-                               for condition in conditions]
+            def eval_conditions(conditions: dict):
+                return [(condition_table[condition['type']], condition)
+                        for condition in conditions]
+            test_conditions = eval_conditions(conditions)
 
             eligibilities = [test[0](
                 individu, period, test[1]) for test in test_conditions]
