@@ -22,7 +22,7 @@
   input:
     age: [18,18, 18]
     regcom: ["32", "11", "32"]
-    apprentissage_contrat_debut: ["2022-01-01", "2022-01-01", null]
+    apprenti: [true, true, false]
     activite: ["actif", "chomeur", "actif"]
   output:
     hauts_de_france_carte_generation_apprentis_aide_transport: [200, 0, 0]
