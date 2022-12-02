@@ -127,8 +127,8 @@ profil_table = {
     "stagiaire": is_stagiaire,
     "professionnalisation": is_professionnalisation,
     "independant": is_actif,
-    "salarie": is_to_implement,
-    "service_civique": is_to_implement,
+    "salarie": is_actif,
+    "service_civique": is_actif,
 }
 
 type_table = {
