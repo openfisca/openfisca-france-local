@@ -138,3 +138,13 @@
   output:
     grand_est_aide_mobilite_internationale_etudiants: [0, 1, 0]
 
+- period: 2022
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    age: [25]
+    regcom: ["75"]
+    scolarite: ["enseignement_superieur"]
+  output:
+    nouvelle_aquitaine_aide_passage_permis_conduire_b: [0]
+
