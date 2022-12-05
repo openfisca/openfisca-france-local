@@ -8,13 +8,12 @@ import numpy as np
 
 from openfisca_france.model.base import *
 from openfisca_core import reforms
-from openfisca_core.entities import Entity
 from openfisca_core.periods import Period
 
 
 from openfisca_france.model.caracteristiques_socio_demographiques.demographie import RegimeSecuriteSociale
 from openfisca_france.model.caracteristiques_socio_demographiques.demographie import GroupeSpecialitesFormation
-from openfisca_france.model.prestations.education import TypesScolarite
+from openfisca_france.model.prestations.education import TypesScolarite, TypesClasse
 from openfisca_core.populations.population import Population
 
 
@@ -93,6 +92,11 @@ def is_etudiant(individu: Population, period: Period) -> np.array:
         'etudiant', period.first_month)
 
 
+def is_annee_etude_eligible(individu, period, condition) -> np.array:
+    return individu(
+        'annee_etude', period.first_month) == TypesClasse[condition['values'][0]]
+
+
 def is_professionnalisation(individu: Population, period: Period) -> np.array:
     return individu('professionnalisation', period.first_month)
 
@@ -115,12 +119,13 @@ def is_to_implement(individu: Population, period: Period) -> np.array:
 
 condition_table = {
     "age": is_age_eligible,
-    "departements": is_department_eligible,
     "regions": is_region_eligible,
-    "regime_securite_sociale": is_regime_securite_sociale_eligible,
+    "departements": is_department_eligible,
     "quotient_familial": is_quotient_familial_eligible,
     "formation_sanitaire_social": is_formation_sanitaire_social_eligible,
+    "regime_securite_sociale": is_regime_securite_sociale_eligible,
     "beneficiaire_rsa": is_beneficiaire_rsa_eligible,
+    "annee_etude": is_annee_etude_eligible
 }
 
 profil_table = {
