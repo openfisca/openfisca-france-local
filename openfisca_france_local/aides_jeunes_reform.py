@@ -175,8 +175,7 @@ def generate_variable(benefit: dict):
                     if 'conditions' in profil:
                         conditions_satisfied = eval_conditions(
                             profil['conditions'])
-                        return profil_match * conditions_satisfied
-                    return profil_match
+                    return profil_match * conditions_satisfied if 'conditions' in profil else profil_match
 
                 eligibilities = [eval_profil(profil)
                                  for profil in profils_eligible]
