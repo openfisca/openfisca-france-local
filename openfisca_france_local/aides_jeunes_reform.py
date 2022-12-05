@@ -184,8 +184,6 @@ def generate_variable(benefit: dict):
             conditions_generales = benefit['conditions_generales']
 
             general_eligibilities = eval_conditions(conditions_generales)
-
-            # total_eligibility = sum(eligibilities) == len(conditions_generales)
             return amount * is_profile_eligible * general_eligibilities if value_type == float else general_eligibilities * is_profile_eligible
         # Ce return fonctionnera car nos aides n'ont que deux types : bool et float
         # mais ce n'est pas élégant. (surtout qu'il faut créer une deuxième variable value_type)

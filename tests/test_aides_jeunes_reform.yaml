@@ -132,8 +132,9 @@
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
-    regcom: ["44"]
-    scolarite: ["enseignement_superieur"]
+    age: [30, 29, 29]
+    regcom: ["44", "44", "44"]
+    scolarite: ["enseignement_superieur", "enseignement_superieur", "grande_ecole_du_numerique"]
   output:
-    grand_est_aide_mobilite_internationale_etudiants: [0]
+    grand_est_aide_mobilite_internationale_etudiants: [0, 1, 0]
 
