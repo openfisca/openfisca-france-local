@@ -15,6 +15,7 @@ from openfisca_core.periods import Period
 from openfisca_france.model.caracteristiques_socio_demographiques.demographie import RegimeSecuriteSociale
 from openfisca_france.model.caracteristiques_socio_demographiques.demographie import GroupeSpecialitesFormation
 from openfisca_france.model.prestations.education import TypesScolarite
+from openfisca_core.populations.population import Population
 
 
 def is_age_eligible(individu, period, condition):
@@ -46,61 +47,61 @@ def is_regime_securite_sociale_eligible(individu, period, condition):
     return sum([regime_securite_sociale == RegimeSecuriteSociale[regime] for regime in condition['includes']])
 
 
-def is_quotient_familial_eligible(individu, period, condition):
+def is_quotient_familial_eligible(individu, period, condition) -> np.array:
     rfr = individu.foyer_fiscal('rfr', period.this_year)
     nbptr = individu.foyer_fiscal('nbptr', period.this_year)
     quotient_familial = rfr / nbptr
     return quotient_familial <= condition["ceiling"]
 
 
-def is_formation_sanitaire_social_eligible(individu, period, condition):
+def is_formation_sanitaire_social_eligible(individu, period, condition) -> np.array:
     id_formation_sanitaire_social = GroupeSpecialitesFormation.groupe_330
     id_formation_groupe = individu(
         'groupe_specialites_formation', period.first_month)
     return id_formation_groupe == id_formation_sanitaire_social
 
 
-def is_beneficiaire_rsa_eligible(individu, period, condition):
+def is_beneficiaire_rsa_eligible(individu, period, condition) -> np.array:
     rsa = individu.famille('rsa', period)
     return rsa > 0
 
 
-def is_chomeur(individu: Entity, period: Period):
+def is_chomeur(individu: Population, period: Period) -> np.array:
     return individu('activite', period.first_month) == TypesActivite.chomeur
 
 
-def is_stagiaire(individu: Entity, period: Period):
+def is_stagiaire(individu: Population, period: Period) -> np.array:
     return individu('stagiaire', period.first_month)
 
 
-def is_apprenti(individu: Entity, period: Period):
+def is_apprenti(individu: Population, period: Period) -> np.array:
     return individu('apprenti', period.first_month)
 
 
-def is_enseignement_superieur(individu: Entity, period: Period):
+def is_enseignement_superieur(individu: Population, period: Period) -> np.array:
     return individu(
         'scolarite', period.first_month) == TypesScolarite.enseignement_superieur
 
 
-def is_lyceen(individu: Entity, period: Period):
+def is_lyceen(individu: Population, period: Period) -> np.array:
     return individu(
         'scolarite', period.first_month) == TypesScolarite.lycee
 
 
-def is_etudiant(individu: Entity, period: Period):
+def is_etudiant(individu: Population, period: Period) -> np.array:
     return individu(
         'etudiant', period.first_month)
 
 
-def is_professionnalisation(individu: Entity, period: Period):
+def is_professionnalisation(individu: Population, period: Period) -> np.array:
     return individu('professionnalisation', period.first_month)
 
 
-def is_actif(individu: Entity, period: Period):
+def is_actif(individu: Population, period: Period) -> np.array:
     return individu('activite', period.first_month) == TypesActivite.actif
 
 
-def is_to_implement(individu: Entity, period: Period):
+def is_to_implement(individu: Population, period: Period) -> np.array:
     template = individu(
         'activite', period.first_month) == TypesActivite.chomeur
     ret: np.ndarray = np.ones_like(template)
@@ -151,7 +152,19 @@ def generate_variable(benefit: dict):
         entity = Individu
         definition_period = period_table[benefit['periodicite']]
 
-        def formula(individu: Entity, period: Period):
+        def formula(individu: Population, period: Period):
+
+            def eval_conditions(conditions: dict):
+                # test_conditions = [(condition_table[condition['type']], condition)
+                #                    for condition in conditions]
+                test_conditions = []
+                for condition in conditions:
+                    test_conditions.append(
+                        (condition_table[condition['type']], condition))
+
+                conditions_results = [
+                    test[0](individu, period, test[1]) for test in test_conditions]
+                return sum(conditions_results) == len(conditions)
 
             value_type = type_table[benefit['type']]
             amount = benefit.get('montant')
@@ -165,24 +178,23 @@ def generate_variable(benefit: dict):
                     predicate = profil_table[profil['type']]
 
                     profil_match = predicate(individu, period)
-                    # conditions_satisfied =
-                    return profil_match
+                    conditions = profil.get('conditions', [])
+                    conditions_satisfied = eval_conditions(conditions)
+
+                    # return profil_match
+                    if len(conditions) == 0:
+                        return profil_match
+                    return profil_match * conditions_satisfied
                 eligibilities = [eval_profil(profil)
                                  for profil in profils_eligible]
                 is_profile_eligible = sum(eligibilities) >= 1
 
-            conditions = benefit['conditions_generales']
+            conditions_generales = benefit['conditions_generales']
 
-            def eval_conditions(conditions: dict):
-                return [(condition_table[condition['type']], condition)
-                        for condition in conditions]
-            test_conditions = eval_conditions(conditions)
+            general_eligibilities = eval_conditions(conditions_generales)
 
-            eligibilities = [test[0](
-                individu, period, test[1]) for test in test_conditions]
-
-            total_eligibility = sum(eligibilities) == len(conditions)
-            return amount * is_profile_eligible * total_eligibility if value_type == float else total_eligibility * is_profile_eligible
+            # total_eligibility = sum(eligibilities) == len(conditions_generales)
+            return amount * is_profile_eligible * general_eligibilities if value_type == float else general_eligibilities * is_profile_eligible
         # Ce return fonctionnera car nos aides n'ont que deux types : bool et float
         # mais ce n'est pas élégant. (surtout qu'il faut créer une deuxième variable value_type)
 
