@@ -144,7 +144,7 @@
   input:
     age: [25]
     regcom: ["75"]
-    scolarite: ["enseignement_superieur"]
+    activite: ["retraite"]
   output:
     nouvelle_aquitaine_aide_passage_permis_conduire_b: [0]
 
