@@ -101,6 +101,10 @@ def is_actif(individu: Population, period: Period) -> np.array:
     return individu('activite', period.first_month) == TypesActivite.actif
 
 
+def is_inactif(individu: Population, period: Period) -> np.array:
+    return individu('activite', period.first_month) == TypesActivite.inactif
+
+
 def is_to_implement(individu: Population, period: Period) -> np.array:
     template = individu(
         'activite', period.first_month) == TypesActivite.chomeur
@@ -130,6 +134,7 @@ profil_table = {
     "independant": is_actif,
     "salarie": is_actif,
     "service_civique": is_actif,
+    "inactif": is_inactif,
 }
 
 type_table = {
@@ -182,7 +187,6 @@ def generate_variable(benefit: dict):
                 is_profile_eligible = sum(eligibilities) >= 1
 
             conditions_generales = benefit['conditions_generales']
-
             general_eligibilities = eval_conditions(conditions_generales)
             return amount * is_profile_eligible * general_eligibilities if value_type == float else general_eligibilities * is_profile_eligible
         # Ce return fonctionnera car nos aides n'ont que deux types : bool et float
