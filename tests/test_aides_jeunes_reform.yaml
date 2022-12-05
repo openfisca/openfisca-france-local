@@ -148,3 +148,13 @@
   output:
     nouvelle_aquitaine_aide_passage_permis_conduire_b: [0]
 
+- period: 2022
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    age: [25]
+    regcom: ["01"]
+    scolarite: ["enseignement_superieur"]
+  output:
+    guadeloupe_hebergement_cite_internationale_universitaire_de_paris: [0]
+
