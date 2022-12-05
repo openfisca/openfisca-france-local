@@ -155,12 +155,8 @@ def generate_variable(benefit: dict):
         def formula(individu: Population, period: Period):
 
             def eval_conditions(conditions: dict):
-                # test_conditions = [(condition_table[condition['type']], condition)
-                #                    for condition in conditions]
-                test_conditions = []
-                for condition in conditions:
-                    test_conditions.append(
-                        (condition_table[condition['type']], condition))
+                test_conditions = [(condition_table[condition['type']], condition)
+                                   for condition in conditions]
 
                 conditions_results = [
                     test[0](individu, period, test[1]) for test in test_conditions]
@@ -174,17 +170,14 @@ def generate_variable(benefit: dict):
                 is_profile_eligible = True
             else:
                 def eval_profil(profil: dict):
-
                     predicate = profil_table[profil['type']]
-
                     profil_match = predicate(individu, period)
-                    conditions = profil.get('conditions', [])
-                    conditions_satisfied = eval_conditions(conditions)
+                    if 'conditions' in profil:
+                        conditions_satisfied = eval_conditions(
+                            profil['conditions'])
+                        return profil_match * conditions_satisfied
+                    return profil_match
 
-                    # return profil_match
-                    if len(conditions) == 0:
-                        return profil_match
-                    return profil_match * conditions_satisfied
                 eligibilities = [eval_profil(profil)
                                  for profil in profils_eligible]
                 is_profile_eligible = sum(eligibilities) >= 1
