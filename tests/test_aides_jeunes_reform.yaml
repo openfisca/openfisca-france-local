@@ -159,3 +159,13 @@
   output:
     guadeloupe_hebergement_cite_internationale_universitaire_de_paris: [0, 1, 1]
 
+- period: 2022-11
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    regcom: ["27"]
+    scolarite: ["lycee"]
+    boursier: [true]
+  output:
+    region_bourgogne_franche_comte_restauration_familles_boursieres: [0]
+
