@@ -152,9 +152,10 @@
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
-    age: [25]
-    regcom: ["01"]
-    scolarite: ["enseignement_superieur"]
+    age: [25, 25]
+    regcom: ["01", "01"]
+    scolarite: ["enseignement_superieur", "enseignement_superieur"]
+    annee_etude: ["cap_1", "master_1"]
   output:
-    guadeloupe_hebergement_cite_internationale_universitaire_de_paris: [0]
+    guadeloupe_hebergement_cite_internationale_universitaire_de_paris: [0, 1]
 
