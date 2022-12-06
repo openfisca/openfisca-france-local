@@ -167,5 +167,5 @@
     scolarite: ["lycee"]
     boursier: [true]
   output:
-    region_bourgogne_franche_comte_restauration_familles_boursieres: [0]
+    region_bourgogne_franche_comte_restauration_familles_boursieres: [1]
 
