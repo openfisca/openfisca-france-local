@@ -71,6 +71,10 @@ def is_annee_etude_eligible(individu, period, condition) -> np.array:
     return sum([current_year == TypesClasse[value] for value in condition['values']])
 
 
+def is_boursier(individu: Population, period: Period, condition: dict) -> np.array:
+    return individu('boursier', period.first_month)
+
+
 def is_chomeur(individu: Population, period: Period) -> np.array:
     return individu('activite', period.first_month) == TypesActivite.chomeur
 
@@ -126,7 +130,8 @@ condition_table = {
     "formation_sanitaire_social": is_formation_sanitaire_social_eligible,
     "regime_securite_sociale": is_regime_securite_sociale_eligible,
     "beneficiaire_rsa": is_beneficiaire_rsa_eligible,
-    "annee_etude": is_annee_etude_eligible
+    "annee_etude": is_annee_etude_eligible,
+    "boursier": is_boursier,
 }
 
 profil_table = {
