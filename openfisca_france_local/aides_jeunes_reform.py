@@ -71,6 +71,12 @@ def is_annee_etude_eligible(individu, period, condition) -> np.array:
     return sum([current_year == TypesClasse[value] for value in condition['values']])
 
 
+def has_mention_baccalaureat(individu, period, condition) -> np.array:
+    has_mention = individu(
+        'mention_baccalaureat', period)
+    return sum([has_mention == TypesMention[value] for value in condition['values']])
+
+
 def is_boursier(individu: Population, period: Period, condition: dict) -> np.array:
     return individu('boursier', period.first_month)
 
@@ -132,6 +138,7 @@ condition_table = {
     "beneficiaire_rsa": is_beneficiaire_rsa_eligible,
     "annee_etude": is_annee_etude_eligible,
     "boursier": is_boursier,
+    "mention_baccalaureat": has_mention_baccalaureat,
 }
 
 profil_table = {
