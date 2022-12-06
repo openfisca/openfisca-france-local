@@ -65,6 +65,12 @@ def is_beneficiaire_rsa_eligible(individu, period, condition) -> np.array:
     return rsa > 0
 
 
+def is_annee_etude_eligible(individu, period, condition) -> np.array:
+    current_year = individu(
+        'annee_etude', period.first_month)
+    return sum([current_year == TypesClasse[value] for value in condition['values']])
+
+
 def is_chomeur(individu: Population, period: Period) -> np.array:
     return individu('activite', period.first_month) == TypesActivite.chomeur
 
@@ -90,11 +96,6 @@ def is_lyceen(individu: Population, period: Period) -> np.array:
 def is_etudiant(individu: Population, period: Period) -> np.array:
     return individu(
         'etudiant', period.first_month)
-
-
-def is_annee_etude_eligible(individu, period, condition) -> np.array:
-    return individu(
-        'annee_etude', period.first_month) == TypesClasse[condition['values'][0]]
 
 
 def is_professionnalisation(individu: Population, period: Period) -> np.array:
