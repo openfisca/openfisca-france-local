@@ -40,6 +40,7 @@ def is_region_eligible(individu: Population, period: Period, condition):
     eligibilite_region_table: dict = {
         '01': 'guadeloupe_eligibilite_residence',
         '32': 'hauts_de_france_eligibilite_residence',
+        '76': 'occitanie_eligibilite_residence',
         '84': 'auvergne_rhone_alpes_eligibilite_residence',
     }
     if condition['values'][0] in eligibilite_region_table.keys():
