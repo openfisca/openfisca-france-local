@@ -70,7 +70,7 @@
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
-    depcom: ["97", "97", "97", "97"]
+    depcom: ["971", "971", "971", "971"]
     groupe_specialites_formation: ["groupe_330", "FOrmation non reconnue", "groupe_330", "groupe_330"]
     activite: ["stagiaire", "stagiaire", "chomeur", "etudiant"]
     stagiaire: [true,true,false,false]
@@ -152,7 +152,7 @@
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
     age: [25, 25, 25]
-    depcom: ["97", "97", "97"]
+    depcom: ["971", "971", "971"]
     scolarite: ["enseignement_superieur", "enseignement_superieur", "enseignement_superieur"]
     annee_etude: ["cap_1", "master_1", "master_2"]
   output:

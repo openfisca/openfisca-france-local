@@ -6,7 +6,7 @@ from numpy.core.records import array as np_array
 
 from numpy.core.defchararray import startswith
 
-DEPARTEMENT_GUADELOUPE = [b'97']
+DEPARTEMENT_GUADELOUPE = [b'971']
 
 
 class guadeloupe_eligibilite_residence(Variable):
