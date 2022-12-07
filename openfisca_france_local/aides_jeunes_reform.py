@@ -39,8 +39,11 @@ def is_department_eligible(individu: Population, period: Period, condition):
 def is_region_eligible(individu: Population, period: Period, condition):
     if '32' in condition['values']:
         return individu.menage('hauts_de_france_eligibilite_residence', period.first_month)
-    regcom = individu.menage('regcom', period.first_month)
-    return sum([startswith(regcom, code.encode('UTF-8'))for code in condition['values']])
+    elif '84' in condition['values']:
+        return individu.menage('auvergne_rhone_alpes_eligibilite_residence', period.first_month)
+    else:
+        regcom = individu.menage('regcom', period.first_month)
+        return sum([startswith(regcom, code.encode('UTF-8'))for code in condition['values']])
 
 
 def is_regime_securite_sociale_eligible(individu: Population, period: Period, condition):
