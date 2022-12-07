@@ -82,7 +82,7 @@
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
-    regcom: ["76", "76"]
+    depcom: ["09", "09"]
     age: [18, 19]
     stagiaire: [true,true]
     rsa: [1, 0]
