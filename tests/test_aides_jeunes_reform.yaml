@@ -32,7 +32,7 @@
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
     age: [24, 25,26, 25]
-    regcom: ["84", "84", "84", "32"]
+    depcom: ["01", "01", "01", "02"]
   output:
     region_auvergne_rhone_alpes_abonnement_illico: [True, True, False, False]
 
@@ -174,7 +174,7 @@
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
-    regcom: ["84"]
+    depcom: ["01"]
     scolarite: ["enseignement_superieur"]
     mention_baccalaureat: ["mention_tres_bien"]
   output:
