@@ -48,11 +48,7 @@ def is_region_eligible(individu: Population, period: Period, condition):
         '76': 'occitanie_eligibilite_residence',
         '84': 'auvergne_rhone_alpes_eligibilite_residence',
     }
-    if condition['values'][0] in eligibilite_region_table.keys():
-        return sum([individu.menage(eligibilite_region_table[code_region], period.first_month) for code_region in condition['values']])
-    else:
-        regcom = individu.menage('regcom', period.first_month)
-        return sum([startswith(regcom, code.encode('UTF-8'))for code in condition['values']])
+    return sum([individu.menage(eligibilite_region_table[code_region], period.first_month) for code_region in condition['values']])
 
 
 def is_regime_securite_sociale_eligible(individu: Population, period: Period, condition):
@@ -233,14 +229,6 @@ class aides_jeunes_reform_dynamic(reforms.Reform):
     path = '../git_aides-jeunes/data/benefits/javascript/'
     current_path = f'{root}/{path}'
 
-    class regcom(Variable):
-        value_type = str
-        max_length = 2
-        entity = Menage
-        label = 'Code INSEE (regcom) du lieu de résidence'
-        definition_period = MONTH
-        set_input = set_input_dispatch_by_period
-
     def extract_benefit_file_content(self, benefit_path):
         benefit: dict = yaml.safe_load(open(benefit_path))
         benefit['slug'] = benefit_path.split(
@@ -256,7 +244,6 @@ class aides_jeunes_reform_dynamic(reforms.Reform):
 
     def apply(self):
         try:
-            self.add_variable(self.regcom)
             benefit_files_paths = self.extract_benefits_paths(
                 self.current_path)
             for path in benefit_files_paths:
