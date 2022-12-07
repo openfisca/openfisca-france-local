@@ -1,0 +1,5 @@
+- period: 2022-11
+  input:
+    depcom: ["45234 ", "38430", "97300"]
+  output:
+    centre_val_de_loire_eligibilite_residence: [true, false, false]
