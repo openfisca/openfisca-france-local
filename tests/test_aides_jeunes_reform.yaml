@@ -93,7 +93,7 @@
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
-    regcom: ["24", "24"]
+    depcom: ["18", "18"]
     activite: ["etudiant", "chomeur"]
   output:
     centre_val_de_loire_cheque_emploi: [0, 1]
@@ -102,7 +102,7 @@
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
-    regcom: ["24", "24"]
+    depcom: ["18", "18"]
     scolarite: ["inconnue", "lycee"]
   output:
     centre_val_de_loire_aide_au_1er_equipement_professionnel: [0, 50]
