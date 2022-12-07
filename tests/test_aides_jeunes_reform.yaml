@@ -142,7 +142,7 @@
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
     age: [25]
-    regcom: ["75"]
+    depcom: ["16"]
     activite: ["retraite"]
   output:
     nouvelle_aquitaine_aide_passage_permis_conduire_b: [0]
