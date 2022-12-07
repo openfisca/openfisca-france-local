@@ -40,6 +40,7 @@ def is_region_eligible(individu: Population, period: Period, condition):
     eligibilite_region_table: dict = {
         '01': 'guadeloupe_eligibilite_residence',
         '24': 'centre_val_de_loire_eligibilite_residence',
+        '27': 'bourgogne_franche_comte_eligibilite_residence',
         '32': 'hauts_de_france_eligibilite_residence',
         '44': 'grand_est_eligibilite_residence',
         '53': 'bretagne_eligibilite_residence',
