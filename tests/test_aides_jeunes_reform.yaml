@@ -21,7 +21,7 @@
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
     age: [18,18, 18]
-    regcom: ["32", "11", "32"]
+    depcom: ["02", "38", "59"]
     apprenti: [true, true, false]
     activite: ["actif", "chomeur", "actif"]
   output:
@@ -41,7 +41,7 @@
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
     age: [25,26, 27, 27]
-    regcom: ["32", "32", "32", "84"]
+    depcom: ["02", "02", "02", "84"]
   output:
     hauts_de_france_ma_carte_ter: [False, True, True, False]
 
