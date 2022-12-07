@@ -31,47 +31,53 @@ def is_age_eligible(individu, period, condition):
     return operators[condition['operator']](individus_age, condition_age)
 
 
-def is_department_eligible(individu, period, condition):
+def is_department_eligible(individu: Population, period: Period, condition):
     depcom = individu.menage('depcom', period.first_month)
     return sum([startswith(depcom, code.encode('UTF-8'))for code in condition['values']])
 
 
-def is_region_eligible(individu, period, condition):
+def is_region_eligible(individu: Population, period: Period, condition):
+    if '32' in condition['values']:
+        depcom_conditions = {
+            'values': ["02", "59", "60", "62", "80"]
+        }
+        return is_department_eligible(individu, period, depcom_conditions)
+
     regcom = individu.menage('regcom', period.first_month)
     return sum([startswith(regcom, code.encode('UTF-8'))for code in condition['values']])
 
 
-def is_regime_securite_sociale_eligible(individu, period, condition):
+def is_regime_securite_sociale_eligible(individu: Population, period: Period, condition):
     regime_securite_sociale = individu('regime_securite_sociale', period)
     return sum([regime_securite_sociale == RegimeSecuriteSociale[regime] for regime in condition['includes']])
 
 
-def is_quotient_familial_eligible(individu, period, condition) -> np.array:
+def is_quotient_familial_eligible(individu: Population, period: Period, condition) -> np.array:
     rfr = individu.foyer_fiscal('rfr', period.this_year)
     nbptr = individu.foyer_fiscal('nbptr', period.this_year)
     quotient_familial = rfr / nbptr
     return quotient_familial <= condition["ceiling"]
 
 
-def is_formation_sanitaire_social_eligible(individu, period, condition) -> np.array:
+def is_formation_sanitaire_social_eligible(individu: Population, period: Period, condition) -> np.array:
     id_formation_sanitaire_social = GroupeSpecialitesFormation.groupe_330
     id_formation_groupe = individu(
         'groupe_specialites_formation', period.first_month)
     return id_formation_groupe == id_formation_sanitaire_social
 
 
-def is_beneficiaire_rsa_eligible(individu, period, condition) -> np.array:
+def is_beneficiaire_rsa_eligible(individu: Population, period: Period, condition) -> np.array:
     rsa = individu.famille('rsa', period)
     return rsa > 0
 
 
-def is_annee_etude_eligible(individu, period, condition) -> np.array:
+def is_annee_etude_eligible(individu: Population, period: Period, condition) -> np.array:
     current_year = individu(
         'annee_etude', period.first_month)
     return sum([current_year == TypesClasse[value] for value in condition['values']])
 
 
-def has_mention_baccalaureat(individu, period, condition) -> np.array:
+def has_mention_baccalaureat(individu: Population, period: Period, condition) -> np.array:
     has_mention = individu(
         'mention_baccalaureat', period)
     return sum([has_mention == TypesMention[value] for value in condition['values']])
