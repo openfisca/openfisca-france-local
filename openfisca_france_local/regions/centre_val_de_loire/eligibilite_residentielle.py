@@ -11,7 +11,7 @@ class centre_val_de_loire_eligibilite_residence(Variable):
     value_type = bool
     entity = Menage
     definition_period = MONTH
-    label = "Éligibilité résidentielle d'un ménage aux dipositifs de la région centre val de loire"
+    label = "Éligibilité résidentielle d'un ménage aux dipositifs de la région Centre Val de Loire"
 
     def formula(menage: Population, period: Period) -> np_array:
         depcom: np_array = menage('depcom', period)
