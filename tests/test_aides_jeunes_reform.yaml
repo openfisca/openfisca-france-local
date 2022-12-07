@@ -162,7 +162,7 @@
   reforms:
    - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
-    regcom: ["27"]
+    depcom: ["21"]
     scolarite: ["lycee"]
     boursier: [true]
   output:
