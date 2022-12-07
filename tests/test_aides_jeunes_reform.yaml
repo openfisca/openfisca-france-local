@@ -111,7 +111,7 @@
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
-    regcom: ["44", "44"]
+    depcom: ["08", "08"]
     groupe_specialites_formation: ["groupe_330", "groupe_330"]
     activite: ["inactif", "etudiant"]
   output:
@@ -133,7 +133,7 @@
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
     age: [30, 29, 29]
-    regcom: ["44", "44", "44"]
+    depcom: ["08", "08", "08"]
     scolarite: ["enseignement_superieur", "enseignement_superieur", "grande_ecole_du_numerique"]
   output:
     grand_est_aide_mobilite_internationale_etudiants: [0, 1, 0]
