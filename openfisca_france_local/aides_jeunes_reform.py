@@ -41,6 +41,8 @@ def is_region_eligible(individu: Population, period: Period, condition):
         return individu.menage('hauts_de_france_eligibilite_residence', period.first_month)
     elif '84' in condition['values']:
         return individu.menage('auvergne_rhone_alpes_eligibilite_residence', period.first_month)
+    elif '01' in condition['values']:
+        return individu.menage('guadeloupe_eligibilite_residence', period.first_month)
     else:
         regcom = individu.menage('regcom', period.first_month)
         return sum([startswith(regcom, code.encode('UTF-8'))for code in condition['values']])
