@@ -1,0 +1,5 @@
+- period: 2022-11
+  input:
+    depcom: ["13055", "38430", "97300"]
+  output:
+    provence_alpes_cote_d_azur_eligibilite_residence: [true, false, false]
