@@ -4,7 +4,7 @@ from openfisca_core.periods import Period
 from numpy.core.records import array as np_array
 from numpy.core.defchararray import startswith
 
-DEPARTEMENT_PROVENCE_ALPES_COTE_D_AZUR = [
+DEPARTEMENTS_PROVENCE_ALPES_COTE_D_AZUR = [
     b'04',
     b'05',
     b'06',
@@ -22,4 +22,4 @@ class provence_alpes_cote_d_azur_eligibilite_residence(Variable):
 
     def formula(menage: Population, period: Period) -> np_array:
         depcom: np_array = menage('depcom', period)
-        return sum([startswith(depcom, code_departement) for code_departement in DEPARTEMENT_PROVENCE_ALPES_COTE_D_AZUR]) > 0
+        return sum([startswith(depcom, code_departement) for code_departement in DEPARTEMENTS_PROVENCE_ALPES_COTE_D_AZUR]) > 0
