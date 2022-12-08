@@ -178,3 +178,12 @@
     mention_baccalaureat: ["mention_tres_bien"]
   output:
     auvergne_rhone_alpes_bourse_merite: [500]
+
+- period: 2022
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    depcom: ["97209"]
+    age: [18]
+  output:
+    martinique_fonds_aide_jeunes: [1]
