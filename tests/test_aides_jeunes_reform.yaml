@@ -21,7 +21,7 @@
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
     age: [18,18, 18]
-    depcom: ["02", "38", "59"]
+    depcom: ["02408", "38120", "59120"]
     apprenti: [true, true, false]
     activite: ["actif", "chomeur", "actif"]
   output:
@@ -32,7 +32,7 @@
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
     age: [24, 25,26, 25]
-    depcom: ["01", "01", "01", "02"]
+    depcom: ["01123", "01123", "01123", "02408"]
   output:
     region_auvergne_rhone_alpes_abonnement_illico: [True, True, False, False]
 
@@ -41,7 +41,7 @@
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
     age: [25,26, 27, 27]
-    depcom: ["02", "02", "02", "84"]
+    depcom: ["02408", "02408", "02408", "84"]
   output:
     hauts_de_france_ma_carte_ter: [False, True, True, False]
 
@@ -50,7 +50,7 @@
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
     age:  [18, 19]
-    depcom: ["56", "56"]
+    depcom: ["56260", "56260"]
     regime_securite_sociale: [regime_general, regime_agricole]
   output:
     caf_morbihan_aide_au_brevet_daptitude_aux_fonctions_de_directeur_bafd: [286, 0]
@@ -60,7 +60,7 @@
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
     age:  [18, 18]
-    depcom: ["38", "38"]
+    depcom: ["38120", "38120"]
     rfr: [800, 801]
     nbptr: [1, 1]
   output:
@@ -70,7 +70,7 @@
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
-    depcom: ["971", "971", "971", "971"]
+    depcom: ["97105", "97105", "97105", "97105"]
     groupe_specialites_formation: ["groupe_330", "FOrmation non reconnue", "groupe_330", "groupe_330"]
     activite: ["stagiaire", "stagiaire", "chomeur", "etudiant"]
     stagiaire: [true,true,false,false]
@@ -82,7 +82,7 @@
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
-    depcom: ["09", "09"]
+    depcom: ["31555", "31555"]
     age: [18, 19]
     stagiaire: [true,true]
     rsa: [1, 0]
@@ -93,7 +93,7 @@
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
-    depcom: ["18", "18"]
+    depcom: ["41018", "41018"]
     activite: ["etudiant", "chomeur"]
   output:
     centre_val_de_loire_cheque_emploi: [0, 1]
@@ -102,7 +102,7 @@
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
-    depcom: ["18", "18"]
+    depcom: ["41018", "41018"]
     scolarite: ["inconnue", "lycee"]
   output:
     centre_val_de_loire_aide_au_1er_equipement_professionnel: [0, 50]
@@ -111,7 +111,7 @@
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
-    depcom: ["08", "08"]
+    depcom: ["54395", "54395"]
     groupe_specialites_formation: ["groupe_330", "groupe_330"]
     activite: ["inactif", "etudiant"]
   output:
@@ -121,7 +121,7 @@
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
-    depcom: ["22", "22", "22", "22", "22"]
+    depcom: ["29232", "29232", "29232", "29232", "29232"]
     professionnalisation: [false, true, false, false, false]
     activite: ["inactif", "inactif", "actif", "salarie", "service_civique"]
   output:
@@ -132,7 +132,7 @@
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
     age: [30, 29, 29]
-    depcom: ["08", "08", "08"]
+    depcom: ["54395", "54395", "54395"]
     scolarite: ["enseignement_superieur", "enseignement_superieur", "grande_ecole_du_numerique"]
   output:
     grand_est_aide_mobilite_internationale_etudiants: [0, 1, 0]
@@ -142,7 +142,7 @@
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
     age: [25]
-    depcom: ["16"]
+    depcom: ["23096"]
     activite: ["retraite"]
   output:
     nouvelle_aquitaine_aide_passage_permis_conduire_b: [0]
@@ -152,7 +152,7 @@
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
     age: [25, 25, 25]
-    depcom: ["971", "971", "971"]
+    depcom: ["97105", "97105", "97105"]
     scolarite: ["enseignement_superieur", "enseignement_superieur", "enseignement_superieur"]
     annee_etude: ["cap_1", "master_1", "master_2"]
   output:
@@ -162,7 +162,7 @@
   reforms:
    - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
-    depcom: ["21"]
+    depcom: ["25056"]
     scolarite: ["lycee"]
     boursier: [true]
   output:
@@ -173,7 +173,7 @@
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
-    depcom: ["01"]
+    depcom: ["01053"]
     scolarite: ["enseignement_superieur"]
     mention_baccalaureat: ["mention_tres_bien"]
   output:
