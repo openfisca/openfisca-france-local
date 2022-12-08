@@ -187,3 +187,12 @@
     age: [18]
   output:
     martinique_fonds_aide_jeunes: [1]
+
+- period: 2022
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    depcom: ["97302"]
+    age: [18]
+  output:
+    guyane_fonds_aide_jeunes: [1000]
