@@ -3,4 +3,3 @@
     depcom: ["97200", "68068", "97300"]
   output:
     guyane_eligibilite_residence: [false, false, true]
-    
