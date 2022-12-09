@@ -224,3 +224,12 @@
     stagiaire: [true]
   output:
     region_normandie_aide_à_laccès_au_permis_de_conduire_permis_b: [600]
+
+- period: 2022
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    depcom: ["44109"]
+    stagiaire: [true]
+  output:
+    region_pays_de_la_loire_aide_à_l’achat_d’un_vélo_pliant_ou_à_assistance_électrique_vae: [1]
