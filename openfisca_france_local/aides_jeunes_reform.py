@@ -42,6 +42,7 @@ def is_region_eligible(individu: Population, period: Period, condition):
         '02': 'martinique_eligibilite_residence',
         '03': 'guyane_eligibilite_residence',
         '04': 'reunion_eligibilite_residence',
+        '11': 'ile_de_france_eligibilite_residence',
         '24': 'centre_val_de_loire_eligibilite_residence',
         '27': 'bourgogne_franche_comte_eligibilite_residence',
         '32': 'hauts_de_france_eligibilite_residence',
