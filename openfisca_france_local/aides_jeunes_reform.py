@@ -53,6 +53,7 @@ def is_region_eligible(individu: Population, period: Period, condition):
         '75': 'nouvelle_aquitaine_eligibilite_residence',
         '76': 'occitanie_eligibilite_residence',
         '84': 'auvergne_rhone_alpes_eligibilite_residence',
+        '93': 'provence_alpes_cote_d_azur_eligibilite_residence',
     }
     return sum([individu.menage(eligibilite_region_table[code_region], period.first_month) for code_region in condition['values']])
 
