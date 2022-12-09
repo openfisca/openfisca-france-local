@@ -242,3 +242,12 @@
     age: [18]
   output:
     region_provence_alpes_cote_azur_carte_zou: [1]
+
+- period: 2022
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    depcom: ["2A004"]
+    age: [18]
+  output:
+    departement_corse_bourse_animazioni: [600]
