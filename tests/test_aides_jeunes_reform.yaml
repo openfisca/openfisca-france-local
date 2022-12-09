@@ -215,3 +215,12 @@
     activite: ["chomeur"]
   output:
     region_ile_de_france_aide_individuelle_régionale_vers_l’emploi: [1]
+
+- period: 2022
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    depcom: ["76540"]
+    stagiaire: [true]
+  output:
+    region_normandie_aide_à_laccès_au_permis_de_conduire_permis_b: [600]
