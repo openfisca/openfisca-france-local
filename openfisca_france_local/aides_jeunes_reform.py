@@ -48,6 +48,7 @@ def is_region_eligible(individu: Population, period: Period, condition):
         '28': 'normandie_eligibilite_residence',
         '32': 'hauts_de_france_eligibilite_residence',
         '44': 'grand_est_eligibilite_residence',
+        '52': 'pays_de_la_loire_eligibilite_residence',
         '53': 'bretagne_eligibilite_residence',
         '75': 'nouvelle_aquitaine_eligibilite_residence',
         '76': 'occitanie_eligibilite_residence',
