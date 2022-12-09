@@ -233,3 +233,12 @@
     stagiaire: [true]
   output:
     region_pays_de_la_loire_aide_à_l’achat_d’un_vélo_pliant_ou_à_assistance_électrique_vae: [1]
+
+- period: 2022
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    depcom: ["13055"]
+    age: [18]
+  output:
+    region_provence_alpes_cote_azur_carte_zou: [1]
