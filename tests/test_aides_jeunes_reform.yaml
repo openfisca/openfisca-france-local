@@ -206,3 +206,12 @@
     scolarite: ["enseignement_superieur"]
   output:
     region_la_reunion_bourse_régionale_sanitaire_et_sociale: [1]
+
+- period: 2022
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    depcom: ["94028"]
+    activite: ["chomeur"]
+  output:
+    region_ile_de_france_aide_individuelle_régionale_vers_l’emploi: [1]
