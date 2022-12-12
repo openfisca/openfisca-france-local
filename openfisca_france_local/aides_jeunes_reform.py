@@ -188,48 +188,48 @@ period_table = {
 
 def generate_variable(benefit: dict):
 
-    class NewAidesJeunesBenefitVariable(Variable):
-        value_type = float  # hardcoded
-        entity = Individu
-        definition_period = period_table[benefit['periodicite']]
+    def formula(individu: Population, period: Period):
 
-        def formula(individu: Population, period: Period):
+        def eval_conditions(conditions: dict):
+            test_conditions = [(condition_table[condition['type']], condition)
+                               for condition in conditions]
 
-            def eval_conditions(conditions: dict):
-                test_conditions = [(condition_table[condition['type']], condition)
-                                   for condition in conditions]
+            conditions_results = [
+                test[0](individu, period, test[1]) for test in test_conditions]
+            return sum(conditions_results) == len(conditions)
 
-                conditions_results = [
-                    test[0](individu, period, test[1]) for test in test_conditions]
-                return sum(conditions_results) == len(conditions)
+        value_type = type_table[benefit['type']]
+        amount = benefit.get('montant')
 
-            value_type = type_table[benefit['type']]
-            amount = benefit.get('montant')
+        profils_eligible: dict = benefit["profils"]
+        if len(profils_eligible) == 0:
+            is_profile_eligible = True
+        else:
+            def eval_profil(profil: dict):
+                predicate = profil_table[profil['type']]
+                profil_match = predicate(individu, period)
+                if 'conditions' in profil:
+                    conditions_satisfied = eval_conditions(
+                        profil['conditions'])
+                return profil_match * conditions_satisfied if 'conditions' in profil else profil_match
 
-            profils_eligible: dict = benefit["profils"]
-            if len(profils_eligible) == 0:
-                is_profile_eligible = True
-            else:
-                def eval_profil(profil: dict):
-                    predicate = profil_table[profil['type']]
-                    profil_match = predicate(individu, period)
-                    if 'conditions' in profil:
-                        conditions_satisfied = eval_conditions(
-                            profil['conditions'])
-                    return profil_match * conditions_satisfied if 'conditions' in profil else profil_match
+            eligibilities = [eval_profil(profil)
+                             for profil in profils_eligible]
+            is_profile_eligible = sum(eligibilities) >= 1
 
-                eligibilities = [eval_profil(profil)
-                                 for profil in profils_eligible]
-                is_profile_eligible = sum(eligibilities) >= 1
+        conditions_generales = benefit['conditions_generales']
+        general_eligibilities = eval_conditions(conditions_generales)
+        return amount * is_profile_eligible * general_eligibilities if value_type == float else general_eligibilities * is_profile_eligible
+    # Ce return fonctionnera car nos aides n'ont que deux types : bool et float
+    # mais ce n'est pas élégant. (surtout qu'il faut créer une deuxième variable value_type)
 
-            conditions_generales = benefit['conditions_generales']
-            general_eligibilities = eval_conditions(conditions_generales)
-            return amount * is_profile_eligible * general_eligibilities if value_type == float else general_eligibilities * is_profile_eligible
-        # Ce return fonctionnera car nos aides n'ont que deux types : bool et float
-        # mais ce n'est pas élégant. (surtout qu'il faut créer une deuxième variable value_type)
+    return type(benefit['slug'], (Variable,), {
+        "value_type": float,  # hardcoded
+        "entity": Individu,
+        "definition_period": period_table[benefit['periodicite']],
+        "formula": formula,
 
-    NewAidesJeunesBenefitVariable.__name__ = benefit['slug']
-    return NewAidesJeunesBenefitVariable
+    })
 
 
 class aides_jeunes_reform_dynamic(reforms.Reform):
