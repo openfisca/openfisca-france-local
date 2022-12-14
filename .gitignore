@@ -12,3 +12,4 @@ build
 # Edition de code en local
 .idea
 /.vscode
+.history/
