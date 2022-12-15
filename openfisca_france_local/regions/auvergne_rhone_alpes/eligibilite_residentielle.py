@@ -2,10 +2,6 @@ from openfisca_france.model.base import Variable, Menage, MONTH
 
 from numpy.core.defchararray import startswith
 
-DEPARTEMENTS_AUVERGNE_RHONE_ALPES = [
-    b'01', b'03', b'07', b'15', b'26', b'38', b'42', b'43', b'63', b'69', b'73', b'74'
-]
-
 
 class auvergne_rhone_alpes_eligibilite_residence(Variable):
     value_type = bool
@@ -13,6 +9,6 @@ class auvergne_rhone_alpes_eligibilite_residence(Variable):
     definition_period = MONTH
     label = "Éligibilité résidentielle d'un ménage aux dipositifs de la région Auvergne-Rhône-Alpes."
 
-    def formula(menage, period):
+    def formula(menage, period, parameters):
         depcom = menage('depcom', period)
-        return sum([startswith(depcom, code) for code in DEPARTEMENTS_AUVERGNE_RHONE_ALPES]) > 0
+        return sum([startswith(depcom, str.encode(code)) for code in parameters(period).regions.auvergne_rhone_alpes.departements]) > 0
