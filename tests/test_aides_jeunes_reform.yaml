@@ -125,7 +125,7 @@
     professionnalisation: [false, true, false, false, false]
     activite: ["inactif", "inactif", "actif", "salarie", "service_civique"]
   output:
-    region_pays_de_la_loire_ehop_emploi: [0, 1, 1, 1,1]
+    region_bretagne_ehop_emploi: [0, 1, 1, 1,1]
 
 - period: 2022
   reforms:
