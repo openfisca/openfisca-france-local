@@ -1,6 +1,7 @@
- # -*- coding: utf-8 -*-
 from openfisca_france.model.base import Variable, Menage, MONTH
-
+from openfisca_core.populations.population import Population
+from openfisca_core.periods import Period
+from numpy.core.records import array as np_array
 from numpy.core.defchararray import startswith
 
 
@@ -8,22 +9,8 @@ class nouvelle_aquitaine_eligibilite_residence(Variable):
     value_type = bool
     entity = Menage
     definition_period = MONTH
-    label = u"Éligibilité résidentielle d'un ménage aux dipositifs de la Nouvelle Aquitaine"
+    label = "Éligibilité résidentielle d'un ménage aux dipositifs de la Nouvelle Aquitaine"
 
-    def formula(menage, period):
-        code_departements = [b'16',
-          b'17',
-          b'19',
-          b'23',
-          b'24',
-          b'33',
-          b'40',
-          b'47',
-          b'64',
-          b'79',
-          b'86',
-          b'87'
-          ]
-
+    def formula(menage: Population, period: Period, parameters) -> np_array:
         depcom = menage('depcom', period)
-        return sum([startswith(depcom, code) for code in code_departements]) > 0
+        return sum([startswith(depcom, str.encode(code)) for code in parameters(period).regions.nouvelle_aquitaine.departements]) > 0
