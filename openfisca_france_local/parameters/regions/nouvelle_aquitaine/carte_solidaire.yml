@@ -1,0 +1,8 @@
+plafond:
+  values:
+    2009-01-01:
+      value: 870
+reduction:
+  values:
+    2009-01-01:
+      value: 80
