@@ -4,10 +4,6 @@ from openfisca_core.periods import Period
 from numpy.core.records import array as np_array
 from numpy.core.defchararray import startswith
 
-DEPARTEMENT_GUYANE = [
-    b'973',
-]
-
 
 class guyane_eligibilite_residence(Variable):
     value_type = bool
@@ -15,6 +11,6 @@ class guyane_eligibilite_residence(Variable):
     definition_period = MONTH
     label = "Éligibilité résidentielle d'un ménage aux dipositifs de la région Guyane"
 
-    def formula(menage: Population, period: Period) -> np_array:
+    def formula(menage: Population, period: Period, parameters) -> np_array:
         depcom: np_array = menage('depcom', period)
-        return sum([startswith(depcom, code_departement) for code_departement in DEPARTEMENT_GUYANE]) > 0
+        return sum([startswith(depcom, str.encode(code)) for code in parameters(period).regions.guyane.departements]) > 0
