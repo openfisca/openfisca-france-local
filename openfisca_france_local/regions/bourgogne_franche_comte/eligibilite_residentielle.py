@@ -4,10 +4,6 @@ from openfisca_core.periods import Period
 from numpy.core.records import array as np_array
 from numpy.core.defchararray import startswith
 
-DEPARTEMENTS_BOURGOGNE_FRANCHE_COMTE = [
-    b'21', b'25', b'39', b'58', b'70', b'71', b'89', b'90'
-]
-
 
 class bourgogne_franche_comte_eligibilite_residence(Variable):
     value_type = bool
@@ -15,6 +11,6 @@ class bourgogne_franche_comte_eligibilite_residence(Variable):
     definition_period = MONTH
     label = "Éligibilité résidentielle d'un ménage aux dipositifs de la région Bourgogne Franche-Comté"
 
-    def formula(menage: Population, period: Period) -> np_array:
+    def formula(menage: Population, period: Period, parameters) -> np_array:
         depcom: np_array = menage('depcom', period)
-        return sum([startswith(depcom, code_departement) for code_departement in DEPARTEMENTS_BOURGOGNE_FRANCHE_COMTE]) > 0
+        return sum([startswith(depcom, str.encode(code)) for code in parameters(period).regions.bourgogne_franche_comte.departements]) > 0
