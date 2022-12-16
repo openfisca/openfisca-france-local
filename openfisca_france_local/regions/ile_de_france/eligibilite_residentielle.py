@@ -4,17 +4,6 @@ from openfisca_core.periods import Period
 from numpy.core.records import array as np_array
 from numpy.core.defchararray import startswith
 
-DEPARTEMENTS_ILE_DE_FRANCE = [
-    b'75',
-    b'77',
-    b'78',
-    b'91',
-    b'92',
-    b'93',
-    b'94',
-    b'95',
-]
-
 
 class ile_de_france_eligibilite_residence(Variable):
     value_type = bool
@@ -22,6 +11,6 @@ class ile_de_france_eligibilite_residence(Variable):
     definition_period = MONTH
     label = "Éligibilité résidentielle d'un ménage aux dipositifs de la région Ile de France"
 
-    def formula(menage: Population, period: Period) -> np_array:
+    def formula(menage: Population, period: Period, parameters) -> np_array:
         depcom: np_array = menage('depcom', period)
-        return sum([startswith(depcom, code_departement) for code_departement in DEPARTEMENTS_ILE_DE_FRANCE]) > 0
+        return sum([startswith(depcom, str.encode(code)) for code in parameters(period).regions.ile_de_france.departements]) > 0
