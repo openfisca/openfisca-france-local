@@ -1,0 +1,6 @@
+- period: 2022-11
+  input:
+    depcom: ["97200", "68068", "91300"]
+  output:
+    guadeloupe_eligibilite_residence: [true, false, false]
+    
