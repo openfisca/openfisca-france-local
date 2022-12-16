@@ -5,8 +5,6 @@ from openfisca_core.periods import Period
 
 from numpy.core.defchararray import startswith
 
-DEPARTEMENTS_HAUTS_DE_FRANCE = [b'02', b'59', b'60', b'62', b'80']
-
 
 class hauts_de_france_eligibilite_residence(Variable):
     value_type = bool
@@ -14,6 +12,6 @@ class hauts_de_france_eligibilite_residence(Variable):
     definition_period = MONTH
     label = "Éligibilité résidentielle d'un ménage aux dipositifs de la région Hauts-de-France."
 
-    def formula(menage: Population, period: Period):
+    def formula(menage: Population, period: Period, parameters):
         depcom = menage('depcom', period)
-        return sum([startswith(depcom, code) for code in DEPARTEMENTS_HAUTS_DE_FRANCE]) > 0
+        return sum([startswith(depcom, str.encode(code)) for code in parameters(period).regions.hauts_de_france.departements]) > 0
