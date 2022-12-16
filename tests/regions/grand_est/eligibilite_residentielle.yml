@@ -1,0 +1,5 @@
+- period: 2022-11
+  input:
+    depcom: ["67482", "38430", "97300"]
+  output:
+    grand_est_eligibilite_residence: [true, false, false]
