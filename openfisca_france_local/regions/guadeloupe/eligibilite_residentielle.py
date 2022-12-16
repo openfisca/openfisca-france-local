@@ -6,8 +6,6 @@ from numpy.core.records import array as np_array
 
 from numpy.core.defchararray import startswith
 
-DEPARTEMENT_GUADELOUPE = [b'97']
-
 
 class guadeloupe_eligibilite_residence(Variable):
     value_type = bool
@@ -15,6 +13,6 @@ class guadeloupe_eligibilite_residence(Variable):
     definition_period = MONTH
     label = "Éligibilité résidentielle d'un ménage aux dipositifs de la région Guadeloupe."
 
-    def formula(menage: Population, period: Period) -> np_array:
+    def formula(menage: Population, period: Period, parameters) -> np_array:
         depcom: np_array = menage('depcom', period)
-        return sum([startswith(depcom, code) for code in DEPARTEMENT_GUADELOUPE]) > 0
+        return sum([startswith(depcom, str.encode(code)) for code in parameters(period).regions.guadeloupe.departements]) > 0
