@@ -65,10 +65,18 @@ def is_regime_securite_sociale_eligible(individu: Population, period: Period, co
 
 
 def is_quotient_familial_eligible(individu: Population, period: Period, condition) -> np.array:
+
     rfr = individu.foyer_fiscal('rfr', period.this_year)
     nbptr = individu.foyer_fiscal('nbptr', period.this_year)
     quotient_familial = rfr / nbptr
-    return quotient_familial <= condition["ceiling"]
+
+    operators = {
+        '<': lambda individus_value, condition_value: individus_value < condition_value,
+        '<=': lambda individus_value, condition_value: individus_value <= condition_value,
+        '>': lambda individus_value, condition_value: individus_value > condition_value,
+        '>=': lambda individus_value, condition_value: individus_value >= condition_value,
+    }
+    return operators[condition['operator']](quotient_familial, condition['value'])
 
 
 def is_formation_sanitaire_social_eligible(individu: Population, period: Period, condition) -> np.array:
