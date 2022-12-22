@@ -1,0 +1,28 @@
+label: erasmus+ Stage
+institution: region_nouvelle_aquitaine
+description: La Région finance en partie la réalisation d'un stage professionnel
+  à l'étranger d'une durée de 2 à 12 mois.
+prefix: l’aide
+conditions_generales:
+  - type: regions
+    values:
+      - "75"
+profils:
+  - type: enseignement_superieur
+    conditions: []
+conditions:
+  - Étudier dans un établissement faisant partie du Consortium régional (<a
+    target="_blank" title="Liste des établissements - Nouvelle fenêtre"
+    rel="noopener"
+    href="https://les-aides.nouvelle-aquitaine.fr/jeunesse/erasmus-stage-public-post-bac-20222023?recherche=Erasmus%20%20Stage">voir
+    liste</a>).
+  - Faire valider son dossier par l'établissement avant la date de début du
+    séjour.
+interestFlag: _interetEtudesEtranger
+type: float
+unit: €
+periodicite: mensuelle
+legend: maximum
+montant: 520
+link: https://les-aides.nouvelle-aquitaine.fr/jeunesse/erasmus-stage-public-post-bac-20222023?recherche=Erasmus%20%20Stage
+teleservice: https://cas.aquitaine.fr/cas/login?service=https%3A%2F%2Fmes-demarches.nouvelle-aquitaine.fr%2FcraPortailFO%2Flogin%2Fcas

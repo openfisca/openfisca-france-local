@@ -1,0 +1,19 @@
+label: abonnement scolaire BFC
+institution: region_bourgogne_franche_comte
+description: L'abonnement permettant la gratuité du transport sur le parcours
+  domicile/étude des collégien·ne·s et lycéen·ne·s, externes,
+  demi-pensionnaires, ou internes en Bourgogne-Franche-Comté.
+prefix: l’
+conditions_generales:
+  - type: regions
+    values:
+      - "27"
+profils:
+  - type: lyceen
+    conditions: []
+type: bool
+unit: €
+periodicite: autre
+link: https://www.ter.sncf.com/bourgogne-franche-comte/abonnements/tous-les-abonnements/abonnements-scolaires/college-lycee
+teleservice: https://www.bourgognefranchecomte.fr/accueil-transport
+instructions: ""

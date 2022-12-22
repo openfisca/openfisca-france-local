@@ -1,0 +1,26 @@
+label: chèque Livre
+institution: region_nouvelle_aquitaine
+description: Grâce au Chèque Livre, la Région Nouvelle-Aquitaine offre un
+  e-coupon de 20 euros à utiliser pour l’achat de livres, bandes dessinées, dans
+  plus de <a target="_blank"
+  rel="noopener title ="Librairies référencées - Nouvelle fenêtre" "href="<https://jeunes.nouvelle-aquitaine.fr/formation/accompagnement-scolaire/le-cheque-livre>">140
+  librairies référencées</a> présentes sur l’ensemble du territoire régional.
+conditions: []
+conditions_generales:
+  - type: regions
+    values:
+      - "75"
+profils:
+  - type: lyceen
+    conditions: []
+  - type: apprenti
+    conditions: []
+link: https://jeunes.nouvelle-aquitaine.fr/formation/accompagnement-scolaire/le-cheque-livre
+teleservice: https://www.mesdemarches.aidesrentree.fr/Beneficiaires/Views/Accueil.aspx
+form: ""
+instructions: ""
+prefix: le
+type: float
+unit: €
+periodicite: ponctuelle
+montant: 20

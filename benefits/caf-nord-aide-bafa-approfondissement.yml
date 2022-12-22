@@ -1,0 +1,26 @@
+label: aide au BAFA
+institution: caf_nord
+description: L'aide à la formation du BAFA est une aide locale mise à
+  disposition par la Caf du Nord en complément de l'aide nationale apportée par
+  la CAF.
+prefix: l’
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 16
+  - type: departements
+    values:
+      - "59"
+profils: []
+conditions:
+  - Déposer votre demande dans les trois mois suivant l’inscription au stage
+    d’approfondissement ou de qualification.
+interestFlag: _interetBafa
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 150
+link: https://caf.fr/allocataires/caf-du-nord/offre-de-service/vie-professionnelle/l-aide-au-brevet-d-aptitude-aux-fonctions-d-animateur-bafa
+form: https://caf.fr/sites/default/files/medias/598/Documents/Bafa/DEMANDE%20AIDE%20BAFA.pdf
+instructions: https://caf.fr/allocataires/caf-du-nord/offre-de-service/vie-professionnelle/l-aide-au-brevet-d-aptitude-aux-fonctions-d-animateur-bafa

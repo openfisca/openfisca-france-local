@@ -1,0 +1,23 @@
+label: abonnement BreizhGo
+institution: region_bretagne
+description: Les abonnements BreizhGo -26 ans TER options TGV et réseaux urbains
+  vous permettent d'emprunter en illimité les TER, TGV et bus, métro ou tram sur
+  un trajet donné.
+prefix: l’
+conditions_generales:
+  - type: age
+    operator: <=
+    value: 26
+  - type: regions
+    values:
+      - "53"
+profils: []
+conditions:
+  - Charger votre abonnement sur votre carte KorriGo.
+type: bool
+unit: €
+periodicite: autre
+link: https://www.ter.sncf.com/bretagne/abonnements/tous-les-abonnements/abonnements-ter-tgv-reseaux-urbains
+teleservice: https://www.ter.sncf.com/bretagne/abonnements/tous-les-abonnements/abonnements-ter-tgv-reseaux-urbains
+instructions: ""
+private: true

@@ -1,0 +1,27 @@
+label: aide au financement du permis
+institution: region_auvergne_rhone_alpes
+description: Grâce à cette aide, bénéficiez du financement d'une partie de votre permis B.
+prefix: l’
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 18
+  - type: age
+    operator: <
+    value: 19
+  - type: regions
+    values:
+      - "84"
+profils: []
+conditions:
+  - Être en cours de formation au permis de conduire au moment du dépôt de la
+    demande et résider en Auvergne-Rhône-Alpes.
+interestFlag: _interetPermisDeConduire
+type: float
+unit: €
+periodicite: autre
+legend: ""
+montant: 200
+link: https://www.auvergnerhonealpes.fr/aides/financer-ma-formation-au-permis-de-conduire
+teleservice: https://aides.auvergnerhonealpes.fr/account-management/crauraprod-demandeurs/ux/#/login?redirectTo=https%3A%2F%2Faides.auvergnerhonealpes.fr%2Faides%2F%23%2Fcrauraprod%2Fconnecte%2FF_FP_REL_CONDUI%2Fdepot%2Fsimple&jwtKey=jwt-crauraprod-portail-depot-demande-aides&footer=https%3A%2F%2Faides.auvergnerhonealpes.fr%2Faides%2F%23%2Fcrauraprod%2Fmentions-legales,Mentions%20l%C3%A9gales,_self;https%3A%2F%2Faides.auvergnerhonealpes.fr%2Faides%2F%23%2Fcrauraprod%2Fdonnees-personnelles,Donn%C3%A9es%20personnelles,_self;https%3A%2F%2Faides.auvergnerhonealpes.fr%2Faides%2F%23%2Fcrauraprod%2Fcontact-page,Contacter%20l'assistance%20technique,_self
+instructions: https://www.auvergnerhonealpes.fr/aides/financer-ma-formation-au-permis-de-conduire
