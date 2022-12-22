@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import yaml
+import operator
 
 from pathlib import Path
 from numpy.core.defchararray import startswith
@@ -16,11 +17,11 @@ from openfisca_france.model.caracteristiques_socio_demographiques.demographie im
 from openfisca_france.model.prestations.education import TypesScolarite, TypesClasse
 from openfisca_core.populations.population import Population
 
-operators = {
-    '<': lambda a, b: a < b,
-    '<=': lambda a, b: a <= b,
-    '>': lambda a, b: a > b,
-    '>=': lambda a, b: a >= b,
+operations = {
+    '<': operator.lt,
+    '<=': operator.le,
+    '>': operator.gt,
+    '>=': operator.ge,
 }
 
 
@@ -29,7 +30,9 @@ def is_age_eligible(individu, period, condition):
     condition_age = condition['value']
     individus_age = individu('age', period.first_month)
 
-    return operators[condition['operator']](individus_age, condition_age)
+    comparison = operations[condition['operator']]
+
+    return comparison(individus_age, condition_age)
 
 
 def is_department_eligible(individu: Population, period: Period, condition):
@@ -71,7 +74,9 @@ def is_quotient_familial_eligible(individu: Population, period: Period, conditio
     nbptr = individu.foyer_fiscal('nbptr', period.this_year)
     quotient_familial = rfr / nbptr
 
-    return operators[condition['operator']](quotient_familial, condition['value'])
+    comparison = operations[condition['operator']]
+
+    return comparison(quotient_familial, condition['value'])
 
 
 def is_formation_sanitaire_social_eligible(individu: Population, period: Period, condition) -> np.array:
