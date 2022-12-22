@@ -242,7 +242,7 @@ def generate_variable(benefit: dict):
 
 class aides_jeunes_reform_dynamic(reforms.Reform):
     root = '.'
-    path = '../git_aides-jeunes/data/benefits/javascript/'
+    path = 'benefits/'
     current_path = f'{root}/{path}'
 
     def extract_benefit_file_content(self, benefit_path):
