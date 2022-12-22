@@ -16,18 +16,19 @@ from openfisca_france.model.caracteristiques_socio_demographiques.demographie im
 from openfisca_france.model.prestations.education import TypesScolarite, TypesClasse
 from openfisca_core.populations.population import Population
 
+operators = {
+    '<': lambda a, b: a < b,
+    '<=': lambda a, b: a <= b,
+    '>': lambda a, b: a > b,
+    '>=': lambda a, b: a >= b,
+}
+
 
 def is_age_eligible(individu, period, condition):
 
     condition_age = condition['value']
     individus_age = individu('age', period.first_month)
 
-    operators = {
-        '<': lambda individus_age, condition_age: individus_age < condition_age,
-        '<=': lambda individus_age, condition_age: individus_age <= condition_age,
-        '>': lambda individus_age, condition_age: individus_age > condition_age,
-        '>=': lambda individus_age, condition_age: individus_age >= condition_age,
-    }
     return operators[condition['operator']](individus_age, condition_age)
 
 
@@ -70,12 +71,6 @@ def is_quotient_familial_eligible(individu: Population, period: Period, conditio
     nbptr = individu.foyer_fiscal('nbptr', period.this_year)
     quotient_familial = rfr / nbptr
 
-    operators = {
-        '<': lambda individus_value, condition_value: individus_value < condition_value,
-        '<=': lambda individus_value, condition_value: individus_value <= condition_value,
-        '>': lambda individus_value, condition_value: individus_value > condition_value,
-        '>=': lambda individus_value, condition_value: individus_value >= condition_value,
-    }
     return operators[condition['operator']](quotient_familial, condition['value'])
 
 
