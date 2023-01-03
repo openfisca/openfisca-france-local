@@ -73,7 +73,7 @@ class rennes_metropole_transport_base_ressource(Variable):
 
         ressources_familiales = (ressources_familiales_annuelles + individu.famille.sum(ressources_individuelles_annuelles)) / 12
 
-        forfait_logement = individu.famille('cmu_forfait_logement_al', period) / 12
+        forfait_logement = individu.famille('css_cmu_forfait_logement_al', period) / 12
         aide_logement = individu.famille('aide_logement', last_year, options = [ADD]) / 12
         rsa = round_(individu.famille('rsa', last_year, options = [ADD]) / 12)
         touche_que_aah = ressources_familiales - aide_logement - (individu.famille.sum(individu('aah', last_year, options = [ADD])) / 12) - rsa
