@@ -16,6 +16,7 @@ def condition_to_parameter(condition: dict) -> ParameterNode:
         '<=': "maximum",
         '>=': "minimum",
         '<': "strictement_inferieur",
+        '>': "strictement_superieur",
     }
 
     def generate_simple_parameter(condition: dict):
