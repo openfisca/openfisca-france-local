@@ -3,12 +3,20 @@ from openfisca_france.model.base import (ParameterNode, Parameter)
 
 def condition_to_parameter(condition: dict) -> ParameterNode:
 
-    def generate_age_parameter() -> ParameterNode:
+    def generate_age_parameter(condition: dict) -> ParameterNode:
+        parameter_operator: str = comparison_operators[condition["operator"]]
+        condition_parameter = ParameterNode(condition_type, data={
+            parameter_operator: {
 
-        condition_parameter = ParameterNode(condition_type, data={})
+            }
+        })
         return condition_parameter
 
-    def generate_simple_parameter():
+    comparison_operators = {
+        '<=': "maximum",
+    }
+
+    def generate_simple_parameter(condition: dict):
 
         return Parameter(condition_type, data={})
 
@@ -19,9 +27,9 @@ def condition_to_parameter(condition: dict) -> ParameterNode:
     condition_type: str = condition["type"]
 
     if condition_type in condition_table.keys():
-        condition_parameter = condition_table[condition_type]()
+        condition_parameter = condition_table[condition_type](condition)
     else:
-        condition_parameter = generate_simple_parameter()
+        condition_parameter = generate_simple_parameter(condition)
     return condition_parameter
 
 
