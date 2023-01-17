@@ -14,6 +14,7 @@ def condition_to_parameter(condition: dict) -> ParameterNode:
 
     comparison_operators = {
         '<=': "maximum",
+        '>=': "minimum",
     }
 
     def generate_simple_parameter(condition: dict):

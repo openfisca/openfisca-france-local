@@ -63,4 +63,4 @@ def test_create_age_minimum_parameter_node(tax_benefit_system):
     tax_benefit_system.parameters.add_child(
         new_parameter_node.name, new_parameter_node)
 
-    assert tax_benefit_system.parameters.caf_cotes_armor_aide_au_brevet_daptitude_aux_fonctions_de_directeur_bafd.age.maximum
+    assert tax_benefit_system.parameters.caf_cotes_armor_aide_au_brevet_daptitude_aux_fonctions_de_directeur_bafd.age.minimum
