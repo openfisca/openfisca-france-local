@@ -53,3 +53,14 @@ def test_create_age_maximum_parameter_node(tax_benefit_system):
         new_parameter_node.name, new_parameter_node)
 
     assert tax_benefit_system.parameters.caf_oise_aide_au_bafa_pour_une_session_de_formation_dapprofondissement_ou_de_qualification.age.maximum
+
+
+def test_create_age_minimum_parameter_node(tax_benefit_system):
+    benefit_path = "benefits/caf_cotes_armor-aide-au-brevet-daptitude-aux-fonctions-de-directeur-bafd.yml"
+    benefit = extract_benefit_file_content(benefit_path)
+
+    new_parameter_node = create_benefit_parameters(benefit)
+    tax_benefit_system.parameters.add_child(
+        new_parameter_node.name, new_parameter_node)
+
+    assert tax_benefit_system.parameters.caf_cotes_armor_aide_au_brevet_daptitude_aux_fonctions_de_directeur_bafd.age.maximum
