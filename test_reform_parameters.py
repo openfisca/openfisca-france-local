@@ -1,8 +1,14 @@
 import yaml
+import pytest
 from openfisca_france import CountryTaxBenefitSystem
 from openfisca_core.taxbenefitsystems import TaxBenefitSystem
 
 from condition_to_parameter import create_benefit_parameters
+
+
+@pytest.fixture
+def tax_benefit_system() -> TaxBenefitSystem:
+    return CountryTaxBenefitSystem()
 
 
 def extract_benefit_file_content(benefit_path) -> dict:
@@ -12,13 +18,11 @@ def extract_benefit_file_content(benefit_path) -> dict:
     return benefit
 
 
-def test_dummy():
-    tax_benefit_system: TaxBenefitSystem = CountryTaxBenefitSystem()
+def test_dummy(tax_benefit_system):
     assert tax_benefit_system.parameters.marche_travail.prime_pepa.plafond_salaire
 
 
-def test_create_benefit_parameter_node():
-    tax_benefit_system: TaxBenefitSystem = CountryTaxBenefitSystem()
+def test_create_benefit_parameter_node(tax_benefit_system):
     benefit_path = "benefits/caf_oise-aide-au-bafa-pour-une-session-de-formation-dapprofondissement-ou-de-qualification.yml"
     benefit = extract_benefit_file_content(benefit_path)
 
@@ -29,8 +33,7 @@ def test_create_benefit_parameter_node():
     assert tax_benefit_system.parameters.caf_oise_aide_au_bafa_pour_une_session_de_formation_dapprofondissement_ou_de_qualification
 
 
-def test_create_age_parameter_node():
-    tax_benefit_system: TaxBenefitSystem = CountryTaxBenefitSystem()
+def test_create_age_parameter_node(tax_benefit_system):
     benefit_path = "benefits/caf_oise-aide-au-bafa-pour-une-session-de-formation-dapprofondissement-ou-de-qualification.yml"
     benefit = extract_benefit_file_content(benefit_path)
 
