@@ -106,3 +106,13 @@ def test_create_regime_securite_sociale_parameter(parameters):
     parameter = at_instant.caf_morbihan_aide_au_brevet_daptitude_aux_fonctions_de_directeur_bafd
 
     assert parameter.regime_securite_sociale == ["regime_general"]
+
+
+def test_create_formation_sanitaire_social_parameter(parameters):
+    generate_parameter_in_TBS(parameters,
+                              "benefits/guadeloupe-bourse-sanitaire.yml")
+
+    at_instant = parameters("2023-01-01")
+    parameter = at_instant.guadeloupe_bourse_sanitaire
+
+    assert parameter.formation_sanitaire_social
