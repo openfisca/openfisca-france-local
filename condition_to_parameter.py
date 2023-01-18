@@ -36,10 +36,12 @@ def condition_to_parameter(condition: dict) -> ParameterNode:
         })
 
     def generate_simple_parameter(condition: dict):
-        data = {date: {
-                "value": condition["values"]
-                }}
-        return Parameter(condition_type, data=data)
+        if len(condition) == 1:
+            value = {"value": True}
+        else:
+            value = {"value": condition["values"]}
+
+        return Parameter(condition_type, data={date: value})
 
     condition_table: dict = {
         "age": generate_age_parameter,
