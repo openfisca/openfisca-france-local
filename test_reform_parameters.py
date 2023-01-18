@@ -88,3 +88,17 @@ def test_create_age_value_parameter_node(parameters):
     parameter = at_instant.departement_val_d_oise_bourse_aux_apprentis
 
     assert parameter.age.strictement_inferieur == 25
+
+
+def test_create_quotient_familial_parameter(parameters):
+    benefit_path = "benefits/caf_pas_de_calais-aide-au-bafa-pour-une-session-de-formation-générale.yml"
+    benefit = extract_benefit_file_content(benefit_path)
+
+    new_parameter_node = create_benefit_parameters(benefit)
+    parameters.add_child(
+        new_parameter_node.name, new_parameter_node)
+
+    at_instant = parameters("2023-01-01")
+    parameter = at_instant.caf_pas_de_calais_aide_au_bafa_pour_une_session_de_formation_générale
+
+    assert parameter.quotient_familial.month.maximum == 1000
