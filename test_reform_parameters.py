@@ -19,45 +19,29 @@ def extract_benefit_file_content(benefit_path) -> dict:
 
 
 def test_create_benefit_parameter_node(parameters):
-    benefit_path = "benefits/caf_oise-aide-au-bafa-pour-une-session-de-formation-dapprofondissement-ou-de-qualification.yml"
-    benefit = extract_benefit_file_content(benefit_path)
-
-    new_parameter_node = create_benefit_parameters(benefit)
-    parameters.add_child(
-        new_parameter_node.name, new_parameter_node)
+    generate_parameter_in_TBS(parameters,
+                              "benefits/caf_oise-aide-au-bafa-pour-une-session-de-formation-dapprofondissement-ou-de-qualification.yml")
 
     assert parameters.caf_oise_aide_au_bafa_pour_une_session_de_formation_dapprofondissement_ou_de_qualification
 
 
 def test_create_age_parameter_node(parameters):
-    benefit_path = "benefits/caf_oise-aide-au-bafa-pour-une-session-de-formation-dapprofondissement-ou-de-qualification.yml"
-    benefit = extract_benefit_file_content(benefit_path)
-
-    new_parameter_node = create_benefit_parameters(benefit)
-    parameters.add_child(
-        new_parameter_node.name, new_parameter_node)
+    generate_parameter_in_TBS(parameters,
+                              "benefits/caf_oise-aide-au-bafa-pour-une-session-de-formation-dapprofondissement-ou-de-qualification.yml")
 
     assert parameters.caf_oise_aide_au_bafa_pour_une_session_de_formation_dapprofondissement_ou_de_qualification.age
 
 
 def test_create_age_maximum_parameter_node(parameters):
-    benefit_path = "benefits/caf_oise-aide-au-bafa-pour-une-session-de-formation-dapprofondissement-ou-de-qualification.yml"
-    benefit = extract_benefit_file_content(benefit_path)
-
-    new_parameter_node = create_benefit_parameters(benefit)
-    parameters.add_child(
-        new_parameter_node.name, new_parameter_node)
+    generate_parameter_in_TBS(parameters,
+                              "benefits/caf_oise-aide-au-bafa-pour-une-session-de-formation-dapprofondissement-ou-de-qualification.yml")
 
     assert parameters.caf_oise_aide_au_bafa_pour_une_session_de_formation_dapprofondissement_ou_de_qualification.age.maximum
 
 
 def test_create_age_strictement_inferieur_parameter_node(parameters):
-    benefit_path = "benefits/departement-val-d-oise-bourse-aux-apprentis.yml"
-    benefit = extract_benefit_file_content(benefit_path)
-
-    new_parameter_node = create_benefit_parameters(benefit)
-    parameters.add_child(
-        new_parameter_node.name, new_parameter_node)
+    generate_parameter_in_TBS(parameters,
+                              "benefits/departement-val-d-oise-bourse-aux-apprentis.yml")
 
     assert parameters.departement_val_d_oise_bourse_aux_apprentis.age.strictement_inferieur
 
@@ -77,12 +61,8 @@ def test_create_age_strictement_superieur_parameter_node(parameters):
 
 
 def test_create_age_value_parameter_node(parameters):
-    benefit_path = "benefits/departement-val-d-oise-bourse-aux-apprentis.yml"
-    benefit = extract_benefit_file_content(benefit_path)
-
-    new_parameter_node = create_benefit_parameters(benefit)
-    parameters.add_child(
-        new_parameter_node.name, new_parameter_node)
+    generate_parameter_in_TBS(parameters,
+                              "benefits/departement-val-d-oise-bourse-aux-apprentis.yml")
 
     at_instant = parameters("2023-01-01")
     parameter = at_instant.departement_val_d_oise_bourse_aux_apprentis
@@ -91,14 +71,18 @@ def test_create_age_value_parameter_node(parameters):
 
 
 def test_create_quotient_familial_parameter(parameters):
-    benefit_path = "benefits/caf_pas_de_calais-aide-au-bafa-pour-une-session-de-formation-générale.yml"
-    benefit = extract_benefit_file_content(benefit_path)
-
-    new_parameter_node = create_benefit_parameters(benefit)
-    parameters.add_child(
-        new_parameter_node.name, new_parameter_node)
+    generate_parameter_in_TBS(parameters,
+                              "benefits/caf_pas_de_calais-aide-au-bafa-pour-une-session-de-formation-générale.yml")
 
     at_instant = parameters("2023-01-01")
     parameter = at_instant.caf_pas_de_calais_aide_au_bafa_pour_une_session_de_formation_générale
 
     assert parameter.quotient_familial.month.maximum == 1000
+
+
+def generate_parameter_in_TBS(parameters, benefit_path):
+    benefit = extract_benefit_file_content(benefit_path)
+
+    new_parameter_node = create_benefit_parameters(benefit)
+    parameters.add_child(
+        new_parameter_node.name, new_parameter_node)
