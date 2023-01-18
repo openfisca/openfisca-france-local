@@ -109,6 +109,16 @@ def test_create_regime_securite_sociale_parameter(parameters):
     assert parameter.regime_securite_sociale.includes == ["regime_general"]
 
 
+def test_create_regime_securite_sociale_excludes_parameter(parameters):
+    generate_parameter_in_TBS(parameters,
+                              "benefits/caf-val-de-marne-aide-bafa-approfondissement-qualification.yml")
+
+    at_instant = parameters("2023-01-01")
+    parameter = at_instant.caf_val_de_marne_aide_bafa_approfondissement_qualification
+
+    assert parameter.regime_securite_sociale.excludes == ["regime_agricole"]
+
+
 def test_create_formation_sanitaire_social_parameter(parameters):
     generate_parameter_in_TBS(parameters,
                               "benefits/guadeloupe-bourse-sanitaire.yml")
