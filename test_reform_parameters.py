@@ -96,3 +96,13 @@ def test_create_region_parameter(parameters):
     parameter = at_instant.hauts_de_france_carte_generation_apprentis_aide_transport
 
     assert parameter.regions == ["32"]
+
+
+def test_create_regime_securite_sociale_parameter(parameters):
+    generate_parameter_in_TBS(parameters,
+                              "benefits/caf_morbihan-aide-au-brevet-daptitude-aux-fonctions-de-directeur-bafd.yml")
+
+    at_instant = parameters("2023-01-01")
+    parameter = at_instant.caf_morbihan_aide_au_brevet_daptitude_aux_fonctions_de_directeur_bafd
+
+    assert parameter.regime_securite_sociale == ["regime_general"]
