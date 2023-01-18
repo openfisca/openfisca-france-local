@@ -27,6 +27,14 @@ def condition_to_parameter(condition: dict) -> ParameterNode:
         })
         return condition_parameter
 
+    def generate_regime_securite_sociale_parameter(
+            condition: dict) -> Parameter:
+        return Parameter(condition_type, data={
+            date: {
+                "value": condition["includes"]
+            }
+        })
+
     def generate_simple_parameter(condition: dict):
         data = {date: {
                 "value": condition["values"]
@@ -36,6 +44,7 @@ def condition_to_parameter(condition: dict) -> ParameterNode:
     condition_table: dict = {
         "age": generate_age_parameter,
         "quotient_familial": generate_quotient_familial_parameter,
+        "regime_securite_sociale": generate_regime_securite_sociale_parameter,
     }
 
     date = "2020-01-01"
