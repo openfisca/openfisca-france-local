@@ -28,7 +28,17 @@ def condition_to_parameter(condition: dict) -> ParameterNode:
         return condition_parameter
 
     def generate_regime_securite_sociale_parameter(
-            condition: dict) -> Parameter:
+            condition: dict) -> ParameterNode:
+        data: dict = {}
+        if "includes" in condition.keys():
+            data["includes"] = {date: {"value": condition["includes"]}}
+        if "excludes" in condition.keys():
+            data["excludes"] = {date: {"value": condition["excludes"]}}
+
+        parameter = ParameterNode(condition_type, data=data)
+
+        return parameter
+
         return Parameter(condition_type, data={
             date: {
                 "value": condition["includes"]
