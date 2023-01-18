@@ -37,7 +37,8 @@ def condition_to_parameter(condition: dict) -> ParameterNode:
     return condition_parameter
 
 
-def conditions_list_to_parameters(parameter_name: str, conditions: "list[dict]") -> ParameterNode:
+def conditions_list_to_parameters(
+        parameter_name: str, conditions: "list[dict]") -> ParameterNode:
     root_parameter = ParameterNode(parameter_name, data={})
     node_parameters: "list[ParameterNode]" = [
         condition_to_parameter(condition) for condition in conditions

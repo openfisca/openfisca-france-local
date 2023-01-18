@@ -1,14 +1,14 @@
 import yaml
 import pytest
 from openfisca_france import CountryTaxBenefitSystem
-from openfisca_core.taxbenefitsystems import TaxBenefitSystem
+from openfisca_france.model.base import (ParameterNode)
 
 from condition_to_parameter import create_benefit_parameters
 
 
 @pytest.fixture
-def tax_benefit_system() -> TaxBenefitSystem:
-    return CountryTaxBenefitSystem()
+def tax_benefit_system() -> ParameterNode:
+    return CountryTaxBenefitSystem().parameters
 
 
 def extract_benefit_file_content(benefit_path) -> dict:
@@ -66,7 +66,7 @@ def test_create_age_strictement_superieur_parameter_node(tax_benefit_system):
 
     benefit: dict = {
         "slug": "inf_parameter",
-        "conditions_generales": [{'type': 'age', 'operator': '>', 'value': 25, }]
+        "conditions_generales": [{'type': 'age', 'operator': '>', 'value': 25}]
     }
 
     new_parameter_node = create_benefit_parameters(benefit)
