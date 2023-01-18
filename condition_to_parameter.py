@@ -27,6 +27,17 @@ def condition_to_parameter(condition: dict) -> ParameterNode:
         })
         return condition_parameter
 
+    def generate_simple_parameter(condition: dict):
+        data = {date: {
+                "value": condition["values"]
+                }}
+        return Parameter(condition_type, data=data)
+
+    condition_table: dict = {
+        "age": generate_age_parameter,
+        "quotient_familial": generate_quotient_familial_parameter,
+    }
+
     date = "2020-01-01"
 
     comparison_operators = {
@@ -34,15 +45,6 @@ def condition_to_parameter(condition: dict) -> ParameterNode:
         '>=': "minimum",
         '<': "strictement_inferieur",
         '>': "strictement_superieur",
-    }
-
-    def generate_simple_parameter(condition: dict):
-
-        return Parameter(condition_type, data={})
-
-    condition_table: dict = {
-        "age": generate_age_parameter,
-        "quotient_familial": generate_quotient_familial_parameter,
     }
 
     condition_type: str = condition["type"]
