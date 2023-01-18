@@ -81,7 +81,7 @@ def conditions_list_to_parameters(
     return root_parameter
 
 
-def create_benefit_parameters(benefit: dict):
+def create_benefit_parameters(benefit: dict) -> ParameterNode:
     conditions_generales = benefit['conditions_generales']
 
     return conditions_list_to_parameters(benefit["slug"], conditions_generales)

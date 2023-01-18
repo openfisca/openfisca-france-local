@@ -4,6 +4,7 @@ from openfisca_france import CountryTaxBenefitSystem
 from openfisca_france.model.base import (ParameterNode)
 
 from condition_to_parameter import create_benefit_parameters
+from openfisca_france_local.aides_jeunes_reform import aides_jeunes_reform_dynamic
 
 
 def generate_parameter_in_TBS(parameters, benefit_path):
@@ -116,3 +117,10 @@ def test_create_formation_sanitaire_social_parameter(parameters):
     parameter = at_instant.guadeloupe_bourse_sanitaire
 
     assert parameter.formation_sanitaire_social
+
+
+def test_load_reforme_aides_jeunes():
+    tbs = CountryTaxBenefitSystem()
+    tbs_reformed = aides_jeunes_reform_dynamic(tbs)
+
+    assert tbs_reformed.parameters.guadeloupe_bourse_sanitaire

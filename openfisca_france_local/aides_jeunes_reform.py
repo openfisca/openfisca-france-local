@@ -21,6 +21,8 @@ from openfisca_france.model.caracteristiques_socio_demographiques.logement impor
 from openfisca_france.model.caracteristiques_socio_demographiques.demographie import RegimeSecuriteSociale
 from openfisca_france.model.caracteristiques_socio_demographiques.demographie import GroupeSpecialitesFormation
 
+from condition_to_parameter import create_benefit_parameters
+
 operations = {
     '<': operator.lt,
     '<=': operator.le,
@@ -246,7 +248,12 @@ class aides_jeunes_reform_dynamic(reforms.Reform):
             benefit_files_paths = self.extract_benefits_paths(
                 self.current_path)
             for path in benefit_files_paths:
-                self.add_variable(generate_variable(
-                    self.extract_benefit_file_content(path)))
+                benefit = self.extract_benefit_file_content(path)
+                print(path)
+                benefit_parameter = create_benefit_parameters(benefit)
+                self.parameters.add_child(
+                    benefit_parameter.name, benefit_parameter)
+
+                self.add_variable(generate_variable(benefit))
         except KeyError as e:
             raise KeyError(f"field {e} missing in file: {path}")
