@@ -6,6 +6,14 @@ from openfisca_france.model.base import (ParameterNode)
 from condition_to_parameter import create_benefit_parameters
 
 
+def generate_parameter_in_TBS(parameters, benefit_path):
+    benefit = extract_benefit_file_content(benefit_path)
+
+    new_parameter_node = create_benefit_parameters(benefit)
+    parameters.add_child(
+        new_parameter_node.name, new_parameter_node)
+
+
 @pytest.fixture
 def parameters() -> ParameterNode:
     return CountryTaxBenefitSystem().parameters
@@ -80,9 +88,11 @@ def test_create_quotient_familial_parameter(parameters):
     assert parameter.quotient_familial.month.maximum == 1000
 
 
-def generate_parameter_in_TBS(parameters, benefit_path):
-    benefit = extract_benefit_file_content(benefit_path)
+def test_create_region_parameter(parameters):
+    generate_parameter_in_TBS(parameters,
+                              "benefits/hauts-de-france-carte-generation-apprentis-aide-transport.yml")
 
-    new_parameter_node = create_benefit_parameters(benefit)
-    parameters.add_child(
-        new_parameter_node.name, new_parameter_node)
+    at_instant = parameters("2023-01-01")
+    parameter = at_instant.hauts_de_france_carte_generation_apprentis_aide_transport
+
+    assert parameter.regions == ["32"]
