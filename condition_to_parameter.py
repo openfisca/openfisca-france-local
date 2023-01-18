@@ -7,7 +7,8 @@ def condition_to_parameter(condition: dict) -> ParameterNode:
         parameter_operator: str = comparison_operators[condition["operator"]]
         condition_parameter = ParameterNode(condition_type, data={
             parameter_operator: {
-
+                "2020-01-01": {
+                    "value": condition["value"]},
             }
         })
         return condition_parameter
