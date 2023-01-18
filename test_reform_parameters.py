@@ -74,3 +74,17 @@ def test_create_age_strictement_superieur_parameter_node(tax_benefit_system):
         new_parameter_node.name, new_parameter_node)
 
     assert tax_benefit_system.parameters.inf_parameter.age.strictement_superieur
+
+
+def test_create_age_value_parameter_node(tax_benefit_system):
+    benefit_path = "benefits/departement-val-d-oise-bourse-aux-apprentis.yml"
+    benefit = extract_benefit_file_content(benefit_path)
+
+    new_parameter_node = create_benefit_parameters(benefit)
+    tax_benefit_system.parameters.add_child(
+        new_parameter_node.name, new_parameter_node)
+
+    at_instant = tax_benefit_system.parameters("2023-01-01")
+    parameter = at_instant.departement_val_d_oise_bourse_aux_apprentis
+
+    assert parameter.age.strictement_inferieur == 25
