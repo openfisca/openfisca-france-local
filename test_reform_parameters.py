@@ -106,7 +106,7 @@ def test_create_regime_securite_sociale_parameter(parameters):
     at_instant = parameters("2023-01-01")
     parameter = at_instant.caf_morbihan_aide_au_brevet_daptitude_aux_fonctions_de_directeur_bafd
 
-    assert parameter.regime_securite_sociale == ["regime_general"]
+    assert parameter.regime_securite_sociale.includes == ["regime_general"]
 
 
 def test_create_formation_sanitaire_social_parameter(parameters):
