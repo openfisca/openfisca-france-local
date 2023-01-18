@@ -7,11 +7,27 @@ def condition_to_parameter(condition: dict) -> ParameterNode:
         parameter_operator: str = comparison_operators[condition["operator"]]
         condition_parameter = ParameterNode(condition_type, data={
             parameter_operator: {
-                "2020-01-01": {
+                date: {
                     "value": condition["value"]},
             }
         })
         return condition_parameter
+
+    def generate_quotient_familial_parameter(condition: dict) -> ParameterNode:
+        parameter_operator: str = comparison_operators[condition["operator"]]
+
+        condition_parameter = ParameterNode(condition_type, data={
+            condition["period"]: {
+                parameter_operator: {
+                    date: {
+                        "value": condition["value"]
+                    }
+                }
+            }
+        })
+        return condition_parameter
+
+    date = "2020-01-01"
 
     comparison_operators = {
         '<=': "maximum",
@@ -26,6 +42,7 @@ def condition_to_parameter(condition: dict) -> ParameterNode:
 
     condition_table: dict = {
         "age": generate_age_parameter,
+        "quotient_familial": generate_quotient_familial_parameter,
     }
 
     condition_type: str = condition["type"]
