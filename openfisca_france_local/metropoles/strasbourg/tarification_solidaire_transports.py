@@ -11,16 +11,6 @@ class eurometropole_strasbourg_tarification_solidaire_transport_eligibilite_geog
         return menage('menage_dans_epci_siren_246700488', period)
 
 
-class eurometropole_strasbourg_tarification_solidaire_transport_quotient_familial_de_base(Variable):
-    value_type = float
-    entity = Individu
-    definition_period = MONTH
-    label = "Quotient familial pour la tarification solidaire des transports de l'Eurométropole de Strasbourg"
-
-    def formula(individu, period):
-        return individu.foyer_fiscal('rfr', period.n_2) / 12 / individu.foyer_fiscal('nbptr', period.n_2)
-
-
 class eurometropole_strasbourg_tarification_solidaire_transport_quotient_familial(Variable):
     value_type = float
     entity = Individu
@@ -31,7 +21,7 @@ class eurometropole_strasbourg_tarification_solidaire_transport_quotient_familia
     def formula(individu, period):
         etudiant = individu('etudiant', period)
         qf_etudiant = individu('eurometropole_strasbourg_tarification_solidaire_transport_quotient_familial_etudiant', period)
-        base = individu('eurometropole_strasbourg_tarification_solidaire_transport_quotient_familial_de_base', period)
+        base = individu('strasbourg_metropole_quotient_familial', period)
         return select([etudiant], [qf_etudiant], default=base)
 
 
