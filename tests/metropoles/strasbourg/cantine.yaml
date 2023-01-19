@@ -83,7 +83,7 @@
     strasbourg_metropole_cout_cantine: [22.5, 43, 40.5, 65, 64.6, 66, 76.5, 116, 100.8, 138]
 
 
- # repas végétarien 
+ # repas végétarien
 
 - period: 2020-09
   input:
@@ -144,8 +144,8 @@
   output:
     strasbourg_metropole_tarification_cantine_vegetarien: [1.15]
     strasbourg_metropole_cout_cantine_repas_vegetarien: [17.25]
-    # représentation des 3 individus : 
-# représentation individu 232716 (ligne 179) : enfant inscrit dans une cantine pour un menu halal 
+    # représentation des 3 individus :
+# représentation individu 232716 (ligne 179) : enfant inscrit dans une cantine pour un menu halal
 
 - period: 2021-03
   input:
@@ -162,15 +162,15 @@
     strasbourg_metropole_tarification_cantine: [2.70]
     strasbourg_metropole_cout_cantine: [405]
 
-# représentation individu 164346 (ligne 178) : enfant inscrit dans 2 cantines pour 2 fois un menu halal QF = 412 
+# représentation individu 164346 (ligne 178) : enfant inscrit dans 2 cantines pour 2 fois un menu halal QF = 412
 
 - period: 2021-03
   input:
     individus:
       parent1: {}
       enf1:
-        strasbourg_metropole_nombre_repas_cantine: 150 # repas standard 
-        #strasbourg_metropole_nombre_repas_cantine: 50 # repas standard 
+        strasbourg_metropole_nombre_repas_cantine: 150 # repas standard
+        #strasbourg_metropole_nombre_repas_cantine: 50 # repas standard
     familles:
       famille1:
         parents: [parent1]
@@ -181,7 +181,7 @@
     strasbourg_metropole_cout_cantine: [322.5]
 
 
-# fonctionne par car QF est 412 donc appartient à la 2ème tranche et donc prix 2.15 pas 4.30 
+# fonctionne par car QF est 412 donc appartient à la 2ème tranche et donc prix 2.15 pas 4.30
 
 # représentation individu 135306 (ligne 170) : enfant inscrit dans 2 cantines pour 1 fois un menu halal et 1 un menu végétarien QF = 293
 # 1,50€ pour repas standard (halal) et 1,15€ pour repas végétarien
@@ -191,19 +191,15 @@
     individus:
       parent1: {}
       enf1:
-        strasbourg_metropole_nombre_repas_cantine: 100 # repas standard 
+        strasbourg_metropole_nombre_repas_cantine: 100 # repas standard
         strasbourg_metropole_nombre_repas_cantine_vegetarien: 50 # repas végé
     familles:
       famille1:
         parents: [parent1]
         enfants: [enf1]
         strasbourg_metropole_quotient_familial: 293
-  output: 
+  output:
     strasbourg_metropole_tarification_cantine: [1.50]
     strasbourg_metropole_cout_cantine: [150]
     strasbourg_metropole_tarification_cantine_vegetarien: [1.15]
     strasbourg_metropole_cout_cantine_repas_vegetarien: [57.5]
-
-
-
-

@@ -38,7 +38,7 @@ class strasbourg_metropole_cout_cantine_individu(Variable):
         return tarif * repas
 
 
-#variables repas végétarien 
+# variables repas végétarien
 
 class strasbourg_metropole_tarification_cantine_vegetarien(Variable):
     value_type = float
@@ -78,7 +78,7 @@ class strasbourg_metropole_nombre_repas_cantine_vegetarien(Variable):
     definition_period = MONTH
 
 
-    # variables panier 
+# variables panier
 
 class strasbourg_metropole_tarification_cantine_panier(Variable):
     value_type = float
@@ -117,8 +117,8 @@ class strasbourg_metropole_nombre_repas_cantine_panier(Variable):
     entity = Individu
     definition_period = MONTH
 
-    
-# variable aide État 
+
+# variable aide État
 class strasbourg_metropole_aide_repas_etat(Variable):
     value_type = float
     entity = Individu

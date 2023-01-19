@@ -1,66 +1,63 @@
 metadata:
     type: single_amount
-brackets: 
+brackets:
 - threshold:
     2010-10-01:
       value: -1
-  amount: 
+  amount:
     2010-10-01:
       value: 1.5
 - threshold:
     2010-10-01:
       value: 410
-  amount: 
+  amount:
     2010-10-01:
       value: 2.15
 - threshold:
     2010-10-01:
       value: 510
-  amount: 
+  amount:
     2010-10-01:
       value: 2.70
 - threshold:
     2010-10-01:
       value: 620
-  amount: 
+  amount:
     2010-10-01:
       value: 3.25
 - threshold:
     2010-10-01:
       value: 720
-  amount: 
+  amount:
     2010-10-01:
       value: 3.80
 - threshold:
     2010-10-01:
       value: 820
-  amount: 
+  amount:
     2010-10-01:
       value: 4.40
 - threshold:
     2010-10-01:
       value: 920
-  amount: 
+  amount:
     2010-10-01:
       value: 5.10
 - threshold:
     2010-10-01:
       value: 1030
-  amount: 
+  amount:
     2010-10-01:
       value: 5.80
 - threshold:
     2010-10-01:
       value: 1540
-  amount: 
+  amount:
     2010-10-01:
       value: 6.30
 - threshold:
     2010-10-01:
       value: 2050
-  amount: 
+  amount:
     2010-10-01:
       value: 6.90
-
-
-
