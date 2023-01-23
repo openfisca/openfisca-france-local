@@ -57,6 +57,17 @@ def test_create_age_maximum_parameter_with_value(parameters):
     ))).caf_oise_aide_au_bafa_pour_une_session_de_formation_dapprofondissement_ou_de_qualification.age.maximum == 16
 
 
+def test_create_both_age_parameter_node(parameters):
+    generate_parameter_in_TBS(parameters,
+                              "benefits/caf_pas_de_calais-aide-au-bafa-pour-une-session-de-formation-générale.yml")
+
+    benefit_parameter = parameters(str(date.today(
+    ))).caf_pas_de_calais_aide_au_bafa_pour_une_session_de_formation_générale
+
+    assert benefit_parameter.age.maximum == 25 and \
+        benefit_parameter.age.minimum == 16
+
+
 def test_create_age_strictement_inferieur_parameter_node(parameters):
     generate_parameter_in_TBS(parameters,
                               "benefits/departement-val-d-oise-bourse-aux-apprentis.yml")
