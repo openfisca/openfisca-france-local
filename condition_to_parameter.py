@@ -2,57 +2,67 @@ from openfisca_france.model.base import (ParameterNode, Parameter)
 from openfisca_core.parameters.at_instant_like import AtInstantLike
 
 
-def condition_to_parameter(condition: dict) -> AtInstantLike:
+def condition_to_parameter(condition: dict) -> dict:
 
-    def generate_age_parameter(condition: dict) -> ParameterNode:
+    def generate_age_parameter(condition: dict) -> dict:
         parameter_operator: str = comparison_operators[condition["operator"]]
-        condition_parameter = ParameterNode(condition_type, data={
-            parameter_operator: {
-                date: {
-                    "value": condition["value"]},
-            }
-        })
-        return condition_parameter
-
-    def generate_quotient_familial_parameter(condition: dict) -> ParameterNode:
-        parameter_operator: str = comparison_operators[condition["operator"]]
-
-        condition_parameter = ParameterNode(condition_type, data={
-            condition["period"]: {
+        data: dict = {
+            condition_type: {
                 parameter_operator: {
-                    date: {
-                        "value": condition["value"]
+                    "values": {date: {
+                        "value": condition["value"]}},
+                }
+            }
+        }
+        return data
+
+    def generate_quotient_familial_parameter(condition: dict) -> dict:
+        parameter_operator: str = comparison_operators[condition["operator"]]
+
+        data = {
+            condition_type: {
+                condition["period"]: {
+                    parameter_operator: {
+                        "values": {date: {
+                            "value": condition["value"]
+                        }}
                     }
                 }
             }
-        })
-        return condition_parameter
+        }
+        return data
 
     def generate_regime_securite_sociale_parameter(
             condition: dict) -> ParameterNode:
-        data: dict = {}
+        data: dict = {condition_type: {}}
         if "includes" in condition.keys():
-            data["includes"] = {date: {"value": condition["includes"]}}
+            data[condition_type] = {
+                "includes": {
+                    "values": {
+                        date: {"value": condition["includes"]}}
+                }}
+
         if "excludes" in condition.keys():
-            data["excludes"] = {date: {"value": condition["excludes"]}}
+            data[condition_type] = {
+                "excludes": {
+                    "values": {
+                        date: {"value": condition["excludes"]}}
+                }}
 
-        parameter = ParameterNode(condition_type, data=data)
-
-        return parameter
-
-        return Parameter(condition_type, data={
-            date: {
-                "value": condition["includes"]
-            }
-        })
+        return data
 
     def generate_simple_parameter(condition: dict) -> Parameter:
         if len(condition) == 1:
             value = {"value": True}
         else:
             value = {"value": condition["values"]}
-
-        return Parameter(condition_type, data={date: value})
+        data: dict = {
+            condition_type: {
+                "values": {date: value}
+            }
+        }
+        return data
+        return Parameter(condition_type, data={"values": {date: value}})
 
     condition_table: dict = {
         "age": generate_age_parameter,
@@ -80,19 +90,13 @@ def condition_to_parameter(condition: dict) -> AtInstantLike:
 
 def conditions_list_to_parameters(
         parameter_name: str, conditions: "list[dict]") -> ParameterNode:
-    root_parameter = ParameterNode(parameter_name, data={})
-    node_parameters: "list[AtInstantLike]" = [
-        condition_to_parameter(condition) for condition in conditions
-    ]
-    for node in node_parameters:
-        if node.name in root_parameter.children:
-            if node == root_parameter.children[node.name]:
-                continue
-            else:
-                root_parameter.children[node.name].merge(node)
-        else:
-            root_parameter.add_child(node.name, node)
-    return root_parameter
+    conditions_formated = [condition_to_parameter(
+        condition) for condition in conditions]
+    data: dict = {}
+    for condition in conditions_formated:
+        data.update(condition)
+
+    return ParameterNode(parameter_name, data=data)
 
 
 def create_benefit_parameters(benefit: dict) -> ParameterNode:

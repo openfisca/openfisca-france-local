@@ -247,9 +247,9 @@ class aides_jeunes_reform_dynamic(reforms.Reform):
         try:
             benefit_files_paths = self.extract_benefits_paths(
                 self.current_path)
+
             for path in benefit_files_paths:
                 benefit = self.extract_benefit_file_content(path)
-                print(path)
                 benefit_parameter = create_benefit_parameters(benefit)
                 self.parameters.add_child(
                     benefit_parameter.name, benefit_parameter)
