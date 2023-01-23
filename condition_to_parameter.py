@@ -1,7 +1,8 @@
 from openfisca_france.model.base import (ParameterNode, Parameter)
+from openfisca_core.parameters.at_instant_like import AtInstantLike
 
 
-def condition_to_parameter(condition: dict) -> ParameterNode:
+def condition_to_parameter(condition: dict) -> AtInstantLike:
 
     def generate_age_parameter(condition: dict) -> ParameterNode:
         parameter_operator: str = comparison_operators[condition["operator"]]
@@ -45,7 +46,7 @@ def condition_to_parameter(condition: dict) -> ParameterNode:
             }
         })
 
-    def generate_simple_parameter(condition: dict):
+    def generate_simple_parameter(condition: dict) -> Parameter:
         if len(condition) == 1:
             value = {"value": True}
         else:
@@ -80,12 +81,15 @@ def condition_to_parameter(condition: dict) -> ParameterNode:
 def conditions_list_to_parameters(
         parameter_name: str, conditions: "list[dict]") -> ParameterNode:
     root_parameter = ParameterNode(parameter_name, data={})
-    node_parameters: "list[ParameterNode]" = [
+    node_parameters: "list[AtInstantLike]" = [
         condition_to_parameter(condition) for condition in conditions
     ]
     for node in node_parameters:
         if node.name in root_parameter.children:
-            root_parameter.children[node.name].merge(node)
+            if node == root_parameter.children[node.name]:
+                continue
+            else:
+                root_parameter.children[node.name].merge(node)
         else:
             root_parameter.add_child(node.name, node)
     return root_parameter
