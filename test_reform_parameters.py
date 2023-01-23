@@ -1,3 +1,4 @@
+from datetime import date
 import yaml
 import pytest
 from openfisca_france import CountryTaxBenefitSystem
@@ -46,6 +47,14 @@ def test_create_age_maximum_parameter_node(parameters):
                               "benefits/caf_oise-aide-au-bafa-pour-une-session-de-formation-dapprofondissement-ou-de-qualification.yml")
 
     assert parameters.caf_oise_aide_au_bafa_pour_une_session_de_formation_dapprofondissement_ou_de_qualification.age.maximum
+
+
+def test_create_age_maximum_parameter_with_value(parameters):
+    generate_parameter_in_TBS(parameters,
+                              "benefits/caf_oise-aide-au-bafa-pour-une-session-de-formation-dapprofondissement-ou-de-qualification.yml")
+
+    assert parameters(str(date.today(
+    ))).caf_oise_aide_au_bafa_pour_une_session_de_formation_dapprofondissement_ou_de_qualification.age.maximum == 16
 
 
 def test_create_age_strictement_inferieur_parameter_node(parameters):
