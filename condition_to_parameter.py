@@ -90,11 +90,15 @@ def condition_to_parameter(condition: dict) -> dict:
 
 def conditions_list_to_parameters(
         parameter_name: str, conditions: "list[dict]") -> ParameterNode:
-    conditions_formated = [condition_to_parameter(
+    conditions_formated: "list[dict]" = [condition_to_parameter(
         condition) for condition in conditions]
     data: dict = {}
     for condition in conditions_formated:
-        data.update(condition)
+        for key in condition.keys():
+            if key in data:
+                data[key].update(condition[key])
+            else:
+                data.update(condition)
 
     return ParameterNode(parameter_name, data=data)
 
