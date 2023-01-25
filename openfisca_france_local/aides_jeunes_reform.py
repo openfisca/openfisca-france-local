@@ -12,10 +12,11 @@ from openfisca_core import reforms
 from openfisca_core.periods import Period
 
 
+from openfisca_core.populations.population import Population
+from openfisca_france.model.prestations.education import TypesScolarite, TypesClasse
+from openfisca_france.model.caracteristiques_socio_demographiques.logement import TypesCodeInseeRegion
 from openfisca_france.model.caracteristiques_socio_demographiques.demographie import RegimeSecuriteSociale
 from openfisca_france.model.caracteristiques_socio_demographiques.demographie import GroupeSpecialitesFormation
-from openfisca_france.model.prestations.education import TypesScolarite, TypesClasse
-from openfisca_core.populations.population import Population
 
 operations = {
     '<': operator.lt,
@@ -41,26 +42,8 @@ def is_department_eligible(individu: Population, period: Period, condition):
 
 
 def is_region_eligible(individu: Population, period: Period, condition):
-    eligibilite_region_table: dict = {
-        '01': 'guadeloupe_eligibilite_residence',
-        '02': 'martinique_eligibilite_residence',
-        '03': 'guyane_eligibilite_residence',
-        '04': 'reunion_eligibilite_residence',
-        '11': 'ile_de_france_eligibilite_residence',
-        '24': 'centre_val_de_loire_eligibilite_residence',
-        '27': 'bourgogne_franche_comte_eligibilite_residence',
-        '28': 'normandie_eligibilite_residence',
-        '32': 'hauts_de_france_eligibilite_residence',
-        '44': 'grand_est_eligibilite_residence',
-        '52': 'pays_de_la_loire_eligibilite_residence',
-        '53': 'bretagne_eligibilite_residence',
-        '75': 'nouvelle_aquitaine_eligibilite_residence',
-        '76': 'occitanie_eligibilite_residence',
-        '84': 'auvergne_rhone_alpes_eligibilite_residence',
-        '93': 'provence_alpes_cote_d_azur_eligibilite_residence',
-        '94': 'corse_eligibilite_residence',
-    }
-    return sum([individu.menage(eligibilite_region_table[code_region], period.first_month) for code_region in condition['values']])
+    region = individu.menage('region', period.first_month)
+    return sum([region == TypesCodeInseeRegion(code_region) for code_region in condition['values']])
 
 
 def is_regime_securite_sociale_eligible(individu: Population, period: Period, condition):
