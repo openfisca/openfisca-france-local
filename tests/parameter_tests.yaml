@@ -1,7 +1,0 @@
-- period: 2023-01
-  reforms:
-  - openfisca_france_local.reform_parameters.aides_jeunes_test_parameter
-  input:
-    age: [1]
-  output:
-    test_variable_w2: [24]
