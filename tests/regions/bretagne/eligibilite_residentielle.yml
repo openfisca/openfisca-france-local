@@ -1,5 +1,0 @@
-- period: 2022-11
-  input:
-    depcom: ["22278 ", "38430", "97300"]
-  output:
-    bretagne_eligibilite_residence: [true, false, false]
