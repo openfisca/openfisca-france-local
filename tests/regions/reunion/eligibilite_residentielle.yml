@@ -1,5 +1,0 @@
-- period: 2022-11
-  input:
-    depcom: ["97411", "38430", "97300"]
-  output:
-    reunion_eligibilite_residence: [true, false, false]
