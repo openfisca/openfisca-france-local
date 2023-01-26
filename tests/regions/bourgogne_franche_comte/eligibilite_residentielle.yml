@@ -1,5 +1,0 @@
-- period: 2021-10
-  input:
-    depcom: ["21213", "95563"]
-  output:
-    bourgogne_franche_comte_eligibilite_residence: [true, false]
