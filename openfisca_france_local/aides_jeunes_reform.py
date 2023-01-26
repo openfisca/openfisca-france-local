@@ -129,14 +129,6 @@ def is_inactif(individu: Population, period: Period) -> np.array:
     return individu('activite', period.first_month) == TypesActivite.inactif
 
 
-def is_to_implement(individu: Population, period: Period) -> np.array:
-    template = individu(
-        'activite', period.first_month) == TypesActivite.chomeur
-    ret: np.ndarray = np.ones_like(template)
-    ret[ret] = False
-    return ret
-
-
 condition_table = {
     "age": is_age_eligible,
     "regions": is_region_eligible,
