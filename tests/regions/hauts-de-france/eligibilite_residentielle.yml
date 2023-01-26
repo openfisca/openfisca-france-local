@@ -1,5 +1,0 @@
-- period: 2022-11
-  input:
-    depcom: ["02408 ", "38430", "97300"]
-  output:
-    hauts_de_france_eligibilite_residence: [true, false, false]
