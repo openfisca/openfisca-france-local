@@ -29,7 +29,7 @@ operations = {
 def is_age_eligible(individu, period, condition):
 
     condition_age = condition['value']
-    individus_age = individu('age', period.first_month)
+    individus_age = individu('age', period)
 
     comparison = operations[condition['operator']]
 
@@ -174,6 +174,7 @@ def generate_variable(benefit: dict):
     def formula(individu: Population, period: Period):
 
         def eval_conditions(conditions: dict):
+
             test_conditions = [(condition_table[condition['type']], condition)
                                for condition in conditions]
 

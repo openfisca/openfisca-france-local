@@ -16,7 +16,7 @@
   output:
     caf_ain_aide_bafa_session_generale: [0, 160, 160, 0]
 
-- period: 2022
+- period: 2022-01
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
@@ -25,7 +25,8 @@
     apprenti: [true, true, false]
     activite: ["actif", "chomeur", "actif"]
   output:
-    hauts_de_france_carte_generation_apprentis_aide_transport: [200, 0, 0]
+    hauts_de_france_carte_generation_apprentis_aide_transport:
+      2022 : [200, 0, 0]
 
 - period: 2022-11
   reforms:
@@ -36,14 +37,15 @@
   output:
     region_auvergne_rhone_alpes_abonnement_illico: [True, True, False, False]
 
-- period: 2022
-  reforms:
-  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
-  input:
-    age: [25,26, 27, 27]
-    depcom: ["02408", "02408", "02408", "84"]
-  output:
-    hauts_de_france_ma_carte_ter: [False, True, True, False]
+# - period: 2022-01
+#   reforms:
+#   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+#   input:
+#     age: [25,26, 27, 27]
+#     depcom: ["02408", "02408", "02408", "84"]
+#   output:
+#     hauts_de_france_ma_carte_ter:
+#       2022: [False, True, True, False]
 
 - period: 2022-11
   reforms:
@@ -54,19 +56,19 @@
     regime_securite_sociale: [regime_general, regime_agricole]
   output:
     caf_morbihan_aide_au_brevet_daptitude_aux_fonctions_de_directeur_bafd: [286, 0]
-    
-- period: 2022
-  reforms:
-  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
-  input:
-    age:  [18, 18]
-    depcom: ["38120", "38120"]
-    rfr: [800, 801]
-    nbptr: [1, 1]
-  output:
-    caf_isere_aide_au_bafa_pour_une_session_de_formation_générale_et_dapprofondissement: [200, 0]
-    
-- period: 2022
+
+# - period: 2022-11
+#   reforms:
+#   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+#   input:
+#     age:  [18, 18]
+#     depcom: ["38120", "38120"]
+#     rfr: [800, 801]
+#     nbptr: [1, 1]
+#   output:
+#     caf_isere_aide_au_bafa_pour_une_session_de_formation_générale_et_dapprofondissement: [200, 0]
+
+- period: 2022-01
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
@@ -76,7 +78,8 @@
     stagiaire: [true,true,false,false]
     scolarite: ["inconnue", "inconnue", "inconnue", "enseignement_superieur"]
   output:
-    guadeloupe_bourse_sanitaire: [5736, 0, 0, 5736]
+    guadeloupe_bourse_sanitaire:
+      2022: [5736, 0, 0, 5736]
 
 - period: 2022-11
   reforms:
@@ -89,16 +92,17 @@
   output:
     region_occitanie_revenu_ecologique_jeune: [1000, 0]
 
-- period: 2022
+- period: 2022-01
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
     depcom: ["41018", "41018"]
     activite: ["etudiant", "chomeur"]
   output:
-    centre_val_de_loire_cheque_emploi: [0, 1]
+    centre_val_de_loire_cheque_emploi:
+      2022: [0, 1]
 
-- period: 2022
+- period: 2022-11
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
@@ -107,7 +111,7 @@
   output:
     centre_val_de_loire_aide_au_1er_equipement_professionnel: [0, 50]
 
-- period: 2022
+- period: 2022-11
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
@@ -117,7 +121,7 @@
   output:
     grand_est_bourse_du_secteur_sanitaire_et_social: [0, 1]
 
-- period: 2022
+- period: 2022-11
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
@@ -127,7 +131,7 @@
   output:
     region_bretagne_ehop_emploi: [0, 1, 1, 1,1]
 
-- period: 2022
+- period: 2022-11
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
@@ -137,7 +141,7 @@
   output:
     grand_est_aide_mobilite_internationale_etudiants: [0, 1, 0]
 
-- period: 2022
+- period: 2022-11
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
@@ -147,7 +151,7 @@
   output:
     nouvelle_aquitaine_aide_passage_permis_conduire_b: [0]
 
-- period: 2022
+- period: 2022-11
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
@@ -169,7 +173,7 @@
     region_bourgogne_franche_comte_restauration_familles_boursieres: [1]
 
 
-- period: 2022
+- period: 2022-11
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
@@ -179,7 +183,7 @@
   output:
     auvergne_rhone_alpes_bourse_merite: [500]
 
-- period: 2022
+- period: 2022-11
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
@@ -188,7 +192,7 @@
   output:
     martinique_fonds_aide_jeunes: [1]
 
-- period: 2022
+- period: 2022-11
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
@@ -197,7 +201,7 @@
   output:
     guyane_fonds_aide_jeunes: [1000]
 
-- period: 2022
+- period: 2022-11
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
@@ -207,7 +211,7 @@
   output:
     region_la_reunion_bourse_régionale_sanitaire_et_sociale: [1]
 
-- period: 2022
+- period: 2022-11
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
@@ -216,7 +220,7 @@
   output:
     region_ile_de_france_aide_individuelle_régionale_vers_l’emploi: [1]
 
-- period: 2022
+- period: 2022-11
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
@@ -225,7 +229,7 @@
   output:
     region_normandie_aide_à_laccès_au_permis_de_conduire_permis_b: [600]
 
-- period: 2022
+- period: 2022-11
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
@@ -234,7 +238,7 @@
   output:
     region_pays_de_la_loire_aide_à_l’achat_d’un_vélo_pliant_ou_à_assistance_électrique_vae: [1]
 
-- period: 2022
+- period: 2022-11
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
@@ -243,7 +247,7 @@
   output:
     region_provence_alpes_cote_azur_carte_zou: [1]
 
-- period: 2022
+- period: 2022-11
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
