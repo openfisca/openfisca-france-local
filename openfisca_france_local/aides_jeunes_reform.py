@@ -7,14 +7,18 @@ from pathlib import Path
 from numpy.core.defchararray import startswith
 import numpy as np
 
-from openfisca_france.model.base import *
+# from openfisca_france.model.base import *
+from openfisca_france.model.base import (
+    TypesMention, TypesActivite, Variable, Individu, MONTH)
 from openfisca_core import reforms
 from openfisca_core.periods import Period
 
 
 from openfisca_core.populations.population import Population
-from openfisca_france.model.prestations.education import TypesScolarite, TypesClasse
-from openfisca_france.model.caracteristiques_socio_demographiques.logement import TypesCodeInseeRegion
+from openfisca_france.model.prestations.education import (
+    TypesScolarite, TypesClasse)
+from openfisca_france.model.caracteristiques_socio_demographiques.logement import (
+    TypesCodeInseeRegion)
 from openfisca_france.model.caracteristiques_socio_demographiques.demographie import RegimeSecuriteSociale
 from openfisca_france.model.caracteristiques_socio_demographiques.demographie import GroupeSpecialitesFormation
 
@@ -164,9 +168,18 @@ type_table = {
 
 def generate_variable(benefit: dict):
 
-    def formula(individu: Population, period: Period):
+    value_type = type_table[benefit['type']]
 
-        def eval_conditions(conditions: dict):
+    def formula(individu: Population, period: Period):
+        def calcul_montant_eligible(
+                amount: int, is_profile_eligible: bool, general_eligibilities: np.array):
+            if value_type == float:
+                montant_final = amount * is_profile_eligible * general_eligibilities
+            else:
+                montant_final = general_eligibilities * is_profile_eligible
+            return montant_final
+
+        def eval_conditions(conditions: dict) -> np.array:
 
             test_conditions = [(condition_table[condition['type']], condition)
                                for condition in conditions]
@@ -175,7 +188,6 @@ def generate_variable(benefit: dict):
                 test[0](individu, period, test[1]) for test in test_conditions]
             return sum(conditions_results) == len(conditions)
 
-        value_type = type_table[benefit['type']]
         amount = benefit.get('montant')
 
         profils_eligible: dict = benefit["profils"]
@@ -192,16 +204,17 @@ def generate_variable(benefit: dict):
 
             eligibilities = [eval_profil(profil)
                              for profil in profils_eligible]
-            is_profile_eligible = sum(eligibilities) >= 1
+            is_profile_eligible: bool = sum(eligibilities) >= 1
 
         conditions_generales = benefit['conditions_generales']
         general_eligibilities = eval_conditions(conditions_generales)
-        return amount * is_profile_eligible * general_eligibilities if value_type == float else general_eligibilities * is_profile_eligible
-    # Ce return fonctionnera car nos aides n'ont que deux types : bool et float
-    # mais ce n'est pas élégant. (surtout qu'il faut créer une deuxième variable value_type)
+        montant_eligible = calcul_montant_eligible(
+            amount, is_profile_eligible, general_eligibilities)
+
+        return montant_eligible
 
     return type(benefit['slug'], (Variable,), {
-        "value_type": float,  # hardcoded - make it fail and change
+        "value_type": value_type,
         "entity": Individu,
         "definition_period": MONTH,
         "formula": formula,
@@ -224,7 +237,9 @@ class aides_jeunes_reform_dynamic(reforms.Reform):
         def isYAMLfile(path: str): return str(path).endswith(
             '.yml') or str(path).endswith('.yaml')
         liste_fichiers = [
-            str(benefit) for benefit in Path(benefits_folder).iterdir() if isYAMLfile(benefit)]
+            str(benefit) for benefit in Path(benefits_folder).iterdir()
+            if isYAMLfile(benefit)
+        ]
         return liste_fichiers
 
     def apply(self):
