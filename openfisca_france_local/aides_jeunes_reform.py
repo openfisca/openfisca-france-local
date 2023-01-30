@@ -41,17 +41,17 @@ def is_age_eligible(individu, period, condition):
 
 def is_department_eligible(individu: Population, period: Period, condition):
     depcom = individu.menage('depcom', period)
-    return sum([startswith(depcom, code.encode('UTF-8'))for code in condition['values']])
+    return sum([startswith(depcom, code.encode('UTF-8'))for code in condition['values']]) > 0
 
 
 def is_region_eligible(individu: Population, period: Period, condition):
     region = individu.menage('region', period)
-    return sum([region == TypesCodeInseeRegion(code_region) for code_region in condition['values']])
+    return sum([region == TypesCodeInseeRegion(code_region) for code_region in condition['values']]) > 0
 
 
 def is_regime_securite_sociale_eligible(individu: Population, period: Period, condition):
     regime_securite_sociale = individu('regime_securite_sociale', period)
-    return sum([regime_securite_sociale == RegimeSecuriteSociale[regime] for regime in condition['includes']])
+    return sum([regime_securite_sociale == RegimeSecuriteSociale[regime] for regime in condition['includes']]) > 0
 
 
 def is_quotient_familial_eligible(individu: Population, period: Period, condition) -> np.array:
@@ -80,13 +80,13 @@ def is_beneficiaire_rsa_eligible(individu: Population, period: Period, condition
 def is_annee_etude_eligible(individu: Population, period: Period, condition) -> np.array:
     current_year = individu(
         'annee_etude', period)
-    return sum([current_year == TypesClasse[value] for value in condition['values']])
+    return sum([current_year == TypesClasse[value] for value in condition['values']]) > 0
 
 
 def has_mention_baccalaureat(individu: Population, period: Period, condition) -> np.array:
     has_mention = individu(
         'mention_baccalaureat', period)
-    return sum([has_mention == TypesMention[value] for value in condition['values']])
+    return sum([has_mention == TypesMention[value] for value in condition['values']]) > 0
 
 
 def is_boursier(individu: Population, period: Period, condition: dict) -> np.array:
