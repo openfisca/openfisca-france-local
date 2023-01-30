@@ -37,12 +37,12 @@ def is_age_eligible(individu, period, condition):
 
 
 def is_department_eligible(individu: Population, period: Period, condition):
-    depcom = individu.menage('depcom', period.first_month)
+    depcom = individu.menage('depcom', period)
     return sum([startswith(depcom, code.encode('UTF-8'))for code in condition['values']])
 
 
 def is_region_eligible(individu: Population, period: Period, condition):
-    region = individu.menage('region', period.first_month)
+    region = individu.menage('region', period)
     return sum([region == TypesCodeInseeRegion(code_region) for code_region in condition['values']])
 
 
@@ -65,7 +65,7 @@ def is_quotient_familial_eligible(individu: Population, period: Period, conditio
 def is_formation_sanitaire_social_eligible(individu: Population, period: Period, condition) -> np.array:
     id_formation_sanitaire_social = GroupeSpecialitesFormation.groupe_330
     id_formation_groupe = individu(
-        'groupe_specialites_formation', period.first_month)
+        'groupe_specialites_formation', period)
     return id_formation_groupe == id_formation_sanitaire_social
 
 
@@ -76,7 +76,7 @@ def is_beneficiaire_rsa_eligible(individu: Population, period: Period, condition
 
 def is_annee_etude_eligible(individu: Population, period: Period, condition) -> np.array:
     current_year = individu(
-        'annee_etude', period.first_month)
+        'annee_etude', period)
     return sum([current_year == TypesClasse[value] for value in condition['values']])
 
 
@@ -87,46 +87,46 @@ def has_mention_baccalaureat(individu: Population, period: Period, condition) ->
 
 
 def is_boursier(individu: Population, period: Period, condition: dict) -> np.array:
-    return individu('boursier', period.first_month)
+    return individu('boursier', period)
 
 
 def is_chomeur(individu: Population, period: Period) -> np.array:
-    return individu('activite', period.first_month) == TypesActivite.chomeur
+    return individu('activite', period) == TypesActivite.chomeur
 
 
 def is_stagiaire(individu: Population, period: Period) -> np.array:
-    return individu('stagiaire', period.first_month)
+    return individu('stagiaire', period)
 
 
 def is_apprenti(individu: Population, period: Period) -> np.array:
-    return individu('apprenti', period.first_month)
+    return individu('apprenti', period)
 
 
 def is_enseignement_superieur(individu: Population, period: Period) -> np.array:
     return individu(
-        'scolarite', period.first_month) == TypesScolarite.enseignement_superieur
+        'scolarite', period) == TypesScolarite.enseignement_superieur
 
 
 def is_lyceen(individu: Population, period: Period) -> np.array:
     return individu(
-        'scolarite', period.first_month) == TypesScolarite.lycee
+        'scolarite', period) == TypesScolarite.lycee
 
 
 def is_etudiant(individu: Population, period: Period) -> np.array:
     return individu(
-        'etudiant', period.first_month)
+        'etudiant', period)
 
 
 def is_professionnalisation(individu: Population, period: Period) -> np.array:
-    return individu('professionnalisation', period.first_month)
+    return individu('professionnalisation', period)
 
 
 def is_actif(individu: Population, period: Period) -> np.array:
-    return individu('activite', period.first_month) == TypesActivite.actif
+    return individu('activite', period) == TypesActivite.actif
 
 
 def is_inactif(individu: Population, period: Period) -> np.array:
-    return individu('activite', period.first_month) == TypesActivite.inactif
+    return individu('activite', period) == TypesActivite.inactif
 
 
 condition_table = {
@@ -159,13 +159,6 @@ profil_table = {
 type_table = {
     'float': float,
     'bool': bool,
-}
-
-period_table = {
-    'ponctuelle': ETERNITY,
-    'mensuelle': MONTH,
-    'annuelle': YEAR,
-    'autre': ETERNITY,
 }
 
 
@@ -208,9 +201,9 @@ def generate_variable(benefit: dict):
     # mais ce n'est pas élégant. (surtout qu'il faut créer une deuxième variable value_type)
 
     return type(benefit['slug'], (Variable,), {
-        "value_type": float,  # hardcoded
+        "value_type": float,  # hardcoded - make it fail and change
         "entity": Individu,
-        "definition_period": period_table[benefit['periodicite']],
+        "definition_period": MONTH,
         "formula": formula,
 
     })

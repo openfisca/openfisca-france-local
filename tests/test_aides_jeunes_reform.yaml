@@ -25,8 +25,7 @@
     apprenti: [true, true, false]
     activite: ["actif", "chomeur", "actif"]
   output:
-    hauts_de_france_carte_generation_apprentis_aide_transport:
-      2022 : [200, 0, 0]
+    hauts_de_france_carte_generation_apprentis_aide_transport: [200, 0, 0]
 
 - period: 2022-11
   reforms:
@@ -37,15 +36,14 @@
   output:
     region_auvergne_rhone_alpes_abonnement_illico: [True, True, False, False]
 
-# - period: 2022-01
-#   reforms:
-#   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
-#   input:
-#     age: [25,26, 27, 27]
-#     depcom: ["02408", "02408", "02408", "84"]
-#   output:
-#     hauts_de_france_ma_carte_ter:
-#       2022: [False, True, True, False]
+- period: 2022-01
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    age: [25,26, 27, 27]
+    depcom: ["02408", "02408", "02408", "84"]
+  output:
+    hauts_de_france_ma_carte_ter: [False, True, True, False]
 
 - period: 2022-11
   reforms:
@@ -57,16 +55,18 @@
   output:
     caf_morbihan_aide_au_brevet_daptitude_aux_fonctions_de_directeur_bafd: [286, 0]
 
-# - period: 2022-11
-#   reforms:
-#   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
-#   input:
-#     age:  [18, 18]
-#     depcom: ["38120", "38120"]
-#     rfr: [800, 801]
-#     nbptr: [1, 1]
-#   output:
-#     caf_isere_aide_au_bafa_pour_une_session_de_formation_générale_et_dapprofondissement: [200, 0]
+- period: 2022-11
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    age:  [18, 18]
+    depcom: ["38120", "38120"]
+    rfr:
+      2022: [800, 801]
+    nbptr:
+      2022: [1, 1]
+  output:
+    caf_isere_aide_au_bafa_pour_une_session_de_formation_générale_et_dapprofondissement: [200, 0]
 
 - period: 2022-01
   reforms:
@@ -78,8 +78,7 @@
     stagiaire: [true,true,false,false]
     scolarite: ["inconnue", "inconnue", "inconnue", "enseignement_superieur"]
   output:
-    guadeloupe_bourse_sanitaire:
-      2022: [5736, 0, 0, 5736]
+    guadeloupe_bourse_sanitaire: [5736, 0, 0, 5736]
 
 - period: 2022-11
   reforms:
@@ -99,8 +98,7 @@
     depcom: ["41018", "41018"]
     activite: ["etudiant", "chomeur"]
   output:
-    centre_val_de_loire_cheque_emploi:
-      2022: [0, 1]
+    centre_val_de_loire_cheque_emploi: [0, 1]
 
 - period: 2022-11
   reforms:
