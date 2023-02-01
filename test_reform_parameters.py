@@ -72,7 +72,10 @@ def test_create_age_strictement_inferieur_parameter_node(parameters):
     generate_parameter_in_TBS(parameters,
                               "benefits/departement-val-d-oise-bourse-aux-apprentis.yml")
 
-    assert parameters.departement_val_d_oise_bourse_aux_apprentis.age.strictement_inferieur
+    benefit_parameter = parameters(str(date.today(
+    ))).departement_val_d_oise_bourse_aux_apprentis.age.strictement_inferieur
+
+    assert benefit_parameter == 25
 
 
 def test_create_age_strictement_superieur_parameter_node(parameters):
