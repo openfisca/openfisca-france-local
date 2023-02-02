@@ -1,7 +1,0 @@
-label: aide à l’achat d’un vélo pliant ou à assistance électrique (VAE)
-conditions_generales:
-  - type: regions
-    values:
-      - "52"
-profils: []
-type: bool

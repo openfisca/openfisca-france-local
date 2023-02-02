@@ -4,7 +4,7 @@
   input:
     age: [15, 16, 17]
   output:
-    caf_aide_nationale_bafa: [0, 106, 106]
+    test_age_condition: [0, 106, 106]
 
 - period: 2022-11
   reforms:
@@ -13,7 +13,7 @@
     age: [15, 16, 17, 18]
     depcom: ["01123", "01123","01123","33123"]
   output:
-    caf_ain_aide_bafa_session_generale: [0, 160, 160, 0]
+    test_condition_departements: [0, 160, 160, 0]
 
 - period: 2022-01
   reforms:
@@ -24,7 +24,7 @@
     apprenti: [true, true, false]
     activite: ["actif", "chomeur", "actif"]
   output:
-    hauts_de_france_carte_generation_apprentis_aide_transport: [200, 0, 0]
+    test_profil_apprenti: [200, 0, 0]
 
 - period: 2022-11
   reforms:
@@ -33,7 +33,7 @@
     age: [24, 25,26, 25]
     depcom: ["01123", "01123", "01123", "02408"]
   output:
-    region_auvergne_rhone_alpes_abonnement_illico: [True, True, False, False]
+    test_condition_region_and_type_bool: [True, True, False, False]
 
 - period: 2022-01
   reforms:
@@ -42,7 +42,7 @@
     age: [25,26, 27, 27]
     depcom: ["02408", "02408", "02408", "84"]
   output:
-    hauts_de_france_ma_carte_ter: [False, True, True, False]
+    test_other_region: [False, True, True, False]
 
 - period: 2022-11
   reforms:
@@ -52,7 +52,7 @@
     depcom: ["56260", "56260"]
     regime_securite_sociale: [regime_general, regime_agricole]
   output:
-    caf_morbihan_aide_au_brevet_daptitude_aux_fonctions_de_directeur_bafd: [286, 0]
+    test_condition_regime_securite_sociale: [286, 0]
 
 - period: 2022-11
   reforms:
@@ -65,7 +65,7 @@
     nbptr:
       2022: [1, 1]
   output:
-    caf_isere_aide_au_bafa_pour_une_session_de_formation_générale_et_dapprofondissement: [200, 0]
+    test_condition_quotient_familial: [200, 0]
 
 - period: 2022-01
   reforms:
@@ -77,7 +77,7 @@
     stagiaire: [true,true,false,false]
     scolarite: ["inconnue", "inconnue", "inconnue", "enseignement_superieur"]
   output:
-    guadeloupe_bourse_sanitaire: [5736, 0, 0, 5736]
+    test_condition_formation_sanitaire_social_et_simples_profils: [5736, 0, 0, 5736]
 
 - period: 2022-11
   reforms:
@@ -88,7 +88,7 @@
     stagiaire: [true,true]
     rsa: [1, 0]
   output:
-    region_occitanie_revenu_ecologique_jeune: [1000, 0]
+    test_condition_beneficiaire_rsa: [1000, 0]
 
 - period: 2022-01
   reforms:
@@ -97,7 +97,7 @@
     depcom: ["41018", "41018"]
     activite: ["etudiant", "chomeur"]
   output:
-    centre_val_de_loire_cheque_emploi: [0, 1]
+    test_profil_chomeur: [0, 1]
 
 - period: 2022-11
   reforms:
@@ -106,7 +106,7 @@
     depcom: ["41018", "41018"]
     scolarite: ["inconnue", "lycee"]
   output:
-    centre_val_de_loire_aide_au_1er_equipement_professionnel: [0, 50]
+    test_profil_lyceen: [0, 50]
 
 - period: 2022-11
   reforms:
@@ -116,7 +116,7 @@
     groupe_specialites_formation: ["groupe_330", "groupe_330"]
     activite: ["inactif", "etudiant"]
   output:
-    grand_est_bourse_du_secteur_sanitaire_et_social: [0, 1]
+    test_profil_etudiant: [0, 1]
 
 - period: 2022-11
   reforms:
@@ -126,7 +126,7 @@
     professionnalisation: [false, true, false, false, false]
     activite: ["inactif", "inactif", "actif", "salarie", "service_civique"]
   output:
-    region_bretagne_ehop_emploi: [0, 1, 1, 1,1]
+    test_profil_actif_et_professionnalisation: [0, 1, 1, 1,1]
 
 - period: 2022-11
   reforms:
@@ -136,17 +136,7 @@
     depcom: ["54395", "54395", "54395"]
     scolarite: ["enseignement_superieur", "enseignement_superieur", "grande_ecole_du_numerique"]
   output:
-    grand_est_aide_mobilite_internationale_etudiants: [0, 1, 0]
-
-- period: 2022-11
-  reforms:
-  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
-  input:
-    age: [25]
-    depcom: ["23096"]
-    activite: ["retraite"]
-  output:
-    nouvelle_aquitaine_aide_passage_permis_conduire_b: [0]
+    test_profil_with_condition: [0, 1, 0]
 
 - period: 2022-11
   reforms:
@@ -157,7 +147,7 @@
     scolarite: ["enseignement_superieur", "enseignement_superieur", "enseignement_superieur"]
     annee_etude: ["cap_1", "master_1", "master_2"]
   output:
-    guadeloupe_hebergement_cite_internationale_universitaire_de_paris: [0, 1, 1]
+    test_condition_annee_etude: [0, 1, 1]
 
 - period: 2022-11
   reforms:
@@ -167,8 +157,7 @@
     scolarite: ["lycee"]
     boursier: [true]
   output:
-    region_bourgogne_franche_comte_restauration_familles_boursieres: [1]
-
+    test_condition_boursier: [1]
 
 - period: 2022-11
   reforms:
@@ -178,16 +167,7 @@
     scolarite: ["enseignement_superieur"]
     mention_baccalaureat: ["mention_tres_bien"]
   output:
-    auvergne_rhone_alpes_bourse_merite: [500]
-
-- period: 2022-11
-  reforms:
-  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
-  input:
-    depcom: ["97209"]
-    age: [18]
-  output:
-    martinique_fonds_aide_jeunes: [1]
+    test_condition_mention_baccalaureat: [500]
 
 - period: 2022-11
   reforms:
@@ -196,17 +176,7 @@
     depcom: ["97302"]
     age: [18]
   output:
-    guyane_fonds_aide_jeunes: [1000]
-
-- period: 2022-11
-  reforms:
-  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
-  input:
-    depcom: ["97411"]
-    groupe_specialites_formation: ["groupe_330"]
-    scolarite: ["enseignement_superieur"]
-  output:
-    region_la_reunion_bourse_régionale_sanitaire_et_sociale: [1]
+    test_condition_region_dom_guyane: [1000]
 
 - period: 2022-11
   reforms:
@@ -215,34 +185,7 @@
     depcom: ["94028"]
     activite: ["chomeur"]
   output:
-    region_ile_de_france_aide_individuelle_régionale_vers_l’emploi: [1]
-
-- period: 2022-11
-  reforms:
-  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
-  input:
-    depcom: ["76540"]
-    stagiaire: [true]
-  output:
-    region_normandie_aide_à_laccès_au_permis_de_conduire_permis_b: [600]
-
-- period: 2022-11
-  reforms:
-  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
-  input:
-    depcom: ["44109"]
-    stagiaire: [true]
-  output:
-    region_pays_de_la_loire_aide_à_l’achat_d’un_vélo_pliant_ou_à_assistance_électrique_vae: [1]
-
-- period: 2022-11
-  reforms:
-  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
-  input:
-    depcom: ["13055"]
-    age: [18]
-  output:
-    region_provence_alpes_cote_azur_carte_zou: [1]
+    test_condition_region_idf: [1]
 
 - period: 2022-11
   reforms:
@@ -251,4 +194,4 @@
     depcom: ["2A004"]
     age: [18]
   output:
-    departement_corse_bourse_animazioni: [600]
+    test_condition_region_corse: [600]
