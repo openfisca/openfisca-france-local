@@ -32,21 +32,21 @@ def test_create_benefit_parameter_node(parameters):
     generate_parameter_in_TBS(parameters,
                               "benefits/caf_oise-aide-au-bafa-pour-une-session-de-formation-dapprofondissement-ou-de-qualification.yaml")
 
-    assert parameters.caf_oise_aide_au_bafa_pour_une_session_de_formation_dapprofondissement_ou_de_qualification
+    assert parameters.caf_oise_aide_au_bafa_pour_une_session_de_formation_dapprofondissement_ou_de_qualification.conditions
 
 
 def test_create_age_parameter_node(parameters):
     generate_parameter_in_TBS(parameters,
                               "benefits/caf_oise-aide-au-bafa-pour-une-session-de-formation-dapprofondissement-ou-de-qualification.yaml")
 
-    assert parameters.caf_oise_aide_au_bafa_pour_une_session_de_formation_dapprofondissement_ou_de_qualification.age
+    assert parameters.caf_oise_aide_au_bafa_pour_une_session_de_formation_dapprofondissement_ou_de_qualification.conditions.age
 
 
 def test_create_age_maximum_parameter_node(parameters):
     generate_parameter_in_TBS(parameters,
                               "benefits/caf_oise-aide-au-bafa-pour-une-session-de-formation-dapprofondissement-ou-de-qualification.yaml")
 
-    assert parameters.caf_oise_aide_au_bafa_pour_une_session_de_formation_dapprofondissement_ou_de_qualification.age.maximum
+    assert parameters.caf_oise_aide_au_bafa_pour_une_session_de_formation_dapprofondissement_ou_de_qualification.conditions.age.maximum
 
 
 def test_create_age_maximum_parameter_with_value(parameters):
@@ -54,7 +54,7 @@ def test_create_age_maximum_parameter_with_value(parameters):
                               "benefits/caf_oise-aide-au-bafa-pour-une-session-de-formation-dapprofondissement-ou-de-qualification.yaml")
 
     assert parameters(str(date.today(
-    ))).caf_oise_aide_au_bafa_pour_une_session_de_formation_dapprofondissement_ou_de_qualification.age.maximum == 16
+    ))).caf_oise_aide_au_bafa_pour_une_session_de_formation_dapprofondissement_ou_de_qualification.conditions.age.maximum == 16
 
 
 def test_create_both_age_parameter_node(parameters):
@@ -62,7 +62,7 @@ def test_create_both_age_parameter_node(parameters):
                               "benefits/caf_pas_de_calais-aide-au-bafa-pour-une-session-de-formation-générale.yaml")
 
     benefit_parameter = parameters(str(date.today(
-    ))).caf_pas_de_calais_aide_au_bafa_pour_une_session_de_formation_générale
+    ))).caf_pas_de_calais_aide_au_bafa_pour_une_session_de_formation_générale.conditions
 
     assert benefit_parameter.age.maximum == 25 and \
         benefit_parameter.age.minimum == 16
@@ -73,7 +73,7 @@ def test_create_age_strictement_inferieur_parameter_node(parameters):
                               "benefits/departement-val-d-oise-bourse-aux-apprentis.yaml")
 
     benefit_parameter = parameters(str(date.today(
-    ))).departement_val_d_oise_bourse_aux_apprentis.age.strictement_inferieur
+    ))).departement_val_d_oise_bourse_aux_apprentis.conditions.age.strictement_inferieur
 
     assert benefit_parameter == 25
 
@@ -89,7 +89,7 @@ def test_create_age_strictement_superieur_parameter_node(parameters):
     parameters.add_child(
         new_parameter_node.name, new_parameter_node)
 
-    assert parameters.inf_parameter.age.strictement_superieur
+    assert parameters.inf_parameter.conditions.age.strictement_superieur
 
 
 def test_create_age_value_parameter_node(parameters):
@@ -99,7 +99,7 @@ def test_create_age_value_parameter_node(parameters):
     at_instant = parameters("2023-01-01")
     parameter = at_instant.departement_val_d_oise_bourse_aux_apprentis
 
-    assert parameter.age.strictement_inferieur == 25
+    assert parameter.conditions.age.strictement_inferieur == 25
 
 
 def test_create_quotient_familial_parameter(parameters):
@@ -109,7 +109,7 @@ def test_create_quotient_familial_parameter(parameters):
     at_instant = parameters("2023-01-01")
     parameter = at_instant.caf_pas_de_calais_aide_au_bafa_pour_une_session_de_formation_générale
 
-    assert parameter.quotient_familial.month.maximum == 1000
+    assert parameter.conditions.quotient_familial.month.maximum == 1000
 
 
 def test_create_region_parameter(parameters):
@@ -119,7 +119,7 @@ def test_create_region_parameter(parameters):
     at_instant = parameters("2023-01-01")
     parameter = at_instant.hauts_de_france_carte_generation_apprentis_aide_transport
 
-    assert parameter.regions == ["32"]
+    assert parameter.conditions.regions == ["32"]
 
 
 def test_create_regime_securite_sociale_parameter(parameters):
@@ -129,7 +129,7 @@ def test_create_regime_securite_sociale_parameter(parameters):
     at_instant = parameters("2023-01-01")
     parameter = at_instant.caf_morbihan_aide_au_brevet_daptitude_aux_fonctions_de_directeur_bafd
 
-    assert parameter.regime_securite_sociale.includes == ["regime_general"]
+    assert parameter.conditions.regime_securite_sociale.includes == ["regime_general"]
 
 
 def test_create_regime_securite_sociale_excludes_parameter(parameters):
@@ -139,7 +139,7 @@ def test_create_regime_securite_sociale_excludes_parameter(parameters):
     at_instant = parameters("2023-01-01")
     parameter = at_instant.caf_val_de_marne_aide_bafa_approfondissement_qualification
 
-    assert parameter.regime_securite_sociale.excludes == ["regime_agricole"]
+    assert parameter.conditions.regime_securite_sociale.excludes == ["regime_agricole"]
 
 
 def test_create_formation_sanitaire_social_parameter(parameters):
@@ -149,11 +149,11 @@ def test_create_formation_sanitaire_social_parameter(parameters):
     at_instant = parameters("2023-01-01")
     parameter = at_instant.guadeloupe_bourse_sanitaire
 
-    assert parameter.formation_sanitaire_social
+    assert parameter.conditions.formation_sanitaire_social
 
 
 def test_load_reforme_aides_jeunes():
     tbs = CountryTaxBenefitSystem()
     tbs_reformed = aides_jeunes_reform_dynamic(tbs)
 
-    assert tbs_reformed.parameters.guadeloupe_bourse_sanitaire
+    assert tbs_reformed.parameters.guadeloupe_bourse_sanitaire.conditions

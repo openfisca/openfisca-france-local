@@ -92,13 +92,13 @@ def conditions_list_to_parameters(
         parameter_name: str, conditions: "list[dict]") -> ParameterNode:
     conditions_formated: "list[dict]" = [condition_to_parameter(
         condition) for condition in conditions]
-    data: dict = {}
+    data: dict = {"conditions" : {}}
     for condition in conditions_formated:
         for key in condition.keys():
-            if key in data:
-                data[key].update(condition[key])
+            if key in data["conditions"]:
+                data["conditions"][key].update(condition[key])
             else:
-                data.update(condition)
+                data["conditions"].update(condition)
 
     return ParameterNode(parameter_name, data=data)
 
