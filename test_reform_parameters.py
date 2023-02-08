@@ -129,7 +129,8 @@ def test_create_regime_securite_sociale_parameter(parameters):
     at_instant = parameters("2023-01-01")
     parameter = at_instant.caf_morbihan_aide_au_brevet_daptitude_aux_fonctions_de_directeur_bafd
 
-    assert parameter.conditions.regime_securite_sociale.includes == ["regime_general"]
+    assert parameter.conditions.regime_securite_sociale.includes == [
+        "regime_general"]
 
 
 def test_create_regime_securite_sociale_excludes_parameter(parameters):
@@ -139,7 +140,20 @@ def test_create_regime_securite_sociale_excludes_parameter(parameters):
     at_instant = parameters("2023-01-01")
     parameter = at_instant.caf_val_de_marne_aide_bafa_approfondissement_qualification
 
-    assert parameter.conditions.regime_securite_sociale.excludes == ["regime_agricole"]
+    assert parameter.conditions.regime_securite_sociale.excludes == [
+        "regime_agricole"]
+
+
+def test_create_regime_securite_sociale_excludes_and_include_parameter(parameters):
+    generate_parameter_in_TBS(parameters,
+                              "benefits/test_condition_regime_securite_sociale_excludes_and_includes.yml")
+
+    at_instant = parameters("2023-01-01")
+    parameter = at_instant.test_condition_regime_securite_sociale_excludes_and_includes
+
+    assert parameter.conditions.regime_securite_sociale.excludes == [
+        "regime_agricole"] and parameter.conditions.regime_securite_sociale.includes == [
+        "regime_general"]
 
 
 def test_create_formation_sanitaire_social_parameter(parameters):

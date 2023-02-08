@@ -42,11 +42,11 @@ def condition_to_parameter(condition: dict) -> dict:
                 }}
 
         if "excludes" in condition.keys():
-            data[condition_type] = {
+            data[condition_type].update({
                 "excludes": {
                     "values": {
                         date: {"value": condition["excludes"]}}
-                }}
+                }})
 
         return data
 
@@ -91,7 +91,7 @@ def conditions_list_to_parameters(
         parameter_name: str, conditions: "list[dict]") -> ParameterNode:
     conditions_formated: "list[dict]" = [condition_to_parameter(
         condition) for condition in conditions]
-    data: dict = {"conditions" : {}}
+    data: dict = {"conditions": {}}
     for condition in conditions_formated:
         for key in condition.keys():
             if key in data["conditions"]:
