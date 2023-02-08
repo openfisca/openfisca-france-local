@@ -24,26 +24,26 @@ from openfisca_france.model.base import ParameterNode
 from openfisca_core.parameters.parameter_node_at_instant import ParameterNodeAtInstant
 from condition_to_parameter import create_benefit_parameters
 
+# operations = {
+#     '<': operator.lt,
+#     '<=': operator.le,
+#     '>': operator.gt,
+#     '>=': operator.ge,
+# }
 operations = {
-    '<': operator.lt,
-    '<=': operator.le,
-    '>': operator.gt,
-    '>=': operator.ge,
+    'strictement_inferieur': operator.lt,
+    'maximum': operator.le,
+    'strictement_superieur': operator.gt,
+    'minimum': operator.ge,
 }
 
 
 def is_age_eligible(individu: Population, period: Period, condition: dict, parameters=None):
-    operations_text = {
-        'strictement_inferieur': operator.lt,
-        'maximum': operator.le,
-        'strictement_superieur': operator.gt,
-        'minimum': operator.ge,
-    }
 
     individus_age = individu('age', period)
     condition_age = parameters.age
 
-    age_constraints = [(operations_text[constraint],  condition_age[constraint])
+    age_constraints = [(operations[constraint],  condition_age[constraint])
                        for constraint in condition_age]
 
     eligibilities = [constraint[0](individus_age, constraint[1])
@@ -85,9 +85,16 @@ def is_quotient_familial_eligible(individu: Population, period: Period, conditio
     nbptr = individu.foyer_fiscal('nbptr', period.this_year)
     quotient_familial = rfr / nbptr
 
-    comparison = operations[condition['operator']]
+    condition_QF = parameters.quotient_familial.month
 
-    return comparison(quotient_familial, condition['value'])
+    QF_constraints = [(operations[constraint],  condition_QF[constraint])
+                      for constraint in condition_QF]
+
+    eligibilities = [constraint[0](quotient_familial, constraint[1])
+                     for constraint in QF_constraints]
+    # comparison = operations[condition_QF.month]
+
+    return sum(eligibilities)
 
 
 def is_formation_sanitaire_social_eligible(individu: Population, period: Period, condition: dict, parameters=None) -> np.array:
