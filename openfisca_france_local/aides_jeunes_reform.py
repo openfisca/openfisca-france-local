@@ -66,7 +66,8 @@ def is_region_eligible(individu: Population, period: Period, condition: dict, pa
 
 def is_regime_securite_sociale_eligible(individu: Population, period: Period, condition: dict, parameters=None):
     regime_securite_sociale = individu('regime_securite_sociale', period)
-    return sum([regime_securite_sociale == RegimeSecuriteSociale[regime] for regime in condition['includes']]) > 0
+    eligible_regimes = parameters.regime_securite_sociale.includes
+    return sum([regime_securite_sociale == RegimeSecuriteSociale[regime] for regime in eligible_regimes]) > 0
 
 
 def is_quotient_familial_eligible(individu: Population, period: Period, condition: dict, parameters=None) -> np.array:

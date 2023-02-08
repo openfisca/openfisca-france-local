@@ -26,33 +26,33 @@
   output:
     test_profil_apprenti: [200, 0, 0]
 
-# - period: 2022-11
-#   reforms:
-#   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
-#   input:
-#     age: [24, 25,26, 25]
-#     depcom: ["01123", "01123", "01123", "02408"]
-#   output:
-#     test_condition_region_and_type_bool: [True, True, False, False]
+- period: 2022-11
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    age: [24, 25,26, 25]
+    depcom: ["01123", "01123", "01123", "02408"]
+  output:
+    test_condition_region_and_type_bool: [True, True, False, False]
 
-# - period: 2022-01
-#   reforms:
-#   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
-#   input:
-#     age: [25,26, 27, 27]
-#     depcom: ["02408", "02408", "02408", "84"]
-#   output:
-#     test_other_region: [False, True, True, False]
+- period: 2022-01
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    age: [25,26, 27, 27]
+    depcom: ["02408", "02408", "02408", "84"]
+  output:
+    test_other_region: [False, True, True, False]
 
-# - period: 2022-11
-#   reforms:
-#   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
-#   input:
-#     age:  [18, 19]
-#     depcom: ["56260", "56260"]
-#     regime_securite_sociale: [regime_general, regime_agricole]
-#   output:
-#     test_condition_regime_securite_sociale: [286, 0]
+- period: 2022-11
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    age:  [18, 19]
+    depcom: ["56260", "56260"]
+    regime_securite_sociale: [regime_general, regime_agricole]
+  output:
+    test_condition_regime_securite_sociale: [286, 0]
 
 # - period: 2022-11
 #   reforms:
