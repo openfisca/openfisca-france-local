@@ -60,7 +60,8 @@ def is_department_eligible(individu: Population, period: Period, condition: dict
 
 def is_region_eligible(individu: Population, period: Period, condition: dict, parameters=None):
     region = individu.menage('region', period)
-    return sum([region == TypesCodeInseeRegion(code_region) for code_region in condition['values']]) > 0
+    eligible_regions = parameters.regions
+    return sum([region == TypesCodeInseeRegion(code_region) for code_region in eligible_regions]) > 0
 
 
 def is_regime_securite_sociale_eligible(individu: Population, period: Period, condition: dict, parameters=None):

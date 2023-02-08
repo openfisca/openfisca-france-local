@@ -15,16 +15,16 @@
   output:
     test_condition_departements: [0, 160, 160, 0]
 
-# - period: 2022-01
-#   reforms:
-#   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
-#   input:
-#     age: [18,18, 18]
-#     depcom: ["02408", "38120", "59120"]
-#     apprenti: [true, true, false]
-#     activite: ["actif", "chomeur", "actif"]
-#   output:
-#     test_profil_apprenti: [200, 0, 0]
+- period: 2022-01
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    age: [18,18, 18]
+    depcom: ["02408", "38120", "59120"]
+    apprenti: [true, true, false]
+    activite: ["actif", "chomeur", "actif"]
+  output:
+    test_profil_apprenti: [200, 0, 0]
 
 # - period: 2022-11
 #   reforms:
