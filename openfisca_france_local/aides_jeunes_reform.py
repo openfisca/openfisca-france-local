@@ -66,8 +66,17 @@ def is_region_eligible(individu: Population, period: Period, condition: dict, pa
 
 def is_regime_securite_sociale_eligible(individu: Population, period: Period, condition: dict, parameters=None):
     regime_securite_sociale = individu('regime_securite_sociale', period)
-    eligible_regimes = parameters.regime_securite_sociale.includes
-    return sum([regime_securite_sociale == RegimeSecuriteSociale[regime] for regime in eligible_regimes]) > 0
+
+    if len(list(parameters.regime_securite_sociale)) > 1:
+        raise ValueError(
+            'Condition "regime_securite_sociale" does not support having both "includes" and "excludes" properties')
+
+    if "excludes" in parameters.regime_securite_sociale:
+        not_eligible_regimes = parameters.regime_securite_sociale.excludes
+        return sum([regime_securite_sociale != RegimeSecuriteSociale[regime] for regime in not_eligible_regimes]) > 0
+    else:
+        eligible_regimes = parameters.regime_securite_sociale.includes
+        return sum([regime_securite_sociale == RegimeSecuriteSociale[regime] for regime in eligible_regimes]) > 0
 
 
 def is_quotient_familial_eligible(individu: Population, period: Period, condition: dict, parameters=None) -> np.array:
@@ -204,13 +213,6 @@ def generate_variable(benefit: dict):
                 }, conditions_p) for condition_type in conditions_types]
                 conditions_results = [
                     test[0](individu, period, {}, test[2]) for test in test_conditions]
-                print(">>>>>>>>params<<<<<<<<<<")
-                print(f"conditions_p : {conditions_p}")
-                print(f"type conditions_p : {type(conditions_p)}")
-                print(f"test_conditions : {test_conditions}")
-                print(f"type(test_conditions[0]) : {type(test_conditions[0])}")
-
-                print("^^^^^^^^^ params ^^^^^^^^^")
             else:
                 test_conditions = [(condition_table[condition['type']], condition, parameters)
                                    for condition in conditions]
