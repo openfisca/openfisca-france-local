@@ -1,5 +1,4 @@
 from openfisca_france.model.base import (ParameterNode, Parameter)
-from openfisca_core.parameters.at_instant_like import AtInstantLike
 
 
 def condition_to_parameter(condition: dict) -> dict:

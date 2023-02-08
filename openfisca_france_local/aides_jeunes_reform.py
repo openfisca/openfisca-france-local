@@ -20,7 +20,8 @@ from openfisca_france.model.caracteristiques_socio_demographiques.logement impor
     TypesCodeInseeRegion)
 from openfisca_france.model.caracteristiques_socio_demographiques.demographie import RegimeSecuriteSociale
 from openfisca_france.model.caracteristiques_socio_demographiques.demographie import GroupeSpecialitesFormation
-
+from openfisca_france.model.base import ParameterNode
+from openfisca_core.parameters.parameter_node_at_instant import ParameterNodeAtInstant
 from condition_to_parameter import create_benefit_parameters
 
 operations = {
@@ -31,32 +32,51 @@ operations = {
 }
 
 
-def is_age_eligible(individu, period, condition):
+def is_age_eligible(individu: Population, period: Period, condition: dict, parameters=None):
+    operations_text = {
+        'strictement_inferieur': operator.lt,
+        'maximum': operator.le,
+        'strictement_superieur': operator.gt,
+        'minimum': operator.ge,
+    }
 
-    condition_age = condition['value']
     individus_age = individu('age', period)
+    print(f"$$$$$$$$$$$")
+    print(f"parameters : {parameters}")
+    condition_age = parameters.age
+    # age_constraints = [age_condition for age_condition in condition_age]
+    print(f"condition_age[constraint] : {condition_age['minimum']}")
 
-    comparison = operations[condition['operator']]
+    age_constraints = [(operations_text[constraint],  condition_age[constraint])
+                       for constraint in condition_age]
+    print(f"condition_age : {condition_age}")
+    print(f"age_constraints : {age_constraints}")
+    # print(f"age_operators : {age_operators}")
+    print(f"$$$$$$$$$$$")
 
-    return comparison(individus_age, condition_age)
+    # comparison = operations[condition['operator']]
+    eligibilities = [constraint[0](individus_age, constraint[1])
+                     for constraint in age_constraints]
+    print(f"len(age_constraints) : {len(age_constraints)}")
+    return sum(eligibilities)
 
 
-def is_department_eligible(individu: Population, period: Period, condition):
+def is_department_eligible(individu: Population, period: Period, condition: dict, parameters=None):
     depcom = individu.menage('depcom', period)
     return sum([startswith(depcom, code.encode('UTF-8'))for code in condition['values']]) > 0
 
 
-def is_region_eligible(individu: Population, period: Period, condition):
+def is_region_eligible(individu: Population, period: Period, condition: dict, parameters=None):
     region = individu.menage('region', period)
     return sum([region == TypesCodeInseeRegion(code_region) for code_region in condition['values']]) > 0
 
 
-def is_regime_securite_sociale_eligible(individu: Population, period: Period, condition):
+def is_regime_securite_sociale_eligible(individu: Population, period: Period, condition: dict, parameters=None):
     regime_securite_sociale = individu('regime_securite_sociale', period)
     return sum([regime_securite_sociale == RegimeSecuriteSociale[regime] for regime in condition['includes']]) > 0
 
 
-def is_quotient_familial_eligible(individu: Population, period: Period, condition) -> np.array:
+def is_quotient_familial_eligible(individu: Population, period: Period, condition: dict, parameters=None) -> np.array:
 
     rfr = individu.foyer_fiscal('rfr', period.this_year)
     nbptr = individu.foyer_fiscal('nbptr', period.this_year)
@@ -67,31 +87,31 @@ def is_quotient_familial_eligible(individu: Population, period: Period, conditio
     return comparison(quotient_familial, condition['value'])
 
 
-def is_formation_sanitaire_social_eligible(individu: Population, period: Period, condition) -> np.array:
+def is_formation_sanitaire_social_eligible(individu: Population, period: Period, condition: dict, parameters=None) -> np.array:
     id_formation_sanitaire_social = GroupeSpecialitesFormation.groupe_330
     id_formation_groupe = individu(
         'groupe_specialites_formation', period)
     return id_formation_groupe == id_formation_sanitaire_social
 
 
-def is_beneficiaire_rsa_eligible(individu: Population, period: Period, condition: dict) -> np.array:
+def is_beneficiaire_rsa_eligible(individu: Population, period: Period, condition: dict, parameters=None) -> np.array:
     rsa = individu.famille('rsa', period)
     return rsa > 0
 
 
-def is_annee_etude_eligible(individu: Population, period: Period, condition) -> np.array:
+def is_annee_etude_eligible(individu: Population, period: Period, condition: dict, parameters=None) -> np.array:
     current_year = individu(
         'annee_etude', period)
     return sum([current_year == TypesClasse[value] for value in condition['values']]) > 0
 
 
-def has_mention_baccalaureat(individu: Population, period: Period, condition) -> np.array:
+def has_mention_baccalaureat(individu: Population, period: Period, condition: dict, parameters=None) -> np.array:
     has_mention = individu(
         'mention_baccalaureat', period)
     return sum([has_mention == TypesMention[value] for value in condition['values']]) > 0
 
 
-def is_boursier(individu: Population, period: Period, condition: dict) -> np.array:
+def is_boursier(individu: Population, period: Period, condition: dict, parameters=None) -> np.array:
     return individu('boursier', period)
 
 
@@ -171,7 +191,7 @@ def generate_variable(benefit: dict):
 
     value_type = type_table[benefit['type']]
 
-    def formula(individu: Population, period: Period):
+    def formula(individu: Population, period: Period, parameters: ParameterNode):
         def calcul_montant_eligible(
                 amount: int, is_profile_eligible: bool, general_eligibilities: np.array):
             if value_type == float:
@@ -180,13 +200,29 @@ def generate_variable(benefit: dict):
                 montant_final = general_eligibilities * is_profile_eligible
             return montant_final
 
-        def eval_conditions(conditions: dict) -> np.array:
+        def eval_conditions(conditions: dict, parameters=None) -> np.array:
+            if parameters:
+                conditions_p: ParameterNodeAtInstant = parameters(
+                    period)[benefit['slug']].conditions
+                conditions_types: list[str] = [
+                    condition for condition in conditions_p]
+                test_conditions = [(condition_table[condition_type], {
+                }, conditions_p) for condition_type in conditions_types]
+                conditions_results = [
+                    test[0](individu, period, {}, test[2]) for test in test_conditions]
+                print(">>>>>>>>params<<<<<<<<<<")
+                print(f"conditions_p : {conditions_p}")
+                print(f"type conditions_p : {type(conditions_p)}")
+                print(f"test_conditions : {test_conditions}")
+                print(f"type(test_conditions[0]) : {type(test_conditions[0])}")
 
-            test_conditions = [(condition_table[condition['type']], condition)
-                               for condition in conditions]
+                print("^^^^^^^^^ params ^^^^^^^^^")
+            else:
+                test_conditions = [(condition_table[condition['type']], condition, parameters)
+                                   for condition in conditions]
 
-            conditions_results = [
-                test[0](individu, period, test[1]) for test in test_conditions]
+                conditions_results = [
+                    test[0](individu, period, test[1]) for test in test_conditions]
             return sum(conditions_results) == len(conditions)
 
         amount = benefit.get('montant')
@@ -206,12 +242,14 @@ def generate_variable(benefit: dict):
             eligibilities = [eval_profil(profil)
                              for profil in profils_eligible]
             is_profile_eligible: bool = sum(eligibilities) >= 1
-
         conditions_generales = benefit['conditions_generales']
-        general_eligibilities = eval_conditions(conditions_generales)
+
+        general_eligibilities = eval_conditions(
+            conditions_generales, parameters)
         montant_eligible = calcul_montant_eligible(
             amount, is_profile_eligible, general_eligibilities)
 
+        # return True
         return montant_eligible
 
     return type(benefit['slug'], (Variable,), {
