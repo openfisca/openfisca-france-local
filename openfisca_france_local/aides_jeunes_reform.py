@@ -41,29 +41,21 @@ def is_age_eligible(individu: Population, period: Period, condition: dict, param
     }
 
     individus_age = individu('age', period)
-    print(f"$$$$$$$$$$$")
-    print(f"parameters : {parameters}")
     condition_age = parameters.age
-    # age_constraints = [age_condition for age_condition in condition_age]
-    print(f"condition_age[constraint] : {condition_age['minimum']}")
 
     age_constraints = [(operations_text[constraint],  condition_age[constraint])
                        for constraint in condition_age]
-    print(f"condition_age : {condition_age}")
-    print(f"age_constraints : {age_constraints}")
-    # print(f"age_operators : {age_operators}")
-    print(f"$$$$$$$$$$$")
 
-    # comparison = operations[condition['operator']]
     eligibilities = [constraint[0](individus_age, constraint[1])
                      for constraint in age_constraints]
-    print(f"len(age_constraints) : {len(age_constraints)}")
     return sum(eligibilities)
 
 
 def is_department_eligible(individu: Population, period: Period, condition: dict, parameters=None):
     depcom = individu.menage('depcom', period)
-    return sum([startswith(depcom, code.encode('UTF-8'))for code in condition['values']]) > 0
+
+    eligible_departments = parameters.departements
+    return sum([startswith(depcom, code.encode('UTF-8'))for code in eligible_departments]) > 0
 
 
 def is_region_eligible(individu: Population, period: Period, condition: dict, parameters=None):
