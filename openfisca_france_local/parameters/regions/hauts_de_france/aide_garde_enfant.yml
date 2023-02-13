@@ -19,11 +19,17 @@ age_maximum_enfant:
     2017-02-01:
       value: 3
 
-plafond_ressources:
+plafond_multiple_smic:
   description: Montant maximal du revenu fiscal de référence du foyer
+  unit: smic
   reference:
     - https://www.hautsdefrance.fr/aide-garde-enfant/
     - https://guide-aides.hautsdefrance.fr/aide636
-  values:
-    2017-02-01:
-      value: 72000
+  famille_biparentale:
+    values:
+      2017-02-01:
+        value: 3
+  famille_monoparentale:
+    values:
+      2017-02-01:
+        value: 2

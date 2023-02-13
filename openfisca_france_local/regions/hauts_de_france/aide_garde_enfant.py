@@ -26,7 +26,6 @@ class hauts_de_france_aide_garde_enfant(Variable):
         montant_total = famille.sum(montant_par_enfant, role=Famille.ENFANT)
 
         region = famille.demandeur.menage('region', period)
-
         eligibilite_geographique = sum(
             [region == TypesCodeInseeRegion.hauts_de_france])
 
@@ -35,8 +34,13 @@ class hauts_de_france_aide_garde_enfant(Variable):
         eligibilite_statut = famille.sum(
             actifs, role=Famille.PARENT) == nombre_parents
 
-        plafond_ressources = params.plafond_ressources
-        rfr = famille.demandeur.foyer_fiscal('rfr', period.this_year)
-        eligibilite_revenus = rfr < plafond_ressources
+        plafond_param = params.plafond_multiple_smic
+        plafond_ressources_smic = (plafond_param.famille_monoparentale * (
+            1 - couple)) + (plafond_param.famille_biparentale * couple)
+        smic = parameters(
+            period).marche_travail.salaire_minimum.smic.smic_b_mensuel
 
+        rfr = famille.demandeur.foyer_fiscal('rfr', period.this_year)
+        eligibilite_revenus = rfr/12 < plafond_ressources_smic * smic
+        print(smic)
         return montant_total * eligibilite_geographique * eligibilite_statut * eligibilite_revenus
