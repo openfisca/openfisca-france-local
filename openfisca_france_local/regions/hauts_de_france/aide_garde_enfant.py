@@ -40,7 +40,7 @@ class hauts_de_france_aide_garde_enfant(Variable):
         smic = parameters(
             period).marche_travail.salaire_minimum.smic.smic_b_mensuel
 
-        rfr = famille.demandeur.foyer_fiscal('rfr', period.this_year)
-        eligibilite_revenus = rfr/12 < plafond_ressources_smic * smic
+        rni = famille.demandeur.foyer_fiscal('rni', period.this_year)
+        eligibilite_revenus = rni/12 < plafond_ressources_smic * smic
         print(smic)
         return montant_total * eligibilite_geographique * eligibilite_statut * eligibilite_revenus
