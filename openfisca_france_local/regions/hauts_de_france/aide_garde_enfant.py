@@ -3,8 +3,6 @@ from openfisca_france.model.base import *
 from openfisca_france.model.caracteristiques_socio_demographiques.logement import (
     TypesCodeInseeRegion)
 
-code_departements = [b'02', b'59', b'60', b'62', b'80']
-
 
 class hauts_de_france_aide_garde_enfant(Variable):
     value_type = float
@@ -28,6 +26,7 @@ class hauts_de_france_aide_garde_enfant(Variable):
         montant_total = famille.sum(montant_par_enfant, role=Famille.ENFANT)
 
         region = famille.demandeur.menage('region', period)
+
         eligibilite_geographique = sum(
             [region == TypesCodeInseeRegion.hauts_de_france])
 
