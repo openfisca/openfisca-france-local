@@ -10,14 +10,14 @@ montant:
     values:
       2017-02-01: 30
 
-age_maximum_enfant:
+age_maximum_enfant_en_mois:
   reference:
     - https://www.hautsdefrance.fr/aide-garde-enfant/
     - https://guide-aides.hautsdefrance.fr/aide636
   description: Age maximum d'éligibilité d'un enfant à la Garde d'Enfants des Hauts de France
   values:
     2017-02-01:
-      value: 3
+      value: 36
 
 plafond_multiple_smic:
   description: Montant maximal du revenu fiscal de référence du foyer

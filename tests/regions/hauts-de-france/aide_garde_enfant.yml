@@ -46,9 +46,9 @@
       parent1:
         activite: actif
       enfant1:
-        age: 9
+        age_en_mois: 37
       enfant2:
-        age: 1
+        age_en_mois: 36
   output:
     hauts_de_france_aide_garde_enfant: 30
 

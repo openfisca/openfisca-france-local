@@ -20,8 +20,8 @@ class hauts_de_france_aide_garde_enfant(Variable):
         montant = (params.montant.famille_monoparentale * (1 - couple)
                    ) + (params.montant.famille_biparentale * couple)
 
-        age = famille.members('age', period)
-        enfants_eligibles = (age < params.age_maximum_enfant)
+        age = famille.members('age_en_mois', period)
+        enfants_eligibles = (age <= params.age_maximum_enfant_en_mois)
         montant_par_enfant = montant * enfants_eligibles
         montant_total = famille.sum(montant_par_enfant, role=Famille.ENFANT)
 
@@ -42,5 +42,4 @@ class hauts_de_france_aide_garde_enfant(Variable):
 
         rni = famille.demandeur.foyer_fiscal('rni', period.this_year)
         eligibilite_revenus = rni/12 < plafond_ressources_smic * smic
-        print(smic)
         return montant_total * eligibilite_geographique * eligibilite_statut * eligibilite_revenus
