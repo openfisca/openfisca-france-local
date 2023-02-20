@@ -14,7 +14,7 @@ setup(
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Topic :: Scientific/Engineering :: Information Analysis",
-    ],
+        ],
     description="Extension OpenFisca pour nos partenariats avec les collectivités territoriales",
     keywords="benefit france france-local microsimulation social tax",
     license="http://www.fsf.org/licensing/licenses/agpl-3.0.html",
@@ -22,18 +22,18 @@ setup(
 
     packages=find_packages(),
     include_package_data=True,
-    install_requires=[
+    install_requires = [
         'OpenFisca-Core >= 35.2.0, < 36',
         'OpenFisca-France >= 126, < 143',
         'pandas == 1.0.3'
-    ],
-    extras_require={
+        ],
+    extras_require = {
         'test': [
             'nose',
-        ],
+            ],
         'excel-reader': [
             'xlrd == 1.2.0'
-        ]
+            ]
     },
-    scripts=['openfisca_france_local/scripts/openfisca_local_test']
+    scripts = ['openfisca_france_local/scripts/openfisca_local_test']
 )
