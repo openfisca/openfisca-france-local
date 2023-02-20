@@ -34,6 +34,6 @@ setup(
         'excel-reader': [
             'xlrd == 1.2.0'
             ]
-    },
-    scripts = ['openfisca_france_local/scripts/openfisca_local_test']
+        },
+    scripts=['openfisca_france_local/scripts/openfisca_local_test']
 )
