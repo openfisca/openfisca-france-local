@@ -1,11 +1,5 @@
 label: Hébergement à la Cité Internationale Universitaire de Paris
 conditions_generales:
-  - type: regions
-    values:
-      - "01"
-  - type: age
-    operator: <=
-    value: 30
   - type: annee_etude
     values:
       - master_1
