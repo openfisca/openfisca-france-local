@@ -148,16 +148,16 @@
 #   output:
 #     test_profil_with_condition: [0, 1, 0]
 
-# - period: 2022-11
-#   reforms:
-#   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
-#   input:
-#     age: [25, 25, 25]
-#     depcom: ["97105", "97105", "97105"]
-#     scolarite: ["enseignement_superieur", "enseignement_superieur", "enseignement_superieur"]
-#     annee_etude: ["cap_1", "master_1", "master_2"]
-#   output:
-#     test_condition_annee_etude: [0, 1, 1]
+- period: 2022-11
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    age: [25, 25, 25]
+    depcom: ["97105", "97105", "97105"]
+    scolarite: ["enseignement_superieur", "enseignement_superieur", "enseignement_superieur"]
+    annee_etude: ["cap_1", "master_1", "master_2"]
+  output:
+    test_condition_annee_etude: [0, 1, 1]
 
 # - period: 2022-11
 #   reforms:

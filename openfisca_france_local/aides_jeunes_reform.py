@@ -112,7 +112,7 @@ def is_beneficiaire_rsa_eligible(individu: Population, period: Period, condition
 def is_annee_etude_eligible(individu: Population, period: Period, condition: dict, parameters=None) -> np.array:
     current_year = individu(
         'annee_etude', period)
-    return sum([current_year == TypesClasse[value] for value in condition['values']]) > 0
+    return sum([current_year == TypesClasse[annee] for annee in annees_etude_eligible]) > 0
 
 
 def has_mention_baccalaureat(individu: Population, period: Period, condition: dict, parameters=None) -> np.array:

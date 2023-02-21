@@ -6,11 +6,9 @@ conditions_generales:
   - type: age
     operator: <=
     value: 30
-profils:
-  - type: enseignement_superieur
-    conditions:
-      - type: annee_etude
-        values:
-          - master_1
-          - master_2
+  - type: annee_etude
+    values:
+      - master_1
+      - master_2
+profils: []
 type: bool
