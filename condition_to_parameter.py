@@ -112,8 +112,10 @@ def create_benefit_parameters(benefit: dict) -> ParameterNode:
     if profils:
         profil_dict: dict = {'profils': {}}
         for profil in profils:
-            profil_dict['profils'].update(
-                {profil['type']: conditions_to_node_data(profil["conditions"])})
+            profil_dict['profils'].update({profil['type']: {}})
+            if 'conditions' in profil:
+                profil_dict['profils'][profil['type']].update(
+                    conditions_to_node_data(profil["conditions"]))
 
         node_data.update(profil_dict)
 
