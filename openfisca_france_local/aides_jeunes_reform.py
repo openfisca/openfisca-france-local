@@ -119,7 +119,8 @@ def is_annee_etude_eligible(individu: Population, period: Period, condition: dic
 def has_mention_baccalaureat(individu: Population, period: Period, condition: dict, parameters=None) -> np.array:
     has_mention = individu(
         'mention_baccalaureat', period)
-    return sum([has_mention == TypesMention[value] for value in condition['values']]) > 0
+    mentions_eligibles = parameters.mention_baccalaureat
+    return sum([has_mention == TypesMention[mention] for mention in mentions_eligibles]) > 0
 
 
 def is_boursier(individu: Population, period: Period, condition: dict, parameters=None) -> np.array:

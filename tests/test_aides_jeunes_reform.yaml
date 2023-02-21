@@ -77,6 +77,22 @@
   output:
     test_condition_quotient_familial: [200, 0]
 
+- period: 2022-11
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    annee_etude: ["cap_1", "master_1", "master_2"]
+  output:
+    test_condition_annee_etude: [0, 1, 1]
+
+- period: 2022-11
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    mention_baccalaureat: ["mention_tres_bien"]
+  output:
+    test_condition_mention_baccalaureat: [500]
+
 # - period: 2022-01
 #   reforms:
 #   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
@@ -148,16 +164,6 @@
 #   output:
 #     test_profil_with_condition: [0, 1, 0]
 
-- period: 2022-11
-  reforms:
-  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
-  input:
-    age: [25, 25, 25]
-    depcom: ["97105", "97105", "97105"]
-    scolarite: ["enseignement_superieur", "enseignement_superieur", "enseignement_superieur"]
-    annee_etude: ["cap_1", "master_1", "master_2"]
-  output:
-    test_condition_annee_etude: [0, 1, 1]
 
 # - period: 2022-11
 #   reforms:
@@ -169,15 +175,6 @@
 #   output:
 #     test_condition_boursier: [1]
 
-# - period: 2022-11
-#   reforms:
-#   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
-#   input:
-#     depcom: ["01053"]
-#     scolarite: ["enseignement_superieur"]
-#     mention_baccalaureat: ["mention_tres_bien"]
-#   output:
-#     test_condition_mention_baccalaureat: [500]
 
 # - period: 2022-11
 #   reforms:
