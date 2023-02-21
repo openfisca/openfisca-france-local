@@ -166,6 +166,16 @@ def test_create_formation_sanitaire_social_parameter(parameters):
     assert parameter.conditions.formation_sanitaire_social
 
 
+def test_create_empty_profil(parameters):
+    generate_parameter_in_TBS(parameters,
+                              "benefits/test_profil_apprenti.yaml")
+
+    at_instant = parameters("2023-01-01")
+    parameter = at_instant.test_profil_apprenti
+
+    assert parameter.profils.apprenti
+
+
 def test_load_reforme_aides_jeunes():
     tbs = CountryTaxBenefitSystem()
     tbs_reformed = aides_jeunes_reform_dynamic(tbs)

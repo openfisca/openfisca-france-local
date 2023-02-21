@@ -86,7 +86,7 @@ def condition_to_parameter(condition: dict) -> dict:
     return condition_parameter
 
 
-def conditions_list_to_dict(conditions: "list[dict]") -> dict:
+def conditions_to_node_data(conditions: "list[dict]") -> dict:
     conditions_formated: "list[dict]" = [condition_to_parameter(
         condition) for condition in conditions]
     data: dict = {"conditions": {}}
@@ -102,9 +102,19 @@ def conditions_list_to_dict(conditions: "list[dict]") -> dict:
 
 def create_benefit_parameters(benefit: dict) -> ParameterNode:
     conditions_generales = benefit['conditions_generales']
-    conditions_generales_dict = conditions_list_to_dict(
+    conditions_generales_dict = conditions_to_node_data(
         conditions_generales)
 
     node_data: dict = {}
     node_data.update(conditions_generales_dict)
+
+    profils: list[dict] = benefit.get("profils")
+    if profils:
+        profil_dict: dict = {'profils': {}}
+        for profil in profils:
+            profil_dict['profils'].update(
+                {profil['type']: conditions_to_node_data(profil["conditions"])})
+
+        node_data.update(profil_dict)
+
     return ParameterNode(benefit["slug"], data=node_data)
