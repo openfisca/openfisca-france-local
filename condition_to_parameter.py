@@ -61,7 +61,6 @@ def condition_to_parameter(condition: dict) -> dict:
             }
         }
         return data
-        return Parameter(condition_type, data={"values": {date: value}})
 
     condition_table: dict = {
         "age": generate_age_parameter,
@@ -87,8 +86,7 @@ def condition_to_parameter(condition: dict) -> dict:
     return condition_parameter
 
 
-def conditions_list_to_parameters(
-        parameter_name: str, conditions: "list[dict]") -> ParameterNode:
+def conditions_list_to_dict(conditions: "list[dict]") -> dict:
     conditions_formated: "list[dict]" = [condition_to_parameter(
         condition) for condition in conditions]
     data: dict = {"conditions": {}}
@@ -99,10 +97,14 @@ def conditions_list_to_parameters(
             else:
                 data["conditions"].update(condition)
 
-    return ParameterNode(parameter_name, data=data)
+    return data
 
 
 def create_benefit_parameters(benefit: dict) -> ParameterNode:
     conditions_generales = benefit['conditions_generales']
+    conditions_generales_dict = conditions_list_to_dict(
+        conditions_generales)
 
-    return conditions_list_to_parameters(benefit["slug"], conditions_generales)
+    node_data: dict = {}
+    node_data.update(conditions_generales_dict)
+    return ParameterNode(benefit["slug"], data=node_data)
