@@ -151,29 +151,29 @@ def is_boursier(individu: Population, period: Period, condition: dict, _=None) -
     return individu('boursier', period)
 
 
-def is_chomeur(individu: Population, period: Period, _) -> np.array:
+def is_chomeur(individu: Population, period: Period) -> np.array:
     return individu('activite', period) == TypesActivite.chomeur
 
 
-def is_stagiaire(individu: Population, period: Period, _) -> np.array:
+def is_stagiaire(individu: Population, period: Period) -> np.array:
     return individu('stagiaire', period)
 
 
-def is_apprenti(individu: Population, period: Period, _) -> np.array:
+def is_apprenti(individu: Population, period: Period) -> np.array:
     return individu('apprenti', period)
 
 
-def is_enseignement_superieur(individu: Population, period: Period, _) -> np.array:
+def is_enseignement_superieur(individu: Population, period: Period) -> np.array:
     return individu(
         'scolarite', period) == TypesScolarite.enseignement_superieur
 
 
-def is_lyceen(individu: Population, period: Period, _) -> np.array:
+def is_lyceen(individu: Population, period: Period) -> np.array:
     return individu(
         'scolarite', period) == TypesScolarite.lycee
 
 
-def is_etudiant(individu: Population, period: Period, _) -> np.array:
+def is_etudiant(individu: Population, period: Period) -> np.array:
     return individu(
         'etudiant', period)
 
@@ -275,7 +275,7 @@ def generate_variable(benefit: dict):
 
             def eval_profil(profil: ParameterNodeAtInstant):
                 predicate = profil_table[str(profil)]
-                profil_match = predicate(individu, period, profil)
+                profil_match = predicate(individu, period)
                 if 'conditions' in profil:
                     conditions_satisfied = eval_conditions(
                         {}, profil.conditions)

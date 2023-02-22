@@ -152,15 +152,15 @@
   output:
     test_profil_etudiant: [0, 1]
 
-# - period: 2022-11
-#   reforms:
-#   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
-#   input:
-#     depcom: ["29232", "29232", "29232", "29232", "29232"]
-#     professionnalisation: [false, true, false, false, false]
-#     activite: ["inactif", "inactif", "actif", "salarie", "service_civique"]
-#   output:
-#     test_profil_actif_et_professionnalisation: [0, 1, 1, 1,1]
+- period: 2022-11
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    depcom: ["29232", "29232", "29232", "29232", "29232"]
+    professionnalisation: [false, true, false, false, false]
+    activite: ["inactif", "inactif", "actif", "salarie", "service_civique"]
+  output:
+    test_profil_actif_et_professionnalisation: [0, 1, 1, 1,1]
 
 # - period: 2022-11
 #   reforms:
