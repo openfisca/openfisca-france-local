@@ -24,12 +24,7 @@ from openfisca_france.model.base import ParameterNode
 from openfisca_core.parameters.parameter_node_at_instant import ParameterNodeAtInstant
 from condition_to_parameter import create_benefit_parameters
 
-# operations = {
-#     '<': operator.lt,
-#     '<=': operator.le,
-#     '>': operator.gt,
-#     '>=': operator.ge,
-# }
+
 operations = {
     'strictement_inferieur': operator.lt,
     'maximum': operator.le,
@@ -41,10 +36,10 @@ operations = {
 def is_age_eligible(individu: Population, period: Period, condition: dict, parameters=None):
 
     individus_age = individu('age', period)
-    condition_age = parameters.age
+    eligible_ages = parameters.age
 
-    age_constraints = [(operations[constraint],  condition_age[constraint])
-                       for constraint in condition_age]
+    age_constraints = [(operations[constraint],  eligible_ages[constraint])
+                       for constraint in eligible_ages]
 
     eligibilities = [constraint[0](individus_age, constraint[1])
                      for constraint in age_constraints]
@@ -52,20 +47,21 @@ def is_age_eligible(individu: Population, period: Period, condition: dict, param
 
 
 def is_department_eligible(individu: Population, period: Period, condition: dict, parameters=None):
-    depcom = individu.menage('depcom', period)
+    individus_depcom = individu.menage('depcom', period)
 
     eligible_departments = parameters.departements
-    return sum([startswith(depcom, code.encode('UTF-8'))for code in eligible_departments]) > 0
+    return sum([startswith(individus_depcom, code.encode('UTF-8'))for code in eligible_departments]) > 0
 
 
 def is_region_eligible(individu: Population, period: Period, condition: dict, parameters=None):
-    region = individu.menage('region', period)
+    individus_region = individu.menage('region', period)
     eligible_regions = parameters.regions
-    return sum([region == TypesCodeInseeRegion(code_region) for code_region in eligible_regions]) > 0
+    return sum([individus_region == TypesCodeInseeRegion(code_region) for code_region in eligible_regions]) > 0
 
 
 def is_regime_securite_sociale_eligible(individu: Population, period: Period, condition: dict, parameters=None):
-    regime_securite_sociale = individu('regime_securite_sociale', period)
+    individus_regime_securite_sociale = individu(
+        'regime_securite_sociale', period)
 
     if len(list(parameters.regime_securite_sociale)) > 1:
         raise ValueError(
@@ -73,47 +69,45 @@ def is_regime_securite_sociale_eligible(individu: Population, period: Period, co
 
     if "excludes" in parameters.regime_securite_sociale:
         not_eligible_regimes = parameters.regime_securite_sociale.excludes
-        return sum([regime_securite_sociale != RegimeSecuriteSociale[regime] for regime in not_eligible_regimes]) > 0
+        return sum([individus_regime_securite_sociale != RegimeSecuriteSociale[regime] for regime in not_eligible_regimes]) > 0
     else:
         eligible_regimes = parameters.regime_securite_sociale.includes
-        return sum([regime_securite_sociale == RegimeSecuriteSociale[regime] for regime in eligible_regimes]) > 0
+        return sum([individus_regime_securite_sociale == RegimeSecuriteSociale[regime] for regime in eligible_regimes]) > 0
 
 
 def is_quotient_familial_eligible(individu: Population, period: Period, condition: dict, parameters=None) -> np.array:
 
-    rfr = individu.foyer_fiscal('rfr', period.this_year)
-    nbptr = individu.foyer_fiscal('nbptr', period.this_year)
-    quotient_familial = rfr / nbptr
+    individus_rfr = individu.foyer_fiscal('rfr', period.this_year)
+    individus_nbptr = individu.foyer_fiscal('nbptr', period.this_year)
+    individus_quotient_familial = individus_rfr / individus_nbptr
 
     condition_QF = parameters.quotient_familial.month
 
     QF_constraints = [(operations[constraint],  condition_QF[constraint])
                       for constraint in condition_QF]
 
-    eligibilities = [constraint[0](quotient_familial, constraint[1])
+    eligibilities = [constraint[0](individus_quotient_familial, constraint[1])
                      for constraint in QF_constraints]
-    # comparison = operations[condition_QF.month]
-
     return sum(eligibilities)
 
 
-def is_formation_sanitaire_social_eligible(individu: Population, period: Period, condition: dict, parameters=None) -> np.array:
+def is_formation_sanitaire_social_eligible(individu: Population, period: Period, condition: dict, _=None) -> np.array:
     id_formation_sanitaire_social = GroupeSpecialitesFormation.groupe_330
-    id_formation_groupe = individu(
+    individus_id_formation_groupe = individu(
         'groupe_specialites_formation', period)
-    return id_formation_groupe == id_formation_sanitaire_social
+    return individus_id_formation_groupe == id_formation_sanitaire_social
 
 
-def is_beneficiaire_rsa_eligible(individu: Population, period: Period, condition: dict, parameters=None) -> np.array:
-    rsa = individu.famille('rsa', period)
-    return rsa > 0
+def is_beneficiaire_rsa_eligible(individu: Population, period: Period, condition: dict, _=None) -> np.array:
+    individus_rsa = individu.famille('rsa', period)
+    return individus_rsa > 0
 
 
 def is_annee_etude_eligible(individu: Population, period: Period, condition: dict, parameters=None) -> np.array:
-    current_year = individu(
+    individus_current_year = individu(
         'annee_etude', period)
     annees_etude_eligible = parameters.annee_etude
-    return sum([current_year == TypesClasse[value] for value in annees_etude_eligible]) > 0
+    return sum([individus_current_year == TypesClasse[value] for value in annees_etude_eligible]) > 0
 
 
 def has_mention_baccalaureat(individu: Population, period: Period, condition: dict, parameters=None) -> np.array:
@@ -123,7 +117,7 @@ def has_mention_baccalaureat(individu: Population, period: Period, condition: di
     return sum([has_mention == TypesMention[mention] for mention in mentions_eligibles]) > 0
 
 
-def is_boursier(individu: Population, period: Period, condition: dict, parameters=None) -> np.array:
+def is_boursier(individu: Population, period: Period, condition: dict, _=None) -> np.array:
     return individu('boursier', period)
 
 
