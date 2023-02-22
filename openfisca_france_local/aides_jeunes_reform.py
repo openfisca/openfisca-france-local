@@ -173,7 +173,7 @@ def is_lyceen(individu: Population, period: Period, _) -> np.array:
         'scolarite', period) == TypesScolarite.lycee
 
 
-def is_etudiant(individu: Population, period: Period) -> np.array:
+def is_etudiant(individu: Population, period: Period, _) -> np.array:
     return individu(
         'etudiant', period)
 
@@ -269,7 +269,6 @@ def generate_variable(benefit: dict):
         benefit_parameters = parameters(period)[benefit['slug']]
 
         # profils_eligible: dict = benefit["profils"]
-        # print(f"profils_eligible : {list(profils_eligible)}")
         if 'profils' not in benefit_parameters:
             is_profile_eligible = True
         else:

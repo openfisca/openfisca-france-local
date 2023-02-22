@@ -90,8 +90,6 @@
   output:
     test_condition_boursier: [1, 0]
 
-
-
 - period: 2022-11
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
@@ -144,15 +142,15 @@
   output:
     test_profil_lyceen: [0, 50]
 
-# - period: 2022-11
-#   reforms:
-#   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
-#   input:
-#     depcom: ["54395", "54395"]
-#     groupe_specialites_formation: ["groupe_330", "groupe_330"]
-#     activite: ["inactif", "etudiant"]
-#   output:
-#     test_profil_etudiant: [0, 1]
+- period: 2022-11
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    depcom: ["54395", "54395"]
+    groupe_specialites_formation: ["groupe_330", "groupe_330"]
+    activite: ["inactif", "etudiant"]
+  output:
+    test_profil_etudiant: [0, 1]
 
 # - period: 2022-11
 #   reforms:
