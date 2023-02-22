@@ -168,7 +168,7 @@ def is_enseignement_superieur(individu: Population, period: Period, _) -> np.arr
         'scolarite', period) == TypesScolarite.enseignement_superieur
 
 
-def is_lyceen(individu: Population, period: Period) -> np.array:
+def is_lyceen(individu: Population, period: Period, _) -> np.array:
     return individu(
         'scolarite', period) == TypesScolarite.lycee
 
