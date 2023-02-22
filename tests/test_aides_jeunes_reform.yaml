@@ -114,17 +114,17 @@
   output:
     test_profil_apprenti: [200, 0, 0]
 
-# - period: 2022-01
-#   reforms:
-#   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
-#   input:
-#     depcom: ["97105", "97105", "97105", "97105"]
-#     groupe_specialites_formation: ["groupe_330", "FOrmation non reconnue", "groupe_330", "groupe_330"]
-#     activite: ["stagiaire", "stagiaire", "chomeur", "etudiant"]
-#     stagiaire: [true,true,false,false]
-#     scolarite: ["inconnue", "inconnue", "inconnue", "enseignement_superieur"]
-#   output:
-#     test_condition_formation_sanitaire_social_et_simples_profils: [5736, 0, 0, 5736]
+- period: 2022-01
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    depcom: ["97105", "97105", "97105", "97105"]
+    groupe_specialites_formation: ["groupe_330", "FOrmation non reconnue", "groupe_330", "groupe_330"]
+    activite: ["stagiaire", "stagiaire", "chomeur", "etudiant"]
+    stagiaire: [true,true,false,false]
+    scolarite: ["inconnue", "inconnue", "inconnue", "enseignement_superieur"]
+  output:
+    test_condition_formation_sanitaire_social_et_simples_profils: [5736, 0, 0, 5736]
 
 # - period: 2022-01
 #   reforms:

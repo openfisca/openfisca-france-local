@@ -155,7 +155,7 @@ def is_chomeur(individu: Population, period: Period) -> np.array:
     return individu('activite', period) == TypesActivite.chomeur
 
 
-def is_stagiaire(individu: Population, period: Period) -> np.array:
+def is_stagiaire(individu: Population, period: Period, _) -> np.array:
     return individu('stagiaire', period)
 
 
@@ -163,7 +163,7 @@ def is_apprenti(individu: Population, period: Period, _) -> np.array:
     return individu('apprenti', period)
 
 
-def is_enseignement_superieur(individu: Population, period: Period) -> np.array:
+def is_enseignement_superieur(individu: Population, period: Period, _) -> np.array:
     return individu(
         'scolarite', period) == TypesScolarite.enseignement_superieur
 
