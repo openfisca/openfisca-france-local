@@ -10,12 +10,6 @@ conditions_generales:
   - type: age
     operator: ">="
     value: 18
-profils:
-  - type: chomeur
-    conditions: []
-  - type: stagiaire
-    conditions: []
-  - type: independant
-    conditions: []
+profils: []
 type: float
 montant: 1000

@@ -159,7 +159,7 @@ def is_stagiaire(individu: Population, period: Period) -> np.array:
     return individu('stagiaire', period)
 
 
-def is_apprenti(individu: Population, period: Period) -> np.array:
+def is_apprenti(individu: Population, period: Period, _) -> np.array:
     return individu('apprenti', period)
 
 
@@ -237,45 +237,38 @@ def generate_variable(benefit: dict):
             return montant_final
 
         def eval_conditions(conditions: dict, parameters=None) -> np.array:
-            if parameters:
-                conditions_p: ParameterNodeAtInstant = parameters(
-                    period)[benefit['slug']].conditions
+            # if parameters:
+            conditions_p: ParameterNodeAtInstant = parameters(
+                period)[benefit['slug']].conditions
+            conditions_types: list[str] = [
+                condition for condition in conditions_p]
+            test_conditions = [(condition_table[condition_type], {
+            }, conditions_p) for condition_type in conditions_types]
+            conditions_results = [
+                test[0](individu, period, {}, test[2]) for test in test_conditions]
+            # else:
+            #     test_conditions = [(condition_table[condition['type']], condition, parameters)
+            #                        for condition in conditions]
 
-                conditions_types: list[str] = [
-                    condition for condition in conditions_p]
-
-                test_conditions = [
-                    (condition_table[condition_type], {}, conditions_p)
-                    for condition_type
-                    in conditions_types
-                ]
-
-                conditions_results = [test[0](individu, period, {}, test[2])
-                                      for test
-                                      in test_conditions]
-            else:
-                test_conditions = [(condition_table[condition['type']], condition, parameters)
-                                   for condition
-                                   in conditions]
-
-                conditions_results = [test[0](individu, period, test[1])
-                                      for test
-                                      in test_conditions]
-
+            # conditions_results = [
+            #     test[0](individu, period, test[1]) for test in test_conditions]
             return sum(conditions_results) == len(conditions)
 
         amount = benefit.get('montant')
 
-        profils_eligible: dict = benefit["profils"]
-        if len(profils_eligible) == 0:
+        profils_eligible: ParameterNodeAtInstant = parameters(
+            period)[benefit['slug']].profils
+        # profils_eligible: dict = benefit["profils"]
+        print(f"profils_eligible : {list(profils_eligible)}")
+        if len(list(profils_eligible)) == 0:
             is_profile_eligible = True
         else:
-            def eval_profil(profil: dict):
-                predicate = profil_table[profil['type']]
-                profil_match = predicate(individu, period)
+            def eval_profil(profil: ParameterNodeAtInstant):
+                predicate = profil_table[str(profil)]
+                profil_match = predicate(individu, period, profil)
                 if 'conditions' in profil:
                     conditions_satisfied = eval_conditions(
-                        profil['conditions'])
+                        {}, profil.conditions)
                 return profil_match * conditions_satisfied if 'conditions' in profil else profil_match
 
             eligibilities = [eval_profil(profil)
