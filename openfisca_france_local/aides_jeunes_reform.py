@@ -151,7 +151,7 @@ def is_boursier(individu: Population, period: Period, condition: dict, _=None) -
     return individu('boursier', period)
 
 
-def is_chomeur(individu: Population, period: Period) -> np.array:
+def is_chomeur(individu: Population, period: Period, _) -> np.array:
     return individu('activite', period) == TypesActivite.chomeur
 
 

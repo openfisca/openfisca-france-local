@@ -126,14 +126,14 @@
   output:
     test_condition_formation_sanitaire_social_et_simples_profils: [5736, 0, 0, 5736]
 
-# - period: 2022-01
-#   reforms:
-#   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
-#   input:
-#     depcom: ["41018", "41018"]
-#     activite: ["etudiant", "chomeur"]
-#   output:
-#     test_profil_chomeur: [0, 1]
+- period: 2022-01
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    depcom: ["41018", "41018"]
+    activite: ["etudiant", "chomeur"]
+  output:
+    test_profil_chomeur: [0, 1]
 
 # - period: 2022-11
 #   reforms:
