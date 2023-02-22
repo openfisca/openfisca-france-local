@@ -47,20 +47,34 @@ def is_age_eligible(individu: Population, period: Period, condition: dict, param
 
 
 def is_department_eligible(individu: Population, period: Period, condition: dict, parameters=None):
+
+    def is_from_department(individus_depcom, code):
+        return startswith(individus_depcom, code.encode('UTF-8'))
+
     individus_depcom = individu.menage('depcom', period)
 
     eligible_departments = parameters.departements
-    return sum([startswith(individus_depcom, code.encode('UTF-8'))for code in eligible_departments]) > 0
+
+    eligibilities = [is_from_department(individus_depcom, code)
+                     for code
+                     in eligible_departments]
+
+    return sum(eligibilities) > 0
 
 
 def is_region_eligible(individu: Population, period: Period, condition: dict, parameters=None):
     individus_region = individu.menage('region', period)
     eligible_regions = parameters.regions
-    return sum([individus_region == TypesCodeInseeRegion(code_region) for code_region in eligible_regions]) > 0
+
+    eligibilities = [individus_region == TypesCodeInseeRegion(code_region)
+                     for code_region
+                     in eligible_regions]
+
+    return sum(eligibilities) > 0
 
 
 def is_regime_securite_sociale_eligible(individu: Population, period: Period, condition: dict, parameters=None):
-    individus_regime_securite_sociale = individu(
+    individus_regime_secu = individu(
         'regime_securite_sociale', period)
 
     if len(list(parameters.regime_securite_sociale)) > 1:
@@ -69,10 +83,16 @@ def is_regime_securite_sociale_eligible(individu: Population, period: Period, co
 
     if "excludes" in parameters.regime_securite_sociale:
         not_eligible_regimes = parameters.regime_securite_sociale.excludes
-        return sum([individus_regime_securite_sociale != RegimeSecuriteSociale[regime] for regime in not_eligible_regimes]) > 0
+        eligibilities = [individus_regime_secu != RegimeSecuriteSociale[regime]
+                         for regime
+                         in not_eligible_regimes]
     else:
         eligible_regimes = parameters.regime_securite_sociale.includes
-        return sum([individus_regime_securite_sociale == RegimeSecuriteSociale[regime] for regime in eligible_regimes]) > 0
+        eligibilities = [individus_regime_secu == RegimeSecuriteSociale[regime]
+                         for regime
+                         in eligible_regimes]
+
+    return sum(eligibilities) > 0
 
 
 def is_quotient_familial_eligible(individu: Population, period: Period, condition: dict, parameters=None) -> np.array:
@@ -107,14 +127,24 @@ def is_annee_etude_eligible(individu: Population, period: Period, condition: dic
     individus_current_year = individu(
         'annee_etude', period)
     annees_etude_eligible = parameters.annee_etude
-    return sum([individus_current_year == TypesClasse[value] for value in annees_etude_eligible]) > 0
+
+    eligibilities = [individus_current_year == TypesClasse[value]
+                     for value
+                     in annees_etude_eligible]
+
+    return sum(eligibilities) > 0
 
 
 def has_mention_baccalaureat(individu: Population, period: Period, condition: dict, parameters=None) -> np.array:
     has_mention = individu(
         'mention_baccalaureat', period)
     mentions_eligibles = parameters.mention_baccalaureat
-    return sum([has_mention == TypesMention[mention] for mention in mentions_eligibles]) > 0
+
+    eligibilities = [has_mention == TypesMention[mention]
+                     for mention
+                     in mentions_eligibles]
+
+    return sum(eligibilities) > 0
 
 
 def is_boursier(individu: Population, period: Period, condition: dict, _=None) -> np.array:
@@ -210,18 +240,28 @@ def generate_variable(benefit: dict):
             if parameters:
                 conditions_p: ParameterNodeAtInstant = parameters(
                     period)[benefit['slug']].conditions
+
                 conditions_types: list[str] = [
                     condition for condition in conditions_p]
-                test_conditions = [(condition_table[condition_type], {
-                }, conditions_p) for condition_type in conditions_types]
-                conditions_results = [
-                    test[0](individu, period, {}, test[2]) for test in test_conditions]
+
+                test_conditions = [
+                    (condition_table[condition_type], {}, conditions_p)
+                    for condition_type
+                    in conditions_types
+                ]
+
+                conditions_results = [test[0](individu, period, {}, test[2])
+                                      for test
+                                      in test_conditions]
             else:
                 test_conditions = [(condition_table[condition['type']], condition, parameters)
-                                   for condition in conditions]
+                                   for condition
+                                   in conditions]
 
-                conditions_results = [
-                    test[0](individu, period, test[1]) for test in test_conditions]
+                conditions_results = [test[0](individu, period, test[1])
+                                      for test
+                                      in test_conditions]
+
             return sum(conditions_results) == len(conditions)
 
         amount = benefit.get('montant')
