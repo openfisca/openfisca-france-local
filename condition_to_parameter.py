@@ -99,6 +99,18 @@ def conditions_to_node_data(conditions: "list[dict]") -> dict:
 
     return data
 
+def profils_to_node_data(profils):
+    date = "2020-01-01"
+
+    profil_dict: dict = {'profils': {}}
+    for profil in profils:
+        profil_dict['profils'].update({profil['type']: {}})
+        if 'conditions' in profil:
+            profil_dict['profils'][profil['type']].update(
+                    conditions_to_node_data(profil["conditions"]))
+        else:
+            profil_dict['profils'][profil['type']] = {date: {"value": True}}
+    return profil_dict
 
 def create_benefit_parameters(benefit: dict) -> ParameterNode:
     conditions_generales = benefit['conditions_generales']
@@ -110,13 +122,7 @@ def create_benefit_parameters(benefit: dict) -> ParameterNode:
 
     profils: list[dict] = benefit.get("profils")
     if profils:
-        profil_dict: dict = {'profils': {}}
-        for profil in profils:
-            profil_dict['profils'].update({profil['type']: {}})
-            if 'conditions' in profil:
-                profil_dict['profils'][profil['type']].update(
-                    conditions_to_node_data(profil["conditions"]))
-
+        profil_dict = profils_to_node_data(profils)
         node_data.update(profil_dict)
 
     return ParameterNode(benefit["slug"], data=node_data)
