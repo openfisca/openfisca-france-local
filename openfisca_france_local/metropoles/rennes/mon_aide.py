@@ -2,7 +2,6 @@ from __future__ import division
 
 from numpy import (maximum as max_, logical_not as not_, absolute as abs_, minimum as min_, select, where, logical_or as or_, round as round_)
 
-
 from openfisca_core.periods import Period
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
