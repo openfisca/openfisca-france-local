@@ -12,16 +12,22 @@ from openfisca_france.model.base import (
 from openfisca_core import reforms
 from openfisca_core.periods import Period
 
-
 from openfisca_core.populations.population import Population
+from openfisca_core.parameters.parameter_node_at_instant\
+    import ParameterNodeAtInstant as ParamInstant
+
 from openfisca_france.model.prestations.education import (
     TypesScolarite, TypesClasse)
-from openfisca_france.model.caracteristiques_socio_demographiques.logement import (
-    TypesCodeInseeRegion)
-from openfisca_france.model.caracteristiques_socio_demographiques.demographie import RegimeSecuriteSociale
-from openfisca_france.model.caracteristiques_socio_demographiques.demographie import GroupeSpecialitesFormation
+
+from openfisca_france.model.caracteristiques_socio_demographiques\
+    .logement import TypesCodeInseeRegion
+
+from openfisca_france.model.caracteristiques_socio_demographiques\
+    .demographie import RegimeSecuriteSociale
+
+from openfisca_france.model.caracteristiques_socio_demographiques\
+    .demographie import GroupeSpecialitesFormation
 from openfisca_france.model.base import ParameterNode
-from openfisca_core.parameters.parameter_node_at_instant import ParameterNodeAtInstant as ParamInstant
 
 from condition_to_parameter import create_benefit_parameters
 
