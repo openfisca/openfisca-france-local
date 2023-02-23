@@ -236,16 +236,16 @@ def generate_variable(benefit: dict):
                 montant_final = general_eligibilities * is_profile_eligible
             return montant_final
 
-        def eval_conditions(parameters: ParameterNodeAtInstant) -> np.array:
-            conditions_p: ParameterNodeAtInstant = parameters(
-                period)[benefit['slug']].conditions
+        def eval_conditions(conditions: ParameterNodeAtInstant) -> np.array:
+            # conditions_p: ParameterNodeAtInstant = parameters(
+            #     period)[benefit['slug']].conditions
 
             conditions_types: list[str] = [condition
                                            for condition
-                                           in conditions_p]
+                                           in conditions]
 
             test_conditions = [
-                (condition_table[condition_type], {}, conditions_p)
+                (condition_table[condition_type], {}, conditions)
                 for condition_type
                 in conditions_types]
 
@@ -292,7 +292,7 @@ def generate_variable(benefit: dict):
 
             is_profile_eligible: bool = sum(eligibilities) >= 1
 
-        general_eligibilities = eval_conditions(parameters)
+        general_eligibilities = eval_conditions(benefit_parameters.conditions)
         montant_eligible = calcul_montant_eligible(
             amount, is_profile_eligible, general_eligibilities)
 

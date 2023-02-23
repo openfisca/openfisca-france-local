@@ -162,15 +162,15 @@
   output:
     test_profil_actif_et_professionnalisation: [0, 1, 1, 1,1]
 
-# - period: 2022-11
-#   reforms:
-#   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
-#   input:
-#     age: [30, 29, 29]
-#     depcom: ["54395", "54395", "54395"]
-#     scolarite: ["enseignement_superieur", "enseignement_superieur", "grande_ecole_du_numerique"]
-#   output:
-#     test_profil_with_condition: [0, 1, 0]
+- period: 2022-11
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    age: [30, 29, 29]
+    depcom: ["54395", "54395", "54395"]
+    scolarite: ["enseignement_superieur", "enseignement_superieur", "grande_ecole_du_numerique"]
+  output:
+    test_profil_with_condition: [0, 1, 0]
 
 
 # - period: 2022-11
