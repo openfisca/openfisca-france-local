@@ -21,7 +21,8 @@ from openfisca_france.model.caracteristiques_socio_demographiques.logement impor
 from openfisca_france.model.caracteristiques_socio_demographiques.demographie import RegimeSecuriteSociale
 from openfisca_france.model.caracteristiques_socio_demographiques.demographie import GroupeSpecialitesFormation
 from openfisca_france.model.base import ParameterNode
-from openfisca_core.parameters.parameter_node_at_instant import ParameterNodeAtInstant
+from openfisca_core.parameters.parameter_node_at_instant import ParameterNodeAtInstant as ParamInstant
+
 from condition_to_parameter import create_benefit_parameters
 
 
@@ -33,7 +34,8 @@ operations = {
 }
 
 
-def is_age_eligible(individu: Population, period: Period, parameters):
+def is_age_eligible(individu: Population, period: Period,
+                    parameters: ParamInstant):
 
     individus_age = individu('age', period)
     eligible_ages = parameters.age
@@ -46,7 +48,8 @@ def is_age_eligible(individu: Population, period: Period, parameters):
     return sum(eligibilities) > 0
 
 
-def is_department_eligible(individu: Population, period: Period, parameters):
+def is_department_eligible(individu: Population, period: Period,
+                           parameters: ParamInstant):
 
     def is_from_department(individus_depcom, code):
         return startswith(individus_depcom, code.encode('UTF-8'))
@@ -62,7 +65,8 @@ def is_department_eligible(individu: Population, period: Period, parameters):
     return sum(eligibilities) > 0
 
 
-def is_region_eligible(individu: Population, period: Period, parameters):
+def is_region_eligible(individu: Population, period: Period,
+                       parameters: ParamInstant):
     individus_region = individu.menage('region', period)
     eligible_regions = parameters.regions
 
@@ -73,13 +77,16 @@ def is_region_eligible(individu: Population, period: Period, parameters):
     return sum(eligibilities) > 0
 
 
-def is_regime_securite_sociale_eligible(individu: Population, period: Period, parameters):
+def is_regime_securite_sociale_eligible(individu: Population, period: Period,
+                                        parameters: ParamInstant):
     individus_regime_secu = individu(
         'regime_securite_sociale', period)
 
     if len(list(parameters.regime_securite_sociale)) > 1:
         raise ValueError(
-            'Condition "regime_securite_sociale" does not support having both "includes" and "excludes" properties')
+            ('Condition "regime_securite_sociale" does not support having both'
+             ' "includes" and "excludes" properties.\n'
+             'Please check the YAML file.'))
 
     if "excludes" in parameters.regime_securite_sociale:
         not_eligible_regimes = parameters.regime_securite_sociale.excludes
@@ -95,7 +102,8 @@ def is_regime_securite_sociale_eligible(individu: Population, period: Period, pa
     return sum(eligibilities) > 0
 
 
-def is_quotient_familial_eligible(individu: Population, period: Period, parameters) -> np.array:
+def is_quotient_familial_eligible(individu: Population, period: Period,
+                                  parameters: ParamInstant) -> np.array:
 
     individus_rfr = individu.foyer_fiscal('rfr', period.this_year)
     individus_nbptr = individu.foyer_fiscal('nbptr', period.this_year)
@@ -111,19 +119,22 @@ def is_quotient_familial_eligible(individu: Population, period: Period, paramete
     return sum(eligibilities) > 0
 
 
-def is_formation_sanitaire_social_eligible(individu: Population, period: Period, _) -> np.array:
+def is_formation_sanitaire_social_eligible(individu: Population,
+                                           period: Period, _) -> np.array:
     id_formation_sanitaire_social = GroupeSpecialitesFormation.groupe_330
     individus_id_formation_groupe = individu(
         'groupe_specialites_formation', period)
     return individus_id_formation_groupe == id_formation_sanitaire_social
 
 
-def is_beneficiaire_rsa_eligible(individu: Population, period: Period, _) -> np.array:
+def is_beneficiaire_rsa_eligible(individu: Population,
+                                 period: Period, _) -> np.array:
     individus_rsa = individu.famille('rsa', period)
     return individus_rsa > 0
 
 
-def is_annee_etude_eligible(individu: Population, period: Period, parameters) -> np.array:
+def is_annee_etude_eligible(individu: Population, period: Period,
+                            parameters: ParamInstant) -> np.array:
     individus_current_year = individu(
         'annee_etude', period)
     annees_etude_eligible = parameters.annee_etude
@@ -135,7 +146,8 @@ def is_annee_etude_eligible(individu: Population, period: Period, parameters) ->
     return sum(eligibilities) > 0
 
 
-def has_mention_baccalaureat(individu: Population, period: Period, parameters) -> np.array:
+def has_mention_baccalaureat(individu: Population, period: Period,
+                             parameters: ParamInstant) -> np.array:
     has_mention = individu(
         'mention_baccalaureat', period)
     mentions_eligibles = parameters.mention_baccalaureat
@@ -163,7 +175,8 @@ def is_apprenti(individu: Population, period: Period) -> np.array:
     return individu('apprenti', period)
 
 
-def is_enseignement_superieur(individu: Population, period: Period) -> np.array:
+def is_enseignement_superieur(individu: Population,
+                              period: Period) -> np.array:
     return individu(
         'scolarite', period) == TypesScolarite.enseignement_superieur
 
@@ -227,16 +240,17 @@ def generate_variable(benefit: dict):
 
     value_type = type_table[benefit['type']]
 
-    def formula(individu: Population, period: Period, parameters: ParameterNode):
-        def calcul_montant_eligible(
-                amount: int, is_profile_eligible: bool, general_eligibilities: np.array):
+    def formula(individu: Population, period: Period,
+                parameters: ParameterNode):
+        def calcul_montant_eligible(amount: int, is_profile_eligible: bool,
+                                    general_eligibilities: np.array):
             if value_type == float:
-                montant_final = amount * is_profile_eligible * general_eligibilities
+                montant = amount * is_profile_eligible * general_eligibilities
             else:
-                montant_final = general_eligibilities * is_profile_eligible
-            return montant_final
+                montant = general_eligibilities * is_profile_eligible
+            return montant
 
-        def eval_conditions(conditions: ParameterNodeAtInstant) -> np.array:
+        def eval_conditions(conditions: ParamInstant) -> np.array:
             conditions_types: list[str] = [condition
                                            for condition
                                            in conditions]
@@ -262,13 +276,13 @@ def generate_variable(benefit: dict):
         else:
 
             def eval_profil(profil_name: str,
-                            profils_parameters: ParameterNodeAtInstant):
+                            profils_parameters: ParamInstant):
 
                 def has_conditions(profil):
                     # As profil can be a bool in case of
                     # `enseignement_superieur` we need it to be checked.
                     # What is the most readable way to do that ?
-                    return isinstance(profil, ParameterNodeAtInstant) and \
+                    return isinstance(profil, ParamInstant) and \
                         'conditions' in profil
 
                 profil = profils_parameters[profil_name]
@@ -282,7 +296,7 @@ def generate_variable(benefit: dict):
                     conditions_satisfied = True
                 return profil_match * conditions_satisfied
 
-            profils_parameters: ParameterNodeAtInstant = benefit_parameters.profils
+            profils_parameters: ParamInstant = benefit_parameters.profils
             eligibilities = [eval_profil(profil_name, profils_parameters)
                              for profil_name
                              in profils_parameters]
