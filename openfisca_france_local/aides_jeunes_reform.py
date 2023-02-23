@@ -236,7 +236,7 @@ def generate_variable(benefit: dict):
                 montant_final = general_eligibilities * is_profile_eligible
             return montant_final
 
-        def eval_conditions(conditions: dict, parameters=None) -> np.array:
+        def eval_conditions(parameters: ParameterNodeAtInstant) -> np.array:
             conditions_p: ParameterNodeAtInstant = parameters(
                 period)[benefit['slug']].conditions
 
@@ -264,15 +264,26 @@ def generate_variable(benefit: dict):
             is_profile_eligible = True
         else:
 
-            def eval_profil(profil_name: str, profils_parameters: ParameterNodeAtInstant):
+            def eval_profil(profil_name: str,
+                            profils_parameters: ParameterNodeAtInstant):
+
+                def has_conditions(profil):
+                    # As profil can be a bool in case of
+                    # `enseignement_superieur` we need it to be checked.
+                    # What is the most readable way to do that ?
+                    return isinstance(profil, ParameterNodeAtInstant) and \
+                        'conditions' in profil
+
                 profil = profils_parameters[profil_name]
+
                 predicate = profil_table[profil_name]
                 profil_match = predicate(individu, period)
 
-                if isinstance(profil, ParameterNodeAtInstant) and 'conditions' in profil:
-                    conditions_satisfied = eval_conditions(
-                        {}, profil.conditions)
-                return profil_match * conditions_satisfied if isinstance(profil, ParameterNodeAtInstant) and 'conditions' in profil else profil_match
+                if has_conditions(profil):
+                    conditions_satisfied = eval_conditions(profil.conditions)
+                else:
+                    conditions_satisfied = True
+                return profil_match * conditions_satisfied
 
             profils_parameters: ParameterNodeAtInstant = benefit_parameters.profils
             eligibilities = [eval_profil(profil_name, profils_parameters)
@@ -280,10 +291,8 @@ def generate_variable(benefit: dict):
                              in profils_parameters]
 
             is_profile_eligible: bool = sum(eligibilities) >= 1
-        conditions_generales = benefit['conditions_generales']
 
-        general_eligibilities = eval_conditions(
-            conditions_generales, parameters)
+        general_eligibilities = eval_conditions(parameters)
         montant_eligible = calcul_montant_eligible(
             amount, is_profile_eligible, general_eligibilities)
 
