@@ -33,7 +33,7 @@ operations = {
 }
 
 
-def is_age_eligible(individu: Population, period: Period, condition: dict, parameters=None):
+def is_age_eligible(individu: Population, period: Period, parameters):
 
     individus_age = individu('age', period)
     eligible_ages = parameters.age
@@ -46,7 +46,7 @@ def is_age_eligible(individu: Population, period: Period, condition: dict, param
     return sum(eligibilities) > 0
 
 
-def is_department_eligible(individu: Population, period: Period, condition: dict, parameters=None):
+def is_department_eligible(individu: Population, period: Period, parameters):
 
     def is_from_department(individus_depcom, code):
         return startswith(individus_depcom, code.encode('UTF-8'))
@@ -62,7 +62,7 @@ def is_department_eligible(individu: Population, period: Period, condition: dict
     return sum(eligibilities) > 0
 
 
-def is_region_eligible(individu: Population, period: Period, condition: dict, parameters=None):
+def is_region_eligible(individu: Population, period: Period, parameters):
     individus_region = individu.menage('region', period)
     eligible_regions = parameters.regions
 
@@ -73,7 +73,7 @@ def is_region_eligible(individu: Population, period: Period, condition: dict, pa
     return sum(eligibilities) > 0
 
 
-def is_regime_securite_sociale_eligible(individu: Population, period: Period, condition: dict, parameters=None):
+def is_regime_securite_sociale_eligible(individu: Population, period: Period, parameters):
     individus_regime_secu = individu(
         'regime_securite_sociale', period)
 
@@ -95,7 +95,7 @@ def is_regime_securite_sociale_eligible(individu: Population, period: Period, co
     return sum(eligibilities) > 0
 
 
-def is_quotient_familial_eligible(individu: Population, period: Period, condition: dict, parameters=None) -> np.array:
+def is_quotient_familial_eligible(individu: Population, period: Period, parameters) -> np.array:
 
     individus_rfr = individu.foyer_fiscal('rfr', period.this_year)
     individus_nbptr = individu.foyer_fiscal('nbptr', period.this_year)
@@ -111,19 +111,19 @@ def is_quotient_familial_eligible(individu: Population, period: Period, conditio
     return sum(eligibilities) > 0
 
 
-def is_formation_sanitaire_social_eligible(individu: Population, period: Period, condition: dict, _=None) -> np.array:
+def is_formation_sanitaire_social_eligible(individu: Population, period: Period, _) -> np.array:
     id_formation_sanitaire_social = GroupeSpecialitesFormation.groupe_330
     individus_id_formation_groupe = individu(
         'groupe_specialites_formation', period)
     return individus_id_formation_groupe == id_formation_sanitaire_social
 
 
-def is_beneficiaire_rsa_eligible(individu: Population, period: Period, condition: dict, _=None) -> np.array:
+def is_beneficiaire_rsa_eligible(individu: Population, period: Period, _) -> np.array:
     individus_rsa = individu.famille('rsa', period)
     return individus_rsa > 0
 
 
-def is_annee_etude_eligible(individu: Population, period: Period, condition: dict, parameters=None) -> np.array:
+def is_annee_etude_eligible(individu: Population, period: Period, parameters) -> np.array:
     individus_current_year = individu(
         'annee_etude', period)
     annees_etude_eligible = parameters.annee_etude
@@ -135,7 +135,7 @@ def is_annee_etude_eligible(individu: Population, period: Period, condition: dic
     return sum(eligibilities) > 0
 
 
-def has_mention_baccalaureat(individu: Population, period: Period, condition: dict, parameters=None) -> np.array:
+def has_mention_baccalaureat(individu: Population, period: Period, parameters) -> np.array:
     has_mention = individu(
         'mention_baccalaureat', period)
     mentions_eligibles = parameters.mention_baccalaureat
@@ -147,7 +147,7 @@ def has_mention_baccalaureat(individu: Population, period: Period, condition: di
     return sum(eligibilities) > 0
 
 
-def is_boursier(individu: Population, period: Period, condition: dict, _=None) -> np.array:
+def is_boursier(individu: Population, period: Period, _) -> np.array:
     return individu('boursier', period)
 
 
@@ -237,20 +237,17 @@ def generate_variable(benefit: dict):
             return montant_final
 
         def eval_conditions(conditions: ParameterNodeAtInstant) -> np.array:
-            # conditions_p: ParameterNodeAtInstant = parameters(
-            #     period)[benefit['slug']].conditions
-
             conditions_types: list[str] = [condition
                                            for condition
                                            in conditions]
 
             test_conditions = [
-                (condition_table[condition_type], {}, conditions)
+                (condition_table[condition_type], conditions)
                 for condition_type
                 in conditions_types]
 
             conditions_results = [
-                test[0](individu, period, {}, test[2])
+                test[0](individu, period, test[1])
                 for test
                 in test_conditions]
 
