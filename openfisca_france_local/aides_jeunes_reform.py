@@ -43,7 +43,7 @@ def is_age_eligible(individu: Population, period: Period, condition: dict, param
 
     eligibilities = [constraint[0](individus_age, constraint[1])
                      for constraint in age_constraints]
-    return sum(eligibilities)
+    return sum(eligibilities) > 0
 
 
 def is_department_eligible(individu: Population, period: Period, condition: dict, parameters=None):
@@ -108,7 +108,7 @@ def is_quotient_familial_eligible(individu: Population, period: Period, conditio
 
     eligibilities = [constraint[0](individus_quotient_familial, constraint[1])
                      for constraint in QF_constraints]
-    return sum(eligibilities)
+    return sum(eligibilities) > 0
 
 
 def is_formation_sanitaire_social_eligible(individu: Population, period: Period, condition: dict, _=None) -> np.array:
@@ -237,7 +237,6 @@ def generate_variable(benefit: dict):
             return montant_final
 
         def eval_conditions(conditions: dict, parameters=None) -> np.array:
-            # if parameters:
             conditions_p: ParameterNodeAtInstant = parameters(
                 period)[benefit['slug']].conditions
 
@@ -255,37 +254,30 @@ def generate_variable(benefit: dict):
                 for test
                 in test_conditions]
 
-            # else:
-            #     test_conditions = [(condition_table[condition['type']], condition, parameters)
-            #                        for condition in conditions]
-
-            # conditions_results = [
-            #     test[0](individu, period, test[1]) for test in test_conditions]
-
-            return sum(conditions_results) == len(conditions)
+            return sum(conditions_results) == len(test_conditions)
 
         amount = benefit.get('montant')
 
         benefit_parameters = parameters(period)[benefit['slug']]
 
-        # profils_eligible: dict = benefit["profils"]
         if 'profils' not in benefit_parameters:
             is_profile_eligible = True
         else:
 
-            def eval_profil(profil: ParameterNodeAtInstant):
-                predicate = profil_table[str(profil)]
+            def eval_profil(profil_name: str, profils_parameters: ParameterNodeAtInstant):
+                profil = profils_parameters[profil_name]
+                predicate = profil_table[profil_name]
                 profil_match = predicate(individu, period)
-                if 'conditions' in profil:
+
+                if isinstance(profil, ParameterNodeAtInstant) and 'conditions' in profil:
                     conditions_satisfied = eval_conditions(
                         {}, profil.conditions)
-                return profil_match * conditions_satisfied if 'conditions' in profil else profil_match
+                return profil_match * conditions_satisfied if isinstance(profil, ParameterNodeAtInstant) and 'conditions' in profil else profil_match
 
-            profils_eligible: ParameterNodeAtInstant = benefit_parameters.profils
-
-            eligibilities = [eval_profil(profil)
-                             for profil
-                             in profils_eligible]
+            profils_parameters: ParameterNodeAtInstant = benefit_parameters.profils
+            eligibilities = [eval_profil(profil_name, profils_parameters)
+                             for profil_name
+                             in profils_parameters]
 
             is_profile_eligible: bool = sum(eligibilities) >= 1
         conditions_generales = benefit['conditions_generales']
@@ -295,7 +287,6 @@ def generate_variable(benefit: dict):
         montant_eligible = calcul_montant_eligible(
             amount, is_profile_eligible, general_eligibilities)
 
-        # return True
         return montant_eligible
 
     return type(benefit['slug'], (Variable,), {
