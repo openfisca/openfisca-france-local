@@ -1,11 +1,5 @@
 label: bourse Animazioni
 conditions_generales:
-  - type: age
-    operator: ">="
-    value: 16
-  - type: age
-    operator: <=
-    value: 30
   - type: regions
     values:
       - "94"

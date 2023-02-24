@@ -1,0 +1,14 @@
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 16
+  - type: departements
+    values:
+      - "57"
+  - type: regime_securite_sociale
+    excludes:
+      - regime_agricole
+profils: []
+type: float
+periodicite: ponctuelle
+montant: 200

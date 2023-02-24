@@ -177,25 +177,22 @@
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
-    depcom: ["97302"]
-    age: [18]
+    depcom: ["97302", "54395"]
   output:
-    test_condition_region_dom_guyane: [1000]
+    test_condition_region_dom_guyane: [1000,0]
 
 - period: 2022-11
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
-    depcom: ["94028"]
-    activite: ["chomeur"]
+    depcom: ["94028", "97302"]
   output:
-    test_condition_region_idf: [1]
+    test_condition_region_idf: [1, 0]
 
 - period: 2022-11
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
-    depcom: ["2A004"]
-    age: [18]
+    depcom: ["2A004", "97302"]
   output:
-    test_condition_region_corse: [600]
+    test_condition_region_corse: [600, 0]
