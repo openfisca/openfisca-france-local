@@ -41,7 +41,7 @@ operations = {
 
 
 def is_age_eligible(individu: Population, period: Period,
-                    parameters: ParamInstant):
+                    parameters: ParamInstant) -> np.array:
 
     individus_age = individu('age', period)
     eligible_ages = parameters.age
@@ -55,24 +55,24 @@ def is_age_eligible(individu: Population, period: Period,
 
 
 def is_department_eligible(individu: Population, period: Period,
-                           parameters: ParamInstant):
+                           parameters: ParamInstant) -> np.array:
 
-    def is_from_department(individus_depcom, code):
-        return startswith(individus_depcom, code.encode('UTF-8'))
+    def is_from_department(individus_depcom, depcom):
+        return startswith(individus_depcom, depcom.encode('UTF-8'))
 
     individus_depcom = individu.menage('depcom', period)
 
     eligible_departments = parameters.departements
 
-    eligibilities = [is_from_department(individus_depcom, code)
-                     for code
+    eligibilities = [is_from_department(individus_depcom, eligible_depcode)
+                     for eligible_depcode
                      in eligible_departments]
 
     return sum(eligibilities) > 0
 
 
 def is_region_eligible(individu: Population, period: Period,
-                       parameters: ParamInstant):
+                       parameters: ParamInstant) -> np.array:
     individus_region = individu.menage('region', period)
     eligible_regions = parameters.regions
 
@@ -84,7 +84,7 @@ def is_region_eligible(individu: Population, period: Period,
 
 
 def is_regime_securite_sociale_eligible(individu: Population, period: Period,
-                                        parameters: ParamInstant):
+                                        parameters: ParamInstant) -> np.array:
     individus_regime_secu = individu(
         'regime_securite_sociale', period)
 
