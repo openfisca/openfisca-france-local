@@ -18,7 +18,7 @@ def condition_to_parameter(condition: dict) -> dict:
     def generate_quotient_familial_parameter(condition: dict) -> dict:
         parameter_operator: str = comparison_operators[condition["operator"]]
 
-        data = {
+        data: dict = {
             condition_type: {
                 condition["period"]: {
                     parameter_operator: {
@@ -33,20 +33,20 @@ def condition_to_parameter(condition: dict) -> dict:
 
     def generate_regime_securite_sociale_parameter(
             condition: dict) -> ParameterNode:
-        data: dict = {condition_type: {}}
-        if "includes" in condition.keys():
-            data[condition_type] = {
-                "includes": {
+        def create_regime_dict(constraint):
+            return {
+                constraint: {
                     "values": {
-                        date: {"value": condition["includes"]}}
+                        date: {"value": condition[constraint]}}
                 }}
 
+        data: dict = {condition_type: {}}
+
+        if "includes" in condition.keys():
+            data[condition_type] = create_regime_dict("includes")
+
         if "excludes" in condition.keys():
-            data[condition_type].update({
-                "excludes": {
-                    "values": {
-                        date: {"value": condition["excludes"]}}
-                }})
+            data[condition_type].update(create_regime_dict("excludes"))
 
         return data
 
