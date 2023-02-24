@@ -248,6 +248,7 @@ def generate_variable(benefit: dict):
 
     def formula(individu: Population, period: Period,
                 parameters: ParameterNode):
+
         def calcul_montant_eligible(amount: int, is_profile_eligible: bool,
                                     general_eligibilities: np.array):
             if value_type == float:
@@ -257,9 +258,7 @@ def generate_variable(benefit: dict):
             return montant
 
         def eval_conditions(conditions: ParamInstant) -> np.array:
-            conditions_types: list[str] = [condition
-                                           for condition
-                                           in conditions]
+            conditions_types: list[str] = list(conditions)
 
             test_conditions = [
                 (condition_table[condition_type], conditions)
