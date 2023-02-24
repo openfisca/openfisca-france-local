@@ -328,20 +328,33 @@ class aides_jeunes_reform_dynamic(reforms.Reform):
     path = 'benefits/'
     current_path = f'{root}/{path}'
 
-    def extract_benefit_file_content(self, benefit_path):
-        benefit: dict = yaml.safe_load(open(benefit_path))
-        benefit['slug'] = benefit_path.split(
-            '/')[-1].replace('-', '_').split('.')[0]
-        return benefit
-
     def extract_benefits_paths(self, benefits_folder: str) -> "list[str]":
         def isYAMLfile(path: str): return str(path).endswith(
             '.yml') or str(path).endswith('.yaml')
+
         liste_fichiers = [
-            str(benefit) for benefit in Path(benefits_folder).iterdir()
+            str(benefit)
+            for benefit
+            in Path(benefits_folder).iterdir()
             if isYAMLfile(benefit)
         ]
         return liste_fichiers
+
+    def extract_benefit_file_content(self, benefit_path):
+
+        def slug_from_filename(benefit_path):
+            return benefit_path.split(
+                '/')[-1].replace('-', '_').split('.')[0]
+
+        benefit: dict = yaml.safe_load(open(benefit_path))
+        benefit['slug'] = slug_from_filename(benefit_path)
+
+        return benefit
+
+    def create_and_add_parameters(self, benefit):
+        benefit_parameter = create_benefit_parameters(benefit)
+        self.parameters.add_child(
+            benefit_parameter.name, benefit_parameter)
 
     def apply(self):
         try:
@@ -350,10 +363,8 @@ class aides_jeunes_reform_dynamic(reforms.Reform):
 
             for path in benefit_files_paths:
                 benefit = self.extract_benefit_file_content(path)
-                benefit_parameter = create_benefit_parameters(benefit)
-                self.parameters.add_child(
-                    benefit_parameter.name, benefit_parameter)
-
+                self.create_and_add_parameters(benefit)
                 self.add_variable(generate_variable(benefit))
+
         except KeyError as e:
             raise KeyError(f"field {e} missing in file: {path}")
