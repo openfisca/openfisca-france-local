@@ -29,7 +29,8 @@ from openfisca_france.model.caracteristiques_socio_demographiques\
     .demographie import GroupeSpecialitesFormation
 from openfisca_france.model.base import ParameterNode
 
-from condition_to_parameter import create_benefit_parameters
+from openfisca_france_local.condition_to_parameter\
+    import create_benefit_parameters
 
 
 operations = {

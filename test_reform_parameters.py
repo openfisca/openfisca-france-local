@@ -4,8 +4,10 @@ import pytest
 from openfisca_france import CountryTaxBenefitSystem
 from openfisca_france.model.base import (ParameterNode)
 
-from condition_to_parameter import create_benefit_parameters
-from openfisca_france_local.aides_jeunes_reform import aides_jeunes_reform_dynamic
+from openfisca_france_local.condition_to_parameter\
+    import create_benefit_parameters
+from openfisca_france_local.aides_jeunes_reform\
+    import aides_jeunes_reform_dynamic
 
 
 def generate_parameter_in_TBS(parameters, benefit_path):
