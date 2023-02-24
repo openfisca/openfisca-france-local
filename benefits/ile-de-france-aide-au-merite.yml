@@ -1,0 +1,27 @@
+label: aide au mérite
+institution: region_ile_de_france
+description: La Région récompense les bacheliers boursiers ayant obtenu la
+  mention « très bien » au baccalauréat en Île-de-France, et qui poursuivent
+  leurs études dans un établissement francilien d'enseignement supérieur ou de
+  formation sanitaire et sociale.
+conditions: []
+link: https://www.iledefrance.fr/aide-aux-bacheliers-meritants
+prefix: l’
+type: float
+unit: €
+floorAt: 10
+montant: 1000
+periodicite: ponctuelle
+conditions_generales:
+  - type: regions
+    values:
+      - "11"
+  - type: formation_sanitaire_social
+profils:
+  - type: enseignement_superieur
+    conditions:
+      - type: boursier
+      - type: mention_baccalaureat
+        values:
+          - mention_tres_bien
+          - mention_tres_bien_felicitations_jury

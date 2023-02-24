@@ -1,0 +1,33 @@
+label: revenu Jeunes Actifs
+institution: region_ile_de_france
+description: La Région Île-de-France vous permet d'intégrer l’une de ses
+  formations gratuites et qualifiantes dans l’un des 11 secteurs en tension et
+  rémunérées jusqu'à 4.000 euros pour 6 mois, porté à 5.000 euros pour un jeune
+  en situation de handicap.
+conditions:
+  - Effectuer une formation gratuite que vous choisissez dans le <a
+    target="_blank" title="Catalogue en ligne - Nouvelle fenêtre" rel="noopener" href="https://formpro.oriane.info/">catalogue
+    en ligne</a>.
+conditions_generales:
+  - type: regions
+    values:
+      - "11"
+  - type: age
+    operator: ">="
+    value: 18
+  - type: age
+    operator: <=
+    value: 25
+profils:
+  - type: chomeur
+    conditions: []
+  - type: apprenti
+    conditions: []
+link: https://www.iledefrance.fr/revenu-jeunes-actifs
+instructions: https://www.iledefrance.fr/revenu-jeunes-actifs
+prefix: le
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 4000
