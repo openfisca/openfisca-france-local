@@ -1,0 +1,5 @@
+label: bourse du secteur sanitaire et social
+conditions_generales: []
+profils:
+  - type: president
+type: bool
