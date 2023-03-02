@@ -23,8 +23,8 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     install_requires = [
-        'OpenFisca-Core >= 35.2.0, < 36',
-        'OpenFisca-France >= 126, < 143',
+        'OpenFisca-Core >= 35.8.0, < 36',
+        'OpenFisca-France >= 139.0.0, < 143',
         'pandas == 1.0.3'
         ],
     extras_require = {
