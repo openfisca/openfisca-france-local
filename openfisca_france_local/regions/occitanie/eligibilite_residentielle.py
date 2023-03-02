@@ -14,3 +14,4 @@ class occitanie_eligibilite_residence(Variable):
     def formula(menage, period):
         depcom = menage('depcom', period)
         return sum([startswith(depcom, code_departement) for code_departement in DEPARTEMENTS_OCCITANIE]) > 0
+
