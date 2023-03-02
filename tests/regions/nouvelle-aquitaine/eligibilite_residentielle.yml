@@ -1,5 +1,0 @@
-- period: 2022-11
-  input:
-    depcom: ["19272 ", "38430", "97300"]
-  output:
-    nouvelle_aquitaine_eligibilite_residence: [true, false, false]

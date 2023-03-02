@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="OpenFisca-France-Local",
-    version="4.3.0",
+    version="4.2.3",
     author="OpenFisca Team",
     author_email="contact@openfisca.fr",
     classifiers = [
@@ -24,7 +24,7 @@ setup(
     include_package_data=True,
     install_requires = [
         'OpenFisca-Core >= 35.2.0, < 36',
-        'OpenFisca-France >= 139.0.0, < 140.0.0',
+        'OpenFisca-France >= 111.1, < 139.0.1',
         'pandas == 1.0.3'
         ],
     extras_require = {
