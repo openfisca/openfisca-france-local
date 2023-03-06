@@ -225,13 +225,12 @@ def generate_variable(benefit: dict):
     amount = benefit.get('montant')
     test_conditions_generales = build_condition_evaluator_list(
         benefit['conditions_generales'])
-    test_profiles_eligible = [
-        build_profil_evaluator(p) for p in benefit["profils"]]
+    test_profiles_eligible = [build_profil_evaluator(profil)
+                              for profil in benefit["profils"]]
 
     def formula(individu: Population, period: Period):
         if len(test_profiles_eligible) == 0:
-            is_profile_eligible: np.array = np.array(
-                list([True] * individu.count))
+            is_profile_eligible = np.array([True] * individu.count)
         else:
             eligibilities = [eval_profil(profil, individu, period)
                              for profil in test_profiles_eligible]
@@ -239,8 +238,8 @@ def generate_variable(benefit: dict):
 
         general_eligibilities = eval_conditions(
             test_conditions_generales, individu, period)
-        montant_eligible = calcul_montant_eligible(value_type, amount,
-                                                   general_eligibilities * is_profile_eligible)
+        montant_eligible = calcul_montant_eligible(
+            value_type, amount, general_eligibilities * is_profile_eligible)
 
         return montant_eligible
 
