@@ -96,8 +96,17 @@ def is_boursier(individu: Population, period: Period, condition: dict) -> np.arr
     return individu('boursier', period)
 
 
-def not_implemented(_: Population, __: Period, ____: dict) -> np.array:
-    raise NotImplementedError
+def is_commune_eligible(individu: Population, period: Period, condition: dict) -> np.array:
+    depcom = individu.menage('depcom', period)
+    eligible_depcoms = condition['values']
+    return sum([depcom == eligible_depcom.encode('UTF-8')
+               for eligible_depcom
+               in eligible_depcoms])
+
+
+def not_implemented(_: Population, __: Period, condition: dict) -> np.array:
+    raise NotImplementedError(
+        f'Condition `{condition["type"]}` is not implemented')
 
 
 def is_chomeur(individu: Population, period: Period) -> np.array:
@@ -118,13 +127,11 @@ def is_enseignement_superieur(individu: Population, period: Period) -> np.array:
 
 
 def is_lyceen(individu: Population, period: Period) -> np.array:
-    return individu(
-        'scolarite', period) == TypesScolarite.lycee
+    return individu('scolarite', period) == TypesScolarite.lycee
 
 
 def is_etudiant(individu: Population, period: Period) -> np.array:
-    return individu(
-        'etudiant', period)
+    return individu('etudiant', period)
 
 
 def is_professionnalisation(individu: Population, period: Period) -> np.array:
@@ -151,6 +158,7 @@ condition_table = {
     "boursier": is_boursier,
     "mention_baccalaureat": has_mention_baccalaureat,
     "attached_to_institution": not_implemented,
+    "communes": is_commune_eligible,
 }
 
 profil_table = {

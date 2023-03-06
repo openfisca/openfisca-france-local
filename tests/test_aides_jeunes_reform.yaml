@@ -195,3 +195,12 @@
     age: [18]
   output:
     test_condition_region_corse: [600]
+
+- period: 2022-11
+  name: Test condition Communes
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    depcom: ["62900",'77002']
+  output:
+    test_condition_communes: [5, 0]
