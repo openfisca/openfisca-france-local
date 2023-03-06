@@ -96,6 +96,10 @@ def is_boursier(individu: Population, period: Period, condition: dict) -> np.arr
     return individu('boursier', period)
 
 
+def not_implemented(_: Population, __: Period, ____: dict) -> np.array:
+    raise NotImplementedError
+
+
 def is_chomeur(individu: Population, period: Period) -> np.array:
     return individu('activite', period) == TypesActivite.chomeur
 
@@ -146,6 +150,7 @@ condition_table = {
     "annee_etude": is_annee_etude_eligible,
     "boursier": is_boursier,
     "mention_baccalaureat": has_mention_baccalaureat,
+    "attached_to_institution": not_implemented,
 }
 
 profil_table = {
@@ -168,22 +173,28 @@ type_table = {
 }
 
 
-ConditionEvaluator = collections.namedtuple('ConditionEvaluator', ['condition', 'evaluator'])
-ProfileEvaluator = collections.namedtuple('ProfileEvaluator', ['predicate', 'conditions'])
+ConditionEvaluator = collections.namedtuple(
+    'ConditionEvaluator', ['condition', 'evaluator'])
+ProfileEvaluator = collections.namedtuple(
+    'ProfileEvaluator', ['predicate', 'conditions'])
+
 
 def build_condition_evaluator_list(conditions):
     return [ConditionEvaluator(condition, condition_table[condition['type']])
-                       for condition in conditions]
+            for condition in conditions]
+
 
 def build_profil_evaluator(profil):
     predicate = profil_table[profil['type']]
     conditions = profil.get('conditions', [])
     return ProfileEvaluator(predicate, build_condition_evaluator_list(conditions))
 
+
 def eval_conditions(test_conditions: "list[ConditionEvaluator]", individu: Population, period: Period) -> np.array:
     conditions_results = [
         test.evaluator(individu, period, test.condition) for test in test_conditions]
     return sum(conditions_results) == len(test_conditions)
+
 
 def eval_profil(profil_evaluator: ProfileEvaluator, individu: Population, period: Period):
     profil_match = profil_evaluator.predicate(individu, period)
@@ -192,6 +203,7 @@ def eval_profil(profil_evaluator: ProfileEvaluator, individu: Population, period
     else:
         return profil_match * eval_conditions(profil_evaluator.conditions, individu, period)
 
+
 def calcul_montant_eligible(value_type: str, amount: int, eligibilities: np.array):
     if value_type == float:
         montant_final = amount * eligibilities
@@ -199,26 +211,30 @@ def calcul_montant_eligible(value_type: str, amount: int, eligibilities: np.arra
         montant_final = eligibilities
     return montant_final
 
+
 def generate_variable(benefit: dict):
     value_type = type_table[benefit['type']]
     amount = benefit.get('montant')
-    test_conditions_generales = build_condition_evaluator_list(benefit['conditions_generales'])
-    test_profiles_eligible = [build_profil_evaluator(p) for p in benefit["profils"]]
+    test_conditions_generales = build_condition_evaluator_list(
+        benefit['conditions_generales'])
+    test_profiles_eligible = [
+        build_profil_evaluator(p) for p in benefit["profils"]]
 
     def formula(individu: Population, period: Period):
         if len(test_profiles_eligible) == 0:
-            is_profile_eligible: np.array = np.array(list([True] * individu.count))
+            is_profile_eligible: np.array = np.array(
+                list([True] * individu.count))
         else:
             eligibilities = [eval_profil(profil, individu, period)
                              for profil in test_profiles_eligible]
             is_profile_eligible: np.array = sum(eligibilities) >= 1
 
-        general_eligibilities = eval_conditions(test_conditions_generales, individu, period)
+        general_eligibilities = eval_conditions(
+            test_conditions_generales, individu, period)
         montant_eligible = calcul_montant_eligible(value_type, amount,
-            general_eligibilities * is_profile_eligible)
+                                                   general_eligibilities * is_profile_eligible)
 
         return montant_eligible
-
 
     return type(benefit['slug'], (Variable,), {
         "value_type": value_type,
@@ -227,12 +243,14 @@ def generate_variable(benefit: dict):
         "formula": formula,
     })
 
+
 root = '.'
 path = 'benefits/'
 current_path = f'{root}/{path}'
 
+
 class aides_jeunes_reform_dynamic(reforms.Reform):
-    def __init__(self, baseline, benefits_folder_path = current_path):
+    def __init__(self, baseline, benefits_folder_path=current_path):
         self.benefits_folder_path = benefits_folder_path
         super().__init__(baseline)
 
