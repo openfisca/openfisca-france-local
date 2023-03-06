@@ -187,20 +187,23 @@ ProfileEvaluator = collections.namedtuple(
     'ProfileEvaluator', ['predicate', 'conditions'])
 
 
-def build_condition_evaluator_list(conditions):
+def build_condition_evaluator_list(
+        conditions: 'list[dict]') -> 'list[ConditionEvaluator]':
     return [ConditionEvaluator(condition, condition_table[condition['type']])
             for condition in conditions]
 
 
-def build_profil_evaluator(profil):
+def build_profil_evaluator(profil: dict) -> ProfileEvaluator:
     predicate = profil_table[profil['type']]
     conditions = profil.get('conditions', [])
-    return ProfileEvaluator(predicate, build_condition_evaluator_list(conditions))
+    return ProfileEvaluator(predicate,
+                            build_condition_evaluator_list(conditions))
 
 
-def eval_conditions(test_conditions: "list[ConditionEvaluator]", individu: Population, period: Period) -> np.array:
-    conditions_results = [
-        test.evaluator(individu, period, test.condition) for test in test_conditions]
+def eval_conditions(test_conditions: "list[ConditionEvaluator]",
+                    individu: Population, period: Period) -> np.array:
+    conditions_results = [test.evaluator(individu, period, test.condition)
+                          for test in test_conditions]
     return sum(conditions_results) == len(test_conditions)
 
 
@@ -223,21 +226,21 @@ def calcul_montant_eligible(value_type: str, amount: int, eligibilities: np.arra
 def generate_variable(benefit: dict):
     value_type = type_table[benefit['type']]
     amount = benefit.get('montant')
-    test_conditions_generales = build_condition_evaluator_list(
+    conditions_generales_tests = build_condition_evaluator_list(
         benefit['conditions_generales'])
-    test_profiles_eligible = [build_profil_evaluator(profil)
-                              for profil in benefit["profils"]]
+    eligible_profiles_tests = [build_profil_evaluator(profil)
+                               for profil in benefit["profils"]]
 
     def formula(individu: Population, period: Period):
-        if len(test_profiles_eligible) == 0:
+        if len(eligible_profiles_tests) == 0:
             is_profile_eligible = np.array([True] * individu.count)
         else:
             eligibilities = [eval_profil(profil, individu, period)
-                             for profil in test_profiles_eligible]
+                             for profil in eligible_profiles_tests]
             is_profile_eligible: np.array = sum(eligibilities) >= 1
 
         general_eligibilities = eval_conditions(
-            test_conditions_generales, individu, period)
+            conditions_generales_tests, individu, period)
 
         montant_eligible = calcul_montant_eligible(
             value_type, amount, general_eligibilities * is_profile_eligible)
