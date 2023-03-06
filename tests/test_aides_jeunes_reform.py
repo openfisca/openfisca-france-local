@@ -17,6 +17,9 @@ def test_bogus_benefit_structure(bogus_benefit_folder):
 
 def test_benefit_structures():
     base_tbs = FranceTaxBenefitSystem()
-    ok_path = "benefits_full"
-    ok_path = "failing_yaml"
+
+    # Path to benefits folder
+    # To edit in local setup to path towards ALL benefits
+    ok_path = "benefits"
+
     aides_jeunes_reform_dynamic(base_tbs, ok_path)

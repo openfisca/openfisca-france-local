@@ -238,6 +238,7 @@ def generate_variable(benefit: dict):
 
         general_eligibilities = eval_conditions(
             test_conditions_generales, individu, period)
+
         montant_eligible = calcul_montant_eligible(
             value_type, amount, general_eligibilities * is_profile_eligible)
 
