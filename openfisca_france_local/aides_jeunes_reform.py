@@ -180,7 +180,7 @@ def build_profil_evaluator(profil):
     conditions = profil.get('conditions', [])
     return ProfileEvaluator(predicate, build_condition_evaluator_list(conditions))
 
-def eval_conditions(test_conditions: [ConditionEvaluator], individu: Population, period: Period) -> np.array:
+def eval_conditions(test_conditions: "list[ConditionEvaluator]", individu: Population, period: Period) -> np.array:
     conditions_results = [
         test.evaluator(individu, period, test.condition) for test in test_conditions]
     return sum(conditions_results) == len(test_conditions)
@@ -207,7 +207,7 @@ def generate_variable(benefit: dict):
 
     def formula(individu: Population, period: Period):
         if len(test_profiles_eligible) == 0:
-            is_profile_eligible: np.array = True
+            is_profile_eligible: np.array = np.array(list([True] * individu.count))
         else:
             eligibilities = [eval_profil(profil, individu, period)
                              for profil in test_profiles_eligible]
