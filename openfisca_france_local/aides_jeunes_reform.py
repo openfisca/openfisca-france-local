@@ -153,6 +153,10 @@ def is_inactif(individu: Population, period: Period) -> np.array:
     return individu('activite', period) == TypesActivite.inactif
 
 
+def not_implemented_profil(_: Population, __: Period,) -> np.array:
+    raise NotImplementedError('Profil is not implemented')
+
+
 condition_table = {
     "age": is_age_eligible,
     "regions": is_region_eligible,
@@ -181,6 +185,7 @@ profil_table = {
     "salarie": is_actif,
     "service_civique": is_actif,
     "inactif": is_inactif,
+    "situation_handicap": not_implemented_profil,
 }
 
 type_table = {
@@ -197,12 +202,21 @@ ProfileEvaluator = collections.namedtuple(
 
 def build_condition_evaluator_list(
         conditions: 'list[dict]') -> 'list[ConditionEvaluator]':
-    return [ConditionEvaluator(condition, condition_table[condition['type']])
-            for condition in conditions]
+    try:
+        evaluators = [ConditionEvaluator(condition, condition_table[condition['type']])
+                      for condition in conditions]
+    except KeyError as e:
+        raise KeyError(f"Condition: `{(e.args[0])}` is unknown")
+
+    return evaluators
 
 
 def build_profil_evaluator(profil: dict) -> ProfileEvaluator:
-    predicate = profil_table[profil['type']]
+    try:
+        predicate = profil_table[profil['type']]
+    except KeyError as e:
+        raise KeyError(f"Profil: `{(e.args[0])}` is unknown")
+
     conditions = profil.get('conditions', [])
     return ProfileEvaluator(predicate,
                             build_condition_evaluator_list(conditions))
@@ -298,4 +312,6 @@ class aides_jeunes_reform_dynamic(reforms.Reform):
                 self.add_variable(generate_variable(
                     self.extract_benefit_file_content(path)))
         except KeyError as e:
-            raise KeyError(f"field {e} missing in file: {path}")
+            raise KeyError(f"{e.args[0]} - Input file: {path}")
+        except Exception as e:
+            raise Exception(f'{e.args[0]} in file {path}')
