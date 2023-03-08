@@ -12,7 +12,7 @@
   input:
     age: [15, 16, 17]
   output:
-    test_age_condition: [0, 106, 106]
+    test_condition_age: [0, 106, 106]
 
 - period: 2022-11
   reforms:
