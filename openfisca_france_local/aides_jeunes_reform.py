@@ -111,11 +111,6 @@ def is_epci_eligible(individu: Population, period: Period, condition: dict) -> n
                 in eligible_epcis])
 
 
-def not_implemented(_: Population, __: Period, condition: dict) -> np.array:
-    raise NotImplementedError(
-        f'Condition `{condition["type"]}` is not implemented')
-
-
 def is_chomeur(individu: Population, period: Period) -> np.array:
     return individu('activite', period) == TypesActivite.chomeur
 
@@ -153,6 +148,15 @@ def is_inactif(individu: Population, period: Period) -> np.array:
     return individu('activite', period) == TypesActivite.inactif
 
 
+def is_situation_handicap(individu: Population, period: Period) -> np.array:
+    return individu('handicap', period)
+
+
+def not_implemented_condition(_: Population, __: Period, condition: dict) -> np.array:
+    raise NotImplementedError(
+        f'Condition `{condition["type"]}` is not implemented')
+
+
 def not_implemented_profil(_: Population, __: Period,) -> np.array:
     raise NotImplementedError('Profil is not implemented')
 
@@ -170,7 +174,7 @@ condition_table = {
     "mention_baccalaureat": has_mention_baccalaureat,
     "communes": is_commune_eligible,
     "epcis": is_epci_eligible,
-    "attached_to_institution": not_implemented,
+    "attached_to_institution": not_implemented_condition,
 }
 
 profil_table = {
@@ -185,7 +189,7 @@ profil_table = {
     "salarie": is_actif,
     "service_civique": is_actif,
     "inactif": is_inactif,
-    "situation_handicap": not_implemented_profil,
+    "situation_handicap": is_situation_handicap,
 }
 
 type_table = {

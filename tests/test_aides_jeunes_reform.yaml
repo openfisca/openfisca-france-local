@@ -222,3 +222,12 @@
     depcom: ["33063", "77002"]
   output:
     test_condition_epcis: [1,0]
+
+- period: 2022-11
+  name: Profil situation_handicap
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    handicap: [true, false]
+  output:
+    test_profil_situation_handicap: [1,0]
