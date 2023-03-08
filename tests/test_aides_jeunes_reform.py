@@ -20,6 +20,6 @@ def test_benefit_structures():
 
     # Path to benefits folder
     # To edit in local setup to path towards ALL benefits
-    ok_path = "benefits"
+    ok_path = os.getenv('OFFL_TEST_BENEFIT_PATH', "benefits")
 
     aides_jeunes_reform_dynamic(base_tbs, ok_path)
