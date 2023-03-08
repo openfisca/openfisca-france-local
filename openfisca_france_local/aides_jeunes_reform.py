@@ -104,6 +104,13 @@ def is_commune_eligible(individu: Population, period: Period, condition: dict) -
                in eligible_depcoms])
 
 
+def is_epci_eligible(individu: Population, period: Period, condition: dict) -> np.array:
+    eligible_epcis: list[str] = condition['values']
+    return sum([individu.menage(f'menage_dans_epci_siren_{epci}', period)
+                for epci
+                in eligible_epcis])
+
+
 def not_implemented(_: Population, __: Period, condition: dict) -> np.array:
     raise NotImplementedError(
         f'Condition `{condition["type"]}` is not implemented')
@@ -157,8 +164,9 @@ condition_table = {
     "annee_etude": is_annee_etude_eligible,
     "boursier": is_boursier,
     "mention_baccalaureat": has_mention_baccalaureat,
-    "attached_to_institution": not_implemented,
     "communes": is_commune_eligible,
+    "epcis": is_epci_eligible,
+    "attached_to_institution": not_implemented,
 }
 
 profil_table = {

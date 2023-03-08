@@ -205,10 +205,20 @@
     test_condition_region_corse: [600]
 
 - period: 2022-11
-  name: Test condition Communes
+  name: Condition communes
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
     depcom: ["62900",'77002']
   output:
     test_condition_communes: [5, 0]
+
+- period: 2022-11
+  name: Condition epcis
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  - openfisca_france_local.epci_test_factory.epci_reform
+  input:
+    depcom: ["33063", "77002"]
+  output:
+    test_condition_epcis: [1,0]
