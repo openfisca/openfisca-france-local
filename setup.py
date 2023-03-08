@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="OpenFisca-France-Local",
-    version="5.0.0",
+    version="4.2.7",
     author="OpenFisca Team",
     author_email="contact@openfisca.fr",
     classifiers = [
