@@ -13,7 +13,7 @@ import numpy as np
 from openfisca_france.model.base import (
     TypesMention, TypesActivite, Variable, Individu, MONTH)
 from openfisca_core import reforms
-from openfisca_core.periods import Period, period
+from openfisca_core.periods import Period
 
 
 from openfisca_core.populations.population import Population
@@ -111,6 +111,21 @@ def is_epci_eligible(individu: Population, period: Period, condition: dict) -> n
                 in eligible_epcis])
 
 
+def is_taux_incapacite_eligible(individu: Population, period: Period, condition: dict) -> np.array:
+    evaluates = {
+        'inferieur_50': lambda taux: taux < 0.5,
+        'entre_50_et_80': lambda taux: np.logical_and(taux >= 0.5, taux < 0.8),
+        'superieur_ou_egal_80': lambda taux: taux >= 0.8
+    }
+
+    taux_incapacite = individu('taux_incapacite', period)
+    elibible_taux = condition['values']
+
+    eligibilities = [evaluates[taux](taux_incapacite)
+                     for taux in elibible_taux]
+    return sum(eligibilities) > 0
+
+
 def is_chomeur(individu: Population, period: Period) -> np.array:
     return individu('activite', period) == TypesActivite.chomeur
 
@@ -174,6 +189,7 @@ condition_table = {
     "mention_baccalaureat": has_mention_baccalaureat,
     "communes": is_commune_eligible,
     "epcis": is_epci_eligible,
+    "taux_incapacite": is_taux_incapacite_eligible,
     "attached_to_institution": not_implemented_condition,
 }
 

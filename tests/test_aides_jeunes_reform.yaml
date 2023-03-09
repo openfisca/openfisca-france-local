@@ -231,3 +231,13 @@
     handicap: [true, false]
   output:
     test_profil_situation_handicap: [1,0]
+
+- period: 2022-11
+  name: Profil situation_handicap et condition taux_incapacite
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    handicap: [true, true, true]
+    taux_incapacite: [0.5, 0.49, 0.8]
+  output:
+    test_condition_taux_incapacite: [1, 0,1]
