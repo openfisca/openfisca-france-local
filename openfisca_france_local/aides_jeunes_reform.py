@@ -282,8 +282,6 @@ def generate_variable(benefit: dict):
     def formula(individu: Population, period: Period):
         if len(eligible_profiles_tests) == 0:
             is_profile_eligible = np.ones((individu.count,), dtype=bool)
-            # Which one is the better form ?
-            # is_profile_eligible = np.array([True] * individu.count)
         else:
             eligibilities = [eval_profil(profil, individu, period)
                              for profil in eligible_profiles_tests]
