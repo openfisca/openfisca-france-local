@@ -19,10 +19,10 @@ from openfisca_core.periods import Period
 from openfisca_core.populations.population import Population
 from openfisca_france.model.prestations.education import (
     TypesScolarite, TypesClasse)
-from openfisca_france.model.caracteristiques_socio_demographiques.logement import (
-    TypesCodeInseeRegion)
-from openfisca_france.model.caracteristiques_socio_demographiques.demographie import RegimeSecuriteSociale
-from openfisca_france.model.caracteristiques_socio_demographiques.demographie import GroupeSpecialitesFormation
+from openfisca_france.model.caracteristiques_socio_demographiques.\
+    logement import TypesCodeInseeRegion
+from openfisca_france.model.caracteristiques_socio_demographiques.demographie \
+    import (RegimeSecuriteSociale, GroupeSpecialitesFormation)
 
 operations = {
     '<': operator.lt,
@@ -44,17 +44,23 @@ def is_age_eligible(individu, period, condition):
 
 def is_department_eligible(individu: Population, period: Period, condition):
     depcom = individu.menage('depcom', period)
-    return sum([startswith(depcom, code.encode('UTF-8'))for code in condition['values']]) > 0
+    eligibilities = [startswith(depcom, code.encode('UTF-8'))
+                     for code in condition['values']]
+    return sum(eligibilities) > 0
 
 
 def is_region_eligible(individu: Population, period: Period, condition):
     region = individu.menage('region', period)
-    return sum([region == TypesCodeInseeRegion(code_region) for code_region in condition['values']]) > 0
+    eligibilities = [region == TypesCodeInseeRegion(code_region)
+                     for code_region in condition['values']]
+    return sum(eligibilities) > 0
 
 
 def is_regime_securite_sociale_eligible(individu: Population, period: Period, condition):
     regime_securite_sociale = individu('regime_securite_sociale', period)
-    return sum([regime_securite_sociale == RegimeSecuriteSociale[regime] for regime in condition['includes']]) > 0
+    eligibilities = [regime_securite_sociale == RegimeSecuriteSociale[regime]
+                     for regime in condition['includes']]
+    return sum(eligibilities) > 0
 
 
 def is_quotient_familial_eligible(individu: Population, period: Period, condition) -> np.array:
@@ -83,13 +89,17 @@ def is_beneficiaire_rsa_eligible(individu: Population, period: Period, condition
 def is_annee_etude_eligible(individu: Population, period: Period, condition) -> np.array:
     current_year = individu(
         'annee_etude', period)
-    return sum([current_year == TypesClasse[value] for value in condition['values']]) > 0
+    eligibilities = [current_year == TypesClasse[value]
+                     for value in condition['values']]
+    return sum(eligibilities) > 0
 
 
 def has_mention_baccalaureat(individu: Population, period: Period, condition) -> np.array:
     has_mention = individu(
         'mention_baccalaureat', period)
-    return sum([has_mention == TypesMention[value] for value in condition['values']]) > 0
+    eligibilities = [has_mention == TypesMention[value]
+                     for value in condition['values']]
+    return sum(eligibilities) > 0
 
 
 def is_boursier(individu: Population, period: Period, condition: dict) -> np.array:
@@ -106,9 +116,9 @@ def is_commune_eligible(individu: Population, period: Period, condition: dict) -
 
 def is_epci_eligible(individu: Population, period: Period, condition: dict) -> np.array:
     eligible_epcis: list[str] = condition['values']
-    return sum([individu.menage(f'menage_dans_epci_siren_{epci}', period)
-                for epci
-                in eligible_epcis])
+    eligibilities = [individu.menage(f'menage_dans_epci_siren_{epci}', period)
+                     for epci in eligible_epcis]
+    return sum(eligibilities)
 
 
 def is_taux_incapacite_eligible(individu: Population, period: Period, condition: dict) -> np.array:
@@ -170,10 +180,6 @@ def is_situation_handicap(individu: Population, period: Period) -> np.array:
 def not_implemented_condition(_: Population, __: Period, condition: dict) -> np.array:
     raise NotImplementedError(
         f'Condition `{condition["type"]}` is not implemented')
-
-
-def not_implemented_profil(_: Population, __: Period,) -> np.array:
-    raise NotImplementedError('Profil is not implemented')
 
 
 condition_table = {
