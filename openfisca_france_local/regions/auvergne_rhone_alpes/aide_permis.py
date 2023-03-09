@@ -1,4 +1,7 @@
 from openfisca_france.model.base import Individu, MONTH, Variable, ADD
+from openfisca_france.model.caracteristiques_socio_demographiques.logement\
+    import TypesCodeInseeRegion
+
 
 class auvergne_rhone_alpes_aide_permis(Variable):
     value_type = float
@@ -12,7 +15,9 @@ class auvergne_rhone_alpes_aide_permis(Variable):
 
         montant = params.montant
 
-        eligibilite_residentielle = individu.menage("auvergne_rhone_alpes_eligibilite_residence", period)
+        region = individu.menage('region', period)
+        eligibilite_residentielle = (
+            region == TypesCodeInseeRegion.auvergne_rhone_alpes)
 
         eligibilite_age = individu('age', period) == params.age
 
