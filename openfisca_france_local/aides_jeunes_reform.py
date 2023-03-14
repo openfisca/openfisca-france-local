@@ -302,8 +302,8 @@ def generate_variable(benefit: dict):
 
 
 root = '.'
-path = 'benefits/'
-current_path = f'{root}/{path}'
+path = 'test_data/benefits'
+current_path = os.path.join(root, path)
 
 
 class aides_jeunes_reform_dynamic(reforms.Reform):
