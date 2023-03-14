@@ -1,4 +1,5 @@
 from openfisca_france.model.base import Variable, MONTH, Individu
+from numpy import select
 
 
 class bordeaux_metropole_aide_tarification_solidaire_transport(Variable):
@@ -17,6 +18,11 @@ class bordeaux_metropole_aide_tarification_solidaire_transport(Variable):
         nbptr = individu.foyer_fiscal('nbptr', period.this_year)
         qf = rfr / 12 / nbptr
 
-        montant = benefit_parameters.tranche3.taux_de_reduction
-        max_eligible_qf = benefit_parameters.tranche3.quotient_familial_maximum
-        return (qf <= max_eligible_qf) * montant
+        qf_max2 = benefit_parameters.tranche2.quotient_familial_maximum
+        taux2 = benefit_parameters.tranche2.taux_de_reduction
+        qf_max3 = benefit_parameters.tranche3.quotient_familial_maximum
+        taux3 = benefit_parameters.tranche3.taux_de_reduction
+
+        montant = select([qf <= qf_max2, qf <= qf_max3,
+                         qf > qf_max2], [taux2, taux3, 0])
+        return montant

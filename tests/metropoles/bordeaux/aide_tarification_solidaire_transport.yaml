@@ -2,8 +2,8 @@ name: TBM - Tarification solidaire
 period: 2022-01
 input:
   rfr :
-    2022: ["11316", "11304"]
+    2022: ["11316", "11304", "7320"]
   nbptr:
-    2022: ["1", "1"]
+    2022: ["1", "1", "1"]
 output:
-  bordeaux_metropole_aide_tarification_solidaire_transport: [0, 30]
+  bordeaux_metropole_aide_tarification_solidaire_transport: [0, 30, 50]
