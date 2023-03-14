@@ -24,6 +24,7 @@ from openfisca_france.model.caracteristiques_socio_demographiques.\
 from openfisca_france.model.caracteristiques_socio_demographiques.demographie \
     import (RegimeSecuriteSociale, GroupeSpecialitesFormation)
 
+
 operations = {
     '<': operator.lt,
     '<=': operator.le,
@@ -199,6 +200,7 @@ condition_table = {
     "attached_to_institution": not_implemented_condition,
 }
 
+
 profil_table = {
     "enseignement_superieur": is_enseignement_superieur,
     "chomeur": is_chomeur,
@@ -213,6 +215,7 @@ profil_table = {
     "inactif": is_inactif,
     "situation_handicap": is_situation_handicap,
 }
+
 
 type_table = {
     'float': float,
@@ -240,8 +243,8 @@ def build_condition_evaluator_list(
 def build_profil_evaluator(profil: dict) -> ProfileEvaluator:
     try:
         predicate = profil_table[profil['type']]
-    except KeyError as e:
-        raise KeyError(f"Profil: `{(e.args[0])}` is unknown")
+    except KeyError:
+        raise KeyError(f"Profil: `{profil['type']}` is unknown")
 
     conditions = profil.get('conditions', [])
     return ProfileEvaluator(predicate,
@@ -263,14 +266,6 @@ def eval_profil(profil_evaluator: ProfileEvaluator, individu: Population, period
         return profil_match * eval_conditions(profil_evaluator.conditions, individu, period)
 
 
-def calcul_montant_eligible(value_type: str, amount: int, eligibilities: np.array):
-    if value_type == float:
-        montant_final = amount * eligibilities
-    else:
-        montant_final = eligibilities
-    return montant_final
-
-
 def generate_variable(benefit: dict):
     value_type = type_table[benefit['type']]
     amount = benefit.get('montant')
@@ -279,21 +274,24 @@ def generate_variable(benefit: dict):
     eligible_profiles_tests = [build_profil_evaluator(profil)
                                for profil in benefit["profils"]]
 
+    def compute_amount(eligibilities: np.array):
+        return amount * eligibilities
+
+    def compute_bool(eligibilities: np.array):
+        return eligibilities
+
+    compute_value = compute_amount if value_type == float else compute_bool
+
     def formula(individu: Population, period: Period):
-        if len(eligible_profiles_tests) == 0:
-            is_profile_eligible = np.ones((individu.count,), dtype=bool)
-        else:
-            eligibilities = [eval_profil(profil, individu, period)
-                             for profil in eligible_profiles_tests]
-            is_profile_eligible: np.array = sum(eligibilities) >= 1
+        eligibilities = [eval_profil(profil, individu, period)
+                         for profil in eligible_profiles_tests]
+        is_profile_eligible = len(eligibilities) == 0 or sum(eligibilities) >= 1
 
         general_eligibilities = eval_conditions(
             conditions_generales_tests, individu, period)
 
-        montant_eligible = calcul_montant_eligible(
-            value_type, amount, general_eligibilities * is_profile_eligible)
+        return compute_value(general_eligibilities * is_profile_eligible)
 
-        return montant_eligible
 
     return type(benefit['slug'], (Variable,), {
         "value_type": value_type,
