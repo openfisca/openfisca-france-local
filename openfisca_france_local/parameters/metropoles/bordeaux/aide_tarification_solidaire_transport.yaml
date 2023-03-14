@@ -1,0 +1,9 @@
+tranche3:
+  quotient_familial_maximum:
+    values:
+      2021-01-01:
+        value: 942
+  taux_de_reduction:
+    values:
+      2021-01-01:
+        value: 30
