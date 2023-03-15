@@ -1,0 +1,9 @@
+label: aide individuelle régionale vers l’emploi
+conditions_generales:
+  - type: regions
+    values:
+      - "11"
+profils:
+  - type: chomeur
+    conditions: []
+type: bool

@@ -1,0 +1,12 @@
+label: aide à la mobilité internationale des étudiant·e·s
+conditions_generales:
+  - type: regions
+    values:
+      - "44"
+profils:
+  - type: enseignement_superieur
+    conditions:
+      - type: age
+        operator: <=
+        value: 29
+type: bool

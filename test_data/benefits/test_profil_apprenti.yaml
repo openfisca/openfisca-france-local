@@ -1,0 +1,10 @@
+label: "Carte Génération - Apprentis : aide au transport"
+conditions_generales:
+  - type: regions
+    values:
+      - "32"
+profils:
+  - type: apprenti
+    conditions: []
+type: float
+montant: 200

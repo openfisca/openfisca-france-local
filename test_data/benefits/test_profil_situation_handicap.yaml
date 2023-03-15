@@ -1,0 +1,10 @@
+label: Tarification Solidaire des Transports
+conditions_generales: []
+profils:
+  - type: situation_handicap
+    conditions: []
+type: bool
+periodicite: ponctuelle
+link: https://tarificationsolidaire.bordeaux-metropole.fr/Accueil.aspx
+teleservice: https://tarificationsolidaire.bordeaux-metropole.fr/infosCreationCompte.aspx
+instructions: ""

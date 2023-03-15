@@ -1,0 +1,10 @@
+label: aide au premier équipement professionnel
+conditions_generales:
+  - type: regions
+    values:
+      - "24"
+profils:
+  - type: lyceen
+    conditions: []
+type: float
+montant: 50

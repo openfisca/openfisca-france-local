@@ -1,0 +1,9 @@
+label: chèque emploi
+conditions_generales:
+  - type: regions
+    values:
+      - "24"
+profils:
+  - type: chomeur
+    conditions: []
+type: bool

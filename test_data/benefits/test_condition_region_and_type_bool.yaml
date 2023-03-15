@@ -1,0 +1,10 @@
+label: abonnement TER Illico hebdo jeunes
+conditions_generales:
+  - type: age
+    operator: <
+    value: 26
+  - type: regions
+    values:
+      - "84"
+profils: []
+type: bool

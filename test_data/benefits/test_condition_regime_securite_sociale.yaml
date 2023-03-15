@@ -1,0 +1,14 @@
+label: Aide au Brevet d'Aptitude aux Fonctions de Directeur (BAFD)
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 18
+  - type: regime_securite_sociale
+    includes:
+      - regime_general
+  - type: departements
+    values:
+      - "56"
+profils: []
+type: float
+montant: 286

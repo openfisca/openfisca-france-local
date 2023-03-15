@@ -1,0 +1,20 @@
+label: Aide au BAFA pour une session de formation générale et d'approfondissement
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 16
+  - type: age
+    operator: <=
+    value: 25
+  - type: quotient_familial
+    value: 800
+    operator: "<="
+    period: month
+  - type: departements
+    values:
+      - "38"
+profils: []
+type: float
+unit: €
+periodicite: ponctuelle
+montant: 200
