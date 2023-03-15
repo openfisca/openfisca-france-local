@@ -1,3 +1,12 @@
+tranche1:
+  quotient_familial_maximum:
+    values:
+      2021-01-01:
+        value: 550
+  taux_de_reduction:
+    values:
+      2021-01-01:
+        value: 100
 tranche2:
   quotient_familial_maximum:
     values:
