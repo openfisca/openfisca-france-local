@@ -1,5 +1,4 @@
 from openfisca_france.model.base import MONTH, Variable, TypesActivite, Famille
-from openfisca_france.model.base import *
 from openfisca_france.model.caracteristiques_socio_demographiques.logement import (
     TypesCodeInseeRegion)
 
