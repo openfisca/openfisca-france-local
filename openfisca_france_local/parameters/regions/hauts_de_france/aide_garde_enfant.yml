@@ -1,0 +1,35 @@
+montant:
+  reference:
+    - https://www.hautsdefrance.fr/aide-garde-enfant/
+    - https://guide-aides.hautsdefrance.fr/aide636
+  description: Montant pour l'Aide à la Garde d'Enfant des Hauts de France
+  famille_biparentale:
+    values:
+      2017-02-01: 20
+  famille_monoparentale:
+    values:
+      2017-02-01: 30
+
+age_maximum_enfant:
+  reference:
+    - https://www.hautsdefrance.fr/aide-garde-enfant/
+    - https://guide-aides.hautsdefrance.fr/aide636
+  description: Age maximum d'éligibilité d'un enfant à la Garde d'Enfants des Hauts de France
+  values:
+    2017-02-01:
+      value: 3
+
+plafond_multiple_smic:
+  description: Montant maximal du revenu fiscal de référence du foyer
+  unit: smic
+  reference:
+    - https://www.hautsdefrance.fr/aide-garde-enfant/
+    - https://guide-aides.hautsdefrance.fr/aide636
+  famille_biparentale:
+    values:
+      2017-02-01:
+        value: 3
+  famille_monoparentale:
+    values:
+      2017-02-01:
+        value: 2
