@@ -68,7 +68,7 @@ def is_quotient_familial_eligible(individu: Population, period: Period, conditio
 
     rfr = individu.foyer_fiscal('rfr', period.this_year)
     nbptr = individu.foyer_fiscal('nbptr', period.this_year)
-    quotient_familial = rfr / nbptr
+    quotient_familial = rfr / 12 / nbptr
 
     comparison = operations[condition['operator']]
 
@@ -291,7 +291,6 @@ def generate_variable(benefit: dict):
             conditions_generales_tests, individu, period)
 
         return compute_value(general_eligibilities * is_profile_eligible)
-
 
     return type(benefit['slug'], (Variable,), {
         "value_type": value_type,
