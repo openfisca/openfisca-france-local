@@ -48,7 +48,7 @@
       enfant1:
         age_en_mois: 37
       enfant2:
-        age_en_mois: 36
+        age_en_mois: 35
   output:
     hauts_de_france_aide_garde_enfant: 30
 

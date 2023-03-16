@@ -15,13 +15,14 @@ class hauts_de_france_aide_garde_enfant(Variable):
     definition_period = MONTH
 
     def formula(famille, period, parameters):
-        params = parameters(period).regions.hauts_de_france.aide_garde_enfant
+        modalites = parameters(
+            period).regions.hauts_de_france.aide_garde_enfant
         couple = famille('en_couple', period)
-        montant = (params.montant.famille_monoparentale * (1 - couple)
-                   ) + (params.montant.famille_biparentale * couple)
+        montant = (modalites.montant.famille_monoparentale * (1 - couple)
+                   ) + (modalites.montant.famille_biparentale * couple)
 
-        age = famille.members('age_en_mois', period)
-        enfants_eligibles = (age <= params.age_maximum_enfant_en_mois)
+        age = famille.members('age', period)
+        enfants_eligibles = (age < modalites.age_maximum_enfant)
         montant_par_enfant = montant * enfants_eligibles
         montant_total = famille.sum(montant_par_enfant, role=Famille.ENFANT)
 
@@ -34,7 +35,7 @@ class hauts_de_france_aide_garde_enfant(Variable):
         eligibilite_statut = famille.sum(
             actifs, role=Famille.PARENT) == nombre_parents
 
-        plafond_param = params.plafond_multiple_smic
+        plafond_param = modalites.plafond_multiple_smic
         plafond_ressources_smic = (plafond_param.famille_monoparentale * (
             1 - couple)) + (plafond_param.famille_biparentale * couple)
         smic = parameters(
