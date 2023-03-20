@@ -67,8 +67,6 @@
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
-    age:  [18, 18]
-    depcom: ["38120", "38120"]
     rfr:
       2022: ["9600", "9612"]
     nbptr:
