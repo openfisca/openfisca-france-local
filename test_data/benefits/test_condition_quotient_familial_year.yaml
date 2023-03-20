@@ -1,0 +1,11 @@
+label: Aide au BAFA pour une session de formation générale et d'approfondissement
+conditions_generales:
+  - type: quotient_familial
+    value: 9600
+    operator: "<="
+    period: year
+profils: []
+type: float
+unit: €
+periodicite: ponctuelle
+montant: 200
