@@ -1,0 +1,28 @@
+tranches_taux_de_reduction_par_quotient_familial:
+  metadata:
+    type: single_amount
+  brackets:
+    - threshold:
+        2021-01-01:
+          value: 0
+      amount:
+        2021-01-01:
+          value: 100
+    - threshold:
+        2021-01-01:
+          value: 551
+      amount:
+        2021-01-01:
+          value: 50
+    - threshold:
+        2021-01-01:
+          value: 611
+      amount:
+        2021-01-01:
+          value: 30
+    - threshold:
+        2021-01-01:
+          value: 943
+      amount:
+        2021-01-01:
+          value: 0
