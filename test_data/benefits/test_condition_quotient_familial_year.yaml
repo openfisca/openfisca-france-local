@@ -1,9 +1,9 @@
 label: Aide au BAFA pour une session de formation générale et d'approfondissement
 conditions_generales:
   - type: quotient_familial
-    value: 800
+    value: 9600
     operator: "<="
-    period: month
+    period: year
 profils: []
 type: float
 unit: €
