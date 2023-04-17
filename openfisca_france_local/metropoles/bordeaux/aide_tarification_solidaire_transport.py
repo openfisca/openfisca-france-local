@@ -13,8 +13,8 @@ class bordeaux_metropole_aide_tarification_solidaire_transport(Variable):
         benefit_parameters = parameters(
             period).metropoles.bordeaux.aide_tarification_solidaire_transport
 
-        rfr = individu.foyer_fiscal('rfr', period.this_year)
-        nbptr = individu.foyer_fiscal('nbptr', period.this_year)
+        rfr = individu.foyer_fiscal('rfr', period.n_2)
+        nbptr = individu.foyer_fiscal('nbptr', period.n_2)
         quotient_familial = rfr / 12 / nbptr
 
         return benefit_parameters['tranches_taux_de_reduction_par_quotient_familial'].calc(quotient_familial)
