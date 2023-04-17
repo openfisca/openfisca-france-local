@@ -67,8 +67,8 @@ def is_regime_securite_sociale_eligible(individu: Population, period: Period, co
 def is_quotient_familial_eligible(individu: Population, period: Period, condition) -> np.array:
 
     period_divider = 12 if condition["period"] == 'month' else 1
-    rfr = individu.foyer_fiscal('rfr', period.this_year)
-    nbptr = individu.foyer_fiscal('nbptr', period.this_year)
+    rfr = individu.foyer_fiscal('rfr', period.n_2)
+    nbptr = individu.foyer_fiscal('nbptr', period.n_2)
 
     quotient_familial = rfr / period_divider / nbptr
 
