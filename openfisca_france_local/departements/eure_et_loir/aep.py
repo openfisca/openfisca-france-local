@@ -5,7 +5,7 @@ class eure_et_loir_eligibilite_aep(Variable):
     entity = Menage
     definition_period = MONTH
     label = "En Eure-et-Loir, éligibilité a l'Action Éducative de Promixité (AEP)"
-    reference = "https://www.eurelien.fr/sites/default/files/media/l_aide_educative_de_proximite.pdf"
+    reference = "https://eurelien.fr/wp-content/uploads/2023/01/l_aide_educative_de_proximite.pdf"
 
     def formula(menage, period):
         reside_eure_et_loir = menage('eure_et_loir_eligibilite_residence', period)
