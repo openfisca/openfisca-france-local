@@ -5,7 +5,7 @@ class bordeaux_metropole_aide_tarification_solidaire_transport_eligibilite_geogr
     value_type = bool
     entity = Menage
     definition_period = MONTH
-    label = "Éligibilité géographique à l'aide tarification solidaire le la métropole de Bordeaux"
+    label = "Éligibilité géographique à l'aide tarification solidaire de la métropole de Bordeaux"
 
     def formula(menage, period):
         return menage("menage_dans_epci_siren_243300316", period)
@@ -15,7 +15,7 @@ class bordeaux_metropole_aide_tarification_solidaire_transport(Variable):
     entity = Individu
     definition_period = MONTH
     value_type = float
-    label = "Éligibilité à l'aide tarification solidaire le la métropole de Bordeaux"
+    label = "Éligibilité à l'aide tarification solidaire de la métropole de Bordeaux"
     reference = [
         'https://tarificationsolidaire.bordeaux-metropole.fr/Accueil.aspx']
 
