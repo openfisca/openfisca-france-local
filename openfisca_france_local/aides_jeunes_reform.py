@@ -269,7 +269,7 @@ def eval_profil(profil_evaluator: ProfileEvaluator, individu: Population, period
 
 
 def generate_variable(benefit: dict):
-    value_type = type_table[benefit['type']]
+    variable_type = type_table[benefit['type']]
     amount = benefit.get('montant')
     conditions_generales_tests = build_condition_evaluator_list(
         benefit['conditions_generales'])
@@ -282,12 +282,13 @@ def generate_variable(benefit: dict):
     def compute_bool(eligibilities: np.array):
         return eligibilities
 
-    compute_value = compute_amount if value_type == float else compute_bool
+    compute_value = compute_amount if variable_type == float else compute_bool
 
     def formula(individu: Population, period: Period):
         eligibilities = [eval_profil(profil, individu, period)
                          for profil in eligible_profiles_tests]
-        is_profile_eligible = len(eligibilities) == 0 or sum(eligibilities) >= 1
+        is_profile_eligible = len(
+            eligibilities) == 0 or sum(eligibilities) >= 1
 
         general_eligibilities = eval_conditions(
             conditions_generales_tests, individu, period)
@@ -295,7 +296,7 @@ def generate_variable(benefit: dict):
         return compute_value(general_eligibilities * is_profile_eligible)
 
     return type(benefit['slug'], (Variable,), {
-        "value_type": value_type,
+        "value_type": variable_type,
         "entity": Individu,
         "definition_period": MONTH,
         "formula": formula,
