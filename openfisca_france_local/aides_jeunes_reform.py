@@ -312,29 +312,37 @@ class aides_jeunes_reform_dynamic(reforms.Reform):
         self.benefits_folder_path = benefits_folder_path
         super().__init__(baseline)
 
-    def extract_benefit_file_content(self, benefit_path):
-        benefit: dict = yaml.safe_load(open(benefit_path))
-        benefit['slug'] = benefit_path.split(
-            '/')[-1].replace('-', '_').split('.')[0]
-        return benefit
-
-    def extract_benefits_paths(self, benefits_folder: str) -> "list[str]":
-        def isYAMLfile(path: str): return str(path).endswith(
-            '.yml') or str(path).endswith('.yaml')
-        liste_fichiers = [
-            str(benefit) for benefit in Path(benefits_folder).iterdir()
-            if isYAMLfile(benefit)
-        ]
-        return liste_fichiers
-
     def apply(self):
         try:
-            benefit_files_paths = self.extract_benefits_paths(
+            benefit_files_paths: "list[str]" = self._extract_benefits_paths(
                 self.benefits_folder_path)
             for path in benefit_files_paths:
                 self.add_variable(generate_variable(
-                    self.extract_benefit_file_content(path)))
+                    self._extract_benefit_file_content(path)))
         except KeyError as e:
             raise KeyError(f"{e.args[0]} - Input file: {path}")
         except Exception as e:
             raise Exception(f'{e.args[0]} in file {path}')
+
+    def _extract_benefit_file_content(self, benefit_path: str):
+        def _slug_from_filename(benefit_path: str):
+            return benefit_path.split(
+                '/')[-1].replace('-', '_').split('.')[0]
+
+        benefit: dict = yaml.safe_load(open(benefit_path))
+        benefit['slug'] = _slug_from_filename(benefit_path)
+
+        return benefit
+
+    def _extract_benefits_paths(self, benefits_folder: str) -> "list[str]":
+        def _isYAMLfile(path: str): return str(path).endswith(
+            '.yml') or str(path).endswith('.yaml')
+
+        liste_fichiers = [
+            str(benefit)
+            for benefit
+            in Path(benefits_folder).iterdir()
+            if _isYAMLfile(benefit)
+        ]
+
+        return liste_fichiers
