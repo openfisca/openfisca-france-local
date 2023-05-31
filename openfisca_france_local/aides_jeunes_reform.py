@@ -256,7 +256,8 @@ def build_profil_evaluator(profil: dict) -> ProfileEvaluator:
 def eval_conditions(test_conditions: "list[ConditionEvaluator]",
                     individu: Population, period: Period) -> np.array:
     conditions_results = [test.evaluator(individu, period, test.condition)
-                          for test in test_conditions]
+                          for test
+                          in test_conditions]
     return sum(conditions_results) == len(test_conditions)
 
 
