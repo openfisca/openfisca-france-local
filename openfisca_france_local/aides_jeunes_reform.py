@@ -73,7 +73,7 @@ def is_regime_securite_sociale_eligible(individu: Population, period: Period, co
 
 def is_quotient_familial_eligible(individu: Population, period: Period, condition) -> np.array:
 
-    period_divider = 12 if condition["period"] == 'month' else 1
+    period_divider = 12 if condition['period'] == 'month' else 1
     rfr = individu.foyer_fiscal('rfr', period.n_2)
     nbptr = individu.foyer_fiscal('nbptr', period.n_2)
 
@@ -208,36 +208,36 @@ def not_implemented_condition(_: Population, __: Period, condition: dict) -> np.
 
 
 condition_table = {
-    "age": is_age_eligible,
-    "regions": is_region_eligible,
-    "departements": is_department_eligible,
-    "quotient_familial": is_quotient_familial_eligible,
-    "formation_sanitaire_social": is_formation_sanitaire_social_eligible,
-    "regime_securite_sociale": is_regime_securite_sociale_eligible,
-    "beneficiaire_rsa": is_beneficiaire_rsa_eligible,
-    "annee_etude": is_annee_etude_eligible,
-    "boursier": is_boursier,
-    "mention_baccalaureat": has_mention_baccalaureat,
-    "communes": is_commune_eligible,
-    "epcis": is_epci_eligible,
-    "taux_incapacite": is_taux_incapacite_eligible,
-    "attached_to_institution": not_implemented_condition,
+    'age': is_age_eligible,
+    'regions': is_region_eligible,
+    'departements': is_department_eligible,
+    'quotient_familial': is_quotient_familial_eligible,
+    'formation_sanitaire_social': is_formation_sanitaire_social_eligible,
+    'regime_securite_sociale': is_regime_securite_sociale_eligible,
+    'beneficiaire_rsa': is_beneficiaire_rsa_eligible,
+    'annee_etude': is_annee_etude_eligible,
+    'boursier': is_boursier,
+    'mention_baccalaureat': has_mention_baccalaureat,
+    'communes': is_commune_eligible,
+    'epcis': is_epci_eligible,
+    'taux_incapacite': is_taux_incapacite_eligible,
+    'attached_to_institution': not_implemented_condition,
     }
 
 
 profil_table = {
-    "enseignement_superieur": is_enseignement_superieur,
-    "chomeur": is_chomeur,
-    "apprenti": is_apprenti,
-    "lyceen": is_lyceen,
-    "etudiant": is_etudiant,
-    "stagiaire": is_stagiaire,
-    "professionnalisation": is_professionnalisation,
-    "independant": is_actif,
-    "salarie": is_actif,
-    "service_civique": is_actif,
-    "inactif": is_inactif,
-    "situation_handicap": is_situation_handicap,
+    'enseignement_superieur': is_enseignement_superieur,
+    'chomeur': is_chomeur,
+    'apprenti': is_apprenti,
+    'lyceen': is_lyceen,
+    'etudiant': is_etudiant,
+    'stagiaire': is_stagiaire,
+    'professionnalisation': is_professionnalisation,
+    'independant': is_actif,
+    'salarie': is_actif,
+    'service_civique': is_actif,
+    'inactif': is_inactif,
+    'situation_handicap': is_situation_handicap,
     }
 
 
@@ -276,7 +276,7 @@ def build_profil_evaluator(profil: dict) -> ProfileEvaluator:
     return ProfileEvaluator(predicate, build_condition_evaluator_list(conditions))
 
 
-def eval_conditions(test_conditions: "list[ConditionEvaluator]", individu: Population, period: Period) -> np.array:
+def eval_conditions(test_conditions: 'list[ConditionEvaluator]', individu: Population, period: Period) -> np.array:
     conditions_results = [
         test.evaluator(individu, period, test.condition)
         for test in test_conditions
@@ -299,7 +299,7 @@ def generate_variable(benefit: dict):
     conditions_generales_tests = build_condition_evaluator_list(benefit['conditions_generales'])
     eligible_profiles_tests = [
         build_profil_evaluator(profil)
-        for profil in benefit["profils"]
+        for profil in benefit['profils']
         ]
 
     def compute_amount(eligibilities: np.array):
@@ -322,10 +322,10 @@ def generate_variable(benefit: dict):
         return compute_value(general_eligibilities * is_profile_eligible)
 
     return type(benefit['slug'], (Variable,), {
-        "value_type": variable_type,
-        "entity": Individu,
-        "definition_period": MONTH,
-        "formula": formula,
+        'value_type': variable_type,
+        'entity': Individu,
+        'definition_period': MONTH,
+        'formula': formula,
         })
 
 
@@ -341,12 +341,12 @@ class aides_jeunes_reform_dynamic(reforms.Reform):
 
     def apply(self):
         try:
-            benefit_files_paths: "list[str]" = self._extract_benefits_paths(
+            benefit_files_paths: 'list[str]' = self._extract_benefits_paths(
                 self.benefits_folder_path)
             for path in benefit_files_paths:
                 self.add_variable(generate_variable(self._extract_benefit_file_content(path)))
         except KeyError as e:
-            raise KeyError(f"{e.args[0]} - Input file: {path}")
+            raise KeyError(f'{e.args[0]} - Input file: {path}')
         except Exception as e:
             raise Exception(f'{e.args[0]} in file {path}')
 
@@ -359,7 +359,7 @@ class aides_jeunes_reform_dynamic(reforms.Reform):
 
         return benefit
 
-    def _extract_benefits_paths(self, benefits_folder: str) -> "list[str]":
+    def _extract_benefits_paths(self, benefits_folder: str) -> 'list[str]':
         def _isYAMLfile(path: str):
             return str(path).endswith('.yml') or str(path).endswith('.yaml')
 
