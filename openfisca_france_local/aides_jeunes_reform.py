@@ -43,22 +43,28 @@ def is_age_eligible(individu, period, condition):
 
 def is_department_eligible(individu: Population, period: Period, condition):
     depcom = individu.menage('depcom', period)
-    eligibilities = [startswith(depcom, code.encode('UTF-8'))
-                     for code in condition['values']]
+    eligibilities = [
+        startswith(depcom, code.encode('UTF-8'))
+        for code in condition['values']
+        ]
     return sum(eligibilities) > 0
 
 
 def is_region_eligible(individu: Population, period: Period, condition):
     region = individu.menage('region', period)
-    eligibilities = [region == TypesCodeInseeRegion(code_region)
-                     for code_region in condition['values']]
+    eligibilities = [
+        region == TypesCodeInseeRegion(code_region)
+        for code_region in condition['values']
+        ]
     return sum(eligibilities) > 0
 
 
 def is_regime_securite_sociale_eligible(individu: Population, period: Period, condition):
     regime_securite_sociale = individu('regime_securite_sociale', period)
-    eligibilities = [regime_securite_sociale == RegimeSecuriteSociale[regime]
-                     for regime in condition['includes']]
+    eligibilities = [
+        regime_securite_sociale == RegimeSecuriteSociale[regime]
+        for regime in condition['includes']
+        ]
     return sum(eligibilities) > 0
 
 
@@ -90,16 +96,20 @@ def is_beneficiaire_rsa_eligible(individu: Population, period: Period, condition
 def is_annee_etude_eligible(individu: Population, period: Period, condition) -> np.array:
     current_year = individu(
         'annee_etude', period)
-    eligibilities = [current_year == TypesClasse[value]
-                     for value in condition['values']]
+    eligibilities = [
+        current_year == TypesClasse[value]
+        for value in condition['values']
+        ]
     return sum(eligibilities) > 0
 
 
 def has_mention_baccalaureat(individu: Population, period: Period, condition) -> np.array:
     has_mention = individu(
         'mention_baccalaureat', period)
-    eligibilities = [has_mention == TypesMention[value]
-                     for value in condition['values']]
+    eligibilities = [
+        has_mention == TypesMention[value]
+        for value in condition['values']
+        ]
     return sum(eligibilities) > 0
 
 
@@ -110,15 +120,18 @@ def is_boursier(individu: Population, period: Period, condition: dict) -> np.arr
 def is_commune_eligible(individu: Population, period: Period, condition: dict) -> np.array:
     depcom = individu.menage('depcom', period)
     eligible_depcoms = condition['values']
-    return sum([depcom == eligible_depcom.encode('UTF-8')
-               for eligible_depcom
-               in eligible_depcoms])
+    return sum([
+        depcom == eligible_depcom.encode('UTF-8')
+        for eligible_depcom in eligible_depcoms
+        ])
 
 
 def is_epci_eligible(individu: Population, period: Period, condition: dict) -> np.array:
     eligible_epcis: list[str] = condition['values']
-    eligibilities = [individu.menage(f'menage_dans_epci_siren_{epci}', period)
-                     for epci in eligible_epcis]
+    eligibilities = [
+        individu.menage(f'menage_dans_epci_siren_{epci}', period)
+        for epci in eligible_epcis
+        ]
     return sum(eligibilities)
 
 
@@ -132,8 +145,10 @@ def is_taux_incapacite_eligible(individu: Population, period: Period, condition:
     taux_incapacite = individu('taux_incapacite', period)
     elibible_taux = condition['values']
 
-    eligibilities = [evaluates[taux](taux_incapacite)
-                     for taux in elibible_taux]
+    eligibilities = [
+        evaluates[taux](taux_incapacite)
+        for taux in elibible_taux
+        ]
     return sum(eligibilities) > 0
 
 
@@ -230,8 +245,10 @@ ProfileEvaluator = collections.namedtuple(
 
 def build_condition_evaluator_list(conditions: 'list[dict]') -> 'list[ConditionEvaluator]':
     try:
-        evaluators = [ConditionEvaluator(condition, condition_table[condition['type']])
-                      for condition in conditions]
+        evaluators = [
+            ConditionEvaluator(condition, condition_table[condition['type']])
+            for condition in conditions
+            ]
     except KeyError as e:
         raise KeyError(f"Condition: `{(e.args[0])}` is unknown")
 
@@ -249,9 +266,10 @@ def build_profil_evaluator(profil: dict) -> ProfileEvaluator:
 
 
 def eval_conditions(test_conditions: "list[ConditionEvaluator]", individu: Population, period: Period) -> np.array:
-    conditions_results = [test.evaluator(individu, period, test.condition)
-                          for test
-                          in test_conditions]
+    conditions_results = [
+        test.evaluator(individu, period, test.condition)
+        for test in test_conditions
+        ]
     return sum(conditions_results) == len(test_conditions)
 
 
@@ -267,8 +285,10 @@ def generate_variable(benefit: dict):
     variable_type = type_table[benefit['type']]
     amount = benefit.get('montant')
     conditions_generales_tests = build_condition_evaluator_list(benefit['conditions_generales'])
-    eligible_profiles_tests = [build_profil_evaluator(profil)
-                               for profil in benefit["profils"]]
+    eligible_profiles_tests = [
+        build_profil_evaluator(profil)
+        for profil in benefit["profils"]
+        ]
 
     def compute_amount(eligibilities: np.array):
         return amount * eligibilities
@@ -279,8 +299,10 @@ def generate_variable(benefit: dict):
     compute_value = compute_amount if variable_type == float else compute_bool
 
     def formula(individu: Population, period: Period):
-        eligibilities = [eval_profil(profil, individu, period)
-                         for profil in eligible_profiles_tests]
+        eligibilities = [
+            eval_profil(profil, individu, period)
+            for profil in eligible_profiles_tests
+            ]
         is_profile_eligible = len(eligibilities) == 0 or sum(eligibilities) >= 1
 
         general_eligibilities = eval_conditions(conditions_generales_tests, individu, period)
@@ -331,8 +353,7 @@ class aides_jeunes_reform_dynamic(reforms.Reform):
 
         liste_fichiers = [
             str(benefit)
-            for benefit
-            in Path(benefits_folder).iterdir()
+            for benefit in Path(benefits_folder).iterdir()
             if _isYAMLfile(benefit)
             ]
 
