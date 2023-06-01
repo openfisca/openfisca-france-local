@@ -47,6 +47,7 @@ def is_department_eligible(individu: Population, period: Period, condition):
         startswith(depcom, code.encode('UTF-8'))
         for code in condition['values']
         ]
+
     return sum(eligibilities) > 0
 
 
@@ -56,6 +57,7 @@ def is_region_eligible(individu: Population, period: Period, condition):
         region == TypesCodeInseeRegion(code_region)
         for code_region in condition['values']
         ]
+
     return sum(eligibilities) > 0
 
 
@@ -65,6 +67,7 @@ def is_regime_securite_sociale_eligible(individu: Population, period: Period, co
         regime_securite_sociale == RegimeSecuriteSociale[regime]
         for regime in condition['includes']
         ]
+
     return sum(eligibilities) > 0
 
 
@@ -85,11 +88,13 @@ def is_formation_sanitaire_social_eligible(individu: Population, period: Period,
     id_formation_sanitaire_social = GroupeSpecialitesFormation.groupe_330
     id_formation_groupe = individu(
         'groupe_specialites_formation', period)
+
     return id_formation_groupe == id_formation_sanitaire_social
 
 
 def is_beneficiaire_rsa_eligible(individu: Population, period: Period, condition: dict) -> np.array:
     rsa = individu.famille('rsa', period)
+
     return rsa > 0
 
 
@@ -100,6 +105,7 @@ def is_annee_etude_eligible(individu: Population, period: Period, condition) -> 
         current_year == TypesClasse[value]
         for value in condition['values']
         ]
+
     return sum(eligibilities) > 0
 
 
@@ -110,6 +116,7 @@ def has_mention_baccalaureat(individu: Population, period: Period, condition) ->
         has_mention == TypesMention[value]
         for value in condition['values']
         ]
+
     return sum(eligibilities) > 0
 
 
@@ -120,6 +127,7 @@ def is_boursier(individu: Population, period: Period, condition: dict) -> np.arr
 def is_commune_eligible(individu: Population, period: Period, condition: dict) -> np.array:
     depcom = individu.menage('depcom', period)
     eligible_depcoms = condition['values']
+
     return sum([
         depcom == eligible_depcom.encode('UTF-8')
         for eligible_depcom in eligible_depcoms
@@ -132,6 +140,7 @@ def is_epci_eligible(individu: Population, period: Period, condition: dict) -> n
         individu.menage(f'menage_dans_epci_siren_{epci}', period)
         for epci in eligible_epcis
         ]
+
     return sum(eligibilities)
 
 
@@ -149,6 +158,7 @@ def is_taux_incapacite_eligible(individu: Population, period: Period, condition:
         evaluates[taux](taux_incapacite)
         for taux in elibible_taux
         ]
+
     return sum(eligibilities) > 0
 
 
@@ -262,6 +272,7 @@ def build_profil_evaluator(profil: dict) -> ProfileEvaluator:
         raise KeyError(f"Profil: `{profil['type']}` is unknown")
 
     conditions = profil.get('conditions', [])
+
     return ProfileEvaluator(predicate, build_condition_evaluator_list(conditions))
 
 
@@ -270,6 +281,7 @@ def eval_conditions(test_conditions: "list[ConditionEvaluator]", individu: Popul
         test.evaluator(individu, period, test.condition)
         for test in test_conditions
         ]
+
     return sum(conditions_results) == len(test_conditions)
 
 
