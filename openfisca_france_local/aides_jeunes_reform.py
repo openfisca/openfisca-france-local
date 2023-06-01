@@ -17,10 +17,8 @@ from openfisca_core.periods import Period
 
 
 from openfisca_core.populations.population import Population
-from openfisca_france.model.prestations.education import (
-    TypesScolarite, TypesClasse)
-from openfisca_france.model.caracteristiques_socio_demographiques.\
-    logement import TypesCodeInseeRegion
+from openfisca_france.model.prestations.education import TypesScolarite, TypesClasse
+from openfisca_france.model.caracteristiques_socio_demographiques.logement import TypesCodeInseeRegion
 from openfisca_france.model.caracteristiques_socio_demographiques.demographie \
     import (RegimeSecuriteSociale, GroupeSpecialitesFormation)
 
@@ -30,7 +28,7 @@ operations = {
     '<=': operator.le,
     '>': operator.gt,
     '>=': operator.ge,
-}
+    }
 
 
 def is_age_eligible(individu, period, condition):
@@ -129,7 +127,7 @@ def is_taux_incapacite_eligible(individu: Population, period: Period, condition:
         'inferieur_50': lambda taux: taux < 0.5,
         'entre_50_et_80': lambda taux: np.logical_and(taux >= 0.5, taux < 0.8),
         'superieur_ou_egal_80': lambda taux: taux >= 0.8
-    }
+        }
 
     taux_incapacite = individu('taux_incapacite', period)
     elibible_taux = condition['values']
@@ -181,8 +179,7 @@ def is_situation_handicap(individu: Population, period: Period) -> np.array:
 
 
 def not_implemented_condition(_: Population, __: Period, condition: dict) -> np.array:
-    raise NotImplementedError(
-        f'Condition `{condition["type"]}` is not implemented')
+    raise NotImplementedError(f'Condition `{condition["type"]}` is not implemented')
 
 
 condition_table = {
@@ -200,7 +197,7 @@ condition_table = {
     "epcis": is_epci_eligible,
     "taux_incapacite": is_taux_incapacite_eligible,
     "attached_to_institution": not_implemented_condition,
-}
+    }
 
 
 profil_table = {
@@ -216,13 +213,13 @@ profil_table = {
     "service_civique": is_actif,
     "inactif": is_inactif,
     "situation_handicap": is_situation_handicap,
-}
+    }
 
 
 type_table = {
     'float': float,
     'bool': bool,
-}
+    }
 
 
 ConditionEvaluator = collections.namedtuple(
@@ -231,8 +228,7 @@ ProfileEvaluator = collections.namedtuple(
     'ProfileEvaluator', ['predicate', 'conditions'])
 
 
-def build_condition_evaluator_list(
-        conditions: 'list[dict]') -> 'list[ConditionEvaluator]':
+def build_condition_evaluator_list(conditions: 'list[dict]') -> 'list[ConditionEvaluator]':
     try:
         evaluators = [ConditionEvaluator(condition, condition_table[condition['type']])
                       for condition in conditions]
@@ -249,12 +245,10 @@ def build_profil_evaluator(profil: dict) -> ProfileEvaluator:
         raise KeyError(f"Profil: `{profil['type']}` is unknown")
 
     conditions = profil.get('conditions', [])
-    return ProfileEvaluator(predicate,
-                            build_condition_evaluator_list(conditions))
+    return ProfileEvaluator(predicate, build_condition_evaluator_list(conditions))
 
 
-def eval_conditions(test_conditions: "list[ConditionEvaluator]",
-                    individu: Population, period: Period) -> np.array:
+def eval_conditions(test_conditions: "list[ConditionEvaluator]", individu: Population, period: Period) -> np.array:
     conditions_results = [test.evaluator(individu, period, test.condition)
                           for test
                           in test_conditions]
@@ -272,8 +266,7 @@ def eval_profil(profil_evaluator: ProfileEvaluator, individu: Population, period
 def generate_variable(benefit: dict):
     variable_type = type_table[benefit['type']]
     amount = benefit.get('montant')
-    conditions_generales_tests = build_condition_evaluator_list(
-        benefit['conditions_generales'])
+    conditions_generales_tests = build_condition_evaluator_list(benefit['conditions_generales'])
     eligible_profiles_tests = [build_profil_evaluator(profil)
                                for profil in benefit["profils"]]
 
@@ -288,11 +281,9 @@ def generate_variable(benefit: dict):
     def formula(individu: Population, period: Period):
         eligibilities = [eval_profil(profil, individu, period)
                          for profil in eligible_profiles_tests]
-        is_profile_eligible = len(
-            eligibilities) == 0 or sum(eligibilities) >= 1
+        is_profile_eligible = len(eligibilities) == 0 or sum(eligibilities) >= 1
 
-        general_eligibilities = eval_conditions(
-            conditions_generales_tests, individu, period)
+        general_eligibilities = eval_conditions(conditions_generales_tests, individu, period)
 
         return compute_value(general_eligibilities * is_profile_eligible)
 
@@ -301,7 +292,7 @@ def generate_variable(benefit: dict):
         "entity": Individu,
         "definition_period": MONTH,
         "formula": formula,
-    })
+        })
 
 
 root = '.'
@@ -319,8 +310,7 @@ class aides_jeunes_reform_dynamic(reforms.Reform):
             benefit_files_paths: "list[str]" = self._extract_benefits_paths(
                 self.benefits_folder_path)
             for path in benefit_files_paths:
-                self.add_variable(generate_variable(
-                    self._extract_benefit_file_content(path)))
+                self.add_variable(generate_variable(self._extract_benefit_file_content(path)))
         except KeyError as e:
             raise KeyError(f"{e.args[0]} - Input file: {path}")
         except Exception as e:
@@ -328,8 +318,7 @@ class aides_jeunes_reform_dynamic(reforms.Reform):
 
     def _extract_benefit_file_content(self, benefit_path: str):
         def _slug_from_filename(benefit_path: str):
-            return benefit_path.split(
-                '/')[-1].replace('-', '_').split('.')[0]
+            return benefit_path.split('/')[-1].replace('-', '_').split('.')[0]
 
         benefit: dict = yaml.safe_load(open(benefit_path))
         benefit['slug'] = _slug_from_filename(benefit_path)
@@ -337,14 +326,14 @@ class aides_jeunes_reform_dynamic(reforms.Reform):
         return benefit
 
     def _extract_benefits_paths(self, benefits_folder: str) -> "list[str]":
-        def _isYAMLfile(path: str): return str(path).endswith(
-            '.yml') or str(path).endswith('.yaml')
+        def _isYAMLfile(path: str):
+            return str(path).endswith('.yml') or str(path).endswith('.yaml')
 
         liste_fichiers = [
             str(benefit)
             for benefit
             in Path(benefits_folder).iterdir()
             if _isYAMLfile(benefit)
-        ]
+            ]
 
         return liste_fichiers
