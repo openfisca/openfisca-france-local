@@ -23,7 +23,9 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     install_requires=[
-        'OpenFisca-Core >= 35.8.0, < 36',
+        # 'OpenFisca-Core >= 35.8.0, < 36',
+        # <- when coming back to usual tag, don't forget to edit script in .github/get_minimal_version.py
+        'OpenFisca-Core @ git+http://github.com/openfisca/openfisca-core.git@35.12.0_fix_testrunner_reforme_clone',
         'OpenFisca-France >= 139.0.0, < 147',
         'pandas == 1.0.3'
         ],
