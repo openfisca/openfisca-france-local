@@ -363,10 +363,10 @@ class aides_jeunes_reform_dynamic(reforms.Reform):
         def _isYAMLfile(path: str):
             return str(path).endswith('.yml') or str(path).endswith('.yaml')
 
-        liste_fichiers = [
+        files: 'list[str]' = [
             str(benefit)
             for benefit in Path(benefits_folder).iterdir()
             if _isYAMLfile(benefit)
             ]
 
-        return liste_fichiers
+        return files
