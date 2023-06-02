@@ -56,11 +56,9 @@
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
-    age:  [18, 19]
-    depcom: ["56260", "56260"]
     regime_securite_sociale: [regime_general, regime_agricole]
   output:
-    test_condition_regime_securite_sociale: [286, 0]
+    test_condition_regime_securite_sociale_includes: [286, 0]
 
 - name: "Test condition <quotient_familial> pour deux périodes : Mensuelle et annuelle"
   period: 2022-11
@@ -68,9 +66,9 @@
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
     rfr:
-      2020: ["9600", "9612"]
+      2022: ["9600", "9612"]
     nbptr:
-      2020: ["1", "1"]
+      2022: ["1", "1"]
   output:
     test_condition_quotient_familial: [200, 0]
     test_condition_quotient_familial_year: [200, 0]
@@ -79,7 +77,6 @@
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
-    depcom: ["97105", "97105", "97105", "97105"]
     groupe_specialites_formation: ["groupe_330", "FOrmation non reconnue", "groupe_330", "groupe_330"]
     activite: ["stagiaire", "stagiaire", "chomeur", "etudiant"]
     stagiaire: [true,true,false,false]
@@ -200,7 +197,6 @@
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
     depcom: ["2A004"]
-    age: [18]
   output:
     test_condition_region_corse: [600]
 
@@ -216,8 +212,8 @@
 - period: 2022-11
   name: Condition epcis
   reforms:
-  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   - openfisca_france_local.epci_test_factory.epci_reform
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
     depcom: ["33063", "77002"]
   output:
