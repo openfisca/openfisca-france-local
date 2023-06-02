@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from datetime import date
 import os
 
 import collections
@@ -21,67 +22,104 @@ from openfisca_france.model.prestations.education import TypesScolarite, TypesCl
 from openfisca_france.model.caracteristiques_socio_demographiques.logement import TypesCodeInseeRegion
 from openfisca_france.model.caracteristiques_socio_demographiques.demographie \
     import (RegimeSecuriteSociale, GroupeSpecialitesFormation)
+from openfisca_core.parameters.parameter_node import ParameterNode
+from openfisca_core.parameters.parameter import Parameter
 
+from openfisca_france_local.convert_benefit_conditions_to_parameters import convert_benefit_conditions_to_parameters
 
 operations = {
-    '<': operator.lt,
-    '<=': operator.le,
-    '>': operator.gt,
-    '>=': operator.ge,
+    'strictement_inferieur': operator.lt,
+    'maximum': operator.le,
+    'strictement_superieur': operator.gt,
+    'minimum': operator.ge,
     }
 
 
-def is_age_eligible(individu, period, condition):
-
-    condition_age = condition['value']
+def is_age_eligible(individu: Population, period: Period, parameters: ParameterNode) -> np.array:
     individus_age = individu('age', period)
+    eligible_ages = parameters(period).age
+    age_constraints = [
+        (operations[constraint], eligible_ages[constraint])
+        for constraint in eligible_ages
+        ]
 
-    comparison = operations[condition['operator']]
+    eligibilities = [constraint[0](individus_age, constraint[1])
+                     for constraint in age_constraints]
 
-    return comparison(individus_age, condition_age)
+    return sum(eligibilities) >= len(age_constraints)
 
 
-def is_department_eligible(individu: Population, period: Period, condition):
+def is_department_eligible(individu: Population, period: Period,
+                           parameters: ParameterNode):
     depcom = individu.menage('depcom', period)
+    eligible_departments = parameters(period).departements
     eligibilities = [
         startswith(depcom, code.encode('UTF-8'))
-        for code in condition['values']
+        for code in eligible_departments
         ]
 
     return sum(eligibilities) > 0
 
 
-def is_region_eligible(individu: Population, period: Period, condition):
+def is_region_eligible(individu: Population, period: Period,
+                       parameters: ParameterNode):
     region = individu.menage('region', period)
+    eligible_regions = parameters(period).regions
     eligibilities = [
         region == TypesCodeInseeRegion(code_region)
-        for code_region in condition['values']
+        for code_region in eligible_regions
         ]
 
     return sum(eligibilities) > 0
 
 
-def is_regime_securite_sociale_eligible(individu: Population, period: Period, condition):
-    regime_securite_sociale = individu('regime_securite_sociale', period)
+def is_regime_securite_sociale_eligible(individu: Population, period: Period, parameters: ParameterNode):
+    individus_regime_secu = individu('regime_securite_sociale', period)
+    conditions = parameters(period)
+    if "excludes" in conditions.regime_securite_sociale:
+        not_eligible_regimes = conditions.regime_securite_sociale.excludes
+        eligibilities = [
+            individus_regime_secu != RegimeSecuriteSociale[regime]
+            for regime in not_eligible_regimes
+            ]
+    else:
+        eligible_regimes = conditions.regime_securite_sociale.includes
+        eligibilities = [
+            individus_regime_secu == RegimeSecuriteSociale[regime]
+            for regime in eligible_regimes
+            ]
+
+    return sum(eligibilities) > 0
+
+
+def is_quotient_familial_eligible(individu: Population, period: Period, parameters: ParameterNode) -> np.array:
+
+    conditions = parameters(period)
+
+    if 'month' in conditions.quotient_familial:
+        condition_QF = conditions.quotient_familial.month
+        period_divider = 12
+    elif 'year' in conditions.quotient_familial:
+        condition_QF = conditions.quotient_familial.year
+        period_divider = 1
+
+    individus_rfr = individu.foyer_fiscal('rfr', period.this_year)
+    individus_nbptr = individu.foyer_fiscal('nbptr', period.this_year)
+    individus_quotient_familial = (
+        individus_rfr / period_divider / individus_nbptr
+        )
+
+    QF_constraints = [
+        (operations[constraint], condition_QF[constraint])
+        for constraint in condition_QF
+        ]
+
     eligibilities = [
-        regime_securite_sociale == RegimeSecuriteSociale[regime]
-        for regime in condition['includes']
+        constraint[0](individus_quotient_familial, constraint[1])
+        for constraint in QF_constraints
         ]
 
     return sum(eligibilities) > 0
-
-
-def is_quotient_familial_eligible(individu: Population, period: Period, condition) -> np.array:
-
-    period_divider = 12 if condition['period'] == 'month' else 1
-    rfr = individu.foyer_fiscal('rfr', period.n_2)
-    nbptr = individu.foyer_fiscal('nbptr', period.n_2)
-
-    quotient_familial = rfr / period_divider / nbptr
-
-    comparison = operations[condition['operator']]
-
-    return comparison(quotient_familial, condition['value'])
 
 
 def is_formation_sanitaire_social_eligible(individu: Population, period: Period, condition) -> np.array:
@@ -92,29 +130,32 @@ def is_formation_sanitaire_social_eligible(individu: Population, period: Period,
     return id_formation_groupe == id_formation_sanitaire_social
 
 
-def is_beneficiaire_rsa_eligible(individu: Population, period: Period, condition: dict) -> np.array:
+def is_beneficiaire_rsa_eligible(individu: Population, period: Period,
+                                 _) -> np.array:
     rsa = individu.famille('rsa', period)
 
     return rsa > 0
 
 
-def is_annee_etude_eligible(individu: Population, period: Period, condition) -> np.array:
+def is_annee_etude_eligible(individu: Population, period: Period, parameters) -> np.array:
     current_year = individu(
         'annee_etude', period)
+
+    annee_etudes_eligible = parameters(period).annee_etude
     eligibilities = [
         current_year == TypesClasse[value]
-        for value in condition['values']
+        for value in annee_etudes_eligible
         ]
 
     return sum(eligibilities) > 0
 
 
-def has_mention_baccalaureat(individu: Population, period: Period, condition) -> np.array:
-    has_mention = individu(
-        'mention_baccalaureat', period)
+def has_mention_baccalaureat(individu: Population, period: Period, parameters) -> np.array:
+    has_mention = individu('mention_baccalaureat', period)
+    eligible_mentions = parameters(period).mention_baccalaureat
     eligibilities = [
         has_mention == TypesMention[value]
-        for value in condition['values']
+        for value in eligible_mentions
         ]
 
     return sum(eligibilities) > 0
@@ -124,18 +165,17 @@ def is_boursier(individu: Population, period: Period, condition: dict) -> np.arr
     return individu('boursier', period)
 
 
-def is_commune_eligible(individu: Population, period: Period, condition: dict) -> np.array:
+def is_commune_eligible(individu: Population, period: Period, parameter) -> np.array:
     depcom = individu.menage('depcom', period)
-    eligible_depcoms = condition['values']
-
+    eligible_depcoms = parameter(period).communes
     return sum([
         depcom == eligible_depcom.encode('UTF-8')
-        for eligible_depcom in eligible_depcoms
-        ])
+               for eligible_depcom in eligible_depcoms]
+               )
 
 
-def is_epci_eligible(individu: Population, period: Period, condition: dict) -> np.array:
-    eligible_epcis: list[str] = condition['values']
+def is_epci_eligible(individu: Population, period: Period, parameter) -> np.array:
+    eligible_epcis: list[str] = parameter(period).epcis
     eligibilities = [
         individu.menage(f'menage_dans_epci_siren_{epci}', period)
         for epci in eligible_epcis
@@ -144,7 +184,7 @@ def is_epci_eligible(individu: Population, period: Period, condition: dict) -> n
     return sum(eligibilities)
 
 
-def is_taux_incapacite_eligible(individu: Population, period: Period, condition: dict) -> np.array:
+def is_taux_incapacite_eligible(individu: Population, period: Period, parameter) -> np.array:
     evaluates = {
         'inferieur_50': lambda taux: taux < 0.5,
         'entre_50_et_80': lambda taux: np.logical_and(taux >= 0.5, taux < 0.8),
@@ -152,7 +192,7 @@ def is_taux_incapacite_eligible(individu: Population, period: Period, condition:
         }
 
     taux_incapacite = individu('taux_incapacite', period)
-    elibible_taux = condition['values']
+    elibible_taux = parameter(period).taux_incapacite
 
     eligibilities = [
         evaluates[taux](taux_incapacite)
@@ -253,25 +293,39 @@ ProfileEvaluator = collections.namedtuple(
     'ProfileEvaluator', ['predicate', 'conditions'])
 
 
-def build_condition_evaluator_list(conditions: 'list[dict]') -> 'list[ConditionEvaluator]':
+def build_condition_evaluator_list(conditions) -> 'list[ConditionEvaluator]':
     try:
+        if isinstance(conditions, Parameter):
+            conditions_types: list[str] = []
+        else:
+            conditions_types: list[str] = list(conditions.children)
+
         evaluators = [
-            ConditionEvaluator(condition, condition_table[condition['type']])
-            for condition in conditions
+            ConditionEvaluator(conditions, condition_table[condition_type])
+            for condition_type in conditions_types
             ]
     except KeyError as e:
         raise KeyError(f"Condition: `{(e.args[0])}` is unknown")
-
     return evaluators
 
 
-def build_profil_evaluator(profil: dict) -> ProfileEvaluator:
-    try:
-        predicate = profil_table[profil['type']]
-    except KeyError:
-        raise KeyError(f"Profil: `{profil['type']}` is unknown")
+def build_profil_evaluator(profil_type: str, parameters: ParameterNode) -> ProfileEvaluator:
 
-    conditions = profil.get('conditions', [])
+    def get_conditions(profil):
+        if isinstance(profil, ParameterNode) and 'conditions' in profil.children:
+            conditions = profil.conditions
+        else:
+            conditions = profil
+        return conditions
+
+    profil = parameters.profils.children[profil_type]
+    try:
+
+        predicate = profil_table[profil_type]
+    except KeyError:
+        raise KeyError(f"Profil: `{profil_type}` is unknown")
+
+    conditions = get_conditions(profil)
 
     return ProfileEvaluator(predicate, build_condition_evaluator_list(conditions))
 
@@ -281,7 +335,6 @@ def eval_conditions(test_conditions: 'list[ConditionEvaluator]', individu: Popul
         test.evaluator(individu, period, test.condition)
         for test in test_conditions
         ]
-
     return sum(conditions_results) == len(test_conditions)
 
 
@@ -293,14 +346,19 @@ def eval_profil(profil_evaluator: ProfileEvaluator, individu: Population, period
         return profil_match * eval_conditions(profil_evaluator.conditions, individu, period)
 
 
-def generate_variable(benefit: dict):
-    variable_type = type_table[benefit['type']]
-    amount = benefit.get('montant')
-    conditions_generales_tests = build_condition_evaluator_list(benefit['conditions_generales'])
-    eligible_profiles_tests = [
-        build_profil_evaluator(profil)
-        for profil in benefit['profils']
-        ]
+def generate_variable(variable_name: str, parameters: ParameterNode, variable_type: type):
+    if variable_type == float:
+        amount = parameters(date.today()).montant
+
+    conditions_generales_tests = build_condition_evaluator_list(parameters.conditions)
+
+    if 'profils' in parameters.children:
+        eligible_profiles_tests = [
+            build_profil_evaluator(profil_type, parameters)
+            for profil_type in parameters.profils.children
+            ]
+    else:
+        eligible_profiles_tests = []
 
     def compute_amount(eligibilities: np.array):
         return amount * eligibilities
@@ -318,10 +376,9 @@ def generate_variable(benefit: dict):
         is_profile_eligible = len(eligibilities) == 0 or sum(eligibilities) >= 1
 
         general_eligibilities = eval_conditions(conditions_generales_tests, individu, period)
-
         return compute_value(general_eligibilities * is_profile_eligible)
 
-    return type(benefit['slug'], (Variable,), {
+    return type(variable_name, (Variable,), {
         'value_type': variable_type,
         'entity': Individu,
         'definition_period': MONTH,
@@ -343,19 +400,31 @@ class aides_jeunes_reform_dynamic(reforms.Reform):
         try:
             benefit_files_paths: 'list[str]' = self._extract_benefits_paths(
                 self.benefits_folder_path)
+
             for path in benefit_files_paths:
-                self.add_variable(generate_variable(self._extract_benefit_file_content(path)))
+                benefit = self._extract_benefit_file_content(path)
+                self._create_and_add_parameters(benefit)
+
+                benefits_parameters: ParameterNode = self.parameters.children[
+                    benefit['slug']]
+
+                benefit_type: type = bool if benefit['type'] == 'bool' else float
+
+                self.add_variable(generate_variable(
+                    benefit['slug'], benefits_parameters, benefit_type))
+
         except KeyError as e:
             raise KeyError(f'{e.args[0]} - Input file: {path}')
-        except Exception as e:
-            raise Exception(f'{e.args[0]} in file {path}')
+        # TODO : COmmented for debug, but, is this except a good thing anyway ?
+        # except Exception as e:
+        #     raise Exception(f'{e.args[0]} in file {path}')
 
     def _extract_benefit_file_content(self, benefit_path: str):
-        def _slug_from_path(path: str):
-            return path.split('/')[-1].replace('-', '_').split('.')[0]
+        def _slug_from_filename(benefit_path: str):
+            return benefit_path.split('/')[-1].replace('-', '_').split('.')[0]
 
         benefit: dict = yaml.safe_load(open(benefit_path))
-        benefit['slug'] = _slug_from_path(benefit_path)
+        benefit['slug'] = _slug_from_filename(benefit_path)
 
         return benefit
 
@@ -363,10 +432,16 @@ class aides_jeunes_reform_dynamic(reforms.Reform):
         def _isYAMLfile(path: str):
             return str(path).endswith('.yml') or str(path).endswith('.yaml')
 
-        files: 'list[str]' = [
+        liste_fichiers = [
             str(benefit)
             for benefit in Path(benefits_folder).iterdir()
             if _isYAMLfile(benefit)
             ]
 
-        return files
+        return liste_fichiers
+
+    def _create_and_add_parameters(self, benefit_path: str):
+        benefit_parameter = convert_benefit_conditions_to_parameters(
+            benefit_path)
+        self.parameters.add_child(
+            benefit_parameter.name, benefit_parameter)
