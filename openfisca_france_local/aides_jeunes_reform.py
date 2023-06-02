@@ -351,11 +351,11 @@ class aides_jeunes_reform_dynamic(reforms.Reform):
             raise Exception(f'{e.args[0]} in file {path}')
 
     def _extract_benefit_file_content(self, benefit_path: str):
-        def _slug_from_filename(benefit_path: str):
-            return benefit_path.split('/')[-1].replace('-', '_').split('.')[0]
+        def _slug_from_path(path: str):
+            return path.split('/')[-1].replace('-', '_').split('.')[0]
 
         benefit: dict = yaml.safe_load(open(benefit_path))
-        benefit['slug'] = _slug_from_filename(benefit_path)
+        benefit['slug'] = _slug_from_path(benefit_path)
 
         return benefit
 
