@@ -30,9 +30,6 @@ setup(
     extras_require={
         'test': [
             'nose',
-            ],
-        'excel-reader': [
-            'xlrd == 1.2.0'
             ]
         },
     scripts=['openfisca_france_local/scripts/openfisca_local_test']

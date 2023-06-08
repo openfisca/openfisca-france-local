@@ -6,7 +6,7 @@ deps:
 	pip install --upgrade pip build twine
 
 install-test:
-	pip install -e ".[test,excel-reader]"
+	pip install -e ".[test]"
 
 install: deps
 	@# Install OpenFisca-France-Local for development.

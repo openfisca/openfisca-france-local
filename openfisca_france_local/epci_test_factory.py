@@ -27,8 +27,9 @@ def epci_test_factory(groups, code):
 
 class epci_reform(reforms.Reform):
     def apply(self):
-      with resources.path('openfisca_france_local', 'epcicom2020.xlsx') as filepath:
-        raw = pd.read_excel(filepath)
+      with resources.path('openfisca_france_local', 'epcicom2020.csv') as filepath:
+        raw = pd.read_csv(filepath)
+        
         raw.insee = raw.insee.astype('|S5')
         df = raw[['siren', 'insee', 'raison_sociale']].groupby('siren')
 
