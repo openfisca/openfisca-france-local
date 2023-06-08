@@ -1,0 +1,6 @@
+- period: 2022
+  input:
+    age: 16
+    depcom: 87085
+  output:
+    haute_vienne_aide_permis: true
