@@ -1,0 +1,15 @@
+age:
+  maximum:
+    reference:
+      - https://www.haute-vienne.fr/nos-actions/jeunesse/besoin-dun-coup-de-pouce/aide-au-permis-de-conduire
+    description: Eligibilité d'âge pour l'aide au permis de conduire dans le département de la Haute-Vienne.
+    values:
+      2023-01-01:
+        value: 25
+  minimum:
+    reference:
+      - https://www.haute-vienne.fr/nos-actions/jeunesse/besoin-dun-coup-de-pouce/aide-au-permis-de-conduire
+    description: Eligibilité d'âge pour l'aide au permis de conduire dans le département de la Haute-Vienne.
+    values:
+      2023-01-01:
+        value: 15
