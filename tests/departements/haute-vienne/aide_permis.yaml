@@ -1,6 +1,6 @@
 - period: 2023-02
   input:
-    age: [16, 14, 25]
-    depcom: ['87085', '87085', '87085']
+    age: [16, 14, 25, 16]
+    depcom: ['87085', '87085', '87085', '69001']
   output:
-    haute_vienne_aide_permis: [true, false, false]
+    haute_vienne_aide_permis: [true, false, false, false]
