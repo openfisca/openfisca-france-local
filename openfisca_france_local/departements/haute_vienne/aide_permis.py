@@ -9,4 +9,8 @@ class haute_vienne_aide_permis(Variable):
     reference = 'https://www.haute-vienne.fr/nos-actions/jeunesse/besoin-dun-coup-de-pouce/aide-au-permis-de-conduire'
 
     def formula(individu, period, parameters):
-        return True
+        individus_age = individu('age', period)
+
+        age_eligibilites = (individus_age >= 15) * (individus_age < 25)
+
+        return age_eligibilites
