@@ -19,4 +19,9 @@ class haute_vienne_aide_permis(Variable):
 
         eligibilite_residentielle = individu.menage('haute_vienne_eligibilite_residence', period)
 
-        return age_eligibilites * eligibilite_residentielle
+        rfr = individu.foyer_fiscal('rfr', period.n_2)
+        nbptr = individu.foyer_fiscal('nbptr', period.n_2)
+        quotient_familial = rfr / nbptr / 12
+        montant = params['montant_en_fonction_du_quotient_familial'].calc(quotient_familial)
+
+        return age_eligibilites * eligibilite_residentielle * montant
