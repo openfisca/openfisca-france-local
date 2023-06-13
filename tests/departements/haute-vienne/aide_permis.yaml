@@ -13,11 +13,11 @@
 - period: 2023-02
   name: Montant en fonction du quotient familial
   input:
-    age: [16,]
-    depcom: ['87085',]
+    age: [16,16,]
+    depcom: ['87085','87085']
     rfr:
-      2021: ["12012",]
+      2021: ['12012','9240']
     nbptr:
-      2021: ["1",]
+      2021: ['1','1']
   output:
-    haute_vienne_aide_permis: [0,]
+    haute_vienne_aide_permis: [0,150]
