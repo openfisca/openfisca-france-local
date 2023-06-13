@@ -23,6 +23,12 @@ montant_en_fonction_du_quotient_familial:
   brackets:
     - threshold:
         2020-01-01:
+          value: 0
+      amount:
+        2020-01-01:
+          value: 500
+    - threshold:
+        2020-01-01:
           value: 401
       amount:
         2020-01-01:
