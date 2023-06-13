@@ -2,5 +2,9 @@
   input:
     age: [16, 14, 25, 16]
     depcom: ['87085', '87085', '87085', '69001']
+    rfr:
+      2021: ["12000","12000","12000","12000"]
+    nbptr:
+      2021: ["1", "1","1","1",]
   output:
-    haute_vienne_aide_permis: [true, false, false, false]
+    haute_vienne_aide_permis: [150, 0, 0, 0]
