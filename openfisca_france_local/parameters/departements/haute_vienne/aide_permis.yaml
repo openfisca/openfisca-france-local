@@ -27,3 +27,9 @@ montant_en_fonction_du_quotient_familial:
       amount:
         2020-01-01:
           value: 150
+    - threshold:
+        2020-01-01:
+          value: 1001
+      amount:
+        2020-01-01:
+          value: 0
