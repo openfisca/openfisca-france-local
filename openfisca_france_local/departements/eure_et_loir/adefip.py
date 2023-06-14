@@ -27,8 +27,8 @@ class adefip_eligibilite_activite(Variable):
         params_adefip = parameters(period).departements.eure_loire.adefip
         duree_activite = individu('duree_contrat_ou_formation', period)
 
-        contrat_de_travail_duree = individu('contrat_de_travail_duree', period)
-        TypesContratDeTravailDuree = contrat_de_travail_duree.possible_values
+        contrat_de_travail_type = individu('contrat_de_travail_type', period)
+        TypesContrat = contrat_de_travail_type.possible_values
 
         # cas formation
         formation = individu('formation', period)
@@ -36,10 +36,10 @@ class adefip_eligibilite_activite(Variable):
 
         # cas CDD
         condition_duree_cdd = duree_activite >= params_adefip.durees.duree_minimum_cdd_palier1
-        condition_cdd = not_(condition_formation) * (contrat_de_travail_duree == TypesContratDeTravailDuree.cdd) * condition_duree_cdd
+        condition_cdd = not_(condition_formation) * (contrat_de_travail_type == TypesContrat.cdd) * condition_duree_cdd
 
         # cas CDI
-        condition_cdi = not_(condition_formation) * (contrat_de_travail_duree == TypesContratDeTravailDuree.cdi)
+        condition_cdi = not_(condition_formation) * (contrat_de_travail_type == TypesContrat.cdi)
 
         return condition_formation + condition_cdd + condition_cdi
 
@@ -85,8 +85,8 @@ class adefip_montant(Variable):
         contrat_de_travail = individu('contrat_de_travail', period)
         TypesContratDeTravail = contrat_de_travail.possible_values
 
-        contrat_de_travail_duree = individu('contrat_de_travail_duree', period)
-        TypesContratDeTravailDuree = contrat_de_travail_duree.possible_values
+        contrat_de_travail_type = individu('contrat_de_travail_type', period)
+        TypesContrat = contrat_de_travail_type.possible_values
 
         # cas formation
         formation = individu('formation', period)
@@ -99,7 +99,7 @@ class adefip_montant(Variable):
         montant_creation_reprise_entreprise = condition_entreprise * params_adefip.montants.montant_creation_reprise_entreprise
 
         # cas CDD palier 1 (entre 3 et 6 mois)
-        est_en_cdd = contrat_de_travail_duree == TypesContratDeTravailDuree.cdd
+        est_en_cdd = contrat_de_travail_type == TypesContrat.cdd
         condition_duree_cdd_palier_1_min = (duree_activite >= params_adefip.durees.duree_minimum_cdd_palier1)
         condition_duree_cdd_palier_1_max = (duree_activite <= params_adefip.durees.duree_minimum_cdd_palier2)
         condition_cdd_palier_1 = est_en_cdd * condition_duree_cdd_palier_1_min * condition_duree_cdd_palier_1_max
@@ -113,7 +113,7 @@ class adefip_montant(Variable):
         montant_cdd = (montant_cdd_palier_1 + montant_cdd_palier_2) * not_(condition_formation) * not_(condition_entreprise)
 
         # cas CDI temps plein
-        est_en_cdi = contrat_de_travail_duree == TypesContratDeTravailDuree.cdi
+        est_en_cdi = contrat_de_travail_type == TypesContrat.cdi
         est_a_temps_plein = contrat_de_travail == TypesContratDeTravail.temps_plein
         condition_cdi_temps_plein = est_en_cdi * est_a_temps_plein
         montant_cdi_temps_plein = condition_cdi_temps_plein * params_adefip.montants.montant_cdi_temps_plein
