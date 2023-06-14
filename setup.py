@@ -1,9 +1,9 @@
-from setuptools import setup, find_packages
+from setuptools import setup, find_namespace_packages
 
 
 setup(
     name="OpenFisca-France-Local",
-    version="4.7.0",
+    version="5.0.0",
     author="OpenFisca Team",
     author_email="contact@openfisca.fr",
     classifiers=[
@@ -11,8 +11,9 @@ setup(
         "License :: OSI Approved :: GNU Affero General Public License v3",
         "Operating System :: POSIX",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 3.6",
-        "Programming Language :: Python :: 3.7",
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
         "Topic :: Scientific/Engineering :: Information Analysis",
         ],
     description="Extension OpenFisca pour nos partenariats avec les collectivités territoriales",
@@ -20,19 +21,20 @@ setup(
     license="http://www.fsf.org/licensing/licenses/agpl-3.0.html",
     url="https://github.com/openfisca/openfisca-france",
 
-    packages=find_packages(),
+    packages=find_namespace_packages(),
     include_package_data=True,
     install_requires=[
-        'OpenFisca-Core >= 35.8.0, < 36',
-        'OpenFisca-France >= 139.0.0, < 148',
-        'pandas == 1.0.3'
+        'OpenFisca-Core >= 40, < 41',
+        'OpenFisca-France >= 149.0.0, < 150',
+        'pandas >= 1.5.3, <2.0'
         ],
     extras_require={
         'test': [
             'nose',
             ],
         'excel-reader': [
-            'xlrd == 1.2.0'
+            'xlrd == 1.2.0',
+            'openpyxl == 3.1.2',
             ]
         },
     scripts=['openfisca_france_local/scripts/openfisca_local_test']
