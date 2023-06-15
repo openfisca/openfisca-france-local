@@ -5,6 +5,9 @@ clean:
 deps:
 	pip install --upgrade pip build twine
 
+install-web-api:
+	pip install openfisca_core'[web-api]'
+
 install-test:
 	pip install -e ".[test,excel-reader]"
 
