@@ -2,6 +2,9 @@ from __future__ import division
 
 from numpy import (maximum as max_, logical_not as not_, absolute as abs_, minimum as min_, select, where, logical_or as or_, round as round_)
 
+
+from openfisca_core.periods import Period
+
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
 from openfisca_france_local.metropoles.rennes.communes import communes
@@ -25,12 +28,11 @@ class rennes_metropole_transport_base_ressource(Variable):
     label = u"Base ressources pour la tarification solidaire de Rennes Métropole"
 
     def formula(individu, period, parameters):
-        #pensions_alimentaires_versees
+        # pensions_alimentaires_versees
 
-        #renvenus BIC ou B
+        # renvenus BIC ou B
         def revenus_tns():
             revenus_auto_entrepreneur = individu('rpns_auto_entrepreneur_benefice', period.last_3_months, options = [ADD])
-
 
             # Les revenus TNS hors AE sont estimés en se basant sur le revenu N-1
             rpns_micro_entreprise_benefice = individu('rpns_micro_entreprise_benefice', period.last_year, options = [ADD])
@@ -38,8 +40,8 @@ class rennes_metropole_transport_base_ressource(Variable):
             rpns_autres_revenus = individu('rpns_autres_revenus', period.last_year, options = [ADD])
             return (revenus_auto_entrepreneur + rpns_micro_entreprise_benefice + rpns_benefice_exploitant_agricole + rpns_autres_revenus) * (3 / 12)
 
-        #on prend en compte le salaire du conjoint
-        last_year = period.start.period('year').offset(-1)
+        # on prend en compte le salaire du conjoint
+        last_year = Period(('year', period.start, 1)).offset(-1)
 
         ressources_individuelles_annuelles = (
             individu('aah', last_year, options = [ADD])
@@ -98,8 +100,6 @@ class rennes_metropole_transport(Variable):
         ressources_familiales = individu('rennes_metropole_transport_base_ressource', period)
         # montant_par_enfant = simulation.legislation_at(period.start).metropoles.rennes.mon_aide.montant
 
-
-
         seuil1 = parameters(period.start).metropoles.rennes.tarification_solidaire.seuil.seuil1
         seuil2 = parameters(period.start).metropoles.rennes.tarification_solidaire.seuil.seuil2
         seuil3 = parameters(period.start).metropoles.rennes.tarification_solidaire.seuil.seuil3
@@ -111,10 +111,10 @@ class rennes_metropole_transport(Variable):
         # determine si une personne seule a des enfants qui est considéré de fait comme un couple
         individu_en_couple = or_(individu.famille('en_couple', period), nombre_enfants >= 1)
 
-        #salaire =  simulation.compute('salaire_net', period)
+        # salaire =  simulation.compute('salaire_net', period)
        # salaire_cumul = self.sum_by_entity(salaire, entity = 'famille')
 
-        #----------------------on retire les apl et on ajoute le forfait logement si ahh seul revenu---------------------------
+        # ----------------------on retire les apl et on ajoute le forfait logement si ahh seul revenu---------------------------
 
         seuil_evolutif = (1 + individu_en_couple * (0.5 + nombre_enfants * 0.3))
 
