@@ -13,8 +13,8 @@ class haute_vienne_aide_permis(Variable):
 
         individus_age = individu('age', period)
 
-        age_maximum = params.age.maximum
-        age_minimum = params.age.minimum
+        age_maximum = params.age.maximum_exclusif
+        age_minimum = params.age.minimum_inclusif
         age_eligibilites = (individus_age >= age_minimum) * (individus_age < age_maximum)
 
         eligibilite_residentielle = individu.menage('haute_vienne_eligibilite_residence', period)
