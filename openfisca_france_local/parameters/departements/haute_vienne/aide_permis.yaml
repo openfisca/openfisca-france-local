@@ -1,0 +1,47 @@
+age:
+  maximum_exclusif:
+    reference:
+      - https://www.haute-vienne.fr/nos-actions/jeunesse/besoin-dun-coup-de-pouce/aide-au-permis-de-conduire
+    description: Eligibilité d'âge pour l'aide au permis de conduire dans le département de la Haute-Vienne.
+    values:
+      2023-01-01:
+        value: 25
+  minimum_inclusif:
+    reference:
+      - https://www.haute-vienne.fr/nos-actions/jeunesse/besoin-dun-coup-de-pouce/aide-au-permis-de-conduire
+    description: Eligibilité d'âge pour l'aide au permis de conduire dans le département de la Haute-Vienne.
+    values:
+      2023-01-01:
+        value: 15
+
+montant_en_fonction_du_quotient_familial:
+  reference:
+    - https://www.auvergnerhonealpes.fr/aide/385/289-financer-ma-formation-au-permis-de-conduire-orientation-formation.htm
+  description: Montant obtenu pour l'aide au permis de conduire en région Auvergne-Rhône-Alpes.
+  metadata:
+    type: single_amount
+  brackets:
+    - threshold:
+        2020-01-01:
+          value: 0
+      amount:
+        2020-01-01:
+          value: 500
+    - threshold:
+        2020-01-01:
+          value: 401
+      amount:
+        2020-01-01:
+          value: 250
+    - threshold:
+        2020-01-01:
+          value: 770
+      amount:
+        2020-01-01:
+          value: 150
+    - threshold:
+        2020-01-01:
+          value: 1001
+      amount:
+        2020-01-01:
+          value: 0
