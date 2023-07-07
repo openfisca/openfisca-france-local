@@ -10,7 +10,7 @@ class hauts_de_france_aide_garde_enfant(Variable):
     reference = [
         'https://www.hautsdefrance.fr/aide-garde-enfant/',
         'https://guide-aides.hautsdefrance.fr/aide636'
-    ]
+        ]
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -41,5 +41,5 @@ class hauts_de_france_aide_garde_enfant(Variable):
             period).marche_travail.salaire_minimum.smic.smic_b_mensuel
 
         rni = famille.demandeur.foyer_fiscal('rni', period.this_year)
-        eligibilite_revenus = rni/12 < plafond_ressources_smic * smic
+        eligibilite_revenus = rni / 12 < plafond_ressources_smic * smic
         return montant_total * eligibilite_geographique * eligibilite_statut * eligibilite_revenus
