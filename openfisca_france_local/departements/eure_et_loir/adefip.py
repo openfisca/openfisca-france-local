@@ -1,4 +1,6 @@
  # -*- coding: utf-8 -*-
+from openfisca_core.periods import Period
+
 from openfisca_france.model.base import *
 
 from numpy import logical_not as not_
@@ -55,7 +57,7 @@ class adefip_eligibilite(Variable):
     definition_period = MONTH
 
     def formula(individu, period):
-        annee_glissante = period.start.period('year').offset(-1)
+        annee_glissante = Period(('year', period.start, 1)).offset(-1).offset(-1, 'month')
 
         # conditions de domiciliation
         residence_eure_loire = individu.menage('eure_loire_eligibilite_residence', period)
