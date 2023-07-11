@@ -127,3 +127,35 @@
         age: 1
   output:
     hauts_de_france_aide_garde_enfant: 0
+
+- name: Égibilité et montant du Contrat d'Engagement Jeune, personne à charge de ses parents séparés
+  period: 2022-03
+  input:
+    familles:
+      _:
+        en_couple: [False]
+        bourse_criteres_sociaux_nombre_enfants_a_charge: [4]
+        bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur: [2]
+        parents: [ "parent1", "parent2" ]
+    foyer_fiscal:
+      declarants: [ "parent1", "parent2" ]
+      rni:
+        2022: 80000
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      depcom: "59000"
+    individus:
+      demandeur:
+        age: [18]
+        annee_etude: 'cap_2'
+        enfant_a_charge:
+          2022: [True]
+        activite: 'etudiant'
+        regime_securite_sociale: regime_general
+      parent1:
+        activite: actif
+      parent2:
+        activite: actif
+  output:
+    hauts_de_france_aide_garde_enfant: 0
