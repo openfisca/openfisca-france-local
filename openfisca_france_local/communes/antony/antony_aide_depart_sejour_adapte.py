@@ -6,7 +6,7 @@ class antony_aide_depart_sejour_adapte(Variable):
     value_type = float
     entity = Famille
     definition_period = MONTH
-    label = "Montant total de l'Aide au depart en sejour adapté de la ville de Antony"
+    label = "Montant total de l'Aide au départ en séjour adapté de la ville de Antony"
 
     def formula(famille, period, parameters):
         residence_antony = famille.demandeur.menage('antony_eligibilite_residence', period)
@@ -24,7 +24,7 @@ class antony_aide_depart_sejour_adapte_montant_individuel(Variable):
     value_type = float
     entity = Famille
     definition_period = MONTH
-    label = "Montant de base applicable à chaque individu pour l'Aide au depart en sejour adapté de la ville de Antony"
+    label = "Montant de base applicable à chaque individu pour l'Aide au départ en séjour adapté de la ville de Antony"
 
     def formula(famille, period, parameters):
         parameters_antony = parameters(period).communes.antony.plafonds_revenus.sejour_adapte

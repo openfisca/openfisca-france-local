@@ -6,7 +6,7 @@ class antony_base_ressources(Variable):
     value_type = float
     entity = Famille
     definition_period = MONTH
-    label = "Éligibilité de ressoures d'une aux dipositifs d'Antony"
+    label = "Base ressources d'une famille aux dispositifs d'Antony"
 
     def formula(famille, period, parameters):
         # N-1
@@ -60,7 +60,7 @@ class antony_eligibilite_ressources(Variable):
     value_type = bool
     entity = Famille
     definition_period = MONTH
-    label = "Éligibilité de ressoures d'une aux dipositifs d'Antony"
+    label = "Éligibilité de ressources d'une famille aux dispositifs d'Antony"
 
     def formula(famille, period, parameters):
         parameters_antony = parameters(period).communes.antony.plafonds_revenus
