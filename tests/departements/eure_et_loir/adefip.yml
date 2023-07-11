@@ -41,7 +41,7 @@
       2020-03: [0, 0]
       2020-02: [0, 0]
       2020-01: [0, 0]
-    contrat_de_travail_duree: [cdd, cdd]
+    contrat_de_travail_type: [cdd, cdd]
     duree_contrat_ou_formation: [6, 7]
   output:
     adefip: [400, 500]
@@ -65,7 +65,7 @@
       2020-03: [0, 0]
       2020-02: [0, 0]
       2020-01: [0, 0]
-    contrat_de_travail_duree: [cdi, cdi]
+    contrat_de_travail_type: [cdi, cdi]
     contrat_de_travail: [temps_plein, temps_partiel]
   output:
     adefip: [600, 300]
