@@ -15,33 +15,30 @@ class hauts_de_france_aide_garde_enfant(Variable):
 
     def formula(famille, period, parameters):
 
-        modalites = parameters(
-            period).regions.hauts_de_france.aide_garde_enfant
+        modalites = parameters(period).regions.hauts_de_france.aide_garde_enfant
+
         couple = famille('en_couple', period)
+        montant_par_enfant = ((modalites.montant.famille_monoparentale * (1 - couple)
+                               ) + (modalites.montant.famille_biparentale * couple))
 
-        montant = ((modalites.montant.famille_monoparentale * (1 - couple)
-                    ) + (modalites.montant.famille_biparentale * couple))
+        ages_membres_famille = famille.members('age', period)
+        eligibilites_age = (ages_membres_famille < modalites.age_maximum_enfant)
 
-        age = famille.members('age', period)
+        montant_total = montant_par_enfant * famille.sum(eligibilites_age, role=Famille.ENFANT)
 
-        enfants_eligibles = (age < modalites.age_maximum_enfant)
+        region_residence = famille.demandeur.menage('region', period)
+        eligibilite_geographique = sum([region_residence == TypesCodeInseeRegion.hauts_de_france])
 
-        montant_total = montant * famille.sum(enfants_eligibles, role=Famille.ENFANT)
-
-        region = famille.demandeur.menage('region', period)
-        eligibilite_geographique = sum(
-            [region == TypesCodeInseeRegion.hauts_de_france])
-
-        actifs = famille.members('activite', period) == TypesActivite.actif
+        membres_famille_actifs = famille.members('activite', period) == TypesActivite.actif
         nombre_parents = famille.nb_persons(role=Famille.PARENT)
-        eligibilite_statut = famille.sum(
-            actifs, role=Famille.PARENT) == nombre_parents
-        plafond_param = modalites.plafond_multiple_smic
-        plafond_ressources_smic = (plafond_param.famille_monoparentale * (
-            1 - couple)) + (plafond_param.famille_biparentale * couple)
-        smic = parameters(
-            period).marche_travail.salaire_minimum.smic.smic_b_mensuel
+        eligibilite_statut = famille.sum(membres_famille_actifs, role=Famille.PARENT) == nombre_parents
+
+        plafond_ressource = modalites.plafond_multiple_smic
+        plafond_ressources_smic = (plafond_ressource.famille_monoparentale * (1 - couple)
+                                   ) + (plafond_ressource.famille_biparentale * couple)
+        smic = parameters(period).marche_travail.salaire_minimum.smic.smic_b_mensuel
 
         rni = famille.demandeur.foyer_fiscal('rni', period.this_year)
         eligibilite_revenus = rni / 12 < plafond_ressources_smic * smic
+
         return montant_total * eligibilite_geographique * eligibilite_statut * eligibilite_revenus
