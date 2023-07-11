@@ -23,7 +23,7 @@
   output:
     antony_bourse_conservatoire: true
 
-- name: No eligibilité à l'aide-bourse-conservatoire - famille avec enfant plus de 18 ans
+- name: Non éligibilité à l'aide-bourse-conservatoire - famille avec enfant de plus de 18 ans
   period: 2021-11
   input:
     famille:
@@ -48,7 +48,7 @@
   output:
     antony_bourse_conservatoire: false
 
-- name: No eligibilité à l'aide-bourse-conservatoire - famille avec enfant moins de 18 ans et les conditions de ressources non verifiées
+- name: Non éligibilité à l'aide-bourse-conservatoire - famille avec enfant de moins de 18 ans et les conditions de ressources non vérifiées
   period: 2021-11
   input:
     famille:
@@ -73,7 +73,7 @@
   output:
     antony_bourse_conservatoire: false
 
-- name: No eligibilité à l'aide-bourse-conservatoire - famille non résident à Antony avec enfant moins de 18
+- name: Non éligibilité à l'aide-bourse-conservatoire - famille non résident à Antony avec enfant de moins de 18
   period: 2021-11
   input:
     famille:

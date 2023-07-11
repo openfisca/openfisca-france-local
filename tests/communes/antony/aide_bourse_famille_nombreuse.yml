@@ -1,4 +1,4 @@
-- name: Eligibilité à l'aide-bourse-famille-nombreuse - famille avec 3 enfant et un enfant moins d'un an
+- name: Éligibilité à l'aide-bourse-famille-nombreuse - famille avec 3 enfants et un enfant de moins d'un an
   period: 2021-11
   input:
     famille:
@@ -26,7 +26,7 @@
   output:
     antony_bourse_famille_nombreuse: true
 
-- name: No eligibilité à l'aide-bourse-famille-nombreuse - famille avec 3 enfant et aucun enfant est moins d'un an
+- name: Non éligibilité à l'aide-bourse-famille-nombreuse - famille avec 3 enfants et aucun enfant de moins d'un an
   period: 2021-11
   input:
     famille:
@@ -54,7 +54,7 @@
   output:
     antony_bourse_famille_nombreuse: false
 
-- name: No eligibilité à l'aide-bourse-famille-nombreuse - famille avec 2 enfant et un enfant moins d'un an
+- name: Non éligibilité à l'aide-bourse-famille-nombreuse - famille avec 2 enfants et un enfant de moins d'un an
   period: 2021-11
   input:
     famille:
@@ -80,7 +80,7 @@
   output:
     antony_bourse_famille_nombreuse: false
 
-- name: No eligibilité à l'aide-bourse-famille-nombreuse - famille non résident à Antony avec 3 enfant et un enfant moins d'un an
+- name: Non éligibilité à l'aide-bourse-famille-nombreuse - famille non résident à Antony avec 3 enfant et un enfant de moins d'un an
   period: 2021-11
   input:
     famille:

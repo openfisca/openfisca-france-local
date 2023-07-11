@@ -50,7 +50,7 @@
   output:
     antony_bourse_communale: true
 
-- name: No eligibilité à l'aide-bourse-communale - famille avec enfant non scolarisé
+- name: Non éligibilité à l'aide-bourse-communale - famille avec enfant non scolarisé
   period: 2021-11
   input:
     famille:
@@ -76,7 +76,7 @@
   output:
     antony_bourse_communale: false
 
-- name: No Eligibilité à l'aide-bourse-communale - famille avec enfant scolarisé en college et les conditions de ressources non verifiées
+- name: Non éligibilité à l'aide-bourse-communale - famille avec enfant scolarisé en college et les conditions de ressources non vérifiées
   period: 2021-11
   input:
     famille:
@@ -102,7 +102,7 @@
   output:
     antony_bourse_communale: false
 
-- name: No Eligibilité à l'aide-bourse-communale - famille non résident à Antony avec enfant scolarisé en college
+- name: Non éligibilité à l'aide-bourse-communale - famille non résident à Antony avec enfant scolarisé en collège
   period: 2021-11
   input:
     famille:
