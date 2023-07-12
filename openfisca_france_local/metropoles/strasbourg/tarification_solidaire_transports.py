@@ -42,25 +42,12 @@ class eurometropole_strasbourg_tarification_solidaire_transport_quotient_familia
     label = "Équivalence du quotient familial d'étudiants pour la tarification solidaire des transports de l'Eurométropole de Strasbourg"
 
 
-    def formula(individu, period):
+    def formula(individu, period, parameters):
         etudiant = individu('etudiant', period)
         boursier = individu('boursier', period)
         bourse_criteres_sociaux_echelon = individu('bourse_criteres_sociaux_echelon', period)
-        return etudiant * select([boursier],[
-            select(
-            [
-            5 <= bourse_criteres_sociaux_echelon,
-            3 <= bourse_criteres_sociaux_echelon,
-            1 <= bourse_criteres_sociaux_echelon,
-            ],
-            [
-            355,
-            560,
-            765
-            ],
-            default=765)
-          ],
-          default=765)
+        correspondance_echelon = parameters(period).metropoles.strasbourg.tarification_solidaire.correspondance_echelon_qf
+        return etudiant * (boursier * correspondance_echelon.calc(bourse_criteres_sociaux_echelon) + (1 - boursier) * 765)
 
 
 class eurometropole_strasbourg_tarification_solidaire_transport_eligible_tarif_reduit(Variable):
@@ -84,16 +71,33 @@ class eurometropole_strasbourg_tarification_solidaire_transport_montant(Variable
         "https://www.strasbourg.eu/tarification-solidaire-transports-en-commun"
         ]
 
-    def formula(individu, period):
+    def formula(individu, period, parameters):
         geo = individu.menage('eurometropole_strasbourg_tarification_solidaire_transport_eligibilite_geographique', period)
         reduit = individu('eurometropole_strasbourg_tarification_solidaire_transport_eligible_tarif_reduit', period)
         qf = individu('eurometropole_strasbourg_tarification_solidaire_transport_quotient_familial', period)
-        return geo * select(
-            [qf <= 356, qf <= 560, qf < 765],
-            [
-                 5.8 + reduit * ( 3.4 -  5.8),
-                13.4 + reduit * ( 7.3 - 13.4),
-                25.7 + reduit * (13.6 - 25.7),
-            ],
-            default=select([reduit],[27.6], default=0)
-            )
+        bareme = parameters(period).metropoles.strasbourg.tarification_solidaire.bareme
+        bareme_reduit = parameters(period).metropoles.strasbourg.tarification_solidaire.bareme_reduit
+
+        montant = (reduit * bareme_reduit.calc(qf) + (1 - reduit) * bareme.calc(qf))
+        return geo * montant
+
+
+
+class eurometropole_strasbourg_tarification_transport(Variable):
+    value_type = float
+    entity = Individu
+    definition_period = MONTH
+    label = "Tarif de tarification solidaire des transports de l'Eurométropole de Strasbourg"
+    reference = [
+        "https://www.strasbourg.eu/tarification-solidaire-transports-en-commun"
+        ]
+
+    def formula(individu, period, parameters):
+        geo = individu.menage('eurometropole_strasbourg_tarification_solidaire_transport_eligibilite_geographique', period)
+        reduit = individu('eurometropole_strasbourg_tarification_solidaire_transport_eligible_tarif_reduit', period)
+        qf = individu('eurometropole_strasbourg_tarification_solidaire_transport_quotient_familial', period)
+        bareme = parameters(period).metropoles.strasbourg.tarification_solidaire.bareme
+        bareme_reduit = parameters(period).metropoles.strasbourg.tarification_solidaire.bareme_reduit
+
+        montant = (reduit * bareme_reduit.calc(qf) + (1 - reduit) * bareme.calc(qf))
+        return geo * montant

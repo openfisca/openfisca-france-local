@@ -1,7 +1,7 @@
 - period: 2020-10
   input:
-    etudiant: [true]
-    boursier: [true]
-    bourse_criteres_sociaux_echelon: [0]
+    etudiant: [true, true]
+    boursier: [true, true]
+    bourse_criteres_sociaux_echelon: [0, 7]
   output:
-    eurometropole_strasbourg_tarification_solidaire_transport_quotient_familial_etudiant: [765]
+    eurometropole_strasbourg_tarification_solidaire_transport_quotient_familial_etudiant: [765, 355]
