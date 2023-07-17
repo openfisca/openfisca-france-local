@@ -1,0 +1,89 @@
+abonnement_annuel:
+  metadata:
+    type: single_amount
+  brackets:
+    - threshold:
+        2023-01-01:
+          value: -1
+      amount:
+        2023-01-01:
+          value: 120
+    - threshold:
+        2023-01-01:
+          value: 1
+      amount:
+        2023-01-01:
+          value: 120
+    - threshold:
+        2023-01-01:
+          value: 821
+      amount:
+        2023-01-01:
+          value: 200
+abonnement_ete:
+  metadata:
+    type: single_amount
+  brackets:
+    - threshold:
+        2023-01-01:
+          value: -1
+      amount:
+        2023-01-01:
+          value: 10
+    - threshold:
+        2023-01-01:
+          value: 1
+      amount:
+        2023-01-01:
+          value: 25
+    - threshold:
+        2023-01-01:
+          value: 821
+      amount:
+        2023-01-01:
+          value: 200
+entree_unitaire:
+  bareme_age:
+    metadata:
+      type: single_amount
+    brackets:
+      - threshold:
+          2023-01-01:
+            value: -1
+        amount:
+          2023-01-01:
+            value: 1
+      - threshold:
+          2023-01-01:
+            value: 4
+        amount:
+          2023-01-01:
+            value: 3
+      - threshold:
+          2023-01-01:
+            value: 18
+        amount:
+          2023-01-01:
+            value: 5
+  bareme_qf:
+    metadata:
+      type: single_amount
+    brackets:
+      - threshold:
+          2023-01-01:
+            value: -1
+        amount:
+          2023-01-01:
+            value: 1
+      - threshold:
+          2023-01-01:
+            value: 1
+        amount:
+          2023-01-01:
+            value: 3
+      - threshold:
+          2023-01-01:
+            value: 821
+        amount:
+          2023-01-01:
+            value: 5

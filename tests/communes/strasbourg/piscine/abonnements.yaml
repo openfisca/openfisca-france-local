@@ -1,0 +1,13 @@
+- period: 2023
+  input:
+    strasbourg_piscine_quotient_familial: [0, 1, 820, 821]
+    strasbourg_piscine_abonnement_annuel: [true, true, true, true]
+  output:
+    strasbourg_prix_piscine_abonnement_annuel: [120, 120, 120, 200]
+
+- period: 2023
+  input:
+    strasbourg_piscine_quotient_familial: [0, 1, 820, 821]
+    strasbourg_piscine_abonnement_ete: [true, true, true, true]
+  output:
+    strasbourg_prix_piscine_abonnement_ete: [10, 25, 25, 200]
