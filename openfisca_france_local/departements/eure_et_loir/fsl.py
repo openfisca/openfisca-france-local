@@ -180,7 +180,7 @@ class eure_et_loir_fsl_base_ressources(Variable):
         nb_enfants_a_charge = menage.sum(enfants_a_charge)
         en_couple = menage.sum(menage.members.famille('en_couple', period))
 
-        fsl_parameters = parameters(period).departements.fsl
+        fsl_parameters = parameters(period).departements.eure_et_loir.fsl
         bareme_ressources_seul = fsl_parameters.bareme_ressources_seul
         bareme_ressources_couple = fsl_parameters.bareme_ressources_couple
 
