@@ -63,5 +63,5 @@ class strasbourg_piscine_cout_entree_unitaire(Variable):
 
     def formula(individu, period, parameters):
         prix = individu("strasbourg_piscine_prix_entree_unitaire", period)
-        nb = individu("strasbourg_piscine_entree_unitaire", period.first_month)
-        return np * prix
+        nb = individu("strasbourg_piscine_entree_unitaire", period)
+        return nb * prix
