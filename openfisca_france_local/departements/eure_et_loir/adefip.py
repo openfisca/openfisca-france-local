@@ -24,7 +24,7 @@ class adefip_eligibilite_activite(Variable):
     label = u"Éligibilité en lien avec l'activité de l'individu"
 
     def formula(individu, period, parameters):
-        params_adefip = parameters(period).departements.eure_loire.adefip
+        params_adefip = parameters(period).departements.eure_et_loir.adefip
         duree_activite = individu('duree_contrat_ou_formation', period)
 
         contrat_de_travail_type = individu('contrat_de_travail_type', period)
@@ -78,7 +78,7 @@ class adefip_montant(Variable):
     definition_period = MONTH
 
     def formula(individu, period, parameters):
-        params_adefip = parameters(period).departements.eure_loire.adefip
+        params_adefip = parameters(period).departements.eure_et_loir.adefip
 
         duree_activite = individu('duree_contrat_ou_formation', period)
 
