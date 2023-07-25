@@ -11,7 +11,7 @@ brackets:
       2020-01-01:
         value: 356
       2023-01-01:
-        value: 370
+        value: 371
     amount:
       2020-01-01:
         value: 7.3
@@ -19,7 +19,7 @@ brackets:
       2020-01-01:
         value: 560
       2023-01-01:
-        value: 582
+        value: 583
     amount:
       2020-01-01:
         value: 13.6
@@ -27,9 +27,9 @@ brackets:
       2020-01-01:
         value: 765
       2023-01-01:
-        value: 795
+        value: 796
     amount:
       2020-01-01:
         value: 27.6
-      2023-01-01:
+      2023-07-01:
         value: 28
