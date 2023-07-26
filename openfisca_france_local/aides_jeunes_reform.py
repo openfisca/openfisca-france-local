@@ -36,21 +36,25 @@ operations = {
     }
 
 
+def compute_operator_condition(eligible_values: ParameterNodeAtInstant, individus_values: np.array) -> np.array:
+    constraints_values = [
+        (operations[constraint], eligible_values[constraint])
+        for constraint in eligible_values
+        ]
+
+    eligibilities = [
+        constraint[0](individus_values, constraint[1])
+        for constraint in constraints_values
+        ]
+
+    return sum(eligibilities) >= len(constraints_values)
+
+
 def is_age_eligible(individu: Population, period: Period, parameters: ParameterNodeAtInstant) -> np.array:
     individus_age = individu('age', period)
     eligible_ages = parameters.age
 
-    age_constraints = [
-        (operations[constraint], eligible_ages[constraint])
-        for constraint in eligible_ages
-        ]
-
-    eligibilities = [
-        constraint[0](individus_age, constraint[1])
-        for constraint in age_constraints
-        ]
-
-    return sum(eligibilities) >= len(age_constraints)
+    return compute_operator_condition(eligible_ages, individus_age)
 
 
 def is_department_eligible(individu: Population, period: Period, parameters: ParameterNodeAtInstant):
@@ -189,17 +193,7 @@ def is_taux_incapacite_eligible(individu: Population, period: Period, parameters
     individus_taux_incapacite = individu('taux_incapacite', period)
     eligible_taux_incapacites = parameters.taux_incapacite
 
-    taux_incapacite_constraints = [
-        (operations[constraint], eligible_taux_incapacites[constraint])
-        for constraint in eligible_taux_incapacites
-        ]
-
-    eligibilities = [
-        constraint[0](individus_taux_incapacite, constraint[1])
-        for constraint in taux_incapacite_constraints
-        ]
-
-    return sum(eligibilities) >= len(taux_incapacite_constraints)
+    return compute_operator_condition(eligible_taux_incapacites, individus_taux_incapacite)
 
 
 def is_chomeur(individu: Population, period: Period) -> np.array:
