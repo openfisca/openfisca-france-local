@@ -60,6 +60,7 @@ def condition_to_parameter_data(condition: dict) -> dict:
 
     condition_table: dict = {
         'age': generate_age_parameter_data,
+        'taux_incapacite': generate_age_parameter_data,
         'quotient_familial': generate_quotient_familial_parameter_data,
         'regime_securite_sociale': generate_regime_securite_sociale_parameter_data,
         }

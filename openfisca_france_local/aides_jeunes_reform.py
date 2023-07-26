@@ -186,21 +186,20 @@ def is_epci_eligible(individu: Population, period: Period, parameters: Parameter
 
 
 def is_taux_incapacite_eligible(individu: Population, period: Period, parameters: ParameterNodeAtInstant) -> np.array:
-    evaluates = {
-        'inferieur_50': lambda taux: taux < 0.5,
-        'entre_50_et_80': lambda taux: np.logical_and(taux >= 0.5, taux < 0.8),
-        'superieur_ou_egal_80': lambda taux: taux >= 0.8
-        }
+    individus_taux_incapacite = individu('taux_incapacite', period)
+    eligible_taux_incapacites = parameters.taux_incapacite
 
-    taux_incapacite = individu('taux_incapacite', period)
-    elibible_taux = parameters.taux_incapacite
-
-    eligibilities = [
-        evaluates[taux](taux_incapacite)
-        for taux in elibible_taux
+    taux_incapacite_constraints = [
+        (operations[constraint], eligible_taux_incapacites[constraint])
+        for constraint in eligible_taux_incapacites
         ]
 
-    return sum(eligibilities) > 0
+    eligibilities = [
+        constraint[0](individus_taux_incapacite, constraint[1])
+        for constraint in taux_incapacite_constraints
+        ]
+
+    return sum(eligibilities) >= len(taux_incapacite_constraints)
 
 
 def is_chomeur(individu: Population, period: Period) -> np.array:
