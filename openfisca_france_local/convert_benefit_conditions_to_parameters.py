@@ -2,7 +2,7 @@ from openfisca_france.model.base import ParameterNode
 
 
 def condition_to_parameter_data(condition: dict) -> dict:
-    def generate_age_parameter_data(condition: dict) -> dict:
+    def generate_operator_parameter_data(condition: dict) -> dict:
         parameter_operator: str = comparison_operators[condition['operator']]
         return {
             condition_type: {
@@ -59,8 +59,8 @@ def condition_to_parameter_data(condition: dict) -> dict:
             }
 
     condition_table: dict = {
-        'age': generate_age_parameter_data,
-        'taux_incapacite': generate_age_parameter_data,
+        'age': generate_operator_parameter_data,
+        'taux_incapacite': generate_operator_parameter_data,
         'quotient_familial': generate_quotient_familial_parameter_data,
         'regime_securite_sociale': generate_regime_securite_sociale_parameter_data,
         }
