@@ -1,4 +1,4 @@
-from openfisca_france.model.base import Variable, Individu, Menage, MONTH, YEAR, select
+from openfisca_france.model.base import Variable, Individu, Famille, Menage, MONTH, YEAR, select
 
 
 class eurometropole_strasbourg_tarification_solidaire_transport_eligibilite_geographique(Variable):
@@ -11,6 +11,18 @@ class eurometropole_strasbourg_tarification_solidaire_transport_eligibilite_geog
         return menage('menage_dans_epci_siren_246700488', period)
 
 
+class qf_caf(Variable):
+    value_type = float
+    entity = Famille
+    definition_period = MONTH
+
+
+class qf_fiscal(Variable):
+    value_type = float
+    entity = Famille
+    definition_period = MONTH
+
+
 class eurometropole_strasbourg_tarification_solidaire_transport_quotient_familial(Variable):
     value_type = float
     entity = Individu
@@ -21,7 +33,7 @@ class eurometropole_strasbourg_tarification_solidaire_transport_quotient_familia
     def formula(individu, period):
         etudiant = individu('etudiant', period)
         qf_etudiant = individu('eurometropole_strasbourg_tarification_solidaire_transport_quotient_familial_etudiant', period)
-        base = individu('strasbourg_metropole_quotient_familial', period)
+        base = individu.famille('strasbourg_metropole_quotient_familial', period)
         return select([etudiant], [qf_etudiant], default=base)
 
 

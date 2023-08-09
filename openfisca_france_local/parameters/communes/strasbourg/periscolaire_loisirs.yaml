@@ -1,0 +1,130 @@
+journee:
+  bareme:
+    metadata:
+      type: single_amount
+    brackets:
+      - threshold:
+          2023-01-01:
+            value: -1
+        amount:
+          2023-01-01:
+            value: 2.84
+      - threshold:
+          2023-01-01:
+            value: 411
+        amount:
+          2023-01-01:
+            value: 3.83
+      - threshold:
+          2023-01-01:
+            value: 511
+        amount:
+          2023-01-01:
+            value: 4.75
+      - threshold:
+          2023-01-01:
+            value: 621
+        amount:
+          2023-01-01:
+            value: 5.74
+      - threshold:
+          2023-01-01:
+            value: 721
+        amount:
+          2023-01-01:
+            value: 6.66
+      - threshold:
+          2023-01-01:
+            value: 821
+        amount:
+          2023-01-01:
+            value: 7.65
+      - threshold:
+          2023-01-01:
+            value: 921
+        amount:
+          2023-01-01:
+            value: 8.58
+      - threshold:
+          2023-01-01:
+            value: 1031
+        amount:
+          2023-01-01:
+            value: 9.57
+      - threshold:
+          2023-01-01:
+            value: 1541
+        amount:
+          2023-01-01:
+            value: 10.50
+      - threshold:
+          2023-01-01:
+            value: 2051
+        amount:
+          2023-01-01:
+            value: 11.48
+demi_journee:
+  bareme:
+    metadata:
+      type: single_amount
+    brackets:
+      - threshold:
+          2023-01-01:
+            value: -1
+        amount:
+          2023-01-01:
+            value: 2.13
+      - threshold:
+          2023-01-01:
+            value: 411
+        amount:
+          2023-01-01:
+            value: 2.87
+      - threshold:
+          2023-01-01:
+            value: 511
+        amount:
+          2023-01-01:
+            value: 3.56
+      - threshold:
+          2023-01-01:
+            value: 621
+        amount:
+          2023-01-01:
+            value: 4.31
+      - threshold:
+          2023-01-01:
+            value: 721
+        amount:
+          2023-01-01:
+            value: 5.01
+      - threshold:
+          2023-01-01:
+            value: 821
+        amount:
+          2023-01-01:
+            value: 5.74
+      - threshold:
+          2023-01-01:
+            value: 921
+        amount:
+          2023-01-01:
+            value: 6.44
+      - threshold:
+          2023-01-01:
+            value: 1031
+        amount:
+          2023-01-01:
+            value: 7.18
+      - threshold:
+          2023-01-01:
+            value: 1541
+        amount:
+          2023-01-01:
+            value: 7.87
+      - threshold:
+          2023-01-01:
+            value: 2051
+        amount:
+          2023-01-01:
+            value: 8.61

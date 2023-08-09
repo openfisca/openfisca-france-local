@@ -1,0 +1,64 @@
+bareme:
+  metadata:
+    type: single_amount
+  brackets:
+    - threshold:
+        2023-01-01:
+          value: -1
+      amount:
+        2023-01-01:
+          value: 11.95
+    - threshold:
+        2023-01-01:
+          value: 411
+      amount:
+        2023-01-01:
+          value: 16.7
+    - threshold:
+        2023-01-01:
+          value: 511
+      amount:
+        2023-01-01:
+          value: 21.5
+    - threshold:
+        2023-01-01:
+          value: 621
+      amount:
+        2023-01-01:
+          value: 26.25
+    - threshold:
+        2023-01-01:
+          value: 721
+      amount:
+        2023-01-01:
+          value: 31.10
+    - threshold:
+        2023-01-01:
+          value: 821
+      amount:
+        2023-01-01:
+          value: 35.85
+    - threshold:
+        2023-01-01:
+          value: 921
+      amount:
+        2023-01-01:
+          value: 40.60
+    - threshold:
+        2023-01-01:
+          value: 1031
+      amount:
+        2023-01-01:
+          value: 45.30
+    - threshold:
+        2023-01-01:
+          value: 1541
+      amount:
+        2023-01-01:
+          value: 50.15
+    - threshold:
+        2023-01-01:
+          value: 2051
+      amount:
+        2023-01-01:
+          value: 54.9

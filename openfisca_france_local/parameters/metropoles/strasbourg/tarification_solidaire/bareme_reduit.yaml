@@ -10,23 +10,23 @@ brackets:
   - threshold:
       2020-01-01:
         value: 356
-      2023-01-01:
+      2023-07-01:
         value: 371
     amount:
       2020-01-01:
         value: 7.3
   - threshold:
       2020-01-01:
-        value: 560
-      2023-01-01:
+        value: 561
+      2023-07-01:
         value: 583
     amount:
       2020-01-01:
         value: 13.6
   - threshold:
       2020-01-01:
-        value: 765
-      2023-01-01:
+        value: 766
+      2023-07-01:
         value: 796
     amount:
       2020-01-01:

@@ -1,0 +1,90 @@
+entree_unitaire:
+  bareme_age:
+    metadata:
+      type: single_amount
+    brackets:
+      - threshold:
+          2023-01-01:
+            value: -1
+        amount:
+          2023-01-01:
+            value: 1
+      - threshold:
+          2023-01-01:
+            value: 4
+        amount:
+          2023-01-01:
+            value: 4.1
+      - threshold:
+          2023-01-01:
+            value: 18
+        amount:
+          2023-01-01:
+            value: 5.5
+  bareme_qf:
+    metadata:
+      type: single_amount
+    brackets:
+      - threshold:
+          2023-01-01:
+            value: -1
+        amount:
+          2023-01-01:
+            value: 1
+      - threshold:
+          2023-01-01:
+            value: 1
+        amount:
+          2023-01-01:
+            value: 4.1
+      - threshold:
+          2023-01-01:
+            value: 821
+        amount:
+          2023-01-01:
+            value: 5.5
+_10_entrees:
+  bareme_age:
+    metadata:
+      type: single_amount
+    brackets:
+      - threshold:
+          2023-01-01:
+            value: -1
+        amount:
+          2023-01-01:
+            value: 35
+      - threshold:
+          2023-01-01:
+            value: 4
+        amount:
+          2023-01-01:
+            value: 35
+      - threshold:
+          2023-01-01:
+            value: 18
+        amount:
+          2023-01-01:
+            value: 44
+  bareme_qf:
+    metadata:
+      type: single_amount
+    brackets:
+      - threshold:
+          2023-01-01:
+            value: -1
+        amount:
+          2023-01-01:
+            value: 35
+      - threshold:
+          2023-01-01:
+            value: 1
+        amount:
+          2023-01-01:
+            value: 35
+      - threshold:
+          2023-01-01:
+            value: 821
+        amount:
+          2023-01-01:
+            value: 44
