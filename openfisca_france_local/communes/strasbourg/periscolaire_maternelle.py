@@ -1,6 +1,6 @@
 from openfisca_france.model.base import *
 
-class strasbourg_prix_periscolaire_maternelle(Variable):
+class strasbourg_periscolaire_maternelle_prix(Variable):
     value_type = float
     entity = Individu
     definition_period = MONTH

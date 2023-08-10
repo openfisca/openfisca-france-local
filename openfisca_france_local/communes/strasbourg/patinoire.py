@@ -1,7 +1,7 @@
 from openfisca_france.model.base import *
 import numpy as np
 
-class strasbourg_prix_patinoire_entree_unitaire(Variable):
+class strasbourg_patinoire_entree_unitaire_prix(Variable):
     value_type = float
     entity = Individu
     definition_period = MONTH
@@ -23,7 +23,7 @@ class strasbourg_patinoire_entree_unitaire(Variable):
     definition_period = MONTH
 
 
-class strasbourg_prix_patinoire_10_entrees(Variable):
+class strasbourg_patinoire_10_entrees_prix(Variable):
     value_type = float
     entity = Individu
     definition_period = MONTH
@@ -40,7 +40,7 @@ class strasbourg_prix_patinoire_10_entrees(Variable):
         return min_(bareme_qf.calc(qf_ajus), bareme_age.calc(age))
 
 
-class strasbourg_prix_patinoire_5_entrees_ce(Variable):
+class strasbourg_patinoire_5_entrees_ce_prix(Variable):
     value_type = float
     entity = Individu
     definition_period = MONTH

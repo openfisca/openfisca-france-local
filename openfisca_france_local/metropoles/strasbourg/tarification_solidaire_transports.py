@@ -84,7 +84,6 @@ class eurometropole_strasbourg_tarification_solidaire_transport_montant(Variable
         return geo * montant
 
 
-
 class eurometropole_strasbourg_tarification_transport(Variable):
     value_type = float
     entity = Individu

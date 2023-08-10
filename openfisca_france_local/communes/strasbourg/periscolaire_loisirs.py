@@ -1,6 +1,6 @@
 from openfisca_france.model.base import *
 
-class strasbourg_prix_periscolaire_loisirs_journee(Variable):
+class strasbourg_periscolaire_loisirs_journee_prix(Variable):
     value_type = float
     entity = Individu
     definition_period = MONTH
@@ -11,7 +11,7 @@ class strasbourg_prix_periscolaire_loisirs_journee(Variable):
         return bareme.calc(qf)
 
 
-class strasbourg_prix_periscolaire_loisirs_demi_journee(Variable):
+class strasbourg_periscolaire_loisirs_demi_journee_prix(Variable):
     value_type = float
     entity = Individu
     definition_period = MONTH
@@ -22,7 +22,7 @@ class strasbourg_prix_periscolaire_loisirs_demi_journee(Variable):
         return bareme.calc(qf)
 
 
-class strasbourg_prix_periscolaire_loisirs_repas(Variable):
+class strasbourg_periscolaire_loisirs_repas_prix(Variable):
     value_type = float
     entity = Individu
     definition_period = MONTH
@@ -33,7 +33,7 @@ class strasbourg_prix_periscolaire_loisirs_repas(Variable):
         return bareme.calc(qf)
 
 
-class strasbourg_prix_periscolaire_loisirs_panier(Variable):
+class strasbourg_periscolaire_loisirs_panier_prix(Variable):
     value_type = float
     entity = Individu
     definition_period = MONTH

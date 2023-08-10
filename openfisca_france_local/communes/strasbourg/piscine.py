@@ -6,7 +6,7 @@ class strasbourg_piscine_abonnement_annuel(Variable):
     entity = Individu
     definition_period = MONTH
 
-class strasbourg_prix_piscine_abonnement_annuel(Variable):
+class strasbourg_piscine_abonnement_annuel_prix(Variable):
     value_type = float
     entity = Individu
     definition_period = MONTH
@@ -28,7 +28,7 @@ class strasbourg_piscine_abonnement_ce(Variable):
     definition_period = MONTH
 
 
-class strasbourg_prix_piscine_abonnement_ce(Variable):
+class strasbourg_piscine_abonnement_ce_prix(Variable):
     value_type = float
     entity = Individu
     definition_period = MONTH
@@ -44,7 +44,7 @@ class strasbourg_piscine_abonnement_ete(Variable):
     definition_period = MONTH
 
 
-class strasbourg_prix_piscine_abonnement_ete(Variable):
+class strasbourg_piscine_abonnement_ete_prix(Variable):
     value_type = float
     entity = Individu
     definition_period = MONTH
@@ -56,7 +56,7 @@ class strasbourg_prix_piscine_abonnement_ete(Variable):
         return abo * bareme.calc(qf)
 
 
-class strasbourg_piscine_prix_entree_unitaire(Variable):
+class strasbourg_piscine_entree_unitaire_prix(Variable):
     value_type = float
     entity = Individu
     definition_period = MONTH
@@ -77,7 +77,7 @@ class strasbourg_piscine_entree_unitaire(Variable):
     entity = Individu
     definition_period = MONTH
 
-class strasbourg_piscine_prix_10_entrees(Variable):
+class strasbourg_piscine_10_entrees_prix(Variable):
     value_type = float
     entity = Individu
     definition_period = MONTH
@@ -100,7 +100,7 @@ class strasbourg_piscine_10_entrees(Variable):
     definition_period = MONTH
 
 
-class strasbourg_prix_piscine_5_entrees_ce(Variable):
+class strasbourg_piscine_5_entrees_ce_prix(Variable):
     value_type = float
     entity = Individu
     definition_period = MONTH
@@ -109,7 +109,7 @@ class strasbourg_prix_piscine_5_entrees_ce(Variable):
         return 15
 
 
-class strasbourg_prix_piscine_cycle(Variable):
+class strasbourg_piscine_cycle_prix(Variable):
     value_type = float
     entity = Individu
     definition_period = MONTH
@@ -120,7 +120,7 @@ class strasbourg_prix_piscine_cycle(Variable):
         return bareme_qf.calc(qf)
 
 
-class strasbourg_prix_piscine_stage_ete(Variable):
+class strasbourg_piscine_stage_ete_prix(Variable):
     value_type = float
     entity = Individu
     definition_period = MONTH
@@ -131,7 +131,7 @@ class strasbourg_prix_piscine_stage_ete(Variable):
         return bareme_qf.calc(qf)
 
 
-class strasbourg_prix_piscine_stage_vacances(Variable):
+class strasbourg_piscine_stage_vacances_prix(Variable):
     value_type = float
     entity = Individu
     definition_period = MONTH
@@ -142,7 +142,7 @@ class strasbourg_prix_piscine_stage_vacances(Variable):
         return bareme_qf.calc(qf)
 
 
-class strasbourg_prix_piscine_stage_5_seances(Variable):
+class strasbourg_piscine_stage_5_seances_prix(Variable):
     value_type = float
     entity = Individu
     definition_period = MONTH
