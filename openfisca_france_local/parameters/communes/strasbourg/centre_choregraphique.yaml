@@ -148,7 +148,7 @@ enfant:
               value: 0
           amount:
             2023-01-01:
-              value: 921
+              value: 200
         - threshold:
             2023-01-01:
               value: 821
