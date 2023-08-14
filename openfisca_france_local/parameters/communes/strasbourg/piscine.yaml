@@ -4,7 +4,7 @@ abonnement_annuel:
   brackets:
     - threshold:
         2023-01-01:
-          value: -1
+          value: 0
       amount:
         2023-01-01:
           value: 120
@@ -26,7 +26,7 @@ abonnement_ete:
   brackets:
     - threshold:
         2023-01-01:
-          value: -1
+          value: 0
       amount:
         2023-01-01:
           value: 10
@@ -49,7 +49,7 @@ entree_unitaire:
     brackets:
       - threshold:
           2023-01-01:
-            value: -1
+            value: 0
         amount:
           2023-01-01:
             value: 1
@@ -71,7 +71,7 @@ entree_unitaire:
     brackets:
       - threshold:
           2023-01-01:
-            value: -1
+            value: 0
         amount:
           2023-01-01:
             value: 1
@@ -95,7 +95,7 @@ _10_entrees:
     brackets:
       - threshold:
           2023-01-01:
-            value: -1
+            value: 0
         amount:
           2023-01-01:
             value: 21
@@ -117,7 +117,7 @@ _10_entrees:
     brackets:
       - threshold:
           2023-01-01:
-            value: -1
+            value: 0
         amount:
           2023-01-01:
             value: 21
@@ -140,7 +140,7 @@ cycle:
     brackets:
       - threshold:
           2023-01-01:
-            value: -1
+            value: 0
         amount:
           2023-01-01:
             value: 15
@@ -163,7 +163,7 @@ stage_ete:
     brackets:
       - threshold:
           2023-01-01:
-            value: -1
+            value: 0
         amount:
           2023-01-01:
             value: 5
@@ -186,7 +186,7 @@ stage_vacances:
     brackets:
       - threshold:
           2023-01-01:
-            value: -1
+            value: 0
         amount:
           2023-01-01:
             value: 10
@@ -209,7 +209,7 @@ stage_5_seances:
     brackets:
       - threshold:
           2023-01-01:
-            value: -1
+            value: 0
         amount:
           2023-01-01:
             value: 3

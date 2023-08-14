@@ -5,19 +5,19 @@ eveil:
     brackets:
       - threshold:
           2023-01-01:
-            value: -1
+            value: 0
         amount:
           2023-01-01:
             value: 165
       - threshold:
           2023-01-01:
-            value: 100
+            value: 821
         amount:
           2023-01-01:
             value: 185
       - threshold:
           2023-01-01:
-            value: 200
+            value: 921
         amount:
           2023-01-01:
             value: 206
@@ -29,19 +29,19 @@ adulte:
       brackets:
         - threshold:
             2023-01-01:
-              value: -1
+              value: 0
           amount:
             2023-01-01:
               value: 99
         - threshold:
             2023-01-01:
-              value: 100
+              value: 821
           amount:
             2023-01-01:
               value: 112
         - threshold:
             2023-01-01:
-              value: 200
+              value: 921
           amount:
             2023-01-01:
               value: 124
@@ -52,19 +52,19 @@ adulte:
       brackets:
         - threshold:
             2023-01-01:
-              value: -1
+              value: 0
           amount:
             2023-01-01:
               value: 238
         - threshold:
             2023-01-01:
-              value: 100
+              value: 821
           amount:
             2023-01-01:
               value: 268
         - threshold:
             2023-01-01:
-              value: 200
+              value: 921
           amount:
             2023-01-01:
               value: 298
@@ -75,19 +75,19 @@ adulte:
       brackets:
         - threshold:
             2023-01-01:
-              value: -1
+              value: 0
           amount:
             2023-01-01:
               value: 430
         - threshold:
             2023-01-01:
-              value: 100
+              value: 821
           amount:
             2023-01-01:
               value: 483
         - threshold:
             2023-01-01:
-              value: 200
+              value: 921
           amount:
             2023-01-01:
               value: 537
@@ -98,19 +98,19 @@ adulte:
       brackets:
         - threshold:
             2023-01-01:
-              value: -1
+              value: 0
           amount:
             2023-01-01:
               value: 608
         - threshold:
             2023-01-01:
-              value: 100
+              value: 821
           amount:
             2023-01-01:
               value: 684
         - threshold:
             2023-01-01:
-              value: 200
+              value: 921
           amount:
             2023-01-01:
               value: 760
@@ -121,19 +121,19 @@ adulte:
       brackets:
         - threshold:
             2023-01-01:
-              value: -1
+              value: 0
           amount:
             2023-01-01:
               value: 762
         - threshold:
             2023-01-01:
-              value: 100
+              value: 821
           amount:
             2023-01-01:
               value: 858
         - threshold:
             2023-01-01:
-              value: 200
+              value: 921
           amount:
             2023-01-01:
               value: 953
@@ -145,19 +145,19 @@ enfant:
       brackets:
         - threshold:
             2023-01-01:
-              value: -1
+              value: 0
           amount:
             2023-01-01:
-              value: 200
+              value: 921
         - threshold:
             2023-01-01:
-              value: 100
+              value: 821
           amount:
             2023-01-01:
               value: 225
         - threshold:
             2023-01-01:
-              value: 200
+              value: 921
           amount:
             2023-01-01:
               value: 250
@@ -168,19 +168,19 @@ enfant:
       brackets:
         - threshold:
             2023-01-01:
-              value: -1
+              value: 0
           amount:
             2023-01-01:
               value: 241
         - threshold:
             2023-01-01:
-              value: 100
+              value: 821
           amount:
             2023-01-01:
               value: 271
         - threshold:
             2023-01-01:
-              value: 200
+              value: 921
           amount:
             2023-01-01:
               value: 301
@@ -191,19 +191,19 @@ enfant:
       brackets:
         - threshold:
             2023-01-01:
-              value: -1
+              value: 0
           amount:
             2023-01-01:
               value: 314
         - threshold:
             2023-01-01:
-              value: 100
+              value: 821
           amount:
             2023-01-01:
               value: 354
         - threshold:
             2023-01-01:
-              value: 200
+              value: 921
           amount:
             2023-01-01:
               value: 393
@@ -214,19 +214,19 @@ enfant:
       brackets:
         - threshold:
             2023-01-01:
-              value: -1
+              value: 0
           amount:
             2023-01-01:
               value: 380
         - threshold:
             2023-01-01:
-              value: 100
+              value: 821
           amount:
             2023-01-01:
               value: 428
         - threshold:
             2023-01-01:
-              value: 200
+              value: 921
           amount:
             2023-01-01:
               value: 475

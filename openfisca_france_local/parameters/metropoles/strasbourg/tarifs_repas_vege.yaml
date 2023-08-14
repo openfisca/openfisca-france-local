@@ -3,61 +3,61 @@ metadata:
 brackets:
 - threshold:
     2010-10-01:
-      value: -1
+      value: 0
   amount:
     2010-10-01:
       value: 1.15
 - threshold:
     2010-10-01:
-      value: 410
+      value: 411
   amount:
     2010-10-01:
       value: 1.80
 - threshold:
     2010-10-01:
-      value: 510
+      value: 511
   amount:
     2010-10-01:
       value: 2.35
 - threshold:
     2010-10-01:
-      value: 620
+      value: 621
   amount:
     2010-10-01:
       value: 2.90
 - threshold:
     2010-10-01:
-      value: 720
+      value: 721
   amount:
     2010-10-01:
       value: 3.45
 - threshold:
     2010-10-01:
-      value: 820
+      value: 821
   amount:
     2010-10-01:
       value: 4.05
 - threshold:
     2010-10-01:
-      value: 920
+      value: 921
   amount:
     2010-10-01:
       value: 4.75
 - threshold:
     2010-10-01:
-      value: 1030
+      value: 1031
   amount:
     2010-10-01:
       value: 5.45
 - threshold:
     2010-10-01:
-      value: 1540
+      value: 1541
   amount:
     2010-10-01:
       value: 5.95
 - threshold:
     2010-10-01:
-      value: 2050
+      value: 2051
   amount:
     2010-10-01:
       value: 6.55

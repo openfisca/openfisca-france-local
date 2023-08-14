@@ -3,7 +3,7 @@ metadata:
 brackets:
   - threshold:
       2020-01-01:
-        value: -1
+        value: 0
     amount:
       2020-01-01:
         value: 5.8

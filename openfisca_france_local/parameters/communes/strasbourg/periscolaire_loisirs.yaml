@@ -5,7 +5,7 @@ journee:
     brackets:
       - threshold:
           2023-01-01:
-            value: -1
+            value: 0
         amount:
           2023-01-01:
             value: 2.84
@@ -70,7 +70,7 @@ demi_journee:
     brackets:
       - threshold:
           2023-01-01:
-            value: -1
+            value: 0
         amount:
           2023-01-01:
             value: 2.13

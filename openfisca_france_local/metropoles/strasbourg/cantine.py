@@ -10,7 +10,7 @@ class strasbourg_metropole_tarification_cantine(Variable):
     def formula(famille, period, parameters):
         qf = famille('strasbourg_metropole_quotient_familial', period)
         tarif = parameters(period).metropoles.strasbourg.tarifs_cantine
-        return tarif.calc(max_(0, qf), right=True)
+        return tarif.calc(max_(0, qf))
 
 class strasbourg_metropole_nombre_repas_cantine(Variable):
     value_type = float
@@ -49,7 +49,7 @@ class strasbourg_metropole_tarification_cantine_vegetarien(Variable):
     def formula(famille, period, parameters):
         qf = famille('strasbourg_metropole_quotient_familial', period)
         tarif = parameters(period).metropoles.strasbourg.tarifs_repas_vege
-        return tarif.calc(max_(0, qf), right=True)
+        return tarif.calc(max_(0, qf))
 
 
 class strasbourg_metropole_cout_cantine_repas_vegetarien(Variable):
@@ -89,7 +89,7 @@ class strasbourg_metropole_tarification_cantine_panier(Variable):
     def formula(famille, period, parameters):
         qf = famille('strasbourg_metropole_quotient_familial', period)
         tarif = parameters(period).metropoles.strasbourg.tarifs_repas_panier
-        return tarif.calc(max_(0, qf), right=True)
+        return tarif.calc(max_(0, qf))
 
 
 class strasbourg_metropole_cout_cantine_repas_panier(Variable):
