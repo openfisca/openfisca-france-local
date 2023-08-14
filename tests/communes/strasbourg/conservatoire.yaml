@@ -1,0 +1,20 @@
+- period: 2023-01
+  input:
+    agent_ems: [true, false, false]
+    habitant_ems: [false, true, false]
+    rni:
+      2021: [0, 0, 0]
+  output:
+    strasbourg_conservatoire_traditionnel_enf12: [276, 452, 652]
+    strasbourg_conservatoire_traditionnel_enf3: [276, 276, 276]
+
+- period: 2023-01
+  input:
+    habitant_ems: [false, true, true]
+    rni:
+      2021: [0, 16714, 167140]
+  output:
+    strasbourg_conservatoire_horaires_amenages_enf1: [652, 180, 451]
+    strasbourg_conservatoire_horaires_amenages_enf2: [353, 114, 278]
+    strasbourg_conservatoire_horaires_amenages_enf3: [237, 60, 149]
+    strasbourg_conservatoire_horaires_amenages_enf4: [0, 0, 0]

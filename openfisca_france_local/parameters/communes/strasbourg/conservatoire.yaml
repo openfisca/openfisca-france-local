@@ -1,0 +1,199 @@
+traditionnel:
+  hors_ems:
+    enfant_12:
+      metadata:
+        type: single_amount
+      brackets:
+        - threshold:
+            2023-01-01:
+              value: 0
+          amount:
+            2023-01-01:
+              value: 652
+  habitant_ems:
+    enfant_12:
+      metadata:
+        type: single_amount
+      brackets:
+        - threshold:
+            2023-01-01:
+              value: 0
+          amount:
+            2023-01-01:
+              value: 452
+  agent_ems:
+    enfant_12:
+      metadata:
+        type: single_amount
+      brackets:
+        - threshold:
+            2023-01-01:
+              value: 0
+          amount:
+            2023-01-01:
+              value: 276
+  enfant_3:
+    metadata:
+      type: single_amount
+    brackets:
+      - threshold:
+          2023-01-01:
+            value: 0
+        amount:
+          2023-01-01:
+            value: 276
+horaires_amenages:
+  hors_ems:
+    enfant_1:
+      metadata:
+        type: single_amount
+      brackets:
+        - threshold:
+            2023-01-01:
+              value: 0
+          amount:
+            2023-01-01:
+              value: 652
+    enfant_2:
+      metadata:
+        type: single_amount
+      brackets:
+        - threshold:
+            2023-01-01:
+              value: 0
+          amount:
+            2023-01-01:
+              value: 353
+    enfant_3:
+      metadata:
+        type: single_amount
+      brackets:
+        - threshold:
+            2023-01-01:
+              value: 0
+          amount:
+            2023-01-01:
+              value: 237
+    enfant_4:
+      metadata:
+        type: single_amount
+      brackets:
+        - threshold:
+            2023-01-01:
+              value: 0
+          amount:
+            2023-01-01:
+              value: 0
+  habitant_ems:
+    enfant_1:
+      metadata:
+        type: single_amount
+      brackets:
+        - threshold:
+            2023-01-01:
+              value: 0
+          amount:
+            2023-01-01:
+              value: 137
+        - threshold:
+            2023-01-01:
+              value: 16714
+          amount:
+            2023-01-01:
+              value: 180
+        - threshold:
+            2023-01-01:
+              value: 21707
+          amount:
+            2023-01-01:
+              value: 226
+        - threshold:
+            2023-01-01:
+              value: 29007
+          amount:
+            2023-01-01:
+              value: 315
+        - threshold:
+            2023-01-01:
+              value: 36114
+          amount:
+            2023-01-01:
+              value: 451
+    enfant_2:
+      metadata:
+        type: single_amount
+      brackets:
+        - threshold:
+            2023-01-01:
+              value: 0
+          amount:
+            2023-01-01:
+              value: 84
+        - threshold:
+            2023-01-01:
+              value: 16714
+          amount:
+            2023-01-01:
+              value: 114
+        - threshold:
+            2023-01-01:
+              value: 21707
+          amount:
+            2023-01-01:
+              value: 142
+        - threshold:
+            2023-01-01:
+              value: 29007
+          amount:
+            2023-01-01:
+              value: 194
+        - threshold:
+            2023-01-01:
+              value: 36114
+          amount:
+            2023-01-01:
+              value: 278
+    enfant_3:
+      metadata:
+        type: single_amount
+      brackets:
+        - threshold:
+            2023-01-01:
+              value: 0
+          amount:
+            2023-01-01:
+              value: 46
+        - threshold:
+            2023-01-01:
+              value: 16714
+          amount:
+            2023-01-01:
+              value: 60
+        - threshold:
+            2023-01-01:
+              value: 21707
+          amount:
+            2023-01-01:
+              value: 77
+        - threshold:
+            2023-01-01:
+              value: 29007
+          amount:
+            2023-01-01:
+              value: 105
+        - threshold:
+            2023-01-01:
+              value: 36114
+          amount:
+            2023-01-01:
+              value: 149
+    enfant_4:
+      metadata:
+        type: single_amount
+      brackets:
+        - threshold:
+            2023-01-01:
+              value: 0
+          amount:
+            2023-01-01:
+              value: 0
