@@ -1,5 +1,5 @@
 eveil:
-  bareme:
+  RB:
     metadata:
       type: single_amount
     brackets:
@@ -9,21 +9,29 @@ eveil:
         amount:
           2023-01-01:
             value: 165
+  RA:
+    metadata:
+      type: single_amount
+    brackets:
       - threshold:
           2023-01-01:
-            value: 821
+            value: 0
         amount:
           2023-01-01:
             value: 185
+  TP:
+    metadata:
+      type: single_amount
+    brackets:
       - threshold:
           2023-01-01:
-            value: 921
+            value: 0
         amount:
           2023-01-01:
             value: 206
 adulte:
   _1_cours_trimestre:
-    bareme:
+    RB:
       metadata:
         type: single_amount
       brackets:
@@ -33,20 +41,28 @@ adulte:
           amount:
             2023-01-01:
               value: 99
+    RA:
+      metadata:
+        type: single_amount
+      brackets:
         - threshold:
             2023-01-01:
-              value: 821
+              value: 0
           amount:
             2023-01-01:
               value: 112
+    TP:
+      metadata:
+        type: single_amount
+      brackets:
         - threshold:
             2023-01-01:
-              value: 921
+              value: 0
           amount:
             2023-01-01:
               value: 124
   _1_cours:
-    bareme:
+    RB:
       metadata:
         type: single_amount
       brackets:
@@ -56,20 +72,28 @@ adulte:
           amount:
             2023-01-01:
               value: 238
+    RA:
+      metadata:
+        type: single_amount
+      brackets:
         - threshold:
             2023-01-01:
-              value: 821
+              value: 0
           amount:
             2023-01-01:
               value: 268
+    TP:
+      metadata:
+        type: single_amount
+      brackets:
         - threshold:
             2023-01-01:
-              value: 921
+              value: 0
           amount:
             2023-01-01:
               value: 298
   _2_cours:
-    bareme:
+    RB:
       metadata:
         type: single_amount
       brackets:
@@ -79,20 +103,28 @@ adulte:
           amount:
             2023-01-01:
               value: 430
+    RA:
+      metadata:
+        type: single_amount
+      brackets:
         - threshold:
             2023-01-01:
-              value: 821
+              value: 0
           amount:
             2023-01-01:
               value: 483
+    TP:
+      metadata:
+        type: single_amount
+      brackets:
         - threshold:
             2023-01-01:
-              value: 921
+              value: 0
           amount:
             2023-01-01:
               value: 537
   _3_cours:
-    bareme:
+    RB:
       metadata:
         type: single_amount
       brackets:
@@ -102,20 +134,28 @@ adulte:
           amount:
             2023-01-01:
               value: 608
+    RA:
+      metadata:
+        type: single_amount
+      brackets:
         - threshold:
             2023-01-01:
-              value: 821
+              value: 0
           amount:
             2023-01-01:
               value: 684
+    TP:
+      metadata:
+        type: single_amount
+      brackets:
         - threshold:
             2023-01-01:
-              value: 921
+              value: 0
           amount:
             2023-01-01:
               value: 760
   _4_cours:
-    bareme:
+    RB:
       metadata:
         type: single_amount
       brackets:
@@ -125,21 +165,29 @@ adulte:
           amount:
             2023-01-01:
               value: 762
+    RA:
+      metadata:
+        type: single_amount
+      brackets:
         - threshold:
             2023-01-01:
-              value: 821
+              value: 0
           amount:
             2023-01-01:
               value: 858
+    TP:
+      metadata:
+        type: single_amount
+      brackets:
         - threshold:
             2023-01-01:
-              value: 921
+              value: 0
           amount:
             2023-01-01:
               value: 953
 enfant:
   _1_cours:
-    bareme:
+    RB:
       metadata:
         type: single_amount
       brackets:
@@ -149,20 +197,28 @@ enfant:
           amount:
             2023-01-01:
               value: 200
+    RA:
+      metadata:
+        type: single_amount
+      brackets:
         - threshold:
             2023-01-01:
-              value: 821
+              value: 0
           amount:
             2023-01-01:
               value: 225
+    TP:
+      metadata:
+        type: single_amount
+      brackets:
         - threshold:
             2023-01-01:
-              value: 921
+              value: 0
           amount:
             2023-01-01:
               value: 250
   _2_cours:
-    bareme:
+    RB:
       metadata:
         type: single_amount
       brackets:
@@ -172,20 +228,28 @@ enfant:
           amount:
             2023-01-01:
               value: 241
+    RA:
+      metadata:
+        type: single_amount
+      brackets:
         - threshold:
             2023-01-01:
-              value: 821
+              value: 0
           amount:
             2023-01-01:
               value: 271
+    TP:
+      metadata:
+        type: single_amount
+      brackets:
         - threshold:
             2023-01-01:
-              value: 921
+              value: 0
           amount:
             2023-01-01:
               value: 301
   _3_cours:
-    bareme:
+    RB:
       metadata:
         type: single_amount
       brackets:
@@ -195,20 +259,28 @@ enfant:
           amount:
             2023-01-01:
               value: 314
+    RA:
+      metadata:
+        type: single_amount
+      brackets:
         - threshold:
             2023-01-01:
-              value: 821
+              value: 0
           amount:
             2023-01-01:
               value: 354
+    TP:
+      metadata:
+        type: single_amount
+      brackets:
         - threshold:
             2023-01-01:
-              value: 921
+              value: 0
           amount:
             2023-01-01:
               value: 393
   _4_cours:
-    bareme:
+    RB:
       metadata:
         type: single_amount
       brackets:
@@ -218,15 +290,23 @@ enfant:
           amount:
             2023-01-01:
               value: 380
+    RA:
+      metadata:
+        type: single_amount
+      brackets:
         - threshold:
             2023-01-01:
-              value: 821
+              value: 0
           amount:
             2023-01-01:
               value: 428
+    TP:
+      metadata:
+        type: single_amount
+      brackets:
         - threshold:
             2023-01-01:
-              value: 921
+              value: 0
           amount:
             2023-01-01:
               value: 475

@@ -43,6 +43,22 @@ entree_unitaire:
         amount:
           2023-01-01:
             value: 5.5
+  bareme_qf_reduit:
+    metadata:
+      type: single_amount
+    brackets:
+      - threshold:
+          2023-01-01:
+            value: 0
+        amount:
+          2023-01-01:
+            value: 1
+      - threshold:
+          2023-01-01:
+            value: 1
+        amount:
+          2023-01-01:
+            value: 4.1
 _10_entrees:
   bareme_age:
     metadata:
@@ -88,3 +104,30 @@ _10_entrees:
         amount:
           2023-01-01:
             value: 44
+  bareme_qf_reduit:
+    metadata:
+      type: single_amount
+    brackets:
+      - threshold:
+          2023-01-01:
+            value: 0
+        amount:
+          2023-01-01:
+            value: 35
+      - threshold:
+          2023-01-01:
+            value: 1
+        amount:
+          2023-01-01:
+            value: 35
+ce:
+  entrees:
+    metadata:
+      type: single_amount
+    brackets:
+      - threshold:
+          2023-01-01:
+            value: 0
+        amount:
+          2023-01-01:
+            value: 22

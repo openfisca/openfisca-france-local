@@ -1,4 +1,5 @@
 from openfisca_france.model.base import Variable, Individu, Famille, Menage, MONTH, YEAR, select
+import numpy as np
 
 
 class eurometropole_strasbourg_tarification_solidaire_transport_eligibilite_geographique(Variable):
@@ -9,6 +10,12 @@ class eurometropole_strasbourg_tarification_solidaire_transport_eligibilite_geog
 
     def formula(menage, period):
         return menage('menage_dans_epci_siren_246700488', period)
+
+
+class emeraude(Variable):
+    value_type = bool
+    entity = Individu
+    definition_period = MONTH
 
 
 class qf_caf(Variable):
@@ -94,11 +101,13 @@ class eurometropole_strasbourg_tarification_transport(Variable):
         ]
 
     def formula(individu, period, parameters):
+        emeraude = individu('emeraude', period)
         geo = individu.menage('eurometropole_strasbourg_tarification_solidaire_transport_eligibilite_geographique', period)
         reduit = individu('eurometropole_strasbourg_tarification_solidaire_transport_eligible_tarif_reduit', period)
         qf = individu('eurometropole_strasbourg_tarification_solidaire_transport_quotient_familial', period)
         bareme = parameters(period).metropoles.strasbourg.tarification_solidaire.bareme
         bareme_reduit = parameters(period).metropoles.strasbourg.tarification_solidaire.bareme_reduit
+        bareme_emeraude = parameters(period).metropoles.strasbourg.tarification_solidaire.bareme_emeraude
 
-        montant = (reduit * bareme_reduit.calc(qf) + (1 - reduit) * bareme.calc(qf))
+        montant = np.select([emeraude, reduit], [bareme_emeraude.calc(qf), bareme_reduit.calc(qf)], default= bareme.calc(qf))
         return geo * montant

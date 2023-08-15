@@ -1,25 +1,42 @@
 abonnement_annuel:
-  metadata:
-    type: single_amount
-  brackets:
-    - threshold:
-        2023-01-01:
-          value: 0
-      amount:
-        2023-01-01:
-          value: 120
-    - threshold:
-        2023-01-01:
-          value: 1
-      amount:
-        2023-01-01:
-          value: 120
-    - threshold:
-        2023-01-01:
-          value: 821
-      amount:
-        2023-01-01:
-          value: 200
+  bareme:
+    metadata:
+      type: single_amount
+    brackets:
+      - threshold:
+          2023-01-01:
+            value: 0
+        amount:
+          2023-01-01:
+            value: 120
+      - threshold:
+          2023-01-01:
+            value: 1
+        amount:
+          2023-01-01:
+            value: 120
+      - threshold:
+          2023-01-01:
+            value: 821
+        amount:
+          2023-01-01:
+            value: 200
+  bareme_reduit:
+    metadata:
+      type: single_amount
+    brackets:
+      - threshold:
+          2023-01-01:
+            value: 0
+        amount:
+          2023-01-01:
+            value: 120
+      - threshold:
+          2023-01-01:
+            value: 1
+        amount:
+          2023-01-01:
+            value: 120
 abonnement_ete:
   metadata:
     type: single_amount
@@ -87,6 +104,22 @@ entree_unitaire:
         amount:
           2023-01-01:
             value: 5
+  bareme_qf_reduit:
+    metadata:
+      type: single_amount
+    brackets:
+      - threshold:
+          2023-01-01:
+            value: 0
+        amount:
+          2023-01-01:
+            value: 1
+      - threshold:
+          2023-01-01:
+            value: 1
+        amount:
+          2023-01-01:
+            value: 3
 
 _10_entrees:
   bareme_age:
@@ -133,6 +166,16 @@ _10_entrees:
         amount:
           2023-01-01:
             value: 35
+  bareme_qf_reduit:
+    metadata:
+      type: single_amount
+    brackets:
+      - threshold:
+          2023-01-01:
+            value: 0
+        amount:
+          2023-01-01:
+            value: 21
 cycle:
   bareme:
     metadata:
@@ -225,3 +268,24 @@ stage_5_seances:
         amount:
           2023-01-01:
             value: 15
+ce:
+  entrees:
+    metadata:
+      type: single_amount
+    brackets:
+      - threshold:
+          2023-01-01:
+            value: 0
+        amount:
+          2023-01-01:
+            value: 15
+  abonnement:
+    metadata:
+      type: single_amount
+    brackets:
+      - threshold:
+          2023-01-01:
+            value: 0
+        amount:
+          2023-01-01:
+            value: 140

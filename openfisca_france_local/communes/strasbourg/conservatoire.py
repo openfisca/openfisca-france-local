@@ -1,18 +1,6 @@
 from openfisca_france.model.base import *
 import numpy as np
 
-class habitant_ems(Variable):
-    value_type = bool
-    entity = Famille
-    definition_period = MONTH
-
-
-class agent_ems(Variable):
-    value_type = bool
-    entity = Famille
-    definition_period = MONTH
-
-
 class strasbourg_conservatoire_base_ressources(Variable):
     value_type = float
     entity = Famille
@@ -20,8 +8,6 @@ class strasbourg_conservatoire_base_ressources(Variable):
 
     def formula(famille, period):
         return famille.demandeur.foyer_fiscal("rni", period.n_2)
-
-
 
 
 class strasbourg_conservatoire_traditionnel_enf12(Variable):

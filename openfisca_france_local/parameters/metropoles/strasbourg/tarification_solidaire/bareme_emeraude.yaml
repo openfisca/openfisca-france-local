@@ -1,0 +1,9 @@
+metadata:
+  type: single_amount
+brackets:
+  - threshold:
+      2020-01-01:
+        value: 0
+    amount:
+      2020-01-01:
+        value: 0
