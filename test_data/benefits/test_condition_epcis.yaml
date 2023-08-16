@@ -1,0 +1,9 @@
+label: Tarification Solidaire des Transports
+conditions_generales:
+  - type: epcis
+    values:
+      - "243300316"
+      - "200070720"
+profils: []
+type: bool
+periodicite: ponctuelle

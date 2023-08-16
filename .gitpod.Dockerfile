@@ -1,5 +1,5 @@
-FROM python:3.7
-                    
+FROM python:3.9
+
 USER gitpod
 
 # Install custom tools, runtime, etc. using apt-get

@@ -1,0 +1,239 @@
+- period: 2022-11
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    age: [15]
+  output:
+    test_name_conversion: [0]
+
+- period: 2022-11
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    age: [15, 16, 17]
+  output:
+    test_condition_age: [0, 106, 106]
+
+- period: 2022-11
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    age: [15, 16, 17, 18]
+    depcom: ["01123", "01123","01123","33123"]
+  output:
+    test_condition_departements: [0, 160, 160, 0]
+
+- period: 2022-01
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    age: [18,18, 18]
+    depcom: ["02408", "38120", "59120"]
+    apprenti: [true, true, false]
+    activite: ["actif", "chomeur", "actif"]
+  output:
+    test_profil_apprenti: [200, 0, 0]
+
+- period: 2022-11
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    age: [24, 25,26, 25]
+    depcom: ["01123", "01123", "01123", "02408"]
+  output:
+    test_condition_region_and_type_bool: [True, True, False, False]
+
+- period: 2022-01
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    age: [25,26, 27, 27]
+    depcom: ["02408", "02408", "02408", "84"]
+  output:
+    test_other_region: [False, True, True, False]
+
+- period: 2022-11
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    regime_securite_sociale: [regime_general, regime_agricole]
+  output:
+    test_condition_regime_securite_sociale_includes: [286, 0]
+
+- name: "Test condition <quotient_familial> pour deux périodes : Mensuelle et annuelle"
+  period: 2022-11
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    rfr:
+      2022: ["9600", "9612"]
+    nbptr:
+      2022: ["1", "1"]
+  output:
+    test_condition_quotient_familial: [200, 0]
+    test_condition_quotient_familial_year: [200, 0]
+
+- period: 2022-01
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    groupe_specialites_formation: ["groupe_330", "FOrmation non reconnue", "groupe_330", "groupe_330"]
+    activite: ["stagiaire", "stagiaire", "chomeur", "etudiant"]
+    stagiaire: [true,true,false,false]
+    scolarite: ["inconnue", "inconnue", "inconnue", "enseignement_superieur"]
+  output:
+    test_condition_formation_sanitaire_social_et_simples_profils: [5736, 0, 0, 5736]
+
+- period: 2022-11
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    depcom: ["31555", "31555"]
+    age: [18, 19]
+    stagiaire: [true,true]
+    rsa: [1, 0]
+  output:
+    test_condition_beneficiaire_rsa: [1000, 0]
+
+- period: 2022-01
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    depcom: ["41018", "41018"]
+    activite: ["etudiant", "chomeur"]
+  output:
+    test_profil_chomeur: [0, 1]
+
+- period: 2022-11
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    depcom: ["41018", "41018"]
+    scolarite: ["inconnue", "lycee"]
+  output:
+    test_profil_lyceen: [0, 50]
+
+- period: 2022-11
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    depcom: ["54395", "54395"]
+    groupe_specialites_formation: ["groupe_330", "groupe_330"]
+    activite: ["inactif", "etudiant"]
+  output:
+    test_profil_etudiant: [0, 1]
+
+- period: 2022-11
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    depcom: ["29232", "29232", "29232", "29232", "29232"]
+    professionnalisation: [false, true, false, false, false]
+    activite: ["inactif", "inactif", "actif", "salarie", "service_civique"]
+  output:
+    test_profil_actif_et_professionnalisation: [0, 1, 1, 1,1]
+
+- period: 2022-11
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    age: [30, 29, 29]
+    depcom: ["54395", "54395", "54395"]
+    scolarite: ["enseignement_superieur", "enseignement_superieur", "grande_ecole_du_numerique"]
+  output:
+    test_profil_with_condition: [0, 1, 0]
+
+- period: 2022-11
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    age: [25, 25, 25]
+    depcom: ["97105", "97105", "97105"]
+    scolarite: ["enseignement_superieur", "enseignement_superieur", "enseignement_superieur"]
+    annee_etude: ["cap_1", "master_1", "master_2"]
+  output:
+    test_condition_annee_etude: [0, 1, 1]
+
+- period: 2022-11
+  reforms:
+   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    depcom: ["25056"]
+    scolarite: ["lycee"]
+    boursier: [true]
+  output:
+    test_condition_boursier: [1]
+
+- period: 2022-11
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    depcom: ["01053"]
+    scolarite: ["enseignement_superieur"]
+    mention_baccalaureat: ["mention_tres_bien"]
+  output:
+    test_condition_mention_baccalaureat: [500]
+
+- period: 2022-11
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    depcom: ["97302"]
+    age: [18]
+  output:
+    test_condition_region_dom_guyane: [1000]
+
+- period: 2022-11
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    depcom: ["94028"]
+    activite: ["chomeur"]
+  output:
+    test_condition_region_idf: [1]
+
+- period: 2022-11
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    depcom: ["2A004"]
+  output:
+    test_condition_region_corse: [600]
+
+- period: 2022-11
+  name: Condition communes
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    depcom: ["62900",'77002']
+  output:
+    test_condition_communes: [5, 0]
+
+- period: 2022-11
+  name: Condition epcis
+  reforms:
+  - openfisca_france_local.epci_test_factory.epci_reform
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    depcom: ["33063", "77002"]
+  output:
+    test_condition_epcis: [1,0]
+
+- period: 2022-11
+  name: Profil situation_handicap
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    handicap: [true, false]
+  output:
+    test_profil_situation_handicap: [1,0]
+
+- period: 2022-11
+  name: Profil situation_handicap et condition taux_incapacite
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    handicap: [true, true, true]
+    taux_incapacite: [0.5, 0.49, 0.8]
+  output:
+    test_condition_taux_incapacite: [1, 0,1]

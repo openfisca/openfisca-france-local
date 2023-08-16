@@ -1,0 +1,8 @@
+label: bourse Animazioni
+conditions_generales:
+  - type: regions
+    values:
+      - "94"
+profils: []
+type: float
+montant: 600

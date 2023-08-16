@@ -1,0 +1,10 @@
+label: ma carte TER Hauts-de-France
+conditions_generales:
+  - type: regions
+    values:
+      - "32"
+  - type: age
+    operator: ">="
+    value: 26
+profils: []
+type: bool

@@ -1,0 +1,52 @@
+age:
+  maximum_inclusif:
+    reference:
+      - https://www.haute-saone.fr/index.php/nos-e-services/aides-aux-familles/pack-jeunes/
+    description: Eligibilité d'âge pour l'aide au permis de conduire dans le département de Haute Saône.
+    values:
+      2020-12-29:
+        value: 25
+  minimum_inclusif:
+    reference:
+      - https://www.haute-saone.fr/index.php/nos-e-services/aides-aux-familles/pack-jeunes/
+    description: Eligibilité d'âge pour l'aide au permis de conduire dans le département de Haute Saône.
+    values:
+      2020-12-29:
+        value: 18
+montant_en_fonction_du_quotient_familial:
+  reference:
+    - https://www.haute-saone.fr/index.php/nos-e-services/aides-aux-familles/pack-jeunes/
+  description: Montant obtenu pour l'aide au permis de conduire en région de Haute Saône.
+  metadata:
+    type: single_amount
+  brackets:
+    - threshold:
+        2020-12-29:
+          value: 0
+      amount:
+        2020-12-29:
+          value: 400
+    - threshold:
+        2020-12-29:
+          value: 300
+      amount:
+        2020-12-29:
+          value: 250
+    - threshold:
+        2020-12-29:
+          value: 600
+      amount:
+        2020-12-29:
+          value: 150
+    - threshold:
+        2020-12-29:
+          value: 1000
+      amount:
+        2020-12-29:
+          value: 100
+    - threshold:
+        2020-12-29:
+          value: 1201
+      amount:
+        2020-12-29:
+          value: 0

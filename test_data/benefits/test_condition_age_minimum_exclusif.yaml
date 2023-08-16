@@ -1,0 +1,9 @@
+label: Aide conditionee par un age strictement inférieur à 25 ans
+type: float
+periodicite: ponctuelle
+montant: 106
+conditions_generales:
+  - type: age
+    operator: ">"
+    value: 25
+profils: []

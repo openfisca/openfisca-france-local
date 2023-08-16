@@ -1,0 +1,10 @@
+label: Tarification Solidaire des Transports
+conditions_generales: []
+profils:
+  - type: situation_handicap
+    conditions:
+      - type: taux_incapacite
+        values:
+          - entre_50_et_80
+          - superieur_ou_egal_80
+type: bool

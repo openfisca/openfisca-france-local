@@ -1,0 +1,16 @@
+label: bourse au mérite
+conditions_generales:
+  - type: regions
+    values:
+      - "84"
+profils:
+  - type: enseignement_superieur
+    conditions:
+      - type: mention_baccalaureat
+        values:
+          - mention_tres_bien
+          - mention_tres_bien_felicitations_jury
+  - type: apprenti
+type: float
+periodicite: ponctuelle
+montant: 500

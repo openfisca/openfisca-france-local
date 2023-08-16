@@ -1,0 +1,12 @@
+label: aide conditionee par age
+type: float
+periodicite: ponctuelle
+montant: 106
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 16
+  - type: age
+    operator: "<="
+    value: 25
+profils: []

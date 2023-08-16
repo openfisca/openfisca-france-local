@@ -1,0 +1,10 @@
+label: aides à l'hébergement et la restauration des lycéen·ne·s
+conditions_generales:
+  - type: regions
+    values:
+      - "27"
+profils:
+  - type: lyceen
+    conditions:
+      - type: boursier
+type: bool

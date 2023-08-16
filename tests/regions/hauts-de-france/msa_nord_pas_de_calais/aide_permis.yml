@@ -4,10 +4,10 @@
     regime_securite_sociale: [regime_agricole, regime_general, regime_agricole, regime_agricole, regime_agricole, regime_agricole]
     age: [15, 15, 30, 15, 15, 15]
     rfr:
-      2021:
+      2019:
         [12000, 12000, 12000, 100000, 12000, 12000]
     nbptr:
-      2021:
+      2019:
         [2, 2, 2, 2, 1, 2]
     enfant_a_charge:
       2021:

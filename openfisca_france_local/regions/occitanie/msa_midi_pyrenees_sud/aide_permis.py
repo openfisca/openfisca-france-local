@@ -26,7 +26,8 @@ class msa_midi_pyrenees_sud_aide_permis(Variable):
         age = individu('age', period)
         eligibilite_age = (age >= params.age.minimum) * (age <= params.age.maximum)
 
-        quotient_familial = individu.foyer_fiscal('rfr', period.this_year) / 12 / individu.foyer_fiscal('nbptr', period.this_year)
+        quotient_familial = individu.foyer_fiscal(
+            'rfr', period.n_2) / 12 / individu.foyer_fiscal('nbptr', period.n_2)
         eligibilite_quotient_familial = quotient_familial <= params.plafond_quotient_familial
 
         return allocataire_msa * eligibilite_geographique * eligibilite_age * eligibilite_quotient_familial * montant

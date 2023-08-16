@@ -1,0 +1,10 @@
+name: TBM - Tarification solidaire
+period: 2023-01
+input:
+  rfr :
+    2021: ["11316", "11304", "7320", "6600", "6600"]
+  nbptr:
+    2021: ["1", "1", "1", "1", "1"]
+  bordeaux_metropole_aide_tarification_solidaire_transport_eligibilite_geographique: [true, true, true, true, false]
+output:
+  bordeaux_metropole_aide_tarification_solidaire_transport: [0, 30, 50, 100, 0]

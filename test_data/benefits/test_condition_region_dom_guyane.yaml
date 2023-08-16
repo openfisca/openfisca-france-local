@@ -1,0 +1,14 @@
+label: fonds d'Aide aux Jeunes (FAJ)
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 16
+  - type: age
+    operator: <=
+    value: 25
+  - type: regions
+    values:
+      - "03"
+profils: []
+type: float
+montant: 1000

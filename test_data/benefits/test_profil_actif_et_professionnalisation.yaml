@@ -1,0 +1,19 @@
+label: Covoiturage Solidaire pour l'emploi - Éhop
+conditions_generales:
+  - type: regions
+    values:
+      - "53"
+profils:
+  - type: stagiaire
+    conditions: []
+  - type: apprenti
+    conditions: []
+  - type: professionnalisation
+    conditions: []
+  - type: salarie
+    conditions: []
+  - type: independant
+    conditions: []
+  - type: service_civique
+    conditions: []
+type: bool

@@ -1,0 +1,12 @@
+label: pass pass pour les demandeurs d'emploi
+montant: 5
+conditions_generales:
+  - type: communes
+    values:
+      - "62861"
+      - "62863"
+      - "62885"
+      - "62895"
+      - "62900"
+profils: []
+type: float

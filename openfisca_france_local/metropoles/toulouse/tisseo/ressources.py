@@ -18,8 +18,8 @@ class tisseo_transport_reduction_plafond_smic_net(Variable):
     label = u"Base du SMIC net pour les titres de transports Tisséo"
 
     def formula(individu, period, parameters):
-        smic = parameters(period).marche_travail.salaire_minimum
-        smic_brut_mensuel = smic.smic_h_b * smic.nb_heure_travail_mensuel
+        smic = parameters(period).marche_travail.salaire_minimum.smic
+        smic_brut_mensuel = smic.smic_b_horaire * smic.nb_heures_travail_mensuel
 
         # Utilisation des valeurs indicatives de service-public.fr pour passer du SMIC brut au SMIC net
         # https://www.service-public.fr/particuliers/vosdroits/F2300

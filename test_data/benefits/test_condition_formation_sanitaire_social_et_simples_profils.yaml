@@ -1,0 +1,11 @@
+label: bourse sanitaire
+conditions_generales:
+  - type: formation_sanitaire_social
+profils:
+  - type: enseignement_superieur
+    conditions: []
+  - type: stagiaire
+    conditions: []
+type: float
+periodicite: annuelle
+montant: 5736

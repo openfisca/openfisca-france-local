@@ -1,0 +1,11 @@
+label: aide locale au BAFA pour une session de formation générale
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 16
+  - type: departements
+    values:
+      - "01"
+profils: []
+type: float
+montant: 160

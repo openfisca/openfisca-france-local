@@ -1,0 +1,9 @@
+label: bourse du secteur sanitaire et social
+conditions_generales:
+  - type: regions
+    values:
+      - "44"
+  - type: formation_sanitaire_social
+profils:
+  - type: etudiant
+type: bool

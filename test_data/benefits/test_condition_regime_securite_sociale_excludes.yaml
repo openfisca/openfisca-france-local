@@ -1,0 +1,8 @@
+label: Aide au Brevet d'Aptitude aux Fonctions de Directeur (BAFD)
+conditions_generales:
+  - type: regime_securite_sociale
+    excludes:
+      - regime_agricole
+profils: []
+type: float
+montant: 286

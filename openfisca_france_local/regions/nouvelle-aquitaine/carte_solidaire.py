@@ -1,5 +1,8 @@
  # -*- coding: utf-8 -*-
 from openfisca_france.model.base import Variable, FoyerFiscal, Individu, MONTH, YEAR
+from openfisca_france.model.caracteristiques_socio_demographiques.logement\
+    import TypesCodeInseeRegion
+
 
 class nouvelle_aquitaine_carte_solidaire_quotient_familial(Variable):
     value_type = float
@@ -30,12 +33,16 @@ class nouvelle_aquitaine_carte_solidaire_eligibilite(Variable):
     value_type = bool
     entity = Individu
     definition_period = MONTH
-    label = u"Éligibilité à la carte solidaire pour les transports de la Nouvelle Aquitaine"
+    label = "Éligibilité à la carte solidaire pour les transports de la Nouvelle Aquitaine"
 
     def formula(individu, period):
-        resid = individu.menage('nouvelle_aquitaine_eligibilite_residence', period)
-        fin = individu('nouvelle_aquitaine_carte_solidaire_eligibilite_financiere', period)
-        return resid * fin
+        region = individu.menage('region', period)
+        nouvelle_aquitaine_eligibilite_residence = (
+            region == TypesCodeInseeRegion.nouvelle_aquitaine)
+
+        fin = individu(
+            'nouvelle_aquitaine_carte_solidaire_eligibilite_financiere', period)
+        return nouvelle_aquitaine_eligibilite_residence * fin
 
 
 class nouvelle_aquitaine_carte_solidaire(Variable):

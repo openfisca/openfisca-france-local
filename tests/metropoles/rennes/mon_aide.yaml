@@ -246,7 +246,7 @@
   period: 2017-02
   input:
     famille:
-      cmu_forfait_logement_al: 770.64477539
+      css_cmu_forfait_logement_al: 770.64477539
       parents: [personne1]
       aide_logement: 3300
     menage:
@@ -283,7 +283,7 @@
     famille:
       parents: [personne1, personne2]
       aide_logement: 3960
-      cmu_forfait_logement_al: 770.64477539
+      css_cmu_forfait_logement_al: 770.64477539
       aspa:
         2016-01: 1500
         2016-02: 1500
