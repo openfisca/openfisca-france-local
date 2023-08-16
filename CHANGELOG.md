@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.0.2] - 2023-08-16
+
+_Pour les changements détaillés et les discussions associées, consultez la pull request [#171](https://github.com/openfisca/openfisca-france-local/pull/171)_
+
+### Fixed
+
+- Corrige la formula de la variable `hauts_de_france_aide_garde_enfant` qui gérait mal un partie du calcul vectoriel et provoquait un crash dans certains cas.
+
 ## [6.0.1] - 2023-07-31
 
 _Pour les changements détaillés et les discussions associées, consultez la pull request [#174](https://github.com/openfisca/openfisca-france-local/pull/174)_
