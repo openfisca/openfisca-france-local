@@ -129,6 +129,7 @@
     hauts_de_france_aide_garde_enfant: 0
 
 - name: Égibilité et montant de l'aide à la garde d'enfant des Hauts-de-France , personne à charge de ses parents séparés
+  description: Test la bonne gestion du calcul vectoriel tiré d'un cas concret qui faisait planter le logiciel.
   period: 2022-03
   input:
     familles:
