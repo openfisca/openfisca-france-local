@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import os
+from os import path, getenv
 
 import collections
 from typing import Union
@@ -379,21 +379,21 @@ def generate_variable(benefit: dict):
 
 
 root = '.'
-path = 'test_data/benefits'
-current_path = os.path.join(root, path)
+benefit_path = 'test_data/benefits'
+current_path = path.join(root, benefit_path)
 
 
 class aides_jeunes_reform_dynamic(reforms.Reform):
     def __init__(self, baseline, benefits_folder_path=current_path):
-        self.benefits_folder_path = benefits_folder_path
+        self.benefits_folder_path = getenv('DYNAMIC_BENEFIT_FOLDER', benefits_folder_path)
         super().__init__(baseline)
 
     def apply(self):
         try:
             benefit_files_paths: 'list[str]' = self._extract_benefits_paths(self.benefits_folder_path)
 
-            for path in benefit_files_paths:
-                benefit: dict = self._extract_benefit_file_content(path)
+            for benefit_path in benefit_files_paths:
+                benefit: dict = self._extract_benefit_file_content(benefit_path)
                 benefit_parameters: ParameterNode = convert_benefit_conditions_to_parameters(benefit)
                 self._add_parameters_into_current_tax_and_benefits_system(benefit_parameters)
 
