@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.0.3] - 2023-08-17
+
+_Pour les changements détaillés et les discussions associées, consultez la pull request [#177](https://github.com/openfisca/openfisca-france-local/pull/177)_
+
+### Added
+
+- Ajoute la possibilité de spécifier le chemin des aides à charger via la reform_dynamic par une variable d'environnement DYNAMIC_BENEFIT_FOLDER
+
 ## [6.0.2] - 2023-08-16
 
 _Pour les changements détaillés et les discussions associées, consultez la pull request [#171](https://github.com/openfisca/openfisca-france-local/pull/171)_
