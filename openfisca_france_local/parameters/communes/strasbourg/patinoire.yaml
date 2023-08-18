@@ -52,12 +52,6 @@ entree_unitaire:
             value: 0
         amount:
           2023-01-01:
-            value: 1
-      - threshold:
-          2023-01-01:
-            value: 1
-        amount:
-          2023-01-01:
             value: 4.1
 _10_entrees:
   bareme_age:
