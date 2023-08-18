@@ -18,18 +18,6 @@ class emeraude(Variable):
     definition_period = MONTH
 
 
-class qf_caf(Variable):
-    value_type = float
-    entity = Famille
-    definition_period = MONTH
-
-
-class qf_fiscal(Variable):
-    value_type = float
-    entity = Famille
-    definition_period = MONTH
-
-
 class eurometropole_strasbourg_tarification_solidaire_transport_quotient_familial(Variable):
     value_type = float
     entity = Individu

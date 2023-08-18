@@ -8,4 +8,22 @@ class strasbourg_metropole_quotient_familial(Variable):
     label = "Quotient familial de l'Eurométropole de Strasbourg"
 
     def formula(famille, period):
+        return famille('qf_caf', period)
+
+
+class qf_caf(Variable):
+    value_type = float
+    entity = Famille
+    definition_period = MONTH
+
+    def formula(famille, period):
+        return famille.demandeur.foyer_fiscal('rfr', period.n_2) / 12 / famille.demandeur.foyer_fiscal('nbptr', period.n_2)
+
+
+class qf_fiscal(Variable):
+    value_type = float
+    entity = Famille
+    definition_period = MONTH
+
+    def formula(famille, period):
         return famille.demandeur.foyer_fiscal('rfr', period.n_2) / 12 / famille.demandeur.foyer_fiscal('nbptr', period.n_2)
