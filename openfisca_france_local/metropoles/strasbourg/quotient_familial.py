@@ -27,3 +27,9 @@ class qf_fiscal(Variable):
 
     def formula(famille, period):
         return famille.demandeur.foyer_fiscal('rfr', period.n_2) / 12 / famille.demandeur.foyer_fiscal('nbptr', period.n_2)
+
+
+class sample_id(Variable):
+    value_type = int
+    entity = Famille
+    definition_period = MONTH
