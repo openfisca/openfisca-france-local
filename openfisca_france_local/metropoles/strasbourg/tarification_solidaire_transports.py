@@ -18,6 +18,12 @@ class emeraude(Variable):
     definition_period = MONTH
 
 
+class eurometropole_strasbourg_tarification_solidaire_transport_annuel(Variable):
+    value_type = bool
+    entity = Individu
+    definition_period = MONTH
+
+
 class eurometropole_strasbourg_tarification_solidaire_transport_quotient_familial(Variable):
     value_type = float
     entity = Individu
@@ -93,9 +99,19 @@ class eurometropole_strasbourg_tarification_transport(Variable):
         geo = individu.menage('eurometropole_strasbourg_tarification_solidaire_transport_eligibilite_geographique', period)
         reduit = individu('eurometropole_strasbourg_tarification_solidaire_transport_eligible_tarif_reduit', period)
         qf = individu('eurometropole_strasbourg_tarification_solidaire_transport_quotient_familial', period)
+
         bareme = parameters(period).metropoles.strasbourg.tarification_solidaire.bareme
         bareme_reduit = parameters(period).metropoles.strasbourg.tarification_solidaire.bareme_reduit
         bareme_emeraude = parameters(period).metropoles.strasbourg.tarification_solidaire.bareme_emeraude
 
-        montant = np.select([emeraude, reduit], [bareme_emeraude.calc(qf), bareme_reduit.calc(qf)], default= bareme.calc(qf))
+
+        bareme_annuel = parameters(period).metropoles.strasbourg.tarification_solidaire.annuel.bareme
+        bareme_annuel_reduit = parameters(period).metropoles.strasbourg.tarification_solidaire.annuel.bareme_reduit
+
+        montant_mensuel = np.select([emeraude, reduit], [bareme_emeraude.calc(qf), bareme_reduit.calc(qf)], default= bareme.calc(qf))
+        montant_annuel = np.where(reduit, bareme_annuel_reduit.calc(qf), bareme_annuel.calc(qf))
+
+        annuel = individu('eurometropole_strasbourg_tarification_solidaire_transport_annuel', period)
+
+        montant = np.where(annuel, montant_annuel, montant_mensuel)
         return geo * montant
