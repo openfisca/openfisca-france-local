@@ -2,9 +2,11 @@
 
 ## [6.1.0] - 2023-08-22
 
-Met à jour la dépendance Openfisca-France en version 151
-
 _Pour les changements détaillés et les discussions associées, consultez la pull request [#178](https://github.com/openfisca/openfisca-france-local/pull/178)_
+
+### Added
+
+- Ajoute la compatibilité avec `OpenFisca-France` v151.x
 
 ## [6.0.3] - 2023-08-17
 
