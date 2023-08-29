@@ -1,0 +1,11 @@
+- period: 2023-08
+  name: Éligibilité d'age et de résidence et de profil
+  input:
+    age: [16, 17, 25, 26, 17, 17, 17, 17, 17, 17]
+    depcom: [19272, 19272, 19272, 19272, 38185, 19272, 19272, 19272, 19272, 19272]
+    scolarite: ['lycee','lycee','lycee','lycee','lycee', 'inconnue', 'inconnue', 'inconnue','inconnue','inconnue']
+    activite: ['inactif','inactif','inactif','inactif','inactif','actif', 'chomeur', 'inactif','inactif','inactif']
+    service_civique: [False, False, False, False, False, False, False, False, True, False]
+    alternant: [False, False, False, False, False, False, False, False, False, True]
+  output:
+    nouvelle_aquitaine_aide_permis: [0, 1200, 1200,0, 0, 0, 1200, 0, 1200, 700]
