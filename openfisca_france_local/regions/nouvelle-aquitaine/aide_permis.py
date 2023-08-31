@@ -1,4 +1,6 @@
-from openfisca_france.model.base import Variable, Individu, MONTH, TypesActivite, set_input_dispatch_by_period
+
+from openfisca_france.model.base import (
+    Variable, Individu, MONTH, TypesActivite, set_input_dispatch_by_period, select, not_)
 from openfisca_france.model.caracteristiques_socio_demographiques.logement import (TypesCodeInseeRegion)
 from openfisca_france.model.prestations.education import TypesScolarite
 
@@ -41,6 +43,13 @@ class nouvelle_aquitaine_aide_permis(Variable):
 
         eligibilite_profile = est_chomeur + est_lyceen + en_service_civique + est_alternant
 
-        montant = (700 * est_alternant) + (1200 * (1 - est_alternant))
+        rfr = individu.foyer_fiscal('rfr', period.n_2)
+        nbptr = individu.foyer_fiscal('nbptr', period.n_2)
+        quotient_familial = rfr / nbptr
+
+        calcul_montant_alternants = params.montant_en_fonction_du_quotient_familial_pour_alternants.calc
+        calcul_montant = params.montant_en_fonction_du_quotient_familial.calc
+        montant = select([est_alternant, not_(est_alternant)],
+                        [calcul_montant_alternants(quotient_familial), calcul_montant(quotient_familial)])
 
         return montant * eligibilite_geographique * eligibilite_age * eligibilite_profile
