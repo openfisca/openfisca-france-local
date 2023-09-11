@@ -1,18 +1,8 @@
 
 from openfisca_france.model.base import (
-    Variable, Individu, MONTH, TypesActivite, set_input_dispatch_by_period, select, not_)
+    Variable, Individu, MONTH, TypesActivite, select, not_)
 from openfisca_france.model.caracteristiques_socio_demographiques.logement import (TypesCodeInseeRegion)
-from openfisca_france.model.prestations.education import TypesScolarite
-
-
-class service_civique(Variable):
-    # A supprimer une fois intégrée à openfisca-france
-    value_type = bool
-    label = 'En service civique'
-    entity = Individu
-    definition_period = MONTH
-    set_input = set_input_dispatch_by_period
-    reference = 'https://www.service-public.fr/particuliers/vosdroits/F13278'
+from openfisca_france.model.prestations.education import TypesScolarite, TypesClasse
 
 
 class nouvelle_aquitaine_aide_permis(Variable):
@@ -33,15 +23,17 @@ class nouvelle_aquitaine_aide_permis(Variable):
         eligibilite_age = (age >= age_minimum) * (age <= age_maximum)
 
         activite = individu('activite', period)
-        est_lyceen = individu('scolarite', period) == TypesScolarite.lycee
-
         est_chomeur = activite == TypesActivite.chomeur
+
+        est_lyceen = individu('scolarite', period) == TypesScolarite.lycee
+        annee_etude = individu('annee_etude', period)
+        eligibilite_annee_etude = ((annee_etude == TypesClasse.cap_2) + (annee_etude == TypesClasse.terminale)) * (est_lyceen)
 
         est_alternant = individu('alternant', period)
 
         en_service_civique = individu('service_civique', period)
 
-        eligibilite_profile = est_chomeur + est_lyceen + en_service_civique + est_alternant
+        eligibilite_profile = est_chomeur + eligibilite_annee_etude + en_service_civique + est_alternant
 
         rfr = individu.foyer_fiscal('rfr', period.n_2)
         nbptr = individu.foyer_fiscal('nbptr', period.n_2)
