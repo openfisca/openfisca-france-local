@@ -1,5 +1,21 @@
 # Changelog
 
+## [6.3.0] - 2023-09-11
+
+_Pour les changements détaillés et les discussions associées, consultez la pull request [#181](https://github.com/openfisca/openfisca-france-local/pull/181)_
+
+### Added
+
+- Ajoute la variable `nouvelle_aquitaine_aide_permis`
+
+### Changed
+
+- Créé un dossier pour les pour les paramètres de la `carte solidaire` de la région Nouvelle Aquitaine
+
+### Removed
+
+- Retire la compatibilité avec `openfisca-france` v153.0.1 et inférieur
+
 ## [6.2.0] - 2023-09-05
 
 _Pour les changements détaillés et les discussions associées, consultez la pull request [#180](https://github.com/openfisca/openfisca-france-local/pull/180)_
