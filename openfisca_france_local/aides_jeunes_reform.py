@@ -133,7 +133,7 @@ def is_formation_sanitaire_social_eligible(individu: Population, period: Period,
     return id_formation_groupe == id_formation_sanitaire_social
 
 
-def is_beneficiaire_rsa_eligible(individu: Population, period: Period, _) -> np.array:
+def is_beneficiaire_rsa_eligible(individu: Population, period: Period, _ = None) -> np.array:
     rsa = individu.famille('rsa', period)
 
     return rsa > 0
@@ -272,6 +272,7 @@ profil_table = {
     'service_civique': is_actif,
     'inactif': is_inactif,
     'situation_handicap': is_situation_handicap,
+    'beneficiaire_rsa': is_beneficiaire_rsa_eligible,
     }
 
 
