@@ -237,3 +237,17 @@
     taux_incapacite: [0.5, 0.49, 0.8]
   output:
     test_condition_taux_incapacite: [1, 0,1]
+
+- period: 2022-11
+  name: Profil beneficiaire RSA
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  output:
+    test_profil_beneficiaire_rsa: 0
+
+- period: 2022-11
+  name: Test fichier d'aide profils
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  output:
+    test_pas_de_profile: 0

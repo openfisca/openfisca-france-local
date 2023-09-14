@@ -345,7 +345,7 @@ def generate_variable(benefit: dict):
 
     eligible_profiles_tests = [
         build_profil_evaluator(profil)
-        for profil in benefit['profils']
+        for profil in benefit.get('profils', [])
         ]
 
     def compute_amount(eligibilities: np.array):
