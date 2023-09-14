@@ -1,6 +1,18 @@
 # Changelog
 
-## [6.3.0] - 2023-09-11
+## [6.4.0] - 2023-09-18
+
+_Pour les changements détaillés et les discussions associées, consultez la pull request [#182](https://github.com/openfisca/openfisca-france-local/pull/182)_
+
+### Added
+
+- Ajoute le profil `beneficiaire_rsa`
+
+### Fixed
+
+- Corrige le crash dans le cas où le fichier d'aide ne contient pas la clé `profils`
+
+## [6.3.0] - 2023-09-18
 
 _Pour les changements détaillés et les discussions associées, consultez la pull request [#181](https://github.com/openfisca/openfisca-france-local/pull/181)_
 
