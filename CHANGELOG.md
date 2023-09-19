@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.4.1] - 2023-09-19
+
+_Pour les changements détaillés et les discussions associées, consultez la pull request [#183](https://github.com/openfisca/openfisca-france-local/pull/183)_
+
+### Fixed
+
+- Corrige l'url du projet dans setup.py
+
 ## [6.4.0] - 2023-09-18
 
 _Pour les changements détaillés et les discussions associées, consultez la pull request [#182](https://github.com/openfisca/openfisca-france-local/pull/182)_
@@ -35,7 +43,7 @@ _Pour les changements détaillés et les discussions associées, consultez la pu
 ### Added
 
 - Ajoute la compatibilité avec `OpenFisca-France` v152.x et v153.x
-  
+
 ## [6.1.0] - 2023-08-22
 
 _Pour les changements détaillés et les discussions associées, consultez la pull request [#178](https://github.com/openfisca/openfisca-france-local/pull/178)_
