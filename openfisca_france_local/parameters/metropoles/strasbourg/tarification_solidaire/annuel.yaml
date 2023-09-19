@@ -1,0 +1,24 @@
+bareme:
+  metadata:
+    type: single_amount
+  brackets:
+    - threshold:
+        2020-01-01:
+          value: 0
+      amount:
+        2020-01-01:
+          value: 51.8
+        2023-07-01:
+          value: 56
+bareme_reduit:
+  metadata:
+    type: single_amount
+  brackets:
+    - threshold:
+        2020-01-01:
+          value: 0
+      amount:
+        2020-01-01:
+          value: 27.6
+        2023-07-01:
+          value: 28

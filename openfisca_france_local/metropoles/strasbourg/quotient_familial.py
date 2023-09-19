@@ -33,3 +33,9 @@ class sample_id(Variable):
     value_type = int
     entity = Famille
     definition_period = MONTH
+
+
+class TYPOLOGIE(Variable):
+    value_type = str
+    entity = Famille
+    definition_period = MONTH

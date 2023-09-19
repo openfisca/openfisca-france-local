@@ -124,7 +124,7 @@ _10_entrees:
             value: 0
         amount:
           2023-01-01:
-            value: 21
+            value: 10
       - threshold:
           2023-01-01:
             value: 4
@@ -146,7 +146,7 @@ _10_entrees:
             value: 0
         amount:
           2023-01-01:
-            value: 21
+            value: 10
       - threshold:
           2023-01-01:
             value: 1

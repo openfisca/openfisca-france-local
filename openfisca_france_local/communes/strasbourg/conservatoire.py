@@ -10,6 +10,15 @@ class strasbourg_conservatoire_base_ressources(Variable):
         return famille.demandeur.foyer_fiscal("rni", period.n_2)
 
 
+class strasbourg_conservatoire_autre_dominante(Variable):
+    value_type = float
+    entity = Famille
+    definition_period = MONTH
+
+    def formula(famille, period):
+        return 276
+
+
 class strasbourg_conservatoire_traditionnel_enf12(Variable):
     value_type = float
     entity = Famille
