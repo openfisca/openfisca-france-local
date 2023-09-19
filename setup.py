@@ -19,7 +19,7 @@ setup(
     description='Extension OpenFisca pour nos partenariats avec les collectivités territoriales',
     keywords='benefit france france-local microsimulation social tax',
     license='http://www.fsf.org/licensing/licenses/agpl-3.0.html',
-    url='https://github.com/openfisca/openfisca-france',
+    url='https://github.com/openfisca/openfisca-france-local',
 
     packages=find_namespace_packages(),
     include_package_data=True,
