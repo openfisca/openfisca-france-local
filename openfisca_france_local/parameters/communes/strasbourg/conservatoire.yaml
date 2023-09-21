@@ -1,3 +1,57 @@
+bourse:
+  metadata:
+    type: single_amount
+  brackets:
+    - threshold:
+        2023-01-01:
+          value: 0
+      amount:
+        2023-01-01:
+          value: 250
+    - threshold:
+        2023-01-01:
+          value: 60
+      amount:
+        2023-01-01:
+          value: 200
+    - threshold:
+        2023-01-01:
+          value: 130
+      amount:
+        2023-01-01:
+          value: 150
+    - threshold:
+        2023-01-01:
+          value: 565
+      amount:
+        2023-01-01:
+          value: 100
+    - threshold:
+        2023-01-01:
+          value: 750
+      amount:
+        2023-01-01:
+          value: 0
+autre_dominante:
+  metadata:
+    type: single_amount
+  brackets:
+    - threshold:
+        2023-01-01:
+          value: 0
+      amount:
+        2023-01-01:
+          value: 276
+cycle:
+  metadata:
+    type: single_amount
+  brackets:
+    - threshold:
+        2023-01-01:
+          value: 0
+      amount:
+        2023-01-01:
+          value: 551
 traditionnel:
   hors_ems:
     enfant_12:

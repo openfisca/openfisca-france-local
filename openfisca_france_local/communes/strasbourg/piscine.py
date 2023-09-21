@@ -157,6 +157,14 @@ class strasbourg_piscine_cycle_prix(Variable):
         return bareme_qf.calc(qf)
 
 
+class strasbourg_piscine_cycle2_prix(Variable):
+    value_type = float
+    entity = Individu
+    definition_period = MONTH
+
+    def formula(individu, period, parameters):
+        return 2 * individu("strasbourg_piscine_cycle_prix", period)
+
 class strasbourg_piscine_stage_ete_prix(Variable):
     value_type = float
     entity = Individu
