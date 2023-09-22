@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.5.0] - 2023-09-22
+
+_Pour les changements détaillés et les discussions associées, consultez la pull request [#184](https://github.com/openfisca/openfisca-france-local/pull/184)_
+
+### Added
+
+- Ajoute la variable `crous_aide_100_repas_gratuits`
+
 ## [6.4.1] - 2023-09-19
 
 _Pour les changements détaillés et les discussions associées, consultez la pull request [#183](https://github.com/openfisca/openfisca-france-local/pull/183)_
