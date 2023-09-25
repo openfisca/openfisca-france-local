@@ -2,7 +2,7 @@
 - name: Égibilité de l'aide du crous et de la région Hauts-de-France de 100 repas gratuits aux étudiants boursiers échelon 3 à 7
   period: 2023-09
   input:
-    depcom: [59000, 59000, 59000, 59000, 59000, 59000]
+    region: [hauts_de_france, hauts_de_france, hauts_de_france, hauts_de_france, hauts_de_france, hauts_de_france]
     age: [22, 22, 22, 22, 22, 22]
     scolarite: ["enseignement_superieur", "enseignement_superieur", "enseignement_superieur", "enseignement_superieur", "enseignement_superieur", "enseignement_superieur"]
     bourse_criteres_sociaux_echelon: [0, 1, 2, 3, 5, 7]
@@ -12,7 +12,7 @@
 - name: Égibilité de l'aide du crous et de la région Hauts-de-France de 100 repas gratuits aux étudiants boursiers échelon 3 à 7 en fonction de l'âge et de la situation géographique
   period: 2023-09
   input:
-    depcom: [59000, 59000, 59000, 68000]
+    region: [hauts_de_france, hauts_de_france, hauts_de_france, grand_est]
     age: [15, 30, 36, 30]
     scolarite: ["enseignement_superieur", "enseignement_superieur", "enseignement_superieur", "enseignement_superieur"]
     bourse_criteres_sociaux_echelon: [3, 3, 3, 3]
@@ -22,7 +22,7 @@
 - name: Égibilité de l'aide du crous et de la région Hauts-de-France de 100 repas gratuits aux étudiants boursiers échelon 3 à 7 en fonction de la situation d'handicap
   period: 2023-09
   input:
-    depcom: [59000, 59000]
+    region: [hauts_de_france, hauts_de_france]
     age: [38, 38]
     scolarite: ["enseignement_superieur", "enseignement_superieur"]
     handicap: [true, false]
@@ -33,7 +33,7 @@
 - name: Égibilité de l'aide du crous et de la région Hauts-de-France de 100 repas gratuits aux étudiants boursiers échelon 3 à 7 en fonction de la scolarité et de l'année d'étude
   period: 2023-09
   input:
-    depcom: [59000, 59000, 59000, 59000, 59000, 59000]
+    region: [hauts_de_france, hauts_de_france, hauts_de_france, hauts_de_france, hauts_de_france, hauts_de_france]
     age: [22, 22, 22, 22, 22, 22]
     scolarite: ["enseignement_superieur", "lycee", "enseignement_superieur", "enseignement_superieur", "enseignement_superieur", "enseignement_superieur"]
     annee_etude: [licence_1, seconde, bts_1, bts_2, cpge_1, cpge_2]
