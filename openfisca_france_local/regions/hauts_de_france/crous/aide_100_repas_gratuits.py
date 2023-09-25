@@ -21,7 +21,7 @@ class crous_aide_100_repas_gratuits(Variable):
 
         eligibilite_geographique = (region == TypesCodeInseeRegion.hauts_de_france)
 
-        eligibilite_age = not_(handicap) * (age <= params.age.maximum) + handicap
+        eligibilite_age = (age <= params.age.maximum) + handicap
 
         eligibilite_scolarite = (individu('scolarite', period) == TypesScolarite.enseignement_superieur) # + (individu('scolarite', period) == TypesScolarite.formation_sanitaire_ou_sociale) @Todo : Ajouter la variable 'formation_sanitaire_ou_sociale' sur sur openfisca-france ? 
 
