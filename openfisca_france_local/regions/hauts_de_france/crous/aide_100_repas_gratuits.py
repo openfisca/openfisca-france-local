@@ -2,7 +2,7 @@ from numpy.core.defchararray import startswith
 from openfisca_france.model.prestations.education import TypesScolarite, TypesClasse
 from openfisca_france.model.caracteristiques_socio_demographiques.logement import TypesCodeInseeRegion
 from openfisca_france.model.base import Individu, MONTH, not_, Variable
-
+from openfisca_france.model.caracteristiques_socio_demographiques.demographie import GroupeSpecialitesFormation
 class crous_aide_100_repas_gratuits(Variable):
     value_type = float
     entity = Individu
@@ -18,12 +18,13 @@ class crous_aide_100_repas_gratuits(Variable):
         region = individu.menage('region', period)
         annee_etude = individu('annee_etude', period)
         echelon_boursier = individu('bourse_criteres_sociaux_echelon', period)
+        groupe_specialites_formation = individu('groupe_specialites_formation', period)
 
         eligibilite_geographique = (region == TypesCodeInseeRegion.hauts_de_france)
 
         eligibilite_age = (age <= params.age.maximum) + handicap
 
-        eligibilite_scolarite = (individu('scolarite', period) == TypesScolarite.enseignement_superieur) # + (individu('scolarite', period) == TypesScolarite.formation_sanitaire_ou_sociale) @Todo : Ajouter la variable 'formation_sanitaire_ou_sociale' sur sur openfisca-france ?
+        eligibilite_scolarite = (individu('scolarite', period) == TypesScolarite.enseignement_superieur) + (groupe_specialites_formation == GroupeSpecialitesFormation.groupe_330)
 
         eligibilite_annee_etude = (annee_etude != TypesClasse.cpge_1) * (annee_etude != TypesClasse.bts_1) * (annee_etude != TypesClasse.bts_2) * (annee_etude != TypesClasse.cpge_2)
 
