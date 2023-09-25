@@ -40,5 +40,3 @@
     bourse_criteres_sociaux_echelon: [3, 3, 3, 3, 3, 3]
   output:
     crous_aide_100_repas_gratuits: [true, false, false, false, false, false]
-
-

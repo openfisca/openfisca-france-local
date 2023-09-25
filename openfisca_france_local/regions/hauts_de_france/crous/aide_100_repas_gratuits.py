@@ -23,11 +23,10 @@ class crous_aide_100_repas_gratuits(Variable):
 
         eligibilite_age = (age <= params.age.maximum) + handicap
 
-        eligibilite_scolarite = (individu('scolarite', period) == TypesScolarite.enseignement_superieur) # + (individu('scolarite', period) == TypesScolarite.formation_sanitaire_ou_sociale) @Todo : Ajouter la variable 'formation_sanitaire_ou_sociale' sur sur openfisca-france ? 
+        eligibilite_scolarite = (individu('scolarite', period) == TypesScolarite.enseignement_superieur) # + (individu('scolarite', period) == TypesScolarite.formation_sanitaire_ou_sociale) @Todo : Ajouter la variable 'formation_sanitaire_ou_sociale' sur sur openfisca-france ?
 
         eligibilite_annee_etude = (annee_etude != TypesClasse.cpge_1) * (annee_etude != TypesClasse.bts_1) * (annee_etude != TypesClasse.bts_2) * (annee_etude != TypesClasse.cpge_2)
 
         eligiblite_echelon_boursier = (echelon_boursier >= params.echelon_boursier.minimum ) * (echelon_boursier <= params.echelon_boursier.maximum)
 
         return eligibilite_geographique * eligibilite_age * eligibilite_scolarite * eligibilite_annee_etude * eligiblite_echelon_boursier
- 
