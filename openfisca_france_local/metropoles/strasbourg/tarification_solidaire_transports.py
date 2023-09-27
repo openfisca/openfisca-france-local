@@ -104,7 +104,6 @@ class eurometropole_strasbourg_tarification_transport(Variable):
         bareme_reduit = parameters(period).metropoles.strasbourg.tarification_solidaire.bareme_reduit
         bareme_emeraude = parameters(period).metropoles.strasbourg.tarification_solidaire.bareme_emeraude
 
-
         bareme_annuel = parameters(period).metropoles.strasbourg.tarification_solidaire.annuel.bareme
         bareme_annuel_reduit = parameters(period).metropoles.strasbourg.tarification_solidaire.annuel.bareme_reduit
 

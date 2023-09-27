@@ -81,7 +81,7 @@ entree_unitaire:
             value: 18
         amount:
           2023-01-01:
-            value: 5
+            value: 1000
   bareme_qf:
     metadata:
       type: single_amount
@@ -136,7 +136,7 @@ _10_entrees:
             value: 18
         amount:
           2023-01-01:
-            value: 35
+            value: 1000
   bareme_qf:
     metadata:
       type: single_amount

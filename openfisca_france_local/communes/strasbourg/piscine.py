@@ -2,6 +2,17 @@ from openfisca_france.model.base import *
 import numpy as np
 
 
+# strasbourg_sport_limitation_reduction
+class sslr(Variable):
+    label = "strasbourg_sport_limitation_reduction"
+    value_type = float
+    entity = Individu
+    definition_period = MONTH
+
+    def formula(individu, period, parameters):
+        return 1000
+
+
 class strasbourg_piscine_abonnement_annuel(Variable):
     value_type = bool
     entity = Individu
@@ -23,7 +34,9 @@ class strasbourg_piscine_abonnement_annuel_prix(Variable):
         bareme_qf_reduit = parameters(
             period
         ).communes.strasbourg.piscine.abonnement_annuel.bareme_reduit
-        montant_qf = np.where(reduit, bareme_qf_reduit.calc(qf), bareme_qf.calc(qf))
+        montant_reduit = bareme_qf_reduit.calc(qf)
+        montant = bareme_qf.calc(qf)
+        montant_qf = np.where(reduit, min_(montant_reduit, montant+individu('sslr', period)), montant)
         return abo * montant_qf
 
 
@@ -44,6 +57,7 @@ class strasbourg_piscine_abonnement_ce_prix(Variable):
         bareme_qf = parameters(period).communes.strasbourg.piscine.ce.abonnement
         return abo * bareme_qf.calc(qf)
 
+
 class strasbourg_piscine_abonnement_ete(Variable):
     value_type = bool
     entity = Individu
@@ -61,6 +75,7 @@ class strasbourg_piscine_abonnement_ete_prix(Variable):
         bareme = parameters(period).communes.strasbourg.piscine.abonnement_ete
         return abo * bareme.calc(qf)
 
+
 class strasbourg_sports_reduit(Variable):
     value_type = bool
     entity = Individu
@@ -74,8 +89,8 @@ class strasbourg_sports_reduit(Variable):
             + individu("cada", period)
             + individu("etudiant", period)
             + (individu("age", period) <= 18)
-            + individu.famille("agent_ems", period)
             + (individu("taux_incapacite", period) >= 0.8)
+            + individu.famille("agent_ems", period)
         )
 
 
@@ -99,7 +114,9 @@ class strasbourg_piscine_entree_unitaire_prix(Variable):
         bareme_qf_reduit = parameters(
             period
         ).communes.strasbourg.piscine.entree_unitaire.bareme_qf_reduit
-        montant_qf = np.where(reduit, bareme_qf_reduit.calc(qf), bareme_qf.calc(qf))
+        montant_reduit = bareme_qf_reduit.calc(qf)
+        montant = bareme_qf.calc(qf)
+        montant_qf = np.where(reduit, min_(montant_reduit, montant+individu('sslr', period)), montant)
         return min_(montant_qf, bareme_age.calc(age))
 
 
@@ -125,7 +142,10 @@ class strasbourg_piscine_10_entrees_prix(Variable):
         ).communes.strasbourg.piscine._10_entrees.bareme_age
         bareme_qf = parameters(period).communes.strasbourg.piscine._10_entrees.bareme_qf
         bareme_qf_reduit = parameters(period).communes.strasbourg.piscine._10_entrees.bareme_qf_reduit
-        montant_qf = np.where(reduit, bareme_qf_reduit.calc(qf), bareme_qf.calc(qf))
+
+        montant_reduit = bareme_qf_reduit.calc(qf)
+        montant = bareme_qf.calc(qf)
+        montant_qf = np.where(reduit, min_(montant_reduit, montant+individu('sslr', period)), montant)
         return min_(montant_qf, bareme_age.calc(age))
 
 

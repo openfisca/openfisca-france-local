@@ -1,6 +1,12 @@
 from openfisca_france.model.base import *
 import numpy as np
 
+class strasbourg_conservatoire_enfant_dans_la_fratrie(Variable):
+    value_type = int
+    entity = Famille
+    definition_period = MONTH
+
+
 class strasbourg_conservatoire_base_ressources(Variable):
     value_type = float
     entity = Famille
@@ -18,6 +24,17 @@ class strasbourg_conservatoire_autre_dominante(Variable):
     def formula(famille, period, parameters):
         qf = famille('strasbourg_conservatoire_base_ressources', period)
         P = parameters(period).communes.strasbourg.conservatoire.autre_dominante
+        return P.calc(qf)
+
+
+class strasbourg_conservatoire_parcours_personnalise(Variable):
+    value_type = float
+    entity = Famille
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        qf = famille('strasbourg_conservatoire_base_ressources', period)
+        P = parameters(period).communes.strasbourg.conservatoire.parcours_personnalise
         return P.calc(qf)
 
 
