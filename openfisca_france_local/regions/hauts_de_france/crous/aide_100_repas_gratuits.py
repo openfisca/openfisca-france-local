@@ -16,6 +16,7 @@ class crous_aide_100_repas_gratuits(Variable):
         age = individu('age', period)
         handicap = individu('handicap', period)
         region = individu.menage('region', period)
+        scolarite = individu('scolarite', period)
         annee_etude = individu('annee_etude', period)
         echelon_boursier = individu('bourse_criteres_sociaux_echelon', period)
         groupe_specialites_formation = individu('groupe_specialites_formation', period)
@@ -24,10 +25,10 @@ class crous_aide_100_repas_gratuits(Variable):
 
         eligibilite_age = (age <= params.age.maximum) + handicap
 
-        eligibilite_scolarite = (individu('scolarite', period) == TypesScolarite.enseignement_superieur) + (groupe_specialites_formation == GroupeSpecialitesFormation.groupe_330)
+        eligibilite_scolarite_formation = (scolarite  == TypesScolarite.enseignement_superieur) + (groupe_specialites_formation == GroupeSpecialitesFormation.groupe_330)
 
         eligibilite_annee_etude = (annee_etude != TypesClasse.cpge_1) * (annee_etude != TypesClasse.bts_1) * (annee_etude != TypesClasse.bts_2) * (annee_etude != TypesClasse.cpge_2)
 
         eligiblite_echelon_boursier = (echelon_boursier >= params.echelon_boursier.minimum ) * (echelon_boursier <= params.echelon_boursier.maximum)
 
-        return eligibilite_geographique * eligibilite_age * eligibilite_scolarite * eligibilite_annee_etude * eligiblite_echelon_boursier
+        return eligibilite_geographique * eligibilite_age * eligibilite_scolarite_formation * eligibilite_annee_etude * eligiblite_echelon_boursier
