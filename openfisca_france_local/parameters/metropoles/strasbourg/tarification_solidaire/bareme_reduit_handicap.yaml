@@ -1,0 +1,35 @@
+metadata:
+  type: single_amount
+brackets:
+  - threshold:
+      2020-01-01:
+        value: 0
+    amount:
+      2020-01-01:
+        value: 3.4
+  - threshold:
+      2020-01-01:
+        value: 356
+      2023-07-01:
+        value: 371
+    amount:
+      2020-01-01:
+        value: 7.3
+  - threshold:
+      2020-01-01:
+        value: 561
+      2023-07-01:
+        value: 583
+    amount:
+      2020-01-01:
+        value: 13.6
+  - threshold:
+      2020-01-01:
+        value: 766
+      2023-07-01:
+        value: 796
+    amount:
+      2020-01-01:
+        value: 27.6
+      2023-07-01:
+        value: 28
