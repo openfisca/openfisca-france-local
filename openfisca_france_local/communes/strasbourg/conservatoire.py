@@ -13,6 +13,15 @@ class strasbourg_conservatoire_base_ressources(Variable):
     definition_period = MONTH
 
     def formula(famille, period):
+        return famille("strasbourg_conservatoire_base_ressources_historique", period)
+
+
+class strasbourg_conservatoire_base_ressources_historique(Variable):
+    value_type = float
+    entity = Famille
+    definition_period = MONTH
+
+    def formula(famille, period):
         return famille.demandeur.foyer_fiscal("rni", period.n_2)
 
 
@@ -24,6 +33,30 @@ class strasbourg_conservatoire_autre_dominante(Variable):
     def formula(famille, period, parameters):
         qf = famille('strasbourg_conservatoire_base_ressources', period)
         P = parameters(period).communes.strasbourg.conservatoire.autre_dominante
+        bourse = famille('strasbourg_conservatoire_bourse', period)
+
+        return P.calc(qf) - bourse
+
+
+class strasbourg_conservatoire_classe_prepa(Variable):
+    value_type = float
+    entity = Famille
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        qf = famille('strasbourg_conservatoire_base_ressources', period)
+        P = parameters(period).communes.strasbourg.conservatoire.classe_prepa
+        return P.calc(qf)
+
+
+class strasbourg_conservatoire_specialisation(Variable):
+    value_type = float
+    entity = Famille
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        qf = famille('strasbourg_conservatoire_base_ressources', period)
+        P = parameters(period).communes.strasbourg.conservatoire.specialisation
         return P.calc(qf)
 
 
@@ -35,7 +68,9 @@ class strasbourg_conservatoire_parcours_personnalise(Variable):
     def formula(famille, period, parameters):
         qf = famille('strasbourg_conservatoire_base_ressources', period)
         P = parameters(period).communes.strasbourg.conservatoire.parcours_personnalise
-        return P.calc(qf)
+        bourse = famille('strasbourg_conservatoire_bourse', period)
+
+        return P.calc(qf) - bourse
 
 
 class strasbourg_conservatoire_traditionnel_enf12(Variable):
@@ -46,13 +81,14 @@ class strasbourg_conservatoire_traditionnel_enf12(Variable):
     def formula(famille, period, parameters):
         qf = famille('strasbourg_conservatoire_base_ressources', period)
         P = parameters(period).communes.strasbourg.conservatoire.traditionnel
+        bourse = famille('strasbourg_conservatoire_bourse', period)
 
         agent_ems = famille("agent_ems", period)
         habitant_ems = famille("habitant_ems", period)
         return np.select([agent_ems, habitant_ems], [
             P.agent_ems.enfant_12.calc(qf),
             P.habitant_ems.enfant_12.calc(qf),
-            ], default = P.hors_ems.enfant_12.calc(qf))
+            ], default = P.hors_ems.enfant_12.calc(qf)) - bourse
 
 
 class strasbourg_conservatoire_traditionnel_enf3(Variable):
@@ -63,7 +99,9 @@ class strasbourg_conservatoire_traditionnel_enf3(Variable):
     def formula(famille, period, parameters):
         qf = famille('strasbourg_conservatoire_base_ressources', period)
         P = parameters(period).communes.strasbourg.conservatoire.traditionnel
-        return P.enfant_3.calc(qf)
+        bourse = famille('strasbourg_conservatoire_bourse', period)
+
+        return P.enfant_3.calc(qf) - bourse
 
 
 class strasbourg_conservatoire_horaires_amenages_enf1(Variable):
@@ -74,12 +112,12 @@ class strasbourg_conservatoire_horaires_amenages_enf1(Variable):
     def formula(famille, period, parameters):
         qf = famille('strasbourg_conservatoire_base_ressources', period)
         P = parameters(period).communes.strasbourg.conservatoire.horaires_amenages
+        bourse = famille('strasbourg_conservatoire_bourse', period)
 
         habitant_ems = famille("habitant_ems", period)
         return np.where(habitant_ems,
             P.habitant_ems.enfant_1.calc(qf),
-            P.hors_ems.enfant_1.calc(qf))
-
+            P.hors_ems.enfant_1.calc(qf)) - bourse
 
 
 class strasbourg_conservatoire_horaires_amenages_enf2(Variable):
@@ -90,12 +128,12 @@ class strasbourg_conservatoire_horaires_amenages_enf2(Variable):
     def formula(famille, period, parameters):
         qf = famille('strasbourg_conservatoire_base_ressources', period)
         P = parameters(period).communes.strasbourg.conservatoire.horaires_amenages
+        bourse = famille('strasbourg_conservatoire_bourse', period)
 
         habitant_ems = famille("habitant_ems", period)
         return np.where(habitant_ems,
             P.habitant_ems.enfant_2.calc(qf),
-            P.hors_ems.enfant_2.calc(qf))
-
+            P.hors_ems.enfant_2.calc(qf)) - bourse
 
 
 class strasbourg_conservatoire_horaires_amenages_enf3(Variable):
@@ -111,7 +149,6 @@ class strasbourg_conservatoire_horaires_amenages_enf3(Variable):
         return np.where(habitant_ems,
             P.habitant_ems.enfant_3.calc(qf),
             P.hors_ems.enfant_3.calc(qf))
-
 
 
 class strasbourg_conservatoire_horaires_amenages_enf4(Variable):
@@ -148,19 +185,15 @@ class strasbourg_conservatoire_cycles(Variable):
         return nb*P.calc(qf)
 
 
-class strasbourg_conservatoire_qf_bourse(Variable):
-    value_type = int
-    entity = Famille
-    definition_period = MONTH
-
-
 class strasbourg_conservatoire_bourse(Variable):
-    value_type = int
+    value_type = float
     entity = Famille
     definition_period = MONTH
-
     def formula(famille, period, parameters):
-        qf = famille('strasbourg_conservatoire_qf_bourse', period)
-        P = parameters(period).communes.strasbourg.conservatoire.bourse
+        return famille('strasbourg_conservatoire_bourse_historique', period)
 
-        return -P.calc(qf)
+
+class strasbourg_conservatoire_bourse_historique(Variable):
+    value_type = float
+    entity = Famille
+    definition_period = MONTH
