@@ -29,6 +29,7 @@ class CCSTarif(Enum):
     TP = "TP"
     RA = "RA"
     RB = "RB"
+    RC = "RC"
 
 
 class strasbourg_centre_choregraphique_tarif(Variable):

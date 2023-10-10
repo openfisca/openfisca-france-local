@@ -125,3 +125,13 @@ ce:
         amount:
           2023-01-01:
             value: 22
+ecole_de_glace:
+  metadata:
+    type: single_amount
+  brackets:
+    - threshold:
+        2023-01-01:
+          value: 0
+      amount:
+        2023-01-01:
+          value: 73

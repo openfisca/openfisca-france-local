@@ -29,6 +29,37 @@ eveil:
         amount:
           2023-01-01:
             value: 206
+eveil_trimestre:
+  RB:
+    metadata:
+      type: single_amount
+    brackets:
+      - threshold:
+          2023-01-01:
+            value: 0
+        amount:
+          2023-01-01:
+            value: 69
+  RA:
+    metadata:
+      type: single_amount
+    brackets:
+      - threshold:
+          2023-01-01:
+            value: 0
+        amount:
+          2023-01-01:
+            value: 77
+  TP:
+    metadata:
+      type: single_amount
+    brackets:
+      - threshold:
+          2023-01-01:
+            value: 0
+        amount:
+          2023-01-01:
+            value: 86
 adulte:
   _1_cours_trimestre:
     RB:
@@ -123,6 +154,37 @@ adulte:
           amount:
             2023-01-01:
               value: 537
+  _2_cours_trimestre:
+    RB:
+      metadata:
+        type: single_amount
+      brackets:
+        - threshold:
+            2023-01-01:
+              value: 0
+          amount:
+            2023-01-01:
+              value: 179
+    RA:
+      metadata:
+        type: single_amount
+      brackets:
+        - threshold:
+            2023-01-01:
+              value: 0
+          amount:
+            2023-01-01:
+              value: 201
+    TP:
+      metadata:
+        type: single_amount
+      brackets:
+        - threshold:
+            2023-01-01:
+              value: 0
+          amount:
+            2023-01-01:
+              value: 224
   _3_cours:
     RB:
       metadata:
@@ -185,6 +247,47 @@ adulte:
           amount:
             2023-01-01:
               value: 953
+  extra_cours:
+    metadata:
+      type: single_amount
+    brackets:
+      - threshold:
+          2023-01-01:
+            value: 0
+        amount:
+          2023-01-01:
+            value: 81
+  stage:
+    RC:
+      metadata:
+        type: single_amount
+      brackets:
+        - threshold:
+            2023-01-01:
+              value: 0
+          amount:
+            2023-01-01:
+              value: 14
+    TP:
+      metadata:
+        type: single_amount
+      brackets:
+        - threshold:
+            2023-01-01:
+              value: 0
+          amount:
+            2023-01-01:
+              value: 15
+  stage_semaine:
+    metadata:
+      type: single_amount
+    brackets:
+      - threshold:
+          2023-01-01:
+            value: 0
+        amount:
+          2023-01-01:
+            value: 125
 enfant:
   _1_cours:
     RB:
@@ -217,6 +320,37 @@ enfant:
           amount:
             2023-01-01:
               value: 250
+  _1_cours_trimestre:
+    RB:
+      metadata:
+        type: single_amount
+      brackets:
+        - threshold:
+            2023-01-01:
+              value: 0
+          amount:
+            2023-01-01:
+              value: 83
+    RA:
+      metadata:
+        type: single_amount
+      brackets:
+        - threshold:
+            2023-01-01:
+              value: 0
+          amount:
+            2023-01-01:
+              value: 94
+    TP:
+      metadata:
+        type: single_amount
+      brackets:
+        - threshold:
+            2023-01-01:
+              value: 0
+          amount:
+            2023-01-01:
+              value: 104
   _2_cours:
     RB:
       metadata:
@@ -310,3 +444,65 @@ enfant:
           amount:
             2023-01-01:
               value: 475
+  _4_cours_trimestre:
+    RB:
+      metadata:
+        type: single_amount
+      brackets:
+        - threshold:
+            2023-01-01:
+              value: 0
+          amount:
+            2023-01-01:
+              value: 158
+    RA:
+      metadata:
+        type: single_amount
+      brackets:
+        - threshold:
+            2023-01-01:
+              value: 0
+          amount:
+            2023-01-01:
+              value: 178
+    TP:
+      metadata:
+        type: single_amount
+      brackets:
+        - threshold:
+            2023-01-01:
+              value: 0
+          amount:
+            2023-01-01:
+              value: 198
+  extra_cours:
+    metadata:
+      type: single_amount
+    brackets:
+      - threshold:
+          2023-01-01:
+            value: 0
+        amount:
+          2023-01-01:
+            value: 62
+  stage_journee:
+    RC:
+      metadata:
+        type: single_amount
+      brackets:
+        - threshold:
+            2023-01-01:
+              value: 0
+          amount:
+            2023-01-01:
+              value: 27
+    TP:
+      metadata:
+        type: single_amount
+      brackets:
+        - threshold:
+            2023-01-01:
+              value: 0
+          amount:
+            2023-01-01:
+              value: 30

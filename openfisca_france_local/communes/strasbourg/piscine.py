@@ -218,3 +218,55 @@ class strasbourg_piscine_stage_5_seances_prix(Variable):
             period
         ).communes.strasbourg.piscine.stage_5_seances.bareme
         return bareme_qf.calc(qf)
+
+
+class strasbourg_piscine_activite_prix(Variable):
+    value_type = float
+    entity = Individu
+    definition_period = MONTH
+
+    def formula(individu, period, parameters):
+        qf = individu.famille("strasbourg_metropole_quotient_familial", period)
+        bareme_qf = parameters(
+            period
+        ).communes.strasbourg.piscine.activite.unitaire
+        return bareme_qf.calc(qf)
+
+
+class strasbourg_piscine_activite_10_prix(Variable):
+    value_type = float
+    entity = Individu
+    definition_period = MONTH
+
+    def formula(individu, period, parameters):
+        qf = individu.famille("strasbourg_metropole_quotient_familial", period)
+        bareme_qf = parameters(
+            period
+        ).communes.strasbourg.piscine.activite._10
+        return bareme_qf.calc(qf)
+
+
+class strasbourg_piscine_aquabike_prix(Variable):
+    value_type = float
+    entity = Individu
+    definition_period = MONTH
+
+    def formula(individu, period, parameters):
+        qf = individu.famille("strasbourg_metropole_quotient_familial", period)
+        bareme_qf = parameters(
+            period
+        ).communes.strasbourg.piscine.aquabike.unitaire
+        return bareme_qf.calc(qf)
+
+
+class strasbourg_piscine_aquabike_cycle_prix(Variable):
+    value_type = float
+    entity = Individu
+    definition_period = MONTH
+
+    def formula(individu, period, parameters):
+        qf = individu.famille("strasbourg_metropole_quotient_familial", period)
+        bareme_qf = parameters(
+            period
+        ).communes.strasbourg.piscine.aquabike.cycle
+        return bareme_qf.calc(qf)

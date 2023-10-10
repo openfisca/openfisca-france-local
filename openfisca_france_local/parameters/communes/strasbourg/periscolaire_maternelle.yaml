@@ -1,4 +1,4 @@
-bareme:
+bareme_journee:
   metadata:
     type: single_amount
   brackets:
@@ -62,3 +62,67 @@ bareme:
       amount:
         2023-01-01:
           value: 54.9
+bareme_matin_ou_soir:
+  metadata:
+    type: single_amount
+  brackets:
+    - threshold:
+        2023-01-01:
+          value: 0
+      amount:
+        2023-01-01:
+          value: 5.98
+    - threshold:
+        2023-01-01:
+          value: 411
+      amount:
+        2023-01-01:
+          value: 8.35
+    - threshold:
+        2023-01-01:
+          value: 511
+      amount:
+        2023-01-01:
+          value: 10.75
+    - threshold:
+        2023-01-01:
+          value: 621
+      amount:
+        2023-01-01:
+          value: 13.13
+    - threshold:
+        2023-01-01:
+          value: 721
+      amount:
+        2023-01-01:
+          value: 15.55
+    - threshold:
+        2023-01-01:
+          value: 821
+      amount:
+        2023-01-01:
+          value: 17.93
+    - threshold:
+        2023-01-01:
+          value: 921
+      amount:
+        2023-01-01:
+          value: 20.30
+    - threshold:
+        2023-01-01:
+          value: 1031
+      amount:
+        2023-01-01:
+          value: 22.65
+    - threshold:
+        2023-01-01:
+          value: 1541
+      amount:
+        2023-01-01:
+          value: 25.08
+    - threshold:
+        2023-01-01:
+          value: 2051
+      amount:
+        2023-01-01:
+          value: 27.45

@@ -282,3 +282,45 @@ ce:
         amount:
           2023-01-01:
             value: 140
+activite:
+  unitaire:
+    metadata:
+      type: single_amount
+    brackets:
+      - threshold:
+          2023-01-01:
+            value: 0
+        amount:
+          2023-01-01:
+            value: 4.4
+  _10:
+    metadata:
+      type: single_amount
+    brackets:
+      - threshold:
+          2023-01-01:
+            value: 0
+        amount:
+          2023-01-01:
+            value: 33
+aquabike:
+  unitaire:
+    metadata:
+      type: single_amount
+    brackets:
+      - threshold:
+          2023-01-01:
+            value: 0
+        amount:
+          2023-01-01:
+            value: 10
+  cycle:
+    metadata:
+      type: single_amount
+    brackets:
+      - threshold:
+          2023-01-01:
+            value: 0
+        amount:
+          2023-01-01:
+            value: 63

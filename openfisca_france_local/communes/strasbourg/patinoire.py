@@ -56,3 +56,14 @@ class strasbourg_patinoire_5_entrees_ce_prix(Variable):
         qf = individu.famille("strasbourg_metropole_quotient_familial", period)
         bareme = parameters(period).communes.strasbourg.patinoire.ce.entrees
         return bareme.calc(qf)
+
+
+class strasbourg_patinoire_ecole_de_glace_prix(Variable):
+    value_type = float
+    entity = Individu
+    definition_period = MONTH
+
+    def formula(individu, period, parameters):
+        qf = individu.famille("strasbourg_metropole_quotient_familial", period)
+        bareme = parameters(period).communes.strasbourg.patinoire.ecole_de_glace
+        return bareme.calc(qf)
