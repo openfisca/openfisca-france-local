@@ -1,0 +1,23 @@
+- period: 2023-02
+  name: Éligibilité d'age et de résidence
+  input:
+    age: [17, 18, 25, 32, 22]
+    depcom: ['78000', '78000', '78000', '78000', '13000']
+    rbg:
+      2022: ['9000','9000','9000','9000', '9000']
+    nb_pac:
+      2022: ['1', '1','1','1', '1']
+  output:
+    yvelines_aide_permis: [0, 500, 500, 0, 0]
+
+- period: 2023-02
+  name: Montant en fonction du quotient familial
+  input:
+    age: [18, 18, 18, 18, 18, 18]
+    depcom: ['78000','78000','78000','78000','78000', '78000']
+    rbg:
+      2022: ['9600', '12800', '16000', '19200', '22400', '12800']
+    nb_pac:
+      2022: ['1', '2', '3', '4', '3', '1']
+  output:
+    yvelines_aide_permis: [500, 500, 500, 500, 0, 0]
