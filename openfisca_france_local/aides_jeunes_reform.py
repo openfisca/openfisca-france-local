@@ -313,7 +313,7 @@ def build_profil_evaluator(profil: dict) -> ProfileEvaluator:
 
 def eval_conditions(test_conditions: 'list[ConditionEvaluator]', individu: Population, period: Period, parameters: ParameterNodeAtInstant) -> np.array:
     def get_conditions(parameters: Union[ParameterAtInstant, ParameterNodeAtInstant]):
-        if isinstance(parameters, ParameterNodeAtInstant) and 'conditions' in parameters._children:
+        if hasattr(parameters, "_children") and 'conditions' in parameters._children:
             conditions = parameters.conditions
         else:
             conditions = []
