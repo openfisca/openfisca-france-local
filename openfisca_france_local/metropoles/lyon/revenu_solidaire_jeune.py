@@ -11,4 +11,7 @@ class revenu_solidaire_jeune(Variable):
     def formula(individu, period, parameter):
         age = individu('age', period)
         eligibilite_age = (age >= 18) * (age <= 24)
-        return 420 * eligibilite_age
+
+        reside_metropole_lyon = individu.menage('lyon_metropole_eligibilite_geographique', period)
+
+        return 420 * eligibilite_age * reside_metropole_lyon

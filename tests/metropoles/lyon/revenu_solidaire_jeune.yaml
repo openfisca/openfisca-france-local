@@ -1,5 +1,8 @@
 - period: 2023-11
+  reforms:
+  - openfisca_france_local.epci_test_factory.epci_reform
   input:
-    age: [18, 17, 25]
+    age: [18, 17, 25, 20, 20]
+    depcom: [69003, 69003, 69003, 69001, 69003]
   output:
-    revenu_solidaire_jeune: [420, 0, 0]
+    revenu_solidaire_jeune: [420, 0, 0, 0, 420]
