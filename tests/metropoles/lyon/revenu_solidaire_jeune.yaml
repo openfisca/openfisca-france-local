@@ -1,0 +1,5 @@
+- period: 2023-11
+  input:
+    age: [18, 17, 25]
+  output:
+    revenu_solidaire_jeune: [420, 0, 0]
