@@ -1,8 +1,16 @@
 # Changelog
 
+## [6.6.1] - 2023-11-13
+
+_Pour les changements détaillés et les discussions associées, référencez la pull request [#187](https://github.com/openfisca/openfisca-france-local/pull/187)_
+
+### Fixed
+
+- Corrige le crash de la réforme dynamique lors des simulation en mode Tracing
+
 ## [6.6.0] - 2023-10-24
 
-_Pour les changements détaillés et les discussions associées, référencez la pull request [#185](https://github.com/openfisca/openfisca-france-local/pull/185)
+_Pour les changements détaillés et les discussions associées, référencez la pull request [#185](https://github.com/openfisca/openfisca-france-local/pull/185)_
 
 ### Changed
 
