@@ -2,7 +2,8 @@
   reforms:
   - openfisca_france_local.epci_test_factory.epci_reform
   input:
-    age: [18, 17, 25, 20, 20]
-    depcom: [69003, 69003, 69003, 69001, 69003]
+    age: [18, 17, 25, 20, 20, 20]
+    depcom: [69003, 69003, 69003, 69001, 69003, 69003]
+    rsa: [0, 0, 0, 0, 0, 1]
   output:
-    revenu_solidaire_jeune: [420, 0, 0, 0, 420]
+    revenu_solidaire_jeune: [420, 0, 0, 0, 420, 0]

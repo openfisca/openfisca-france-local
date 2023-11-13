@@ -14,4 +14,6 @@ class revenu_solidaire_jeune(Variable):
 
         reside_metropole_lyon = individu.menage('lyon_metropole_eligibilite_geographique', period)
 
-        return 420 * eligibilite_age * reside_metropole_lyon
+        pas_de_rsa = individu.famille('rsa', period) == 0
+
+        return 420 * eligibilite_age * reside_metropole_lyon * pas_de_rsa
