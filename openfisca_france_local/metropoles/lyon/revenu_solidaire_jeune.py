@@ -1,6 +1,6 @@
 
 from openfisca_france.model.base import (
-    Variable, Individu, MONTH)
+    Variable, Individu, MONTH, TypesActivite)
 
 
 class revenu_solidaire_jeune(Variable):
@@ -21,4 +21,6 @@ class revenu_solidaire_jeune(Variable):
         prestations_incompatibles = rsa + aah + aeeh + contrat_engagement_jeune
         eligibilite_prestations = prestations_incompatibles == 0
 
-        return 420 * eligibilite_age * reside_metropole_lyon * eligibilite_prestations
+        pas_en_etude = individu('activite', period) != TypesActivite.etudiant
+
+        return 420 * eligibilite_age * reside_metropole_lyon * eligibilite_prestations * pas_en_etude
