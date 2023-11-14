@@ -7,6 +7,8 @@ class revenu_solidaire_jeune(Variable):
     value_type = float
     entity = Individu
     definition_period = MONTH
+    label = "Montant du Revenu Solidaire Jeune"
+    reference = 'https://aides-jeunes.grandlyon.com/#c21886'
 
     def formula(individu, period, parameter):
         age_eligibles = parameter(period).metropoles.lyon.revenu_solidaire_jeune.age
