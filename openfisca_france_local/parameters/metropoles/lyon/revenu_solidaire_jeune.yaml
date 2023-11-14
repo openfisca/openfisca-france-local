@@ -1,0 +1,8 @@
+age:
+  reference: 'https://aides-jeunes.grandlyon.com/#c21886'
+  minimum_inclusif:
+    values:
+      2021-06-01: 18
+  maximum_inclusif:
+    values:
+      2021-06-01: 24
