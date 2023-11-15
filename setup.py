@@ -3,7 +3,7 @@ from setuptools import setup, find_namespace_packages
 
 setup(
     name='OpenFisca-France-Local',
-    version='6.7.0',
+    version='6.7.1',
     author='OpenFisca Team',
     author_email='contact@openfisca.fr',
     classifiers=[
@@ -33,7 +33,6 @@ setup(
             'nose',
             ],
         'excel-reader': [
-            'xlrd == 1.2.0',
             'openpyxl == 3.1.2',
             ]
         },

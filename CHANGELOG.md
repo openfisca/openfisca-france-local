@@ -1,4 +1,11 @@
 # Changelog
+## [6.7.1] - 2023-11-15
+
+_Pour les changements détaillés et les discussions associées, référencez la pull request [#190](https://github.com/openfisca/openfisca-france-local/pull/190)
+
+### Fixed
+
+- Corrige le warning lié à l'utilisation de `ressource.path()` dans la réforme `epci_test_factory`
 
 ## [6.7.0] - 2023-11-15
 
