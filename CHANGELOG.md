@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.7.0] - 2023-11-15
+
+_Pour les changements détaillés et les discussions associées, référencez la pull request [#188](https://github.com/openfisca/openfisca-france-local/pull/188)
+
+### Added
+
+- Ajoute la compatibilité avec les versions 156 d'`OpenFisca-France`.
+
 ## [6.6.1] - 2023-11-13
 
 _Pour les changements détaillés et les discussions associées, référencez la pull request [#187](https://github.com/openfisca/openfisca-france-local/pull/187)_
