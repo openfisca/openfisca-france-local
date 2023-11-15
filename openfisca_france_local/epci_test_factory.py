@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from openfisca_france.model.base import Variable, Menage, MONTH
 from openfisca_core import reforms
-from numpy.core.defchararray import startswith
 
 import pandas as pd
 from importlib import resources
