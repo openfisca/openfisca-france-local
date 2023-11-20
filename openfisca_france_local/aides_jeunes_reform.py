@@ -381,20 +381,23 @@ def generate_variable(benefit: dict):
 
 root = '.'
 benefit_path = 'test_data/benefits'
+institutions_path = 'test_data/institutions'
 current_path = path.join(root, benefit_path)
 
 
 class aides_jeunes_reform_dynamic(reforms.Reform):
-    def __init__(self, baseline, benefits_folder_path=current_path):
+    def __init__(self, baseline, benefits_folder_path=current_path, institutions_folder_path=institutions_path):
         self.benefits_folder_path = getenv('DYNAMIC_BENEFIT_FOLDER', benefits_folder_path)
+        self.institutions_folder_path = getenv('DYNAMIC_INSTITUTION_FOLDER', institutions_folder_path)
         super().__init__(baseline)
 
     def apply(self):
         try:
-            benefit_files_paths: 'list[str]' = self._extract_benefits_paths(self.benefits_folder_path)
+            benefit_files_paths: 'list[str]' = self._extract_paths(self.benefits_folder_path)
 
             for benefit_path in benefit_files_paths:
                 benefit: dict = self._extract_benefit_file_content(benefit_path)
+
                 benefit_parameters: ParameterNode = convert_benefit_conditions_to_parameters(benefit)
                 self._add_parameters_into_current_tax_and_benefits_system(benefit_parameters)
 
@@ -406,21 +409,47 @@ class aides_jeunes_reform_dynamic(reforms.Reform):
             raise
 
     def _extract_benefit_file_content(self, benefit_path: str):
+        def _convert_institution_to_condition(benefit: dict) -> dict:
+            if {'type': 'attached_to_institution'} in benefit['conditions_generales']:
+                conditions_generales_without_attached_institution = [
+                    condition for condition
+                    in benefit['conditions_generales']
+                    if condition != {'type': 'attached_to_institution'}]
+
+                with open(f'{self.institutions_folder_path}/{benefit["institution"]}.yml') as file:
+                    institution: dict = yaml.safe_load(file)
+
+                    institution_type = institution['type']
+                    if institution_type in ['msa', 'caf']:
+                        condition_type = 'departements'
+                        condition_value = institution['departments']
+                    elif institution_type == 'epci':
+                        condition_type = 'epcis'
+                        condition_value = [institution['code_siren']]
+                    else:
+                        condition_type = f"{institution_type}s"
+                        condition_value = [institution['code_insee']]
+
+                    conditions_generales_without_attached_institution.append({'type': condition_type, 'values': condition_value})
+
+                    benefit = {**benefit, 'conditions_generales': conditions_generales_without_attached_institution}
+            return benefit
+
         def _slug_from_path(path: str):
             return path.split('/')[-1].replace('-', '_').split('.')[0]
 
         benefit: dict = yaml.safe_load(open(benefit_path))
         benefit['slug'] = _slug_from_path(benefit_path)
-
+        benefit = _convert_institution_to_condition(benefit)
         return benefit
 
-    def _extract_benefits_paths(self, benefits_folder: str) -> 'list[str]':
+    def _extract_paths(self, folder: str) -> 'list[str]':
         def _isYAMLfile(path: str):
             return str(path).endswith('.yml') or str(path).endswith('.yaml')
 
         files: 'list[str]' = [
             str(benefit)
-            for benefit in Path(benefits_folder).iterdir()
+            for benefit in Path(folder).iterdir()
             if _isYAMLfile(benefit)
             ]
 

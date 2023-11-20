@@ -251,3 +251,42 @@
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   output:
     test_pas_de_profile: 0
+
+- period: 2022-11
+  name: Condition attached_to_institution communes
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    depcom: [55029, 38000]
+  output:
+    test_condition_attached_to_institution_communes: [16.8, 0]
+
+
+- period: 2022-11
+  name: Condition attached_to_institution départements
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    depcom: ['06100']
+  output:
+    test_condition_attached_to_institution_departements: [17.8]
+
+
+- period: 2022-11
+  name: Condition attached_to_institution epcis
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  - openfisca_france_local.epci_test_factory.epci_reform
+  input:
+    depcom: [55505]
+  output:
+    test_condition_attached_to_institution_epcis: [18]
+
+- period: 2022-11
+  name: Condition attached_to_institution caf + msa
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    depcom: ['01100']
+  output:
+    test_condition_attached_to_institution_caf: [19]
