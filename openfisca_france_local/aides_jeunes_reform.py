@@ -237,10 +237,6 @@ def is_situation_handicap(individu: Population, period: Period) -> np.array:
     return individu('handicap', period)
 
 
-def not_implemented_condition(_: Population, __: Period, condition: ParameterNodeAtInstant) -> np.array:
-    raise NotImplementedError(f'Condition in `{condition.name}` is not implemented')
-
-
 condition_table = {
     'age': is_age_eligible,
     'regions': is_region_eligible,
@@ -255,7 +251,6 @@ condition_table = {
     'communes': is_commune_eligible,
     'epcis': is_epci_eligible,
     'taux_incapacite': is_taux_incapacite_eligible,
-    'attached_to_institution': not_implemented_condition,
     }
 
 
@@ -295,7 +290,7 @@ def build_condition_evaluator_list(conditions: 'list[dict]') -> 'list[ConditionE
             for condition in conditions
             ]
     except KeyError as e:
-        raise KeyError(f"Condition `{(e.args[0])}` is unknown.")
+        raise NotImplementedError(f"Condition `{(e.args[0])}` is unknown.")
 
     return evaluators
 
@@ -304,7 +299,7 @@ def build_profil_evaluator(profil: dict) -> ProfileEvaluator:
     try:
         predicate = profil_table[profil['type']]
     except KeyError:
-        raise KeyError(f"Profil `{profil['type']}` is unknown.")
+        raise NotImplementedError(f"Profil `{profil['type']}` is unknown.")
 
     conditions = profil.get('conditions', [])
 
