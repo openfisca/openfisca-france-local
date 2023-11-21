@@ -374,14 +374,12 @@ def generate_variable(benefit: dict):
         })
 
 
-root = '.'
-benefit_path = 'test_data/benefits'
-institutions_path = 'test_data/institutions'
-current_path = path.join(root, benefit_path)
+default_benefit_path = 'test_data/benefits'
+default_institutions_path = 'test_data/institutions'
 
 
 class aides_jeunes_reform_dynamic(reforms.Reform):
-    def __init__(self, baseline, benefits_folder_path=current_path, institutions_folder_path=institutions_path):
+    def __init__(self, baseline, benefits_folder_path=default_benefit_path, institutions_folder_path=default_institutions_path):
         self.benefits_folder_path = getenv('DYNAMIC_BENEFIT_FOLDER', benefits_folder_path)
         self.institutions_folder_path = getenv('DYNAMIC_INSTITUTION_FOLDER', institutions_folder_path)
         super().__init__(baseline)
