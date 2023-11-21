@@ -438,9 +438,10 @@ class aides_jeunes_reform_dynamic(reforms.Reform):
         def _slug_from_path(path: str):
             return path.split('/')[-1].replace('-', '_').split('.')[0]
 
-        benefit: dict = yaml.safe_load(open(benefit_path))
-        benefit['slug'] = _slug_from_path(benefit_path)
-        benefit = _convert_institution_to_condition(benefit)
+        with open(benefit_path) as file:
+            benefit: dict = yaml.safe_load(file)
+            benefit['slug'] = _slug_from_path(benefit_path)
+            benefit = _convert_institution_to_condition(benefit)
         return benefit
 
     def _extract_paths(self, folder: str) -> 'list[str]':
