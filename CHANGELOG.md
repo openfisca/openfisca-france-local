@@ -1,4 +1,13 @@
 # Changelog
+
+## [6.7.2] - 2023-11-23
+
+_Pour les changements détaillés et les discussions associées, référencez la pull request [#192](https://github.com/openfisca/openfisca-france-local/pull/192)
+
+### Fixed
+
+- Corrige le problème de chargement du fichier contenant les *epcis* de la réforme `epci_test_factory` introduit dans la release `6.7.1`
+
 ## [6.7.1] - 2023-11-21
 
 _Pour les changements détaillés et les discussions associées, référencez la pull request [#190](https://github.com/openfisca/openfisca-france-local/pull/190)
