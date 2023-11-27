@@ -2,6 +2,7 @@
 from openfisca_france.model.base import Variable, Menage, MONTH
 from openfisca_core import reforms
 
+from importlib.resources import as_file, files
 import pandas as pd
 
 
@@ -26,9 +27,10 @@ def epci_test_factory(groups, code):
 
 class epci_reform(reforms.Reform):
     def apply(self):
-        raw = pd.read_excel('openfisca_france_local/epcicom2020.xlsx')
-        raw.insee = raw.insee.astype('|S5')
-        df = raw[['siren', 'insee', 'raison_sociale']].groupby('siren')
+        with as_file(files('openfisca_france_local').joinpath('epcicom2020.xlsx')) as path:
+            raw = pd.read_excel(path)
+            raw.insee = raw.insee.astype('|S5')
+            df = raw[['siren', 'insee', 'raison_sociale']].groupby('siren')
 
         for siren in df.groups:
             self.add_variable(epci_test_factory(df, siren))
