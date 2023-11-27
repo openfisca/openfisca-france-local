@@ -1,15 +1,23 @@
 # Changelog
-## [6.8.0] - 2023-11-22
+## [6.9.0] - 2023-11-27
 
-_Pour les changements détaillés et les discussions associées, référencez la pull request [#191](https://github.com/openfisca/openfisca-france-local/pull/191)
+_Pour les changements détaillés et les discussions associées, référencez la pull request [#189](https://github.com/openfisca/openfisca-france-local/pull/189)_
+
+### Added
+
+- Ajoute le dispositif Revenu Solidarite Jeune de la métropole de Lyon
+
+## [6.8.0] - 2023-11-27
+
+_Pour les changements détaillés et les discussions associées, référencez la pull request [#191](https://github.com/openfisca/openfisca-france-local/pull/191)_
 
 ### Added
 
 - Ajoute la gestion de la condition attaches_to_institution dans la `aides_jeunes_reform_dynamic`
 
-## [6.7.2] - 2023-11-23
+## [6.7.2] - 2023-11-27
 
-_Pour les changements détaillés et les discussions associées, référencez la pull request [#192](https://github.com/openfisca/openfisca-france-local/pull/192)
+_Pour les changements détaillés et les discussions associées, référencez la pull request [#192](https://github.com/openfisca/openfisca-france-local/pull/192)_
 
 ### Fixed
 
@@ -17,7 +25,7 @@ _Pour les changements détaillés et les discussions associées, référencez la
 
 ## [6.7.1] - 2023-11-21
 
-_Pour les changements détaillés et les discussions associées, référencez la pull request [#190](https://github.com/openfisca/openfisca-france-local/pull/190)
+_Pour les changements détaillés et les discussions associées, référencez la pull request [#190](https://github.com/openfisca/openfisca-france-local/pull/190)_
 
 ### Fixed
 
@@ -25,7 +33,7 @@ _Pour les changements détaillés et les discussions associées, référencez la
 
 ## [6.7.0] - 2023-11-15
 
-_Pour les changements détaillés et les discussions associées, référencez la pull request [#188](https://github.com/openfisca/openfisca-france-local/pull/188)
+_Pour les changements détaillés et les discussions associées, référencez la pull request [#188](https://github.com/openfisca/openfisca-france-local/pull/188)_
 
 ### Added
 
