@@ -1,16 +1,15 @@
 import os
 import pytest
 from openfisca_france import FranceTaxBenefitSystem
-from openfisca_france.scenarios import init_single_entity
 from openfisca_france_local.aides_jeunes_reform import aides_jeunes_reform_dynamic
 
 
 @pytest.mark.parametrize("bogus_benefit_folder", [
     'test_missing_condition_key',
     'test_missing_profile_key',
-])
+    ])
 def test_bogus_benefit_structure(bogus_benefit_folder):
-    with pytest.raises(KeyError):
+    with pytest.raises(NotImplementedError):
         base_tbs = FranceTaxBenefitSystem()
         benefits_path = os.path.join('test_data/bogus_benefits/', bogus_benefit_folder)
         aides_jeunes_reform_dynamic(base_tbs, benefits_path)

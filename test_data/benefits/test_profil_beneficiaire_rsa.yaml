@@ -1,5 +1,4 @@
 label: Aide au permis de conduire
-institution: intercommunalite_toulon_provence_mediterranee
 prefix: l’
 conditions_generales:
   - type: regions

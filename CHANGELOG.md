@@ -1,4 +1,11 @@
 # Changelog
+## [6.8.0] - 2023-11-22
+
+_Pour les changements détaillés et les discussions associées, référencez la pull request [#191](https://github.com/openfisca/openfisca-france-local/pull/191)
+
+### Added
+
+- Ajoute la gestion de la condition attaches_to_institution dans la `aides_jeunes_reform_dynamic`
 
 ## [6.7.2] - 2023-11-23
 
