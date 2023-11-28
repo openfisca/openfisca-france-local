@@ -22,9 +22,8 @@ class yvelines_aide_permis(Variable):
         rbg = individu.foyer_fiscal('rbg', period.last_year)
         nb_pac = individu.foyer_fiscal('nb_pac', period.last_year)
 
-        eligibilite_revenu = (
-            (rbg - params.revenu_global_brut.deduction_fixe) / nb_pac
-            ) <= params.revenu_global_brut.marginal_par_personne
+        rbg_max = params.revenu_global_brut.base + (nb_pac * params.revenu_global_brut.marginal_par_personne)
+        eligibilite_revenu = rbg < rbg_max
 
         montant = params.montant
 

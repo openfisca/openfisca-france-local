@@ -9,7 +9,7 @@ age:
         value: 18
 
 revenu_global_brut:
-  deduction_fixe:
+  base:
     values:
       2010-01-01:
         value: 6400
