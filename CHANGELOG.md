@@ -1,4 +1,12 @@
 # Changelog
+## [6.10.0] - 2023-11-28
+
+_Pour les changements détaillés et les discussions associées, référencez la pull request [#186](https://github.com/openfisca/openfisca-france-local/pull/186)_
+
+### Added
+
+- Ajoute l'aide au permis du département des Yvelines
+
 ## [6.9.0] - 2023-11-27
 
 _Pour les changements détaillés et les discussions associées, référencez la pull request [#189](https://github.com/openfisca/openfisca-france-local/pull/189)_
