@@ -1,0 +1,13 @@
+label: "Carte Génération - Apprentis : aide au transport"
+conditions_generales: []
+profils:
+  - type: apprenti
+    conditions:
+      - type: age
+        operator: <
+        value: 26
+  - type: apprenti
+    conditions:
+      - type: boursier
+type: float
+montant: 200
