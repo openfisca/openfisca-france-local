@@ -105,17 +105,20 @@ def conditions_to_node_data(conditions: 'list[dict]') -> dict:
 
 def profils_to_node_data(profils: 'list[dict]'):
     def create_profils_field(data: dict, profil: dict):
-        data['profils'].update({profil['type']: {}})
+        if profil['type'] not in data['profils']:
+            data['profils'].update({profil['type']: {}})
 
     def add_profil_with_conditions(data: dict, profil: dict):
-        data['profils'][profil['type']].update(conditions_to_node_data(profil['conditions']))
+        if 'conditions' not in data['profils'][profil['type']]:
+            data['profils'][profil['type']] = {'conditions': {}}
+
+        data['profils'][profil['type']]['conditions'].update(conditions_to_node_data(profil['conditions'])['conditions'])
 
     def add_boolean_profil(data: dict, profil: dict):
         date = '2020-01-01'
         data['profils'][profil['type']] = {date: {'value': True}}
 
     data: dict = {'profils': {}}
-
     for profil in profils:
         create_profils_field(data, profil)
         if 'conditions' in profil:
