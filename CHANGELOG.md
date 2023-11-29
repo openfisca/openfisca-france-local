@@ -1,4 +1,12 @@
 # Changelog
+## [6.9.1] - 2023-11-29
+
+_Pour les changements détaillés et les discussions associées, référencez la pull request [#194](https://github.com/openfisca/openfisca-france-local/pull/194)_
+
+### Fixed
+
+- Corrige le problème de la réforme dynamique qui ne crée qu'une condition lorsqu'un profil est présent plus d'une fois
+
 ## [6.9.0] - 2023-11-27
 
 _Pour les changements détaillés et les discussions associées, référencez la pull request [#189](https://github.com/openfisca/openfisca-france-local/pull/189)_
