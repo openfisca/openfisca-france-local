@@ -8,6 +8,8 @@ profils:
         value: 26
   - type: apprenti
     conditions:
-      - type: boursier
+      - type: departements
+        values:
+          - "01"
 type: float
 montant: 200
