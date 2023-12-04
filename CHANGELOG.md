@@ -1,4 +1,16 @@
 # Changelog
+## [6.11.0] - 2023-12-03
+
+_Pour les changements détaillés et les discussions associées, référencez la pull request [#193](https://github.com/openfisca/openfisca-france-local/pull/193)_
+
+### Added
+
+- Ajoute la variable `sous_contrat_engagement_jeune`
+
+### Changed
+
+- Modifie le calcul du dispositif Revenu Solidarite Jeune de la métropole de Lyon pour utiliser la nouvelle variable plutôt que le montant du CEJ
+
 ## [6.10.0] - 2023-11-28
 
 _Pour les changements détaillés et les discussions associées, référencez la pull request [#186](https://github.com/openfisca/openfisca-france-local/pull/186)_

@@ -3,6 +3,13 @@ from openfisca_france.model.base import (
     Variable, Individu, MONTH, TypesActivite)
 
 
+class sous_contrat_engagement_jeune(Variable):
+    value_type = bool
+    entity = Individu
+    definition_period = MONTH
+    label = "Est actuellement en Contrat Engagement Jeune"
+
+
 class revenu_solidaire_jeune(Variable):
     value_type = float
     entity = Individu
@@ -20,8 +27,8 @@ class revenu_solidaire_jeune(Variable):
         rsa = individu.famille('rsa', period)
         aah = individu('aah', period)
         aeeh = individu.famille('aeeh', period)
-        contrat_engagement_jeune = individu('contrat_engagement_jeune', period)
-        prestations_incompatibles = rsa + aah + aeeh + contrat_engagement_jeune
+        sous_contrat_engagement_jeune = individu('sous_contrat_engagement_jeune', period)
+        prestations_incompatibles = rsa + aah + aeeh + sous_contrat_engagement_jeune
         eligibilite_prestations = prestations_incompatibles == 0
 
         pas_en_etude = individu('activite', period) != TypesActivite.etudiant
