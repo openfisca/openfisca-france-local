@@ -114,6 +114,11 @@ def profils_to_node_data(profils: 'list[dict]'):
 
         profil_condition = data['profils'][profil['type']]['conditions']
         conditions_in_node_data = conditions_to_node_data(profil['conditions'])['conditions']
+
+        for type in profil_condition.keys():
+            if type in conditions_in_node_data:
+                raise NotImplementedError('Une aide avec deux profils de même type ne peux pas avoir de conditions de même type pour chacun de ses profils')
+
         profil_condition.update(conditions_in_node_data)
 
     def add_boolean_profil(data: dict, profil: dict):

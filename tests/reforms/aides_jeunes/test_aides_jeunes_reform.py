@@ -7,6 +7,7 @@ from openfisca_france_local.aides_jeunes_reform import aides_jeunes_reform_dynam
 @pytest.mark.parametrize("bogus_benefit_folder", [
     'test_missing_condition_key',
     'test_missing_profile_key',
+    'test_2_same_type_profils_with_same_type_condition',
     ])
 def test_bogus_benefit_structure(bogus_benefit_folder):
     with pytest.raises(NotImplementedError):
