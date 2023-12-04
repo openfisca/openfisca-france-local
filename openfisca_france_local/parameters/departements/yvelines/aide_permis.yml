@@ -1,0 +1,24 @@
+age:
+  maximum_inclusif:
+    values:
+      2010-01-01:
+        value: 25
+  minimum_inclusif:
+    values:
+      2010-01-01:
+        value: 18
+
+revenu_global_brut:
+  base:
+    values:
+      2010-01-01:
+        value: 6400
+  marginal_par_personne:
+    values:
+      2010-01-01:
+        value: 3200
+
+montant:
+  values:
+    2010-01-01:
+      value: 500
