@@ -19,8 +19,8 @@ class yvelines_aide_permis(Variable):
 
         eligibilite_residentielle = individu.menage('yvelines_eligibilite_residence', period)
 
-        rbg = individu.foyer_fiscal('rbg', period.last_year)
-        nb_pac = individu.foyer_fiscal('nb_pac', period.last_year)
+        rbg = individu.foyer_fiscal('rbg', period.n_2)
+        nb_pac = individu.foyer_fiscal('nb_pac', period.n_2)
 
         rbg_max = params.revenu_global_brut.base + (nb_pac * params.revenu_global_brut.marginal_par_personne)
         eligibilite_revenu = rbg < rbg_max
