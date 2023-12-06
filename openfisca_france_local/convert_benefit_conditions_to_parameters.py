@@ -105,10 +105,38 @@ def conditions_to_node_data(conditions: 'list[dict]') -> dict:
 
 def profils_to_node_data(profils: 'list[dict]'):
     def create_profils_field(data: dict, profil: dict):
-        data['profils'].update({profil['type']: {}})
+        if profil['type'] not in data['profils']:
+            data['profils'].update({profil['type']: {}})
 
     def add_profil_with_conditions(data: dict, profil: dict):
-        data['profils'][profil['type']].update(conditions_to_node_data(profil['conditions']))
+        def condition_already_exists_in_node(profil_condition, conditions_in_node_data) -> bool:
+            conditions_with_operator_fields = ['age', 'quotient_familial', 'situation_handicap']
+
+            conditions_types = profil_condition.keys()
+
+            if len(conditions_types) == 0:
+                return False
+
+            for type in conditions_types:
+                if type in conditions_in_node_data:
+                    if type in conditions_with_operator_fields:
+                        operator = list(profil_condition[type])[0]
+                        return operator in conditions_in_node_data[type]
+                    else:
+                        return True
+
+        if 'conditions' not in data['profils'][profil['type']]:
+            data['profils'][profil['type']] = {'conditions': {}}
+
+        profil_condition = data['profils'][profil['type']]['conditions']
+        conditions_in_node_data = conditions_to_node_data(profil['conditions'])['conditions']
+
+        if condition_already_exists_in_node(profil_condition, conditions_in_node_data):
+            raise NotImplementedError(
+                'La réforme dynamique ne gère pas encore les aides avec deux profils de même type qui ont des conditions de même type pour chacun de ses profils identiques'
+                )
+
+        profil_condition.update(conditions_in_node_data)
 
     def add_boolean_profil(data: dict, profil: dict):
         date = '2020-01-01'

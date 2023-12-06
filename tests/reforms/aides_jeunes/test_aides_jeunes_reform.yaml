@@ -261,7 +261,6 @@
   output:
     test_condition_attached_to_institution_communes: [16.8, 0]
 
-
 - period: 2022-11
   name: Condition attached_to_institution départements
   reforms:
@@ -270,7 +269,6 @@
     depcom: ['06100']
   output:
     test_condition_attached_to_institution_departements: [17.8]
-
 
 - period: 2022-11
   name: Condition attached_to_institution epcis
@@ -290,3 +288,14 @@
     depcom: ['01100']
   output:
     test_condition_attached_to_institution_caf: [19]
+
+- period: 2022-11
+  name: Test fichier d'aide avec 2 profils de même type
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    age: [20, 29]
+    apprenti: [True, True]
+    boursier: [False, True]
+  output:
+    test_multiple_profil_meme_type: [200, 200]
