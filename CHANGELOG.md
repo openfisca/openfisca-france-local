@@ -1,4 +1,12 @@
 # Changelog
+## [6.11.1] - 2023-12-06
+
+_Pour les changements détaillés et les discussions associées, référencez la pull request [#196](https://github.com/openfisca/openfisca-france-local/pull/196)_
+
+### Fixed
+
+- Corrige la periode dans la formule du dispositif `yvelines_aide_permis`
+
 ## [6.11.0] - 2023-12-03
 
 _Pour les changements détaillés et les discussions associées, référencez la pull request [#193](https://github.com/openfisca/openfisca-france-local/pull/193)_
