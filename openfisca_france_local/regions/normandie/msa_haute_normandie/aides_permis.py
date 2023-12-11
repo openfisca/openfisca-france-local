@@ -30,10 +30,9 @@ class msa_haute_normandie_aide_permis(Variable):
         age = individu('age', period)
         eligibilite_age = (age >= params.age.minimum) * (age <= params.age.maximum)
 
-
         af_nbenf = individu.famille('af_nbenf', period)
         plafond_ressources = ars_params.plafond_ressources * (1 + af_nbenf * ars_params.majoration_par_enf_supp)
-        eligibilite_plafond_ressources = individu.foyer_fiscal('rfr', period.this_year) <= plafond_ressources
+        eligibilite_plafond_ressources = individu.foyer_fiscal('rfr', period.n_2) <= plafond_ressources
         smic_brut_mensuel = smic.smic_b_horaire * smic.nb_heures_travail_mensuel
         eligibilite_salaire = individu('salaire_de_base', period) <= smic_brut_mensuel
 
