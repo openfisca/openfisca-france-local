@@ -6,9 +6,8 @@
       enfants: [ "enfant1", "enfant2"]
     foyer_fiscal:
       declarants: [ "parent1", "parent2" ]
-      personnes_a_charge: [ "enfant1", "enfant2"]
       rni:
-        2022: 50000
+        2020: 50000
     menage:
       personne_de_reference: parent1
       conjoint: parent2
@@ -35,9 +34,8 @@
       enfants: [ "enfant1", "enfant2"]
     foyer_fiscal:
       declarants: [ "parent1" ]
-      personnes_a_charge: [ "enfant1", "enfant2"]
       rni:
-        2022: 30000
+        2020: 30000
     menage:
       personne_de_reference: parent1
       enfants: [ "enfant1", "enfant2"]
@@ -61,9 +59,8 @@
       enfants: [ "enfant1"]
     foyer_fiscal:
       declarants: [ "parent1" ]
-      personnes_a_charge: [ "enfant1"]
       rni:
-        2022: 30000
+        2020: 30000
     menage:
       personne_de_reference: parent1
       enfants: [ "enfant1"]
@@ -84,9 +81,8 @@
       enfants: [ "enfant1"]
     foyer_fiscal:
       declarants: [ "parent1" ]
-      personnes_a_charge: [ "enfant1"]
       rni:
-        2022: 30000
+        2020: 30000
     menage:
       personne_de_reference: parent1
       enfants: [ "enfant1"]
@@ -108,9 +104,8 @@
       enfants: [ "enfant1", "enfant2"]
     foyer_fiscal:
       declarants: [ "parent1", "parent2" ]
-      personnes_a_charge: [ "enfant1", "enfant2"]
       rni:
-        2022: 80000
+        2020: 80000
     menage:
       personne_de_reference: parent1
       conjoint: parent2
@@ -141,7 +136,7 @@
     foyer_fiscal:
       declarants: [ "parent1", "parent2" ]
       rni:
-        2022: 80000
+        2020: 80000
     menage:
       personne_de_reference: parent1
       conjoint: parent2
@@ -150,8 +145,6 @@
       demandeur:
         age: [18]
         annee_etude: 'cap_2'
-        enfant_a_charge:
-          2022: [True]
         activite: 'etudiant'
         regime_securite_sociale: regime_general
       parent1:
