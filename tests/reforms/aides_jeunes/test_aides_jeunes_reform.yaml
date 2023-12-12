@@ -66,9 +66,9 @@
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
     rfr:
-      2022: ["9600", "9612"]
+      2020: ["9600", "9612"]
     nbptr:
-      2022: ["1", "1"]
+      2020: ["1", "1"]
   output:
     test_condition_quotient_familial: [200, 0]
     test_condition_quotient_familial_year: [200, 0]

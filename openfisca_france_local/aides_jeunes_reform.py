@@ -109,8 +109,8 @@ def is_quotient_familial_eligible(individu: Population, period: Period, paramete
         condition_QF = parameters.quotient_familial.year
         period_divider = 1
 
-    individus_rfr = individu.foyer_fiscal('rfr', period.this_year)
-    individus_nbptr = individu.foyer_fiscal('nbptr', period.this_year)
+    individus_rfr = individu.foyer_fiscal('rfr', period.n_2)
+    individus_nbptr = individu.foyer_fiscal('nbptr', period.n_2)
     individus_quotient_familial = (individus_rfr / period_divider / individus_nbptr)
 
     QF_constraints = [

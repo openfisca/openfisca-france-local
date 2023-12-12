@@ -1,4 +1,12 @@
 # Changelog
+## [6.11.3] - 2023-12-12
+
+_Pour les changements détaillés et les discussions associées, référencez la pull request [#197](https://github.com/openfisca/openfisca-france-local/pull/197)_
+
+### Fixed
+
+- Corrige des période de calculs de `RFR` et `RNI`
+
 ## [6.11.2] - 2023-12-06
 
 _Pour les changements détaillés et les discussions associées, référencez la pull request [#194](https://github.com/openfisca/openfisca-france-local/pull/194)_
