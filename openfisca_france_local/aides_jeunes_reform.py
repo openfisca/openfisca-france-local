@@ -334,6 +334,12 @@ def eval_profil(profil_evaluator: ProfileEvaluator,
 
 
 def generate_variable(benefit: dict):
+    """
+        Créé la variable qui va être intégrée dans le TaxAndBenefitSystem.
+
+        Génère une `Variable` Openfisca dont le type est la formule correspondent
+        aux données du dictionaire source issue d'un fichier `YAML`.
+    """
     variable_name: str = benefit['slug']
     amount = benefit.get('montant')
 
