@@ -379,6 +379,21 @@ default_institutions_path = 'test_data/institutions'
 
 
 class aides_jeunes_reform_dynamic(reforms.Reform):
+    """
+        Cette réforme n'est pas une réforme au sens légal du terme.
+
+        La réforme ici présente est utilisée pour lire des fichiers `YAML`
+        qui modélisent des dispositifs d'aides sociales avec des conditions simples
+        de manière à les intégrer dans une instance Openfisca.
+
+        Pour utiliser la réforme, il faut :
+            - Définir le chemin des dossiers qui contiennent
+            les aides et les institutions avec les variables d'environement
+            `DYNAMIC_BENEFIT_FOLDER` et `DYNAMIC_INSTITUTION_FOLDER`
+            - Lancer Openfisca en appelant la réforme :
+                `--reform openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic`
+    """
+
     def __init__(self, baseline, benefits_folder_path=default_benefit_path, institutions_folder_path=default_institutions_path):
         self.benefits_folder_path = getenv('DYNAMIC_BENEFIT_FOLDER', benefits_folder_path)
         self.institutions_folder_path = getenv('DYNAMIC_INSTITUTION_FOLDER', institutions_folder_path)
@@ -403,12 +418,30 @@ class aides_jeunes_reform_dynamic(reforms.Reform):
 
     def _extract_benefit_file_content(self, benefit_path: str):
         def _convert_institution_to_condition(benefit: dict) -> dict:
+            """
+                Si le fichier `YAML` traité contient une condition de type `attached_to_institution`,
+                un traitement est nécessaire car les modalités de cette condition ne sont pas précisées
+                dans le fichier en question.
+
+                Cette condition est une condition géographique.
+
+                Il faut aller récupérer les informations liées à l'institution en question
+                dans un fichier qui modélise l'institution correspondante pour ensuite ajouter
+                une condition géographique équivalente.
+
+                Il existe 4 type de condition géographique :
+                `msa`, `caf`, `epci`, `regions`, `departements` et `communes`.
+            """
             if {'type': 'attached_to_institution'} in benefit['conditions_generales']:
                 conditions_generales_without_attached_institution = [
                     condition for condition
                     in benefit['conditions_generales']
                     if condition != {'type': 'attached_to_institution'}]
 
+                # /!\ Pas de mise en cache faite ici. Si deux fichiers font appel à la même institution,
+                # le fichier de l'institution en question sera ouvert 2 fois.
+                # Si un jour la condition `attached_to_institution` venait à être utilisée de manière
+                # intensive, il pourrait être intéressant d'implanter un cache ici
                 with open(f'{self.institutions_folder_path}/{benefit["institution"]}.yml') as file:
                     institution: dict = yaml.safe_load(file)
 
@@ -429,6 +462,13 @@ class aides_jeunes_reform_dynamic(reforms.Reform):
             return benefit
 
         def _slug_from_path(path: str):
+            """
+                Pour créer une nouvelle variable Openfisca, il est necessaire
+                de lui donner un nom qui respecte la syntaxe d'une variable Python.
+
+                Cette méthode utilise le nom du fichier pour déterminer
+                un nom de variable compatible.
+            """
             return path.split('/')[-1].replace('-', '_').split('.')[0]
 
         with open(benefit_path) as file:
