@@ -284,6 +284,9 @@ ProfileEvaluator = collections.namedtuple(
 
 
 def build_condition_evaluator_list(conditions: 'list[dict]') -> 'list[ConditionEvaluator]':
+    """
+        Établie une correspondance entre les conditions et les fonctions qui évaluent ces conditions.
+    """
     try:
         evaluators: 'list[ConditionEvaluator]' = [
             ConditionEvaluator(condition, condition_table[condition['type']])
@@ -296,6 +299,9 @@ def build_condition_evaluator_list(conditions: 'list[dict]') -> 'list[ConditionE
 
 
 def build_profil_evaluator(profil: dict) -> ProfileEvaluator:
+    """
+        Associe un test d'éligibilité au profil et pour chacune de ses conditions.
+    """
     try:
         predicate = profil_table[profil['type']]
     except KeyError:
