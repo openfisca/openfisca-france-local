@@ -124,6 +124,7 @@ def profils_to_node_data(profils: 'list[dict]'):
                         return operator in conditions_in_node_data[type]
                     else:
                         return True
+            return False
 
         if 'conditions' not in data['profils'][profil['type']]:
             data['profils'][profil['type']] = {'conditions': {}}
