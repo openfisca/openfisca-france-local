@@ -154,7 +154,7 @@ def profils_to_node_data(profils: 'list[dict]'):
     return data
 
 
-def generate_amount_parameter_data(montant: dict):
+def generate_amount_parameter_data(montant):
     date = '2020-01-01'
 
     return {'montant': {date: {'value': montant}}} if montant else {}
@@ -171,7 +171,7 @@ def convert_benefit_conditions_to_parameters(benefit: dict) -> ParameterNode:
     node_data.update(conditions_generales_data)
     node_data.update(amount_data)
 
-    profils: list[dict] = benefit.get('profils')
+    profils = benefit.get('profils')
     if profils:
         profils_data = profils_to_node_data(profils)
         node_data.update(profils_data)
