@@ -438,7 +438,7 @@ class aides_jeunes_reform_dynamic(reforms.Reform):
         return benefit
 
     def _extract_paths(self, folder: str) -> 'list[str]':
-        def _isYAMLfile(path: str):
+        def _isYAMLfile(path: Path):
             return str(path).endswith('.yml') or str(path).endswith('.yaml')
 
         files: 'list[str]' = [
