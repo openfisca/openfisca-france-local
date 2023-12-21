@@ -237,7 +237,7 @@ def is_situation_handicap(individu: Population, period: Period) -> np.ndarray:
     return individu('handicap', period)
 
 
-condition_table = {
+condition_table: dict = {
     'age': is_age_eligible,
     'regions': is_region_eligible,
     'departements': is_department_eligible,
@@ -254,7 +254,7 @@ condition_table = {
     }
 
 
-profil_table = {
+profil_table: dict = {
     'enseignement_superieur': is_enseignement_superieur,
     'chomeur': is_chomeur,
     'apprenti': is_apprenti,
@@ -271,7 +271,7 @@ profil_table = {
     }
 
 
-type_table = {
+type_table: dict = {
     'float': float,
     'bool': bool,
     }
