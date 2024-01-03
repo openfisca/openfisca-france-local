@@ -43,6 +43,31 @@ jobs:
         with:
           path: dist
           key: release-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-${{ matrix.openfisca-dependencies }}
+  test-python:
+    runs-on: ubuntu-20.04
+    strategy:
+      fail-fast: true
+      matrix:
+        openfisca-dependencies: [minimal, maximal]
+    needs: [ build ]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9.9
+      - name: Cache build
+        id: restore-build
+        uses: actions/cache@v3
+        with:
+          path: ${{ env.pythonLocation }}
+          key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-${{ matrix.openfisca-dependencies }}
+      - run: |
+          shopt -s globstar
+          openfisca test tests/**/*.py
+        if: matrix.openfisca-dependencies != 'minimal'
+
   test-yaml:
     runs-on: ubuntu-20.04
     strategy:
