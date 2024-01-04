@@ -49,6 +49,9 @@ jobs:
       matrix:
         openfisca-dependencies: [maximal]
     needs: [ build ]
+    permissions:
+            # IMPORTANT: this permission is mandatory for trusted publishing
+            id-token: write
     steps:
       - uses: actions/checkout@v3
         with:
@@ -71,5 +74,8 @@ jobs:
           key: release-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-${{ matrix.openfisca-dependencies }}
       - name: Upload a Python package to PyPi
         uses: pypa/gh-action-pypi-publish@release/v1
+        # With statement only to specify testPy destination, Pypi is default
+        with:
+          repository-url: https://test.pypi.org/legacy/
       - name: Publish a git tag
         run: "${GITHUB_WORKSPACE}/.github/publish-git-tag.sh"
