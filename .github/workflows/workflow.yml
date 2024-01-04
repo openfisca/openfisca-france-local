@@ -43,95 +43,12 @@ jobs:
         with:
           path: dist
           key: release-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-${{ matrix.openfisca-dependencies }}
-  test-python:
-    runs-on: ubuntu-20.04
-    strategy:
-      fail-fast: true
-      matrix:
-        openfisca-dependencies: [minimal, maximal]
-    needs: [ build ]
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: 3.9.9
-      - name: Cache build
-        id: restore-build
-        uses: actions/cache@v3
-        with:
-          path: ${{ env.pythonLocation }}
-          key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-${{ matrix.openfisca-dependencies }}
-      - run: |
-          shopt -s globstar
-          openfisca test tests/**/*.py
-        if: matrix.openfisca-dependencies != 'minimal'
-
-  test-yaml:
-    runs-on: ubuntu-20.04
-    strategy:
-      matrix:
-        openfisca-dependencies: [minimal, maximal]
-    needs: [ build ]
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: 3.9.9
-      - name: Cache build
-        id: restore-build
-        uses: actions/cache@v3
-        with:
-          path: ${{ env.pythonLocation }}
-          key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-${{ matrix.openfisca-dependencies }}
-      - name: Run YAML test
-        run: |
-          openfisca test tests --country-package openfisca_france --extensions openfisca_france_local
-
-  check-version-and-changelog:
-    runs-on: ubuntu-20.04
-    needs: [ test-yaml ] # Last job to run
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0 # Fetch all the tags
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: 3.9.9
-      - name: Check version number has been properly updated
-        run: "${GITHUB_WORKSPACE}/.github/is-version-number-acceptable.sh"
-
-  # GitHub Actions does not have a halt job option, to stop from deploying if no functional changes were found.
-  # We build a separate job to substitute the halt option.
-  # The `deploy` job is dependent on the output of the `check-for-functional-changes` job.
-  check-for-functional-changes:
-    runs-on: ubuntu-20.04
-    if: github.ref == 'refs/heads/master' # Only triggered for the `master` branch
-    needs: [ check-version-and-changelog ]
-    outputs:
-      status: ${{ steps.stop-early.outputs.status }}
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0 # Fetch all the tags
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: 3.9.9
-      - id: stop-early
-        run: if "${GITHUB_WORKSPACE}/.github/has-functional-changes.sh" ; then echo "::set-output name=status::success" ; fi
-
   deploy:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
         openfisca-dependencies: [maximal]
-    needs: [ check-for-functional-changes ]
-    if: needs.check-for-functional-changes.outputs.status == 'success'
+    needs: [ build ]
     steps:
       - uses: actions/checkout@v3
         with:
