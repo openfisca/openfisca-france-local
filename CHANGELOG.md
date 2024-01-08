@@ -1,4 +1,13 @@
 # Changelog
+
+## [6.11.5] - 2024-01-08
+
+_Pour les changements détaillés et les discussions associées, référencez la pull request [#202](https://github.com/openfisca/openfisca-france-local/pull/202)_
+
+### Added
+
+- Modifie l'authentification à Pypi pour se connecter via un token suite à l'obligation d'utiliser la double authentification (2FA)
+
 ## [6.11.4] - 2024-01-03
 
 _Pour les changements détaillés et les discussions associées, référencez la pull request [#201](https://github.com/openfisca/openfisca-france-local/pull/201)_
