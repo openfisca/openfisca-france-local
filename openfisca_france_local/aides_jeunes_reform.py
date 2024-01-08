@@ -61,10 +61,10 @@ def is_department_eligible(individu: Population, period: Period, parameters: Par
     depcom = individu.menage('depcom', period)
     eligible_departments = parameters.departements
 
-    eligibilities = [
+    eligibilities = np.array([
         startswith(depcom, code.encode('UTF-8'))
         for code in eligible_departments
-        ]
+        ])
 
     return sum(eligibilities) > 0
 
