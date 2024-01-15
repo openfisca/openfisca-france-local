@@ -2,7 +2,7 @@ from setuptools import setup, find_namespace_packages
 
 
 setup(
-    name='OpenFisca-France-Local-test-trusted-publisher',
+    name='OpenFisca-France-Local',
     version='6.11.4',
     author='OpenFisca Team',
     author_email='contact@openfisca.fr',
