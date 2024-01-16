@@ -1,0 +1,109 @@
+- name: Éligibilité à l'aide-bourse-famille-nombreuse - famille avec 3 enfants et un enfant de moins d'un an
+  period: 2021-11
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2, enfant3]
+    individus:
+      parent1:
+        age: 52
+      parent2:
+        age: 50
+      enfant1:
+        age: 15
+      enfant2:
+        age: 10
+      enfant3:
+        date_naissance: 2021-04-01
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1, enfant2, enfant3]
+      antony_eligibilite_residence: true
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+      personnes_a_charge: [enfant1, enfant2, enfant3]
+  output:
+    antony_bourse_famille_nombreuse: true
+
+- name: Non éligibilité à l'aide-bourse-famille-nombreuse - famille avec 3 enfants et aucun enfant de moins d'un an
+  period: 2021-11
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2, enfant3]
+    individus:
+      parent1:
+        age: 52
+      parent2:
+        age: 50
+      enfant1:
+        age: 15
+      enfant2:
+        age: 10
+      enfant3:
+        age: 2
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1, enfant2, enfant3]
+      antony_eligibilite_residence: true
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+      personnes_a_charge: [enfant1, enfant2, enfant3]
+  output:
+    antony_bourse_famille_nombreuse: false
+
+- name: Non éligibilité à l'aide-bourse-famille-nombreuse - famille avec 2 enfants et un enfant de moins d'un an
+  period: 2021-11
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2]
+    individus:
+      parent1:
+        age: 52
+      parent2:
+        age: 50
+      enfant1:
+        age: 15
+      enfant2:
+        date_naissance: 2021-04-01
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1, enfant2]
+      antony_eligibilite_residence: true
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+      personnes_a_charge: [enfant1, enfant2]
+  output:
+    antony_bourse_famille_nombreuse: false
+
+- name: Non éligibilité à l'aide-bourse-famille-nombreuse - famille non résident à Antony avec 3 enfant et un enfant de moins d'un an
+  period: 2021-11
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2, enfant3]
+    individus:
+      parent1:
+        age: 52
+      parent2:
+        age: 50
+      enfant1:
+        age: 15
+      enfant2:
+        age: 10
+      enfant3:
+        date_naissance: 2021-04-01
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1, enfant2, enfant3]
+      antony_eligibilite_residence: false
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+      personnes_a_charge: [enfant1, enfant2, enfant3]
+  output:
+    antony_bourse_famille_nombreuse: false
