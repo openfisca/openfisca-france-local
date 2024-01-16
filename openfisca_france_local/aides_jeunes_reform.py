@@ -36,7 +36,7 @@ operations = {
     }
 
 
-def compute_operator_condition(eligible_values: ParameterNodeAtInstant, individus_values: np.array) -> np.array:
+def compute_operator_condition(eligible_values: ParameterNodeAtInstant, individus_values: np.ndarray) -> np.ndarray:
     constraints_values = [
         (operations[constraint], eligible_values[constraint])
         for constraint in eligible_values
@@ -50,26 +50,26 @@ def compute_operator_condition(eligible_values: ParameterNodeAtInstant, individu
     return sum(eligibilities) >= len(constraints_values)
 
 
-def is_age_eligible(individu: Population, period: Period, parameters: ParameterNodeAtInstant) -> np.array:
+def is_age_eligible(individu: Population, period: Period, parameters: ParameterNodeAtInstant) -> np.ndarray:
     individus_age = individu('age', period)
     eligible_ages = parameters.age
 
     return compute_operator_condition(eligible_ages, individus_age)
 
 
-def is_department_eligible(individu: Population, period: Period, parameters: ParameterNodeAtInstant):
+def is_department_eligible(individu: Population, period: Period, parameters: ParameterNodeAtInstant) -> np.ndarray:
     depcom = individu.menage('depcom', period)
     eligible_departments = parameters.departements
 
-    eligibilities = [
+    eligibilities = np.array([
         startswith(depcom, code.encode('UTF-8'))
         for code in eligible_departments
-        ]
+        ])
 
     return sum(eligibilities) > 0
 
 
-def is_region_eligible(individu: Population, period: Period, parameters: ParameterNodeAtInstant):
+def is_region_eligible(individu: Population, period: Period, parameters: ParameterNodeAtInstant) -> np.ndarray:
     region = individu.menage('region', period)
     eligible_regions = parameters.regions
 
@@ -81,7 +81,7 @@ def is_region_eligible(individu: Population, period: Period, parameters: Paramet
     return sum(eligibilities) > 0
 
 
-def is_regime_securite_sociale_eligible(individu: Population, period: Period, parameters: ParameterNodeAtInstant):
+def is_regime_securite_sociale_eligible(individu: Population, period: Period, parameters: ParameterNodeAtInstant) -> np.ndarray:
     individus_regime_secu = individu('regime_securite_sociale', period)
 
     if "excludes" in parameters.regime_securite_sociale:
@@ -100,7 +100,7 @@ def is_regime_securite_sociale_eligible(individu: Population, period: Period, pa
     return sum(eligibilities) > 0
 
 
-def is_quotient_familial_eligible(individu: Population, period: Period, parameters: ParameterNodeAtInstant) -> np.array:
+def is_quotient_familial_eligible(individu: Population, period: Period, parameters: ParameterNodeAtInstant) -> np.ndarray:
 
     if 'month' in parameters.quotient_familial:
         condition_QF = parameters.quotient_familial.month
@@ -126,20 +126,20 @@ def is_quotient_familial_eligible(individu: Population, period: Period, paramete
     return sum(eligibilities) > 0
 
 
-def is_formation_sanitaire_social_eligible(individu: Population, period: Period, _) -> np.array:
+def is_formation_sanitaire_social_eligible(individu: Population, period: Period, _) -> np.ndarray:
     id_formation_sanitaire_social = GroupeSpecialitesFormation.groupe_330
     id_formation_groupe = individu('groupe_specialites_formation', period)
 
     return id_formation_groupe == id_formation_sanitaire_social
 
 
-def is_beneficiaire_rsa_eligible(individu: Population, period: Period, _ = None) -> np.array:
+def is_beneficiaire_rsa_eligible(individu: Population, period: Period, _ = None) -> np.ndarray:
     rsa = individu.famille('rsa', period)
 
     return rsa > 0
 
 
-def is_annee_etude_eligible(individu: Population, period: Period, parameters: ParameterNodeAtInstant) -> np.array:
+def is_annee_etude_eligible(individu: Population, period: Period, parameters: ParameterNodeAtInstant) -> np.ndarray:
     current_year = individu('annee_etude', period)
 
     annee_etudes_eligible = parameters.annee_etude
@@ -152,7 +152,7 @@ def is_annee_etude_eligible(individu: Population, period: Period, parameters: Pa
     return sum(eligibilities) > 0
 
 
-def has_mention_baccalaureat(individu: Population, period: Period, parameters: ParameterNodeAtInstant) -> np.array:
+def has_mention_baccalaureat(individu: Population, period: Period, parameters: ParameterNodeAtInstant) -> np.ndarray:
     has_mention = individu('mention_baccalaureat', period)
     eligible_mentions = parameters.mention_baccalaureat
 
@@ -164,11 +164,11 @@ def has_mention_baccalaureat(individu: Population, period: Period, parameters: P
     return sum(eligibilities) > 0
 
 
-def is_boursier(individu: Population, period: Period, _) -> np.array:
+def is_boursier(individu: Population, period: Period, _) -> np.ndarray:
     return individu('boursier', period)
 
 
-def is_commune_eligible(individu: Population, period: Period, parameters: ParameterNodeAtInstant) -> np.array:
+def is_commune_eligible(individu: Population, period: Period, parameters: ParameterNodeAtInstant) -> np.ndarray:
     depcom = individu.menage('depcom', period)
     eligible_depcoms = parameters.communes
 
@@ -178,7 +178,7 @@ def is_commune_eligible(individu: Population, period: Period, parameters: Parame
         ]) > 0
 
 
-def is_epci_eligible(individu: Population, period: Period, parameters: ParameterNodeAtInstant) -> np.array:
+def is_epci_eligible(individu: Population, period: Period, parameters: ParameterNodeAtInstant) -> np.ndarray:
     eligible_epcis: list[str] = parameters.epcis
 
     eligibilities = [
@@ -189,55 +189,55 @@ def is_epci_eligible(individu: Population, period: Period, parameters: Parameter
     return sum(eligibilities) > 0
 
 
-def is_taux_incapacite_eligible(individu: Population, period: Period, parameters: ParameterNodeAtInstant) -> np.array:
+def is_taux_incapacite_eligible(individu: Population, period: Period, parameters: ParameterNodeAtInstant) -> np.ndarray:
     individus_taux_incapacite = individu('taux_incapacite', period)
     eligible_taux_incapacites = parameters.taux_incapacite
 
     return compute_operator_condition(eligible_taux_incapacites, individus_taux_incapacite)
 
 
-def is_chomeur(individu: Population, period: Period) -> np.array:
+def is_chomeur(individu: Population, period: Period) -> np.ndarray:
     return individu('activite', period) == TypesActivite.chomeur
 
 
-def is_stagiaire(individu: Population, period: Period) -> np.array:
+def is_stagiaire(individu: Population, period: Period) -> np.ndarray:
     return individu('stagiaire', period)
 
 
-def is_apprenti(individu: Population, period: Period) -> np.array:
+def is_apprenti(individu: Population, period: Period) -> np.ndarray:
     return individu('apprenti', period)
 
 
-def is_enseignement_superieur(individu: Population, period: Period) -> np.array:
+def is_enseignement_superieur(individu: Population, period: Period) -> np.ndarray:
     return individu(
         'scolarite', period) == TypesScolarite.enseignement_superieur
 
 
-def is_lyceen(individu: Population, period: Period) -> np.array:
+def is_lyceen(individu: Population, period: Period) -> np.ndarray:
     return individu('scolarite', period) == TypesScolarite.lycee
 
 
-def is_etudiant(individu: Population, period: Period) -> np.array:
+def is_etudiant(individu: Population, period: Period) -> np.ndarray:
     return individu('etudiant', period)
 
 
-def is_professionnalisation(individu: Population, period: Period) -> np.array:
+def is_professionnalisation(individu: Population, period: Period) -> np.ndarray:
     return individu('professionnalisation', period)
 
 
-def is_actif(individu: Population, period: Period) -> np.array:
+def is_actif(individu: Population, period: Period) -> np.ndarray:
     return individu('activite', period) == TypesActivite.actif
 
 
-def is_inactif(individu: Population, period: Period) -> np.array:
+def is_inactif(individu: Population, period: Period) -> np.ndarray:
     return individu('activite', period) == TypesActivite.inactif
 
 
-def is_situation_handicap(individu: Population, period: Period) -> np.array:
+def is_situation_handicap(individu: Population, period: Period) -> np.ndarray:
     return individu('handicap', period)
 
 
-condition_table = {
+condition_table: dict = {
     'age': is_age_eligible,
     'regions': is_region_eligible,
     'departements': is_department_eligible,
@@ -254,7 +254,7 @@ condition_table = {
     }
 
 
-profil_table = {
+profil_table: dict = {
     'enseignement_superieur': is_enseignement_superieur,
     'chomeur': is_chomeur,
     'apprenti': is_apprenti,
@@ -271,7 +271,7 @@ profil_table = {
     }
 
 
-type_table = {
+type_table: dict = {
     'float': float,
     'bool': bool,
     }
@@ -306,7 +306,7 @@ def build_profil_evaluator(profil: dict) -> ProfileEvaluator:
     return ProfileEvaluator(profil['type'], predicate, build_condition_evaluator_list(conditions))
 
 
-def eval_conditions(test_conditions: 'list[ConditionEvaluator]', individu: Population, period: Period, parameters: ParameterNodeAtInstant) -> np.array:
+def eval_conditions(test_conditions: 'list[ConditionEvaluator]', individu: Population, period: Period, parameters: ParameterNodeAtInstant) -> np.ndarray:
     def get_conditions(parameters: Union[ParameterAtInstant, ParameterNodeAtInstant]):
         if hasattr(parameters, "_children") and 'conditions' in parameters._children:
             conditions = parameters.conditions
@@ -344,10 +344,10 @@ def generate_variable(benefit: dict):
         for profil in benefit.get('profils', [])
         ]
 
-    def compute_amount(eligibilities: np.array):
+    def compute_amount(eligibilities: np.ndarray):
         return amount * eligibilities
 
-    def compute_bool(eligibilities: np.array):
+    def compute_bool(eligibilities: np.ndarray):
         return eligibilities
 
     compute_value = compute_amount if amount else compute_bool
@@ -438,7 +438,7 @@ class aides_jeunes_reform_dynamic(reforms.Reform):
         return benefit
 
     def _extract_paths(self, folder: str) -> 'list[str]':
-        def _isYAMLfile(path: str):
+        def _isYAMLfile(path: Path):
             return str(path).endswith('.yml') or str(path).endswith('.yaml')
 
         files: 'list[str]' = [

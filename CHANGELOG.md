@@ -1,4 +1,12 @@
 # Changelog
+## [6.11.5] - 2024-01-16
+
+_Pour les changements détaillés et les discussions associées, référencez la pull request [#200](https://github.com/openfisca/openfisca-france-local/pull/200)_
+
+### Fixed
+
+- Corrige et affine les `type hints` de la `aides_jeunes_reform_dynamic`
+
 ## [6.11.4] - 2024-01-03
 
 _Pour les changements détaillés et les discussions associées, référencez la pull request [#201](https://github.com/openfisca/openfisca-france-local/pull/201)_
