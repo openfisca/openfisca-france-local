@@ -1,4 +1,12 @@
 # Changelog
+## [6.11.6] - 2024-01-18
+
+_Pour les changements détaillés et les discussions associées, référencez la pull request [#198](https://github.com/openfisca/openfisca-france-local/pull/198)_
+
+### Added
+
+- Ajoute un test qui assure que le fichier 'epcicom2020.xlsx' sera trouvé lors d'utilisation externe
+
 ## [6.11.5] - 2024-01-16
 
 _Pour les changements détaillés et les discussions associées, référencez la pull request [#200](https://github.com/openfisca/openfisca-france-local/pull/200)_
