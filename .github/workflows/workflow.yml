@@ -133,9 +133,7 @@ jobs:
     needs: [ check-for-functional-changes ]
     if: needs.check-for-functional-changes.outputs.status == 'success'
     permissions:
-            #id-token is mandatory for trusted publishing
             id-token: write
-            #contents is mandatory for git tag publishing
             contents: write
     steps:
       - uses: actions/checkout@v3
