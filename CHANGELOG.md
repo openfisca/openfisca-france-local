@@ -1,6 +1,6 @@
 # Changelog
 
-## [6.12.0] - 2024-02-22
+## [6.11.7] - 2024-02-22
 
 _Pour les changements détaillés et les discussions associées, référencez la pull request [#206](https://github.com/openfisca/openfisca-france-local/pull/206)
 
