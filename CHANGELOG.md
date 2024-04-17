@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.12.1] - 2024-04-18
+
+_Pour les changements détaillés et les discussions associées, référencez la pull request [#210](https://github.com/openfisca/openfisca-france-local/pull/210)_
+
+### Changed
+
+- Met à jour la dépendance `OpenFisca-France` pour supporter les versions jusqu'à `< 165`.
+
 ## [6.12.0] - 2024-04-17
 
 _Pour les changements détaillés et les discussions associées, référencez la pull request [#209](https://github.com/openfisca/openfisca-france-local/pull/209)_
