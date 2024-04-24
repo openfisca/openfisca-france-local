@@ -1,0 +1,52 @@
+codes_communes_non_eligibles:
+  2024-01-01:
+    value:
+      - '95018'  # Argenteuil
+      - '91200'  # Athis-Mons
+      - '91260'  # Juvisy-sur-Orge
+      - '91420'  # Morangis
+      - '91479'  # Paray-Vieille-Poste
+      - '91600'  # Savigny-sur-Orge
+      - '91687'  # Viry-Châtillon
+
+departements_eligibles:
+  2024-01-01:
+    value:
+      - '77' # Seine-et-Marne
+      - '78' # Yvelines
+      - '91' # Essonne
+      - '95' # Val-d’Oise
+
+montant_en_fonction_du_quotient_familial:
+  metadata:
+    type: single_amount
+  brackets:
+    - threshold:
+        2024-01-01:
+          value: 0
+      amount:
+        2024-01-01:
+          value: 9000
+    - threshold:
+        2024-01-01:
+          value: 6358
+      amount:
+        2024-01-01:
+          value: 7500
+    - threshold:
+        2024-01-01:
+          value: 14090
+      amount:
+        2024-01-01:
+          value: 4500
+    - threshold:
+        2024-01-01:
+          value: 30508
+      amount:
+        2024-01-01:
+          value: 2250
+
+metadata:
+  reference:
+    2024-01-01:
+      href: https://www.iledefrance.fr/aides-et-appels-a-projets/acquisition-de-vehicules-propres-par-les-particuliers

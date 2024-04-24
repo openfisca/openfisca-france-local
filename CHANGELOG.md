@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.12.0] - 2024-04-17
+
+_Pour les changements détaillés et les discussions associées, référencez la pull request [#209](https://github.com/openfisca/openfisca-france-local/pull/209)_
+
+### Added
+
+- Ajoute la variable `ile_de_france_aide_achat_voiture_electrique`
+
 ## [6.11.9] - 2024-03-12
 
 _Pour les changements détaillés et les discussions associées, référencez la pull request [#208](https://github.com/openfisca/openfisca-france-local/pull/208)_
