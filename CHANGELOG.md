@@ -6,7 +6,7 @@ _Pour les changements détaillés et les discussions associées, référencez la
 
 ### Changed
 
-- Met à jour la dépendance `OpenFisca-France` pour supporter les versions jusqu'à `< 167`.
+- Met à jour la dépendance `OpenFisca-France` pour supporter les versions jusqu'à `< 168`.
 
 ## [6.12.1] - 2024-04-18
 
