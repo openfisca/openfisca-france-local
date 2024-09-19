@@ -1,9 +1,23 @@
-- period: 2020-07
+- period: 2020-01
   input:
-    age: 18
-    loire_atlantique_eligibilite_residence: true
-    loire_atlantique_quotient_familial:
-      2018: 400
+    age: [ 16, 14, 25, 16 ]
+    depcom: [ 44100, 44100, 44200, 13140 ]
+    rfr:
+      2018: [ 1000, 5000000, 12000, 12000 ]
+    nbptr:
+      2018: [ 1, 1, 1, 1 ]
   output:
-    loire_atlantique_aide_mobilite_permis_am: 150
-    loire_atlantique_aide_mobilite_permis_b: 750
+    loire_atlantique_aide_mobilite_permis_am: [150, 150, 0, 0]
+    loire_atlantique_aide_mobilite_permis_b: [750, 750, 0, 0]
+
+- period: 2024-01
+  input:
+    age: [ 16, 14, 25, 16 ]
+    depcom: [ 44100, 44100, 44200, 13140 ]
+    rfr:
+      2022: [ 1000, 5000000, 12000, 12000 ]
+    nbptr:
+      2022: [ 4, 1, 1, 1 ]
+  output:
+    loire_atlantique_aide_mobilite_permis_am: [100, 100, 0, 0]
+    loire_atlantique_aide_mobilite_permis_b:  [500, 500, 0, 0]
