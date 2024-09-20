@@ -42,15 +42,14 @@ montant_en_fonction_du_quotient_familial_permis_am:
           value: 100
     - threshold:
         2018-01-01:
-          value: 800
+          value: 801
         2022-01-01:
-          value: 600
+          value: 601
       amount:
         2018-01-01:
-          value: 150
+          value: 0
         2022-01-01:
-          value: 100
-
+          value: 0
 montant_en_fonction_du_quotient_familial_permis_b:
   description: Montant obtenu pour l'aide au permis B de conduire.
   metadata:
@@ -58,11 +57,21 @@ montant_en_fonction_du_quotient_familial_permis_b:
   brackets:
     - threshold:
         2018-01-01:
-          value: 800
+          value: 0
         2022-01-01:
-          value: 600
+          value: 0
       amount:
         2018-01-01:
           value: 750
         2022-01-01:
           value: 500
+    - threshold:
+        2018-01-01:
+          value: 801
+        2022-01-01:
+          value: 601
+      amount:
+        2018-01-01:
+          value: 0
+        2022-01-01:
+          value: 0
