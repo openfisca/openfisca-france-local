@@ -7,8 +7,8 @@
     nbptr:
       2018: [ 1, 1, 1, 1 ]
   output:
-    loire_atlantique_aide_mobilite_permis_am: [150, 150, 0, 0]
-    loire_atlantique_aide_mobilite_permis_b: [750, 750, 0, 0]
+    loire_atlantique_aide_mobilite_permis_am: [150, 0, 0, 0]
+    loire_atlantique_aide_mobilite_permis_b: [750, 0, 0, 0]
 
 - period: 2024-01
   input:
@@ -19,5 +19,5 @@
     nbptr:
       2022: [ 4, 1, 1, 1 ]
   output:
-    loire_atlantique_aide_mobilite_permis_am: [100, 100, 0, 0]
-    loire_atlantique_aide_mobilite_permis_b:  [500, 500, 0, 0]
+    loire_atlantique_aide_mobilite_permis_am: [100, 0, 0, 0]
+    loire_atlantique_aide_mobilite_permis_b:  [500, 0, 0, 0]
