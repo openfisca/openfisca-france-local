@@ -1,0 +1,77 @@
+age_minimal:
+  description: Âge minimal à partir duquel l'aide départementale à la mobilité peut être accordée
+  values:
+    2018-01-01:
+      metadata:
+        href: https://www.loire-atlantique.fr/upload/docs/binary/2018-12/3-reglement_permis_2019_v24-08-2018.pdf
+      value: 14
+    2024-01-01:
+      metadata:
+        title: Règlement relatif à l’aide départementale à la mobilité
+        href: https://www.loire-atlantique.fr/upload/docs/application/pdf/2024-04/reglement_aide_a_la_mobilite_2024.pdf
+      value: 14
+
+age_maximal:
+  description: Âge maximal à partir duquel l'aide départementale à la mobilité peut être accordée
+  values:
+    2018-01-01:
+      metadata:
+        title: Règlement relatif à l’aide départementale à la mobilité
+        href: https://www.loire-atlantique.fr/upload/docs/binary/2018-12/3-reglement_permis_2019_v24-08-2018.pdf
+      value: 24
+    2024-01-01:
+      metadata:
+        title: Règlement relatif à l’aide départementale à la mobilité
+        href: https://www.loire-atlantique.fr/upload/docs/application/pdf/2024-04/reglement_aide_a_la_mobilite_2024.pdf
+      value: 24
+
+montant_en_fonction_du_quotient_familial_permis_am:
+  description: Montant obtenu pour l'aide au permis moto de conduire.
+  metadata:
+    type: single_amount
+  brackets:
+    - threshold:
+        2018-01-01:
+          value: 0
+        2022-01-01:
+          value: 0
+      amount:
+        2018-01-01:
+          value: 150
+        2022-01-01:
+          value: 100
+    - threshold:
+        2018-01-01:
+          value: 801
+        2022-01-01:
+          value: 601
+      amount:
+        2018-01-01:
+          value: 0
+        2022-01-01:
+          value: 0
+montant_en_fonction_du_quotient_familial_permis_b:
+  description: Montant obtenu pour l'aide au permis B de conduire.
+  metadata:
+    type: single_amount
+  brackets:
+    - threshold:
+        2018-01-01:
+          value: 0
+        2022-01-01:
+          value: 0
+      amount:
+        2018-01-01:
+          value: 750
+        2022-01-01:
+          value: 500
+    - threshold:
+        2018-01-01:
+          value: 801
+        2022-01-01:
+          value: 601
+      amount:
+        2018-01-01:
+          value: 0
+        2022-01-01:
+          value: 0

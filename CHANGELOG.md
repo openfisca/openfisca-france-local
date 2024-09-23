@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.12.4] - 2024-07-30
+
+_Pour les changements détaillés et les discussions associées, référencez la pull request [#213](https://github.com/openfisca/openfisca-france-local/pull/213)_
+
+### Changed
+
+- Mise à jour de l'aide `openfisca_france_local/departements/loire_atlantique/aide_mobilite` en ajoutant des paramètres et en intégrant les valeurs 2024
+
 ## [6.12.3] - 2024-07-30
 
 _Pour les changements détaillés et les discussions associées, référencez la pull request [#212](https://github.com/openfisca/openfisca-france-local/pull/212)_
