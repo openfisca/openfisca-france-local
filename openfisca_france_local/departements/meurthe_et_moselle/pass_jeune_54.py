@@ -11,7 +11,6 @@ class eligibilite_age_pass_jeune_54(Variable):
         age = individu('age', period)
         age_minimum = parameters(period).departements.meurthe_et_moselle.pass_jeune_54.age.minimum_inclusif
         age_maximum = parameters(period).departements.meurthe_et_moselle.pass_jeune_54.age.maximum_inclusif
-        print('min et max ************* ', age_minimum, age_maximum)
         return (age_minimum <= age) * (age <= age_maximum)
 
 class quotient_familial_pass_jeune_54(Variable):
