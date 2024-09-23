@@ -30,7 +30,6 @@ class pass_jeune_54(Variable):
     definition_period = MONTH
     label = "Montant pour le Pass Jeune 54 du département Meurthe-et-Moselle"
     reference = [
-        "Règlement relatif au Pass Jeune 54 du département Meurthe-et-Moselle",
         "https://meurthe-et-moselle.fr/actions/education-populaire-jeunesse-sports/sport/pass-jeunes-54"
         ]
 
