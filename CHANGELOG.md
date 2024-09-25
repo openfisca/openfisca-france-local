@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.13.0] - 2024-09-24
+
+_Pour les changements détaillés et les discussions associées, référencez la pull request [#215](https://github.com/openfisca/openfisca-france-local/pull/215)_
+
+### Added
+
+- Ajoute la variable `pass_jeune_54` (aide du département `meurthe_et_moselle`)
+
 ## [6.12.4] - 2024-07-30
 
 _Pour les changements détaillés et les discussions associées, référencez la pull request [#213](https://github.com/openfisca/openfisca-france-local/pull/213)_
