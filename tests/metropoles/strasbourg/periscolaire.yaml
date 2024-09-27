@@ -1,0 +1,5 @@
+- period: 2021-10
+  input:
+    strasbourg_metropole_quotient_familial: [100, 1000, 3000]
+  output:
+    strasbourg_metropole_tarification_mensuelle_acceuil_periscolaire_loisir_matin_soir: [11.95, 40.60, 54.90]
