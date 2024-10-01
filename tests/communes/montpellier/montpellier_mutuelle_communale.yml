@@ -1,0 +1,7 @@
+- name: "Égibilité à la mutuelle communale de Montpellier"
+  period: 2024-10
+  input:
+    depcom: ["34172", "34172", "68400", "68400"]
+    css_cmu_acs_eligibilite: [False, True, True, False]
+  output:
+    montpellier_mutuelle_communale: [True, False, False, False]
