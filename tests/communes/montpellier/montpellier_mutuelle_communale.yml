@@ -2,6 +2,6 @@
   period: 2024-10
   input:
     depcom: ["34172", "34172", "68400", "68400"]
-    css_cmu_acs_eligibilite: [False, True, True, False]
+    css_participation_forfaitaire_montant: [0, 20, 25, 30]
   output:
     montpellier_mutuelle_communale: [True, False, False, False]

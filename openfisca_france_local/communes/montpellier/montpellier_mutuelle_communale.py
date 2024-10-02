@@ -11,5 +11,6 @@ class montpellier_mutuelle_communale(Variable):
 
     def formula(famille, period):
         eligibilite_residentielle = famille.demandeur.menage('montpellier_eligibilite_residence', period)
-        eligibilite_css = famille('css_cmu_acs_eligibilite', period)
+        css_participation_forfaitaire = famille('css_participation_forfaitaire_montant', period)
+        eligibilite_css = css_participation_forfaitaire > 0
         return eligibilite_residentielle & not_(eligibilite_css)
