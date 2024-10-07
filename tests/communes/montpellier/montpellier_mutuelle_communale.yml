@@ -1,0 +1,8 @@
+- name: "Égibilité à la mutuelle communale de Montpellier"
+  period: 2024-10
+  input:
+    depcom: ["34172","34172", "34172", "68400", "68400"]
+    css_participation_forfaitaire_montant: [0, 0, 20, 25, 30]
+    cmu_c: [False, True, False, False, False]
+  output:
+    montpellier_mutuelle_communale: [True, False, False, False, False]

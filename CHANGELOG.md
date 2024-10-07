@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.14.0] - 2024-10-02
+
+_Pour les changements détaillés et les discussions associées, référencez la pull request [#216](https://github.com/openfisca/openfisca-france-local/pull/216)_
+
+### Added
+
+- Ajoute la variable `montpellier_mutuelle_communale`
+
 ## [6.13.0] - 2024-09-24
 
 _Pour les changements détaillés et les discussions associées, référencez la pull request [#215](https://github.com/openfisca/openfisca-france-local/pull/215)_
