@@ -1,5 +1,5 @@
  # -*- coding: utf-8 -*-
-from openfisca_france.model.base import *  # noqa analysis:ignore
+from openfisca_france.model.base import Famille, MONTH, Variable
 
 
 class antony_noel_pour_tous(Variable):
@@ -7,6 +7,7 @@ class antony_noel_pour_tous(Variable):
     entity = Famille
     definition_period = MONTH
     label = "Éligibilité de la famille au Noël pour Tous de la ville de Antony"
+    reference = "https://www.ville-antony.fr/actualites/noel-ccas-2023"
 
     def formula(famille, period, parameters):
         age_maximum = parameters(period).communes.antony.noel_pour_tous.age_maximum

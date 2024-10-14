@@ -1,5 +1,5 @@
  # -*- coding: utf-8 -*-
-from openfisca_france.model.base import *  # noqa analysis:ignore
+from openfisca_france.model.base import Famille, MONTH, Variable
 
 
 class antony_bourse_famille_nombreuse(Variable):
@@ -7,6 +7,7 @@ class antony_bourse_famille_nombreuse(Variable):
     entity = Famille
     definition_period = MONTH
     label = "Éligibilité de la famille à la Bourse Famille Nombreuse de la ville de Antony"
+    reference = "https://www.ville-antony.fr/bourses-communales#famillesnombreuses"
 
     def formula(famille, period, parameters):
         parameters = parameters(period).communes.antony.bourse_famille_nombreuse

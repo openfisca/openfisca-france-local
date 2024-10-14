@@ -1,6 +1,5 @@
  # -*- coding: utf-8 -*-
-from openfisca_france.model.base import *  # noqa analysis:ignore
-
+from openfisca_france.model.base import Menage, MONTH, Variable
 
 class antony_eligibilite_residence(Variable):
     value_type = bool
