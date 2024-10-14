@@ -1,5 +1,5 @@
  # -*- coding: utf-8 -*-
-from openfisca_france.model.base import *  # noqa analysis:ignore
+from openfisca_france.model.base import Famille, MONTH, Variable
 
 
 class antony_bourse_conservatoire(Variable):
@@ -7,6 +7,7 @@ class antony_bourse_conservatoire(Variable):
     entity = Famille
     definition_period = MONTH
     label = "Éligibilité de la famille à la Bourse du Conservatoire de la ville de Antony"
+    reference = "https://www.ville-antony.fr/bourses-communales#conservatoire"
 
     def formula(famille, period, parameters):
         age_maximum = parameters(period).communes.antony.bourse_conservatoire.age_maximum

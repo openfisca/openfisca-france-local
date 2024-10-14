@@ -1,12 +1,12 @@
  # -*- coding: utf-8 -*-
-from openfisca_france.model.base import *  # noqa analysis:ignore
-
+from openfisca_france.model.base import Famille, Menage, MONTH, Variable, select
 
 class antony_aide_depart_sejour_adapte(Variable):
     value_type = float
     entity = Famille
     definition_period = MONTH
     label = "Montant total de l'Aide au départ en séjour adapté de la ville de Antony"
+    reference = "https://www.ville-antony.fr/aide-aux-departs-en-sejours-vacances"
 
     def formula(famille, period, parameters):
         residence_antony = famille.demandeur.menage('antony_eligibilite_residence', period)
