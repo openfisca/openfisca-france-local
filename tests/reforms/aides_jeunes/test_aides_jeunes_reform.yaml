@@ -66,9 +66,9 @@
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
     rfr:
-      2022: ["9600", "9612"]
+      2020: ["9600", "9612"]
     nbptr:
-      2022: ["1", "1"]
+      2020: ["1", "1"]
   output:
     test_condition_quotient_familial: [200, 0]
     test_condition_quotient_familial_year: [200, 0]
@@ -237,3 +237,65 @@
     taux_incapacite: [0.5, 0.49, 0.8]
   output:
     test_condition_taux_incapacite: [1, 0,1]
+
+- period: 2022-11
+  name: Profil beneficiaire RSA
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  output:
+    test_profil_beneficiaire_rsa: 0
+
+- period: 2022-11
+  name: Test fichier d'aide profils
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  output:
+    test_pas_de_profile: 0
+
+- period: 2022-11
+  name: Condition attached_to_institution communes
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    depcom: [55029, 38000]
+  output:
+    test_condition_attached_to_institution_communes: [16.8, 0]
+
+- period: 2022-11
+  name: Condition attached_to_institution départements
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    depcom: ['06100']
+  output:
+    test_condition_attached_to_institution_departements: [17.8]
+
+- period: 2022-11
+  name: Condition attached_to_institution epcis
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  - openfisca_france_local.epci_test_factory.epci_reform
+  input:
+    depcom: [55505]
+  output:
+    test_condition_attached_to_institution_epcis: [18]
+
+- period: 2022-11
+  name: Condition attached_to_institution caf + msa
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    depcom: ['01100']
+  output:
+    test_condition_attached_to_institution_caf: [19]
+
+- period: 2022-11
+  name: Test fichier d'aide avec 2 profils de même type
+  reforms:
+  - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
+  input:
+    age: [20, 29]
+    apprenti: [True, True]
+    boursier: [False, True]
+  output:
+    test_multiple_profil_meme_type: [200, 200]

@@ -1,0 +1,9 @@
+label: Aide sans champs profils
+type: float
+periodicite: ponctuelle
+montant: 106
+conditions_generales:
+  - type: age
+    operator: <
+    value: 25
+

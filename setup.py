@@ -3,7 +3,7 @@ from setuptools import setup, find_namespace_packages
 
 setup(
     name='OpenFisca-France-Local',
-    version='5.3.2',
+    version='6.14.0',
     author='OpenFisca Team',
     author_email='contact@openfisca.fr',
     classifiers=[
@@ -17,15 +17,16 @@ setup(
         'Topic :: Scientific/Engineering :: Information Analysis',
         ],
     description='Extension OpenFisca pour nos partenariats avec les collectivités territoriales',
+    long_description_content_type='text/markdown',
     keywords='benefit france france-local microsimulation social tax',
     license='http://www.fsf.org/licensing/licenses/agpl-3.0.html',
-    url='https://github.com/openfisca/openfisca-france',
+    url='https://github.com/openfisca/openfisca-france-local',
 
     packages=find_namespace_packages(),
     include_package_data=True,
     install_requires=[
-        'OpenFisca-Core >= 40.0.1, < 41',
-        'OpenFisca-France >= 149.1.1, < 150',
+        'OpenFisca-Core >= 40.0.1, < 42',
+        'OpenFisca-France >= 153.0.1, < 169',
         'pandas >= 1.5.3, <2.0'
         ],
     extras_require={
@@ -33,7 +34,6 @@ setup(
             'nose',
             ],
         'excel-reader': [
-            'xlrd == 1.2.0',
             'openpyxl == 3.1.2',
             ]
         },

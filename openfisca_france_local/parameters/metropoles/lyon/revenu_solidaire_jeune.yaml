@@ -1,0 +1,31 @@
+age:
+  reference: 'https://aides-jeunes.grandlyon.com/#c21886'
+  minimum_inclusif:
+    values:
+      2021-06-01: 18
+  maximum_inclusif:
+    values:
+      2021-06-01: 24
+montant:
+  description: Montants du Revenu Solidaire Jeune
+  metadata:
+    type: single_amount
+  brackets:
+    - threshold:
+        2021-06-01:
+          value: 0
+      amount:
+        2021-06-01:
+          value: 420
+    - threshold:
+        2021-06-01:
+          value: 1
+      amount:
+        2021-06-01:
+          value: 315
+    - threshold:
+        2021-06-01:
+          value: 401
+      amount:
+        2021-06-01:
+          value: 0

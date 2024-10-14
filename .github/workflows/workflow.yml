@@ -43,6 +43,31 @@ jobs:
         with:
           path: dist
           key: release-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-${{ matrix.openfisca-dependencies }}
+  test-python:
+    runs-on: ubuntu-20.04
+    strategy:
+      fail-fast: true
+      matrix:
+        openfisca-dependencies: [minimal, maximal]
+    needs: [ build ]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9.9
+      - name: Cache build
+        id: restore-build
+        uses: actions/cache@v3
+        with:
+          path: ${{ env.pythonLocation }}
+          key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-${{ matrix.openfisca-dependencies }}
+      - run: |
+          shopt -s globstar
+          openfisca test tests/**/*.py
+        if: matrix.openfisca-dependencies != 'minimal'
+
   test-yaml:
     runs-on: ubuntu-20.04
     strategy:
@@ -66,7 +91,7 @@ jobs:
         run: |
           openfisca test tests --country-package openfisca_france --extensions openfisca_france_local
 
-  check-version:
+  check-version-and-changelog:
     runs-on: ubuntu-20.04
     needs: [ test-yaml ] # Last job to run
     steps:
@@ -86,7 +111,7 @@ jobs:
   check-for-functional-changes:
     runs-on: ubuntu-20.04
     if: github.ref == 'refs/heads/master' # Only triggered for the `master` branch
-    needs: [ check-version ]
+    needs: [ check-version-and-changelog ]
     outputs:
       status: ${{ steps.stop-early.outputs.status }}
     steps:
@@ -107,9 +132,9 @@ jobs:
         openfisca-dependencies: [maximal]
     needs: [ check-for-functional-changes ]
     if: needs.check-for-functional-changes.outputs.status == 'success'
-    env:
-      PYPI_USERNAME: openfisca-bot
-      PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+    permissions:
+            id-token: write
+            contents: write
     steps:
       - uses: actions/checkout@v3
         with:
@@ -131,6 +156,6 @@ jobs:
           path: dist
           key: release-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-${{ matrix.openfisca-dependencies }}
       - name: Upload a Python package to PyPi
-        run: twine upload dist/* --username $PYPI_USERNAME --password $PYPI_PASSWORD
+        uses: pypa/gh-action-pypi-publish@release/v1
       - name: Publish a git tag
         run: "${GITHUB_WORKSPACE}/.github/publish-git-tag.sh"

@@ -1,0 +1,10 @@
+label: Test condition attached_to_institutions caf
+institution: institution_caf
+prefix: l’
+conditions_generales:
+  - type: attached_to_institution
+type: float
+unit: €
+periodicite: mensuelle
+montant: 19
+floorAt: 1

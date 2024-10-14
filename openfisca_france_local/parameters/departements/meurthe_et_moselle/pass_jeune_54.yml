@@ -1,0 +1,47 @@
+age:
+  minimum_inclusif:
+    reference:
+      - https://meurthe-et-moselle.fr/actions/education-populaire-jeunesse-sports/sport/pass-jeunes-54
+    description: Éligibilité d'âge minimum pour l'aide Pass Jeunes 54 dans le département de la Meurthe-et-Moselle.
+    values:
+      2024-01-01:
+        value: 6
+  maximum_inclusif:
+    reference:
+      - https://meurthe-et-moselle.fr/actions/education-populaire-jeunesse-sports/sport/pass-jeunes-54
+    description: Éligibilité d'âge maximum pour l'aide Pass Jeunes 54 dans le département de la Meurthe-et-Moselle.
+    values:
+      2024-01-01:
+        value: 16
+
+montant_en_fonction_du_quotient_familial:
+  reference:
+    - https://meurthe-et-moselle.fr/actions/education-populaire-jeunesse-sports/sport/pass-jeunes-54
+  description: Montant obtenu pour l'aide Pass Jeunes 54 en région Auvergne-Rhône-Alpes.
+  metadata:
+    type: single_amount
+  brackets:
+    - threshold:
+        2024-01-01:
+          value: 0
+      amount:
+        2024-01-01:
+          value: 100
+    - threshold:
+        2024-01-01:
+          value: 451
+      amount:
+        2024-01-01:
+          value: 70
+    - threshold:
+        2024-01-01:
+          value: 551
+      amount:
+        2024-01-01:
+          value: 50
+    - threshold:
+        2024-01-01:
+          value: 651
+      amount:
+        2024-01-01:
+          value: 0

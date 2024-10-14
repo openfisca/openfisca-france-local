@@ -1,0 +1,66 @@
+age:
+  minimum_inclusif:
+    values:
+      2022-01-01:
+        value: 17
+  maximum_inclusif:
+    values:
+      2022-01-01:
+        value: 25
+
+montant_en_fonction_du_quotient_familial:
+  metadata:
+    type: single_amount
+  brackets:
+    - threshold:
+        2022-01-01:
+          value: 0
+      amount:
+        2022-01-01:
+          value: 1200
+    - threshold:
+        2022-01-01:
+          value: 9700
+      amount:
+        2022-01-01:
+          value: 800
+    - threshold:
+        2022-01-01:
+          value: 12001
+      amount:
+        2022-01-01:
+          value: 400
+    - threshold:
+        2022-01-01:
+          value: 15001
+      amount:
+        2022-01-01:
+          value: 0
+
+montant_en_fonction_du_quotient_familial_pour_alternants:
+  metadata:
+    type: single_amount
+  brackets:
+    - threshold:
+        2022-01-01:
+          value: 0
+      amount:
+        2022-01-01:
+          value: 700
+    - threshold:
+        2022-01-01:
+          value: 9700
+      amount:
+        2022-01-01:
+          value: 300
+    - threshold:
+        2022-01-01:
+          value: 12001
+      amount:
+        2022-01-01:
+          value: 0
+
+metadata:
+  reference:
+    2022-01-01:
+      href: https://les-aides.nouvelle-aquitaine.fr/amenagement-du-territoire/aide-au-passage-du-permis-de-conduire-b

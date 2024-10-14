@@ -1,0 +1,48 @@
+- period: 2023-08
+  name: Éligibilité d'age et de résidence et de profil
+  input:
+    age: [16, 17, 25, 26, 17, 17, 17, 17, 17, 17]
+    depcom: [19272, 19272, 19272, 19272, 38185, 19272, 19272, 19272, 19272, 19272]
+    scolarite: ['lycee','lycee','lycee','lycee','lycee', 'inconnue', 'inconnue', 'inconnue','inconnue','inconnue']
+    annee_etude: [cap_2, cap_2, cap_2, cap_2, cap_2, cap_2, cap_2, cap_2, cap_2, cap_2]
+    activite: ['inactif','inactif','inactif','inactif','inactif','actif', 'chomeur', 'inactif','inactif','inactif']
+    service_civique: [False, False, False, False, False, False, False, False, True, False]
+    alternant: [False, False, False, False, False, False, False, False, False, True]
+  output:
+    nouvelle_aquitaine_aide_permis: [0, 1200, 1200,0, 0, 0, 1200, 0, 1200, 700]
+
+- period: 2023-08
+  name: Éligibilité de classe du lycée
+  input:
+    age: [18, 18, 18, 18, 18, 18, 18]
+    depcom: [19272, 19272, 19272, 19272, 19272, 19272, 19272, ]
+    scolarite: [lycee, lycee, lycee, lycee, lycee, lycee, lycee, ]
+    annee_etude: [cap_1, cap_2, seconde, premiere, terminale, bts_1, bts_2]
+  output:
+    nouvelle_aquitaine_aide_permis: [0, 1200, 0, 0, 1200, 0, 0]
+
+- period: 2023-08
+  name: Montants
+  input:
+    age: [17, 17, 17, 17]
+    depcom: [19272, 19272, 19272, 19272]
+    service_civique: [true, true, true, true]
+    rfr:
+      2021: [9699, 12000, 12001, 15001]
+    nbptr:
+      2021: [1, 1, 1, 1]
+  output:
+    nouvelle_aquitaine_aide_permis: [1200, 800, 400, 0]
+
+- period: 2023-08
+  name: Montants pour alternants
+  input:
+    age: [17, 17, 17, 17]
+    depcom: [19272, 19272, 19272, 19272]
+    alternant: [True, True, True, True]
+    rfr:
+      2021: [9699, 9700, 12000, 12001]
+    nbptr:
+      2021: [1, 1, 1, 1]
+  output:
+    nouvelle_aquitaine_aide_permis: [700, 300, 300, 0]

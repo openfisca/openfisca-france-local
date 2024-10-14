@@ -2,7 +2,7 @@ from openfisca_france.model.base import ParameterNode
 
 
 def condition_to_parameter_data(condition: dict) -> dict:
-    def generate_age_parameter_data(condition: dict) -> dict:
+    def generate_operator_parameter_data(condition: dict) -> dict:
         parameter_operator: str = comparison_operators[condition['operator']]
         return {
             condition_type: {
@@ -59,7 +59,8 @@ def condition_to_parameter_data(condition: dict) -> dict:
             }
 
     condition_table: dict = {
-        'age': generate_age_parameter_data,
+        'age': generate_operator_parameter_data,
+        'taux_incapacite': generate_operator_parameter_data,
         'quotient_familial': generate_quotient_familial_parameter_data,
         'regime_securite_sociale': generate_regime_securite_sociale_parameter_data,
         }
@@ -104,10 +105,39 @@ def conditions_to_node_data(conditions: 'list[dict]') -> dict:
 
 def profils_to_node_data(profils: 'list[dict]'):
     def create_profils_field(data: dict, profil: dict):
-        data['profils'].update({profil['type']: {}})
+        if profil['type'] not in data['profils']:
+            data['profils'].update({profil['type']: {}})
 
     def add_profil_with_conditions(data: dict, profil: dict):
-        data['profils'][profil['type']].update(conditions_to_node_data(profil['conditions']))
+        def condition_already_exists_in_node(profil_condition, conditions_in_node_data) -> bool:
+            conditions_with_operator_fields = ['age', 'quotient_familial', 'situation_handicap']
+
+            conditions_types = profil_condition.keys()
+
+            if len(conditions_types) == 0:
+                return False
+
+            for type in conditions_types:
+                if type in conditions_in_node_data:
+                    if type in conditions_with_operator_fields:
+                        operator = list(profil_condition[type])[0]
+                        return operator in conditions_in_node_data[type]
+                    else:
+                        return True
+            return False
+
+        if 'conditions' not in data['profils'][profil['type']]:
+            data['profils'][profil['type']] = {'conditions': {}}
+
+        profil_condition = data['profils'][profil['type']]['conditions']
+        conditions_in_node_data = conditions_to_node_data(profil['conditions'])['conditions']
+
+        if condition_already_exists_in_node(profil_condition, conditions_in_node_data):
+            raise NotImplementedError(
+                'La réforme dynamique ne gère pas encore les aides avec deux profils de même type qui ont des conditions de même type pour chacun de ses profils identiques'
+                )
+
+        profil_condition.update(conditions_in_node_data)
 
     def add_boolean_profil(data: dict, profil: dict):
         date = '2020-01-01'
@@ -125,7 +155,7 @@ def profils_to_node_data(profils: 'list[dict]'):
     return data
 
 
-def generate_amount_parameter_data(montant: dict):
+def generate_amount_parameter_data(montant):
     date = '2020-01-01'
 
     return {'montant': {date: {'value': montant}}} if montant else {}
@@ -142,7 +172,7 @@ def convert_benefit_conditions_to_parameters(benefit: dict) -> ParameterNode:
     node_data.update(conditions_generales_data)
     node_data.update(amount_data)
 
-    profils: list[dict] = benefit.get('profils')
+    profils = benefit.get('profils')
     if profils:
         profils_data = profils_to_node_data(profils)
         node_data.update(profils_data)

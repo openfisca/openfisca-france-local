@@ -1,0 +1,23 @@
+- period: 2024-01
+  name: "Éligibilité d'âge et de résidence"
+  input:
+    age: [5, 6, 8, 16, 17]
+    depcom: [54000, 54000, 68400, 54000, 54000]
+    rfr:
+      2022: [80, 80, 80, 80, 80]
+    nbptr:
+      2022: [1, 1, 1, 1, 1]
+  output:
+    pass_jeune_54: [0, 100, 0, 100, 0]
+
+- period: 2024-01
+  name: Montant en fonction du quotient familial
+  input:
+    age: [14, 14, 14, 14]
+    depcom: [54000, 54000, 54000, 54000]
+    rfr:
+      2022: [7850, 13300, 5600, 5200]
+    nbptr:
+      2022: [1, 2, 1, 1]
+  output:
+    pass_jeune_54: [0, 50, 70, 100]

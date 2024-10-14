@@ -1,0 +1,33 @@
+- period: 2024-01
+  input:
+    region: [ ile_de_france, ile_de_france, ile_de_france, ile_de_france, ile_de_france]
+    age: [18, 30, 21, 24, 22]
+    depcom: [77100, 78000, 78370, 78586, 78711]
+    statut_marital: [celibataire, marie, celibataire, marie, marie]
+    contrat_de_travail_type: [cdd, cdi, cdi, cdd, non_defini]
+    rfr:
+      2022:
+        [1, 39000, 6500, 40000, 10000]
+    nbptr:
+      2022:
+        [1, 2, 1, 3, 2]
+    activite: [actif, actif, actif, actif, etudiant]
+  output:
+    ile_de_france_aide_achat_voiture_electrique: [9000, 4500, 7500, 7500, 9000]
+
+- period: 2024-01
+  input:
+    region: [ ile_de_france, haut_de_france ]
+    age: [22, 23]
+    depcom: [95018, 59000]
+    statut_marital: [marie, marie]
+    contrat_de_travail_type: [ cdi, cdi]
+    rfr:
+      2022:
+        [6500, 6500]
+    nbptr:
+      2022:
+        [2, 2]
+    activite: [actif, actif]
+  output:
+    ile_de_france_aide_achat_voiture_electrique: [0, 0]

@@ -1,0 +1,29 @@
+- name: 'Éligibilité'
+  period: 2023-11
+  reforms:
+  - openfisca_france_local.epci_test_factory.epci_reform
+  input:
+    age: [18, 17, 25, 20, 20, 20, 20, 20, 20, 20]
+    depcom: [69003, 69003, 69003, 69001, 69003, 69003, 69003, 69003, 69003, 69003]
+    rsa: [0, 0, 0, 0, 0, 1, 0, 0, 0, 0]
+    aah: [0, 0, 0, 0, 0, 0, 1, 0, 0, 0]
+    aeeh: [0, 0, 0, 0, 0, 0, 0, 1, 0, 0]
+    sous_contrat_engagement_jeune: [False, False, False, False, False, False, False, False, True, False]
+    activite: ['inactif', 'inactif', 'inactif', 'inactif', 'inactif', 'inactif', 'inactif', 'inactif', 'inactif', 'etudiant']
+  output:
+    revenu_solidaire_jeune: [420, 0, 0, 0, 420, 0, 0, 0, 0, 0]
+
+- name: Montants
+  period: 2023-11
+  reforms:
+  - openfisca_france_local.epci_test_factory.epci_reform
+  input:
+    age: [18, 18, 18, 18]
+    depcom: [69003, 69003, 69003, 69003]
+    sous_contrat_engagement_jeune: [False, False, False, False]
+    salaire_net: [1, 400, 401, 101]
+    indemnites_stage: [0, 0, 0, 101]
+    ppa: [0, 0, 0, 101]
+    revenus_stage_formation_pro: [0, 0, 0, 101]
+  output:
+    revenu_solidaire_jeune: [315, 315, 0, 0]

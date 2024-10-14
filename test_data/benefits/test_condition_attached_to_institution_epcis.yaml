@@ -1,0 +1,10 @@
+label: Test condition attached_to_institutions epci
+institution: institution_epci
+prefix: l’
+conditions_generales:
+  - type: attached_to_institution
+type: float
+unit: €
+periodicite: mensuelle
+montant: 18
+floorAt: 1

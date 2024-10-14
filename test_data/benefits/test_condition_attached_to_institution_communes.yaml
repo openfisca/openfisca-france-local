@@ -1,0 +1,10 @@
+label: Test condition attached_to_institutions communes
+institution: institution_commune
+prefix: l’
+conditions_generales:
+  - type: attached_to_institution
+type: float
+unit: €
+periodicite: mensuelle
+montant: 16.8
+floorAt: 1

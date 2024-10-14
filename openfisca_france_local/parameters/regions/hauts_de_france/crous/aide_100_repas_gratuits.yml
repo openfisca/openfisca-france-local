@@ -1,0 +1,19 @@
+age:
+  description: Limite d'âge de l'aide du crous et de la région Hauts-de-France de 100 repas gratuits aux étudiants boursiers
+  maximum:
+    2023-09-01:
+      value: 35
+
+echelon_boursier:
+  description: Echelons autorisés pour l'aide du crous et de la région Hauts-de-France de 100 repas gratuits aux étudiants boursiers
+  minimum:
+    2023-09-01:
+      value: 3
+  maximum:
+    2023-09-01:
+      value: 7
+
+metadata:
+  reference:
+    2023-09-01:
+      href: https://www.ij-hdf.fr/actualite/747/100-repas-gratuits-de-nouveau-attribues-aux-etudiants-boursiers-echelon-3-a-7#:~:text=Le%20Conseil%20R%C3%A9gional%20Hauts-de,en%20restos
