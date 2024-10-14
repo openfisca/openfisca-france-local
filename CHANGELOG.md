@@ -1,4 +1,11 @@
 # Changelog
+## [6.17.0] - 2024-11-06
+
+_Pour les changements détaillés et les discussions associées, référencez la pull request [#220](https://github.com/openfisca/openfisca-france-local/pull/220)_
+
+### Added
+
+- Ajoute les aides suivantes : `antony_aide_depart_sejour_adapte`, `antony_bourse_communale`, `antony_bourse_conservatoire`, `antony_bourse_famille_nombreuse`, `antony_noel_pour_tous`
 
 ## [6.16.0] - 2024-11-05
 
