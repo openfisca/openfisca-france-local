@@ -1,0 +1,88 @@
+- name: Eligibilité à l'aide AEP d'Eure-et-Loir avec menage ayant des enfants à charge
+  period: 2023-01
+  input:
+    individus:
+      parent1:
+        salaire_imposable: 1000
+      parent2:
+        salaire_imposable: 0
+      enfant1:
+        age: 8
+        enfant_a_charge:
+          2023: True
+      enfant2:
+        age: 12
+        enfant_a_charge:
+          2023: True
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [ "enfant1", "enfant2" ]
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_aep: True
+
+- name: Eligibilité à l'aide AEP d'Eure-et-Loir avec menage n'ayant pas d'enfants à charge
+  period: 2023-01
+  input:
+    individus:
+      parent1:
+        salaire_imposable: 1000
+      parent2:
+        salaire_imposable: 0
+      enfant1:
+        age: 8
+        enfant_a_charge:
+          2023: False
+      enfant2:
+        age: 12
+        enfant_a_charge:
+          2023: False
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [ "enfant1", "enfant2" ]
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_aep: False
+
+- name: Eligibilité à l'aide AEP d'Eure-et-Loir avec menage n'ayant pas d'enfants
+  period: 2023-01
+  input:
+    individus:
+      parent1:
+        salaire_imposable: 1000
+      parent2:
+        salaire_imposable: 0
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: []
+      depcom: 28000
+  output:
+    eure_et_loir_eligibilite_aep: False
+
+
+- name: Eligibilité à l'aide AEP d'Eure-et-Loir avec menage n'habitant pas en Eure-et-Loir
+  period: 2023-01
+  input:
+    individus:
+      parent1:
+        salaire_imposable: 1000
+      parent2:
+        salaire_imposable: 0
+      enfant1:
+        age: 8
+        enfant_a_charge:
+          2023: True
+      enfant2:
+        age: 12
+        enfant_a_charge:
+          2023: True
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [ "enfant1", "enfant2" ]
+      depcom: 45000
+  output:
+    eure_et_loir_eligibilite_aep: False
