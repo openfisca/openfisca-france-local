@@ -285,7 +285,7 @@ ProfileEvaluator = collections.namedtuple(
 
 def build_condition_evaluator_list(conditions: 'list[dict]') -> 'list[ConditionEvaluator]':
     """
-        Établie une correspondance entre les conditions et les fonctions qui évaluent ces conditions.
+        Établit une correspondance entre les conditions et les fonctions qui évaluent ces conditions.
     """
     try:
         evaluators: 'list[ConditionEvaluator]' = [
