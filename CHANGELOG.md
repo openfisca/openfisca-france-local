@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.14.1] - 2024-10-22
+
+_Pour les changements détaillés et les discussions associées, référencez la pull request [#199](https://github.com/openfisca/openfisca-france-local/pull/199)_
+
+### Added
+
+- Ajoute de la documentation pour `aides_jeunes_reform`
+
 ## [6.14.0] - 2024-10-02
 
 _Pour les changements détaillés et les discussions associées, référencez la pull request [#216](https://github.com/openfisca/openfisca-france-local/pull/216)_
