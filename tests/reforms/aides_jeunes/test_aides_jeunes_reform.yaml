@@ -77,8 +77,8 @@
   reforms:
   - openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic
   input:
-    groupe_specialites_formation: ["groupe_330", "FOrmation non reconnue", "groupe_330", "groupe_330"]
-    activite: ["stagiaire", "stagiaire", "chomeur", "etudiant"]
+    groupe_specialites_formation: ["groupe_330", "aucun", "groupe_330", "groupe_330"]
+    activite: ["etudiant", "etudiant", "chomeur", "etudiant"]
     stagiaire: [true,true,false,false]
     scolarite: ["inconnue", "inconnue", "inconnue", "enseignement_superieur"]
   output:
@@ -129,7 +129,7 @@
   input:
     depcom: ["29232", "29232", "29232", "29232", "29232"]
     professionnalisation: [false, true, false, false, false]
-    activite: ["inactif", "inactif", "actif", "salarie", "service_civique"]
+    activite: ["inactif", "inactif", "actif", "actif", "actif"]
   output:
     test_profil_actif_et_professionnalisation: [0, 1, 1, 1,1]
 
