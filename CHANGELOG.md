@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.16.0] - 2024-11-05
+
+_Pour les changements détaillés et les discussions associées, référencez la pull request [#219](https://github.com/openfisca/openfisca-france-local/pull/219)_
+
+### Added
+
+- Ajoute la tarification périscolaire de Strasbourg `strasbourg_metropole_tarification_solidaire_periscolaire`
+
 ## [6.15.1] - 2024-10-24
 
 _Pour les changements détaillés et les discussions associées, référencez la pull request [#218](https://github.com/openfisca/openfisca-france-local/pull/218)_
