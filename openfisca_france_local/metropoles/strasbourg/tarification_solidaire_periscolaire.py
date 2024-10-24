@@ -16,7 +16,7 @@ class strasbourg_metropole_quotient_familial(Variable):
         )
 
 
-class strasbourg_metropole_tarification_mensuelle_acceuil_periscolaire_loisir_matin_soir(
+class strasbourg_metropole_tarification_solidaire_periscolaire(
     Variable
 ):
     value_type = float
