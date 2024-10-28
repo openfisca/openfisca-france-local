@@ -3,6 +3,11 @@
 
 _Pour les changements détaillés et les discussions associées, référencez la pull request [#217](https://github.com/openfisca/openfisca-france-local/pull/217)_
 
+### Added
+
+- Ajoute la variable `eure_et_loir_eligibilite_aep`
+
+
 ## [6.14.1] - 2024-10-22
 
 _Pour les changements détaillés et les discussions associées, référencez la pull request [#199](https://github.com/openfisca/openfisca-france-local/pull/199)_
