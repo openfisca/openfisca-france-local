@@ -4,7 +4,7 @@
     age: [18, 30, 21, 24, 22]
     depcom: [77100, 78000, 78370, 78586, 78711]
     statut_marital: [celibataire, marie, celibataire, marie, marie]
-    contrat_de_travail_type: [cdd, cdi, cdi, cdd, non_defini]
+    contrat_de_travail_type: [cdd, cdi, cdi, cdd, aucun]
     rfr:
       2022:
         [1, 39000, 6500, 40000, 10000]
@@ -17,7 +17,7 @@
 
 - period: 2024-01
   input:
-    region: [ ile_de_france, haut_de_france ]
+    region: [ ile_de_france, hauts_de_france ]
     age: [22, 23]
     depcom: [95018, 59000]
     statut_marital: [marie, marie]
