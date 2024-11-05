@@ -19,7 +19,7 @@ class strasbourg_metropole_tarification_solidaire_periscolaire(
     value_type = float
     entity = Famille
     definition_period = MONTH
-    label = "Tarification de l'acceuil periscolaire de l'Eurométropole de Strasbourg"
+    label = "Tarification de l'accueil periscolaire de l'Eurométropole de Strasbourg"
     reference = [
         # tarifs pour 2021-2022 :
         "https://www.strasbourg.eu/documents/976405/1280877/0/0cc414e4-c6b7-1709-7e1e-46b088d28805",
