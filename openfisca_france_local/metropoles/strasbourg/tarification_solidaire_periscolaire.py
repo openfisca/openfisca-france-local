@@ -33,5 +33,5 @@ class strasbourg_metropole_tarification_solidaire_periscolaire(
         quotient_familial = famille("strasbourg_metropole_quotient_familial", period)
         tarif = parameters(
             period
-        ).metropoles.strasbourg.periscolaire.acceuil_soir_maternelle
+        ).metropoles.strasbourg.periscolaire.accueil_soir_maternelle
         return tarif.calc(quotient_familial)
