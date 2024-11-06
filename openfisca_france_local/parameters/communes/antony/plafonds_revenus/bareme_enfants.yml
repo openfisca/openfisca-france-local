@@ -1,0 +1,77 @@
+bareme_ressources_par_enfant:
+  reference: https://www.ville-antony.fr/images/Actualite/2024/Aout/CCAS/Imprime-A4-demande-bourse-conservatoire-2024-2025.pdf
+  description: Barème des plafonds de ressources pour le droit aux aides de la ville de Antony
+  metadata:
+    type: single_amount
+    amount_unit: currency
+  brackets:
+  - amount:
+      2021-06-01:
+        value: 2732
+      2024-01-01:
+        value: 3071
+    threshold:
+      2021-06-01:
+        value: 1
+      2024-01-01:
+        value: 1
+  - amount:
+      2021-06-01:
+        value: 3559
+      2024-01-01:
+        value: 4000
+    threshold:
+      2021-06-01:
+        value: 2
+      2024-01-01:
+        value: 2
+  - amount:
+      2021-06-01:
+        value: 4394
+      2024-01-01:
+        value: 4940
+    threshold:
+      2021-06-01:
+        value: 3
+      2024-04-01:
+        value: 3
+  - amount:
+      2021-06-01:
+        value: 5180
+      2024-01-01:
+        value: 5822
+    threshold:
+      2021-06-01:
+        value: 4
+      2024-01-01:
+        value: 4
+  - amount:
+      2021-06-01:
+        value: 5961
+      2024-01-01:
+        value: 6701
+    threshold:
+      2021-06-01:
+        value: 5
+      2024-01-01:
+        value: 5
+  - amount:
+      2021-06-01:
+        value: 6745
+      2024-01-01:
+        value: 7581
+    threshold:
+      2021-06-01:
+        value: 6
+      2024-01-01:
+        value: 6
+  - amount:
+      2021-06-01:
+        value: 7528
+      2024-01-01:
+        value: 8461
+    threshold:
+      2021-06-01:
+        value: 7
+      2024-01-01:
+        value: 7

@@ -1,0 +1,67 @@
+- name: Éligibilité à l'aide-noel-pour-tous - personne moins 68 ans
+  period: 2021-11
+  input:
+    famille:
+      parents: [parent1]
+      antony_eligibilite_ressources: true
+    individus:
+      parent1:
+        age: 67
+    menage:
+      personne_de_reference: parent1
+      antony_eligibilite_residence: true
+    foyer_fiscal:
+      declarants: [parent1]
+  output:
+    antony_noel_pour_tous: true
+
+- name: Non éligibilité à l'aide-noel-pour-tous - personne à 68 ans
+  period: 2021-11
+  input:
+    famille:
+      parents: [parent1]
+      antony_eligibilite_ressources: true
+    individus:
+      parent1:
+        age: 68
+    menage:
+      personne_de_reference: parent1
+      antony_eligibilite_residence: true
+    foyer_fiscal:
+      declarants: [parent1]
+  output:
+    antony_noel_pour_tous: false
+
+- name: Non éligibilité à l'aide-noel-pour-tous - personne moins 68 ans et les conditions de ressources non verifiées
+  period: 2021-11
+  input:
+    famille:
+      parents: [parent1]
+      antony_eligibilite_ressources: false
+    individus:
+      parent1:
+        age: 67
+    menage:
+      personne_de_reference: parent1
+      antony_eligibilite_residence: true
+    foyer_fiscal:
+      declarants: [parent1]
+  output:
+    antony_noel_pour_tous: false
+
+- name: Non éligibilité à l'aide-noel-pour-tous - personne non résident à Antony moins 68 ans
+  period: 2021-11
+  input:
+    famille:
+      parents: [parent1]
+      antony_eligibilite_ressources: true
+    individus:
+      parent1:
+        age: 67
+    menage:
+      personne_de_reference: parent1
+      antony_eligibilite_residence: false
+    foyer_fiscal:
+      declarants: [parent1]
+  output:
+    antony_noel_pour_tous: false

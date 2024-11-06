@@ -1,0 +1,591 @@
+- name: Base ressources antony - prendre les ressources des 3 derniers mois
+  period: 2021-11
+  input:
+    individus:
+      p1:
+        pensions_alimentaires_percues:
+          2021-10: 1
+          2021-09: 2
+          2021-08: 3
+          2021-07: 4
+          2021-06: 5
+          2021-05: 6
+          2021-04: 7
+          2021-03: 8
+          2021-02: 9
+          2021-01: 10
+          2020-12: 11
+          2021-11: 12
+        aah:
+          2021-10: 1
+          2021-09: 2
+          2021-08: 3
+          2021-07: 4
+          2021-06: 5
+          2021-05: 6
+          2021-04: 7
+          2021-03: 8
+          2021-02: 9
+          2021-01: 10
+          2020-12: 11
+          2021-11: 12
+        indemnites_journalieres:
+          2021-10: 1
+          2021-09: 2
+          2021-08: 3
+          2021-07: 4
+          2021-06: 5
+          2021-05: 6
+          2021-04: 7
+          2021-03: 8
+          2021-02: 9
+          2021-01: 10
+          2020-12: 11
+          2021-11: 12
+        pensions_invalidite:
+          2021-10: 1
+          2021-09: 2
+          2021-08: 3
+          2021-07: 4
+          2021-06: 5
+          2021-05: 6
+          2021-04: 7
+          2021-03: 8
+          2021-02: 9
+          2021-01: 10
+          2020-12: 11
+          2021-11: 12
+        chomage_imposable:
+          2021-10: 1
+          2021-09: 2
+          2021-08: 3
+          2021-07: 4
+          2021-06: 5
+          2021-05: 6
+          2021-04: 7
+          2021-03: 8
+          2021-02: 9
+          2021-01: 10
+          2020-12: 11
+          2021-11: 12
+        retraite_imposable:
+          2021-10: 1
+          2021-09: 2
+          2021-08: 3
+          2021-07: 4
+          2021-06: 5
+          2021-05: 6
+          2021-04: 7
+          2021-03: 8
+          2021-02: 9
+          2021-01: 10
+          2020-12: 11
+          2021-11: 12
+        salaire_imposable:
+          2021-10: 1
+          2021-09: 2
+          2021-08: 3
+          2021-07: 4
+          2021-06: 5
+          2021-05: 6
+          2021-04: 7
+          2021-03: 8
+          2021-02: 9
+          2021-01: 10
+          2020-12: 11
+          2021-11: 12
+    famille:
+        parents: [p1]
+        af:
+          2021-10: 1
+          2021-09: 2
+          2021-08: 3
+          2021-07: 4
+          2021-06: 5
+          2021-05: 6
+          2021-04: 7
+          2021-03: 8
+          2021-02: 9
+          2021-01: 10
+          2020-12: 11
+          2021-11: 12
+        asf:
+          2021-10: 1
+          2021-09: 2
+          2021-08: 3
+          2021-07: 4
+          2021-06: 5
+          2021-05: 6
+          2021-04: 7
+          2021-03: 8
+          2021-02: 9
+          2021-01: 10
+          2020-12: 11
+          2021-11: 12
+        aeeh:
+          2021-10: 1
+          2021-09: 2
+          2021-08: 3
+          2021-07: 4
+          2021-06: 5
+          2021-05: 6
+          2021-04: 7
+          2021-03: 8
+          2021-02: 9
+          2021-01: 10
+          2020-12: 11
+          2021-11: 12
+        cf:
+          2021-10: 1
+          2021-09: 2
+          2021-08: 3
+          2021-07: 4
+          2021-06: 5
+          2021-05: 6
+          2021-04: 7
+          2021-03: 8
+          2021-02: 9
+          2021-01: 10
+          2020-12: 11
+          2021-11: 12
+        paje:
+          2021-10: 1
+          2021-09: 2
+          2021-08: 3
+          2021-07: 4
+          2021-06: 5
+          2021-05: 6
+          2021-04: 7
+          2021-03: 8
+          2021-02: 9
+          2021-01: 10
+          2020-12: 11
+          2021-11: 12
+        ppa:
+          2021-10: 1
+          2021-09: 2
+          2021-08: 3
+          2021-07: 4
+          2021-06: 5
+          2021-05: 6
+          2021-04: 7
+          2021-03: 8
+          2021-02: 9
+          2021-01: 10
+          2020-12: 11
+          2021-11: 12
+        rsa:
+          2021-10: 1
+          2021-09: 2
+          2021-08: 3
+          2021-07: 4
+          2021-06: 5
+          2021-05: 6
+          2021-04: 7
+          2021-03: 8
+          2021-02: 9
+          2021-01: 10
+          2020-12: 11
+          2021-11: 12
+        ars:
+          2020: 10
+    foyer_fiscal:
+      declarants: [p1]
+      rfr:
+        2019: 85 * 4
+  output:
+    antony_base_ressources: 84
+
+- name: Base ressources antony - prendre les ressources du dernier avis d'imposition
+  period: 2021-11
+  input:
+    individus:
+      p1:
+        pensions_alimentaires_percues:
+          2021-10: 1
+          2021-09: 2
+          2021-08: 3
+          2021-07: 4
+          2021-06: 5
+          2021-05: 6
+          2021-04: 7
+          2021-03: 8
+          2021-02: 9
+          2021-01: 10
+          2020-12: 11
+          2021-11: 12
+        aah:
+          2021-10: 1
+          2021-09: 2
+          2021-08: 3
+          2021-07: 4
+          2021-06: 5
+          2021-05: 6
+          2021-04: 7
+          2021-03: 8
+          2021-02: 9
+          2021-01: 10
+          2020-12: 11
+          2021-11: 12
+        indemnites_journalieres:
+          2021-10: 1
+          2021-09: 2
+          2021-08: 3
+          2021-07: 4
+          2021-06: 5
+          2021-05: 6
+          2021-04: 7
+          2021-03: 8
+          2021-02: 9
+          2021-01: 10
+          2020-12: 11
+          2021-11: 12
+        pensions_invalidite:
+          2021-10: 1
+          2021-09: 2
+          2021-08: 3
+          2021-07: 4
+          2021-06: 5
+          2021-05: 6
+          2021-04: 7
+          2021-03: 8
+          2021-02: 9
+          2021-01: 10
+          2020-12: 11
+          2021-11: 12
+        chomage_imposable:
+          2021-10: 1
+          2021-09: 2
+          2021-08: 3
+          2021-07: 4
+          2021-06: 5
+          2021-05: 6
+          2021-04: 7
+          2021-03: 8
+          2021-02: 9
+          2021-01: 10
+          2020-12: 11
+          2021-11: 12
+        retraite_imposable:
+          2021-10: 1
+          2021-09: 2
+          2021-08: 3
+          2021-07: 4
+          2021-06: 5
+          2021-05: 6
+          2021-04: 7
+          2021-03: 8
+          2021-02: 9
+          2021-01: 10
+          2020-12: 11
+          2021-11: 12
+        salaire_imposable:
+          2021-10: 1
+          2021-09: 2
+          2021-08: 3
+          2021-07: 4
+          2021-06: 5
+          2021-05: 6
+          2021-04: 7
+          2021-03: 8
+          2021-02: 9
+          2021-01: 10
+          2020-12: 11
+          2021-11: 12
+    famille:
+      parents: [ p1 ]
+      af:
+        2021-10: 1
+        2021-09: 2
+        2021-08: 3
+        2021-07: 4
+        2021-06: 5
+        2021-05: 6
+        2021-04: 7
+        2021-03: 8
+        2021-02: 9
+        2021-01: 10
+        2020-12: 11
+        2021-11: 12
+      asf:
+        2021-10: 1
+        2021-09: 2
+        2021-08: 3
+        2021-07: 4
+        2021-06: 5
+        2021-05: 6
+        2021-04: 7
+        2021-03: 8
+        2021-02: 9
+        2021-01: 10
+        2020-12: 11
+        2021-11: 12
+      aeeh:
+        2021-10: 1
+        2021-09: 2
+        2021-08: 3
+        2021-07: 4
+        2021-06: 5
+        2021-05: 6
+        2021-04: 7
+        2021-03: 8
+        2021-02: 9
+        2021-01: 10
+        2020-12: 11
+        2021-11: 12
+      cf:
+        2021-10: 1
+        2021-09: 2
+        2021-08: 3
+        2021-07: 4
+        2021-06: 5
+        2021-05: 6
+        2021-04: 7
+        2021-03: 8
+        2021-02: 9
+        2021-01: 10
+        2020-12: 11
+        2021-11: 12
+      paje:
+        2021-10: 1
+        2021-09: 2
+        2021-08: 3
+        2021-07: 4
+        2021-06: 5
+        2021-05: 6
+        2021-04: 7
+        2021-03: 8
+        2021-02: 9
+        2021-01: 10
+        2020-12: 11
+        2021-11: 12
+      ppa:
+        2021-10: 1
+        2021-09: 2
+        2021-08: 3
+        2021-07: 4
+        2021-06: 5
+        2021-05: 6
+        2021-04: 7
+        2021-03: 8
+        2021-02: 9
+        2021-01: 10
+        2020-12: 11
+        2021-11: 12
+      rsa:
+        2021-10: 1
+        2021-09: 2
+        2021-08: 3
+        2021-07: 4
+        2021-06: 5
+        2021-05: 6
+        2021-04: 7
+        2021-03: 8
+        2021-02: 9
+        2021-01: 10
+        2020-12: 11
+        2021-11: 12
+      ars:
+        2020: 10
+    foyer_fiscal:
+      declarants: [ p1 ]
+      rfr:
+        2019: 80 * 4
+  output:
+    antony_base_ressources: 80
+
+- name: Éligibilité ressources antony pour une personne seule ou un couple
+  period: 2021-11
+  input:
+    en_couple: [0, 0, 1, 1]
+    antony_base_ressources: [4500, 5100, 5700, 6000]
+  output:
+    antony_eligibilite_ressources: [true, false, true, false]
+
+- name: Éligibilité ressources antony pour une famille avec 2 enfants
+  period: 2021-11
+  input:
+    individus:
+      p1: {}
+      p2: {}
+      enf1:
+        age: 2
+      enf2:
+        age: 5
+    famille:
+      parents: [p1, p2]
+      enfants: [enf1, enf2]
+      antony_base_ressources: 3500 * 3
+    menage:
+      personne_de_reference: p1
+      conjoint: p2
+      enfants: [enf1, enf2]
+    foyer_fiscal:
+      declarants: [p1, p2]
+      personnes_a_charge: [enf1, enf2]
+  output:
+    antony_eligibilite_ressources: true
+
+- name: Non éligibilité ressources antony pour une famille avec 2 enfants
+  period: 2021-11
+  input:
+    individus:
+      p1: {}
+      p2: {}
+      enf1:
+        age: 2
+      enf2:
+        age: 5
+    famille:
+      parents: [p1, p2]
+      enfants: [enf1, enf2]
+      antony_base_ressources: 3600 * 3
+    menage:
+      personne_de_reference: p1
+      conjoint: p2
+      enfants: [enf1, enf2]
+    foyer_fiscal:
+      declarants: [p1, p2]
+      personnes_a_charge: [enf1, enf2]
+  output:
+    antony_eligibilite_ressources: false
+
+- name: Éligibilité ressources antony pour une famille avec 7 enfants
+  period: 2021-11
+  input:
+    individus:
+      p1: {}
+      p2: {}
+      enf1:
+        age: 17
+      enf2:
+        age: 15
+      enf3:
+        age: 14
+      enf4:
+        age: 7
+      enf5:
+        age: 5
+      enf6:
+        age: 3
+      enf7:
+        age: 1
+    famille:
+      parents: [p1, p2]
+      enfants: [enf1, enf2, enf3, enf4, enf5, enf6, enf7]
+      antony_base_ressources: 7500 * 3
+    menage:
+      personne_de_reference: p1
+      conjoint: p2
+      enfants: [enf1, enf2, enf3, enf4, enf5, enf6, enf7]
+    foyer_fiscal:
+      declarants: [p1, p2]
+      personnes_a_charge: [enf1, enf2, enf3, enf4, enf5, enf6, enf7]
+  output:
+    antony_eligibilite_ressources: true
+
+- name: Non éligibilité ressources antony pour une famille avec 7 enfants
+  period: 2021-11
+  input:
+    individus:
+      p1: {}
+      p2: {}
+      enf1:
+        age: 17
+      enf2:
+        age: 15
+      enf3:
+        age: 14
+      enf4:
+        age: 7
+      enf5:
+        age: 5
+      enf6:
+        age: 3
+      enf7:
+        age: 1
+    famille:
+      parents: [p1, p2]
+      enfants: [enf1, enf2, enf3, enf4, enf5, enf6, enf7]
+      antony_base_ressources: 7600 * 3
+    menage:
+      personne_de_reference: p1
+      conjoint: p2
+      enfants: [enf1, enf2, enf3, enf4, enf5, enf6, enf7]
+    foyer_fiscal:
+      declarants: [p1, p2]
+      personnes_a_charge: [enf1, enf2, enf3, enf4, enf5, enf6, enf7]
+  output:
+    antony_eligibilite_ressources: false
+
+- name: Éligibilité ressources antony pour une famille avec 8 enfants
+  period: 2021-11
+  input:
+    individus:
+      p1: {}
+      p2: {}
+      enf1:
+        age: 17
+      enf2:
+        age: 15
+      enf3:
+        age: 14
+      enf4:
+        age: 7
+      enf5:
+        age: 5
+      enf6:
+        age: 3
+      enf7:
+        age: 1
+      enf8:
+        age: 1
+    famille:
+      parents: [p1, p2]
+      enfants: [enf1, enf2, enf3, enf4, enf5, enf6, enf7, enf8]
+      antony_base_ressources: 7500 * 3
+    menage:
+      personne_de_reference: p1
+      conjoint: p2
+      enfants: [enf1, enf2, enf3, enf4, enf5, enf6, enf7, enf8]
+    foyer_fiscal:
+      declarants: [p1, p2]
+      personnes_a_charge: [enf1, enf2, enf3, enf4, enf5, enf6, enf7, enf8]
+  output:
+    antony_eligibilite_ressources: true
+
+- name: Non éligibilité ressources antony pour une famille avec 8 enfants
+  period: 2021-11
+  input:
+    individus:
+      p1: {}
+      p2: {}
+      enf1:
+        age: 17
+      enf2:
+        age: 15
+      enf3:
+        age: 14
+      enf4:
+        age: 7
+      enf5:
+        age: 5
+      enf6:
+        age: 3
+      enf7:
+        age: 1
+      enf8:
+        age: 1
+    famille:
+      parents: [p1, p2]
+      enfants: [enf1, enf2, enf3, enf4, enf5, enf6, enf7, enf8]
+      antony_base_ressources: 7600 * 3
+    menage:
+      personne_de_reference: p1
+      conjoint: p2
+      enfants: [enf1, enf2, enf3, enf4, enf5, enf6, enf7, enf8]
+    foyer_fiscal:
+      declarants: [p1, p2]
+      personnes_a_charge: [enf1, enf2, enf3, enf4, enf5, enf6, enf7, enf8]
+  output:
+    antony_eligibilite_ressources: false

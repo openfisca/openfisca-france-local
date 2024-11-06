@@ -1,0 +1,99 @@
+- name: Éligibilité à l'aide-bourse-conservatoire - famille avec enfant moins de 18 ans
+  period: 2021-11
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1]
+      antony_eligibilite_ressources: true
+    individus:
+      parent1:
+        age: 52
+      parent2:
+        age: 50
+      enfant1:
+        age: 13
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1]
+      antony_eligibilite_residence: true
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+      personnes_a_charge: [enfant1]
+  output:
+    antony_bourse_conservatoire: true
+
+- name: Non éligibilité à l'aide-bourse-conservatoire - famille avec enfant de plus de 18 ans
+  period: 2021-11
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1]
+      antony_eligibilite_ressources: true
+    individus:
+      parent1:
+        age: 52
+      parent2:
+        age: 50
+      enfant1:
+        age: 19
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1]
+      antony_eligibilite_residence: true
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+      personnes_a_charge: [enfant1]
+  output:
+    antony_bourse_conservatoire: false
+
+- name: Non éligibilité à l'aide-bourse-conservatoire - famille avec enfant de moins de 18 ans et les conditions de ressources non vérifiées
+  period: 2021-11
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1]
+      antony_eligibilite_ressources: false
+    individus:
+      parent1:
+        age: 52
+      parent2:
+        age: 50
+      enfant1:
+        age: 13
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1]
+      antony_eligibilite_residence: true
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+      personnes_a_charge: [enfant1]
+  output:
+    antony_bourse_conservatoire: false
+
+- name: Non éligibilité à l'aide-bourse-conservatoire - famille non résident à Antony avec enfant de moins de 18
+  period: 2021-11
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1]
+      antony_eligibilite_ressources: true
+    individus:
+      parent1:
+        age: 52
+      parent2:
+        age: 50
+      enfant1:
+        age: 13
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1]
+      antony_eligibilite_residence: false
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+      personnes_a_charge: [enfant1]
+  output:
+    antony_bourse_conservatoire: false

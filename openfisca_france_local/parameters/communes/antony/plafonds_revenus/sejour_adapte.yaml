@@ -1,0 +1,19 @@
+tranches:
+  description: Plafond de ressources pour les deux tranches de l'Aide au sejour adapte de la ville de Antony
+  reference: "https://www.ville-antony.fr/images/Actualite/2022/septembre/Handicap/imprime-2022-aide-aux-sejours-adaptes.pdf"
+  tranche_1:
+    values:
+      2021-06-01: 4394
+  tranche_2:
+    values:
+      2021-06-01: 7528
+
+montants:
+  description: Montants accordés pour les deux tranches de l'Aide au sejour adapte de la ville de Antony
+  reference: "https://www.ville-antony.fr/images/Actualite/2022/septembre/Handicap/imprime-2022-aide-aux-sejours-adaptes.pdf"
+  montant_tranche_1:
+    values:
+      2021-06-01: 600
+  montant_tranche_2:
+    values:
+      2021-06-01: 300

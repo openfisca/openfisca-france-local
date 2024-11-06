@@ -1,0 +1,129 @@
+- name: Éligibilité à l'aide-bourse-communale - famille avec enfant scolarisé en collège
+  period: 2021-11
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1]
+      antony_eligibilite_ressources: true
+    individus:
+      parent1:
+        age: 52
+      parent2:
+        age: 50
+      enfant1:
+        age: 13
+        scolarite: college
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1]
+      antony_eligibilite_residence: true
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+      personnes_a_charge: [enfant1]
+  output:
+    antony_bourse_communale: true
+
+- name: Éligibilité à l'aide-bourse-communale - famille avec enfant scolarisé en lycée
+  period: 2021-11
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1]
+      antony_eligibilite_ressources: true
+    individus:
+      parent1:
+        age: 52
+      parent2:
+        age: 50
+      enfant1:
+        age: 13
+        scolarite: lycee
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1]
+      antony_eligibilite_residence: true
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+      personnes_a_charge: [enfant1]
+  output:
+    antony_bourse_communale: true
+
+- name: Non éligibilité à l'aide-bourse-communale - famille avec enfant non scolarisé
+  period: 2021-11
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1]
+      antony_eligibilite_ressources: true
+    individus:
+      parent1:
+        age: 52
+      parent2:
+        age: 50
+      enfant1:
+        age: 13
+        scolarite: inconnue
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1]
+      antony_eligibilite_residence: true
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+      personnes_a_charge: [enfant1]
+  output:
+    antony_bourse_communale: false
+
+- name: Non éligibilité à l'aide-bourse-communale - famille avec enfant scolarisé en college et les conditions de ressources non vérifiées
+  period: 2021-11
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1]
+      antony_eligibilite_ressources: false
+    individus:
+      parent1:
+        age: 52
+      parent2:
+        age: 50
+      enfant1:
+        age: 13
+        scolarite: college
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1]
+      antony_eligibilite_residence: true
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+      personnes_a_charge: [enfant1]
+  output:
+    antony_bourse_communale: false
+
+- name: Non éligibilité à l'aide-bourse-communale - famille non résident à Antony avec enfant scolarisé en collège
+  period: 2021-11
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1]
+      antony_eligibilite_ressources: true
+    individus:
+      parent1:
+        age: 52
+      parent2:
+        age: 50
+      enfant1:
+        age: 13
+        scolarite: college
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1]
+      antony_eligibilite_residence: false
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+      personnes_a_charge: [enfant1]
+  output:
+    antony_bourse_communale: false

@@ -1,0 +1,6 @@
+description: Âge maximum d'au moins un enfant de la famille pour être éligible à l'aide Antony Bourse Famille Nombreuse
+unit: year
+reference: "https://www.ville-antony.fr/bourses-communales#famillesnombreuses"
+values:
+  2021-06-01:
+    value: 1
