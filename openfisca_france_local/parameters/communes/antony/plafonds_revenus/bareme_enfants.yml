@@ -1,6 +1,6 @@
 bareme_ressources_par_enfant:
   reference: https://www.ville-antony.fr/images/Actualite/2024/Aout/CCAS/Imprime-A4-demande-bourse-conservatoire-2024-2025.pdf
-  description: Barème des plafond de ressources pour le droit aux aides de la ville de Antony
+  description: Barème des plafonds de ressources pour le droit aux aides de la ville de Antony
   metadata:
     type: single_amount
     amount_unit: currency

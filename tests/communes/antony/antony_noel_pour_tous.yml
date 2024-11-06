@@ -1,4 +1,4 @@
-- name: Eligibilité à l'aide-noel-pour-tous - personne moins 68 ans
+- name: Éligibilité à l'aide-noel-pour-tous - personne moins 68 ans
   period: 2021-11
   input:
     famille:
@@ -15,7 +15,7 @@
   output:
     antony_noel_pour_tous: true
 
-- name: No eligibilité à l'aide-noel-pour-tous - personne à 68 ans
+- name: Non éligibilité à l'aide-noel-pour-tous - personne à 68 ans
   period: 2021-11
   input:
     famille:
@@ -32,7 +32,7 @@
   output:
     antony_noel_pour_tous: false
 
-- name: No eligibilité à l'aide-noel-pour-tous - personne moins 68 ans et les conditions de ressources non verifiées
+- name: Non éligibilité à l'aide-noel-pour-tous - personne moins 68 ans et les conditions de ressources non verifiées
   period: 2021-11
   input:
     famille:
@@ -49,7 +49,7 @@
   output:
     antony_noel_pour_tous: false
 
-- name: No eligibilité à l'aide-noel-pour-tous - personne non résident à Antony moins 68 ans
+- name: Non éligibilité à l'aide-noel-pour-tous - personne non résident à Antony moins 68 ans
   period: 2021-11
   input:
     famille:

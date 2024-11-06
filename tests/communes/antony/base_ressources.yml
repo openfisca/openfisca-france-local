@@ -394,7 +394,7 @@
   output:
     antony_base_ressources: 80
 
-- name: eligibilité ressources antony pour une personne seule ou un couple
+- name: Éligibilité ressources antony pour une personne seule ou un couple
   period: 2021-11
   input:
     en_couple: [0, 0, 1, 1]
@@ -402,7 +402,7 @@
   output:
     antony_eligibilite_ressources: [true, false, true, false]
 
-- name: Eligibilité ressources antony pour une famille avec 2 enfants
+- name: Éligibilité ressources antony pour une famille avec 2 enfants
   period: 2021-11
   input:
     individus:
@@ -426,7 +426,7 @@
   output:
     antony_eligibilite_ressources: true
 
-- name: Non eligibilité ressources antony pour une famille avec 2 enfants
+- name: Non éligibilité ressources antony pour une famille avec 2 enfants
   period: 2021-11
   input:
     individus:
@@ -450,7 +450,7 @@
   output:
     antony_eligibilite_ressources: false
 
-- name: Eligibilité ressources antony pour une famille avec 7 enfants
+- name: Éligibilité ressources antony pour une famille avec 7 enfants
   period: 2021-11
   input:
     individus:
@@ -484,7 +484,7 @@
   output:
     antony_eligibilite_ressources: true
 
-- name: Non eligibilité ressources antony pour une famille avec 7 enfants
+- name: Non éligibilité ressources antony pour une famille avec 7 enfants
   period: 2021-11
   input:
     individus:
@@ -518,7 +518,7 @@
   output:
     antony_eligibilite_ressources: false
 
-- name: Eligibilité ressources antony pour une famille avec 8 enfants
+- name: Éligibilité ressources antony pour une famille avec 8 enfants
   period: 2021-11
   input:
     individus:
@@ -554,7 +554,7 @@
   output:
     antony_eligibilite_ressources: true
 
-- name: Non eligibilité ressources antony pour une famille avec 8 enfants
+- name: Non éligibilité ressources antony pour une famille avec 8 enfants
   period: 2021-11
   input:
     individus:

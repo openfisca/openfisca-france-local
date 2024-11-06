@@ -7,7 +7,7 @@ class antony_bourse_communale(Variable):
     value_type = bool
     entity = Famille
     definition_period = MONTH
-    label = "Eligibilité de la famille à la Bourse Communale de la ville de Antony"
+    label = "Éligibilité de la famille à la Bourse Communale de la ville de Antony"
     reference = "https://www.ville-antony.fr/bourses-communales#restaurationscolaire"
 
     def formula(famille, period, parameters):

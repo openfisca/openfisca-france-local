@@ -1,4 +1,4 @@
-- name: Eligibilité à l'aide-bourse-conservatoire - famille avec enfant moins de 18 ans
+- name: Éligibilité à l'aide-bourse-conservatoire - famille avec enfant moins de 18 ans
   period: 2021-11
   input:
     famille:

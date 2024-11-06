@@ -1,4 +1,4 @@
-- name: Eligibilité à l'aide-bourse-communale - famille avec enfant scolarisé en college
+- name: Éligibilité à l'aide-bourse-communale - famille avec enfant scolarisé en collège
   period: 2021-11
   input:
     famille:
@@ -24,7 +24,7 @@
   output:
     antony_bourse_communale: true
 
-- name: Eligibilité à l'aide-bourse-communale - famille avec enfant scolarisé en lycée
+- name: Éligibilité à l'aide-bourse-communale - famille avec enfant scolarisé en lycée
   period: 2021-11
   input:
     famille:
