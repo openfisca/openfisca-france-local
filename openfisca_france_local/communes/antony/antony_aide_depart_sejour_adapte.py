@@ -13,9 +13,9 @@ class antony_aide_depart_sejour_adapte(Variable):
 
         condition_ressources_remplies = famille('antony_eligibilite_ressources', period)
 
-        handicap = famille.members('handicap', period)
+        nb_handicap = famille.sum(famille.members('handicap', period), role = Famille.ENFANT)
         montant_individuel = famille('antony_aide_depart_sejour_adapte_montant_individuel', period)
-        montant_total = famille.sum(montant_individuel * handicap)
+        montant_total = montant_individuel * nb_handicap
 
         return residence_antony * condition_ressources_remplies * montant_total
 
