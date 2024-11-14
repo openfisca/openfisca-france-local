@@ -5,12 +5,93 @@
   output:
     antony_aide_depart_sejour_adapte_montant_individuel: [600, 300, 0]
 
-- name: Aide-départ-séjour-adapté
+- name: Aide-départ-séjour-adapté-tranche-2
   period: 2021-11
   input:
-    antony_eligibilite_residence: [true, false, true, true, true]
-    handicap: [true, true, false, true, true]
-    antony_eligibilite_ressources: [true, true, true, false, true]
-    antony_aide_depart_sejour_adapte_montant_individuel: [300, 300, 300, 300, 600]
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2, enfant3]
+      antony_aide_depart_sejour_adapte_montant_individuel: 600
+    individus:
+      parent1:
+        age: 52
+      parent2:
+        age: 50
+      enfant1:
+        age: 15
+      enfant2:
+        age: 16
+      enfant3:
+        date_naissance: 2018-04-01
+        handicap: true
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1, enfant2, enfant3]
+      antony_eligibilite_residence: true
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+      personnes_a_charge: [enfant1, enfant2, enfant3]
   output:
-    antony_aide_depart_sejour_adapte: [300, 0, 0, 0, 600]
+    antony_aide_depart_sejour_adapte: 600
+
+- name: Aide-départ-séjour-adapté-tranche-1
+  period: 2021-11
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2, enfant3]
+      antony_aide_depart_sejour_adapte_montant_individuel: 300
+    individus:
+      parent1:
+        age: 52
+      parent2:
+        age: 50
+      enfant1:
+        age: 15
+      enfant2:
+        age: 16
+      enfant3:
+        date_naissance: 2018-04-01
+        handicap: true
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1, enfant2, enfant3]
+      antony_eligibilite_residence: true
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+      personnes_a_charge: [enfant1, enfant2, enfant3]
+
+  output:
+    antony_aide_depart_sejour_adapte: 300
+
+- name: Aide-départ-séjour-adapté-tranche-1
+  period: 2021-11
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2, enfant3]
+      antony_aide_depart_sejour_adapte_montant_individuel: 300
+    individus:
+      parent1:
+        age: 52
+      parent2:
+        age: 50
+      enfant1:
+        age: 15
+      enfant2:
+        age: 16
+      enfant3:
+        date_naissance: 2018-04-01
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1, enfant2, enfant3]
+      antony_eligibilite_residence: true
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+      personnes_a_charge: [enfant1, enfant2, enfant3]
+
+  output:
+    antony_aide_depart_sejour_adapte: 0
