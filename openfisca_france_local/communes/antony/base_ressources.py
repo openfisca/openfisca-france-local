@@ -9,9 +9,6 @@ class antony_base_ressources(Variable):
     label = "Base ressources d'une famille aux dispositifs d'Antony"
 
     def formula(famille, period, parameters):
-        # N-1
-        last_year = period.last_year
-
         # M-1 to M-3
         last_three_months = period.last_3_months
 

@@ -1,8 +1,16 @@
 # Changelog
 
-## [6.17.0] - 2024-11-06
+## [6.17.1] - 2024-11-14
 
 _Pour les changements détaillés et les discussions associées, référencez la pull request [#220](https://github.com/openfisca/openfisca-france-local/pull/220)_
+
+### Changed
+
+- Résolution d'un bug de récupération de l'attribut handicap : `antony_aide_depart_sejour_adapte`
+
+## [6.17.0] - 2024-11-06
+
+_Pour les changements détaillés et les discussions associées, référencez la pull request [#120](https://github.com/openfisca/openfisca-france-local/pull/120)_
 
 ### Added
 
