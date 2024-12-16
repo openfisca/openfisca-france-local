@@ -12,6 +12,7 @@
         age: 50
       enfant1:
         age: 13
+        scolarite: college
     menage:
       personne_de_reference: parent1
       conjoint: parent2
