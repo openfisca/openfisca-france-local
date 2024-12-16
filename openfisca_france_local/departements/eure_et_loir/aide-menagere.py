@@ -102,7 +102,7 @@ class eure_et_loir_eligibilite_aide_menagere_personne_handicap(Variable):
         condition_taux_incapacite = ((taux_incapacite >= parameters_chemin.taux_incapacite_superieur)
                                      + ((taux_incapacite < parameters_chemin.taux_incapacite_maximum_restriction_acces_emploi) *
                                         ((taux_incapacite > parameters_chemin.taux_incapacite_minimum_restriction_acces_emploi) * restriction_substantielle_durable)))
-        condition_age = (age <= parameters_chemin.age_minimal_personne_handicap)
+        condition_age = (age < parameters_chemin.age_minimal_personne_handicap)
         condition_nationalite = ressortissant_eee + individu('refugie', period) + individu('apatride', period)
         # condition non intégrée : Les personnes de nationalité étrangère doivent justifier d'une résidence
         # en France métropolitaine ininterrompue depuis au moins 15 ans, et ce avant l'âge de 70 ans.
