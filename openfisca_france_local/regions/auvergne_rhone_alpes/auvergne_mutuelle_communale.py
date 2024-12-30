@@ -8,7 +8,7 @@ class auvergne_mutuelle_communale(Variable):
     definition_period = MONTH
     label = "Mutuelle communale de la région Auvergne Rhône Alpes"
     reference = [
-        "https://www.auvergnerhonealpes.fr/particuliers/mutuelleetudiants"
+        "https://www.auvergnerhonealpes.fr/particuliers/mamutuelleregion"
         ]
 
     def formula(famille, period):

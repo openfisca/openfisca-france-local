@@ -1,0 +1,9 @@
+age:
+  description: Eligibilité d'âge pour la mutuelle étudiante en région Auvergne-Rhône-Alpes.
+  reference: https://www.auvergnerhonealpes.fr/particuliers/mutuelleetudiants
+  minimum:
+    values:
+      2024-01-01: 18
+  maximum:
+    values:
+      2024-01-01: 30
