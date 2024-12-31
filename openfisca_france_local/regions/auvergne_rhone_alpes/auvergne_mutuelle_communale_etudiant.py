@@ -11,7 +11,7 @@ class auvergne_mutuelle_communale_etudiant(Variable):
 
     def formula(famille, period, parameters):
         params = parameters(period).regions.auvergne_rhone_alpes.auvergne_mutuelle_communale_etudiant
-        auvergne_mutuelle_communale = famille('auvergne_mutuelle_communale', period)
+        auvergne_mutuelle_communale = famille('auvergne_mutuelle_communale_base', period)
         eligibilite_etudiant = (
                 famille.demandeur('activite', period) == TypesActivite.etudiant)
 
