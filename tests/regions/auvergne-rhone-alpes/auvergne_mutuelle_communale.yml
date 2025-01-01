@@ -1,0 +1,12 @@
+- name: "Éligibilité à la mutuelle communale de la région Auvergne-Rhône-Alpes"
+  period: 2024-10
+  input:
+    depcom: ["69400", "69400","34172", "34172", "68400", "68400"]
+    css_participation_forfaitaire_montant: [0, 0, 0, 20, 25, 30]
+    cmu_c: [False, False, True, False, False, False]
+    activite: [etudiant, chomeur, chomeur, chomeur, chomeur, chomeur]
+    age: [18, 32, 20, 18, 24, 28]
+  output:
+    auvergne_mutuelle_communale: [False, True, False, False, False, False]
+    auvergne_mutuelle_communale_etudiant: [True, False, False, False, False, False]
+

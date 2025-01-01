@@ -1,4 +1,11 @@
 # Changelog
+## [6.17.2] - 2024-11-14
+
+_Pour les changements détaillés et les discussions associées, référencez la pull request [#220](https://github.com/openfisca/openfisca-france-local/pull/223)_
+
+### Added
+
+- Ajoute la mutuelle communale de la région Auvergne-Rhône-Alpes `auvergne_mutuelle_communale` et une spécifique pour les étudiants `auvergne_mutuelle_communale_etudiant`
 
 ## [6.17.1] - 2024-11-14
 
