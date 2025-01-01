@@ -6,7 +6,7 @@ class auvergne_mutuelle_communale_base(Variable):
     value_type = bool
     entity = Famille
     definition_period = MONTH
-    label = "Mutuelle communale de la région Auvergne Rhône Alpes"
+    label = "Mutuelle communale de la région Auvergne Rhône Alpes - éligibilité de base"
     reference = [
         "https://www.auvergnerhonealpes.fr/particuliers/mamutuelleregion"
         ]
@@ -24,7 +24,7 @@ class auvergne_mutuelle_communale(Variable):
     value_type = bool
     entity = Famille
     definition_period = MONTH
-    label = "Mutuelle communale de la région Auvergne Rhône Alpes"
+    label = "Mutuelle communale de la région Auvergne Rhône Alpes (hors étudiants)"
     reference = [
         "https://www.auvergnerhonealpes.fr/particuliers/mamutuelleregion"
         ]

@@ -4,7 +4,7 @@ class auvergne_mutuelle_communale_etudiant(Variable):
     value_type = bool
     entity = Famille
     definition_period = MONTH
-    label = "Mutuelle communale de la région Auvergne Rhône Alpes"
+    label = "Mutuelle communale de la région Auvergne Rhône Alpes pour les étudiants"
     reference = [
         "https://www.auvergnerhonealpes.fr/particuliers/mutuelleetudiants"
         ]
