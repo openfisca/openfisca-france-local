@@ -1,4 +1,4 @@
-- name: "Égibilité à la mutuelle communale de Montpellier"
+- name: "Éligibilité à la mutuelle communale de Montpellier"
   period: 2024-10
   input:
     depcom: ["34172","34172", "34172", "68400", "68400"]

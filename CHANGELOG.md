@@ -1,5 +1,4 @@
 # Changelog
-
 ## [6.17.3] - 2024-12-27
 
 _Pour les changements détaillés et les discussions associées, référencez la pull request [#221](https://github.com/openfisca/openfisca-france-local/pull/221)_
@@ -7,6 +6,14 @@ _Pour les changements détaillés et les discussions associées, référencez la
 ### Changed
 
 - Ajout d'autres codes postaux pour le dispositif de mutuelle communale de la métropole de Montpellier : `eligibilite_metropole_mutuelle`
+
+## [6.17.2] - 2024-12-30
+
+_Pour les changements détaillés et les discussions associées, référencez la pull request [#220](https://github.com/openfisca/openfisca-france-local/pull/223)_
+
+### Added
+
+- Ajoute la mutuelle communale de la région Auvergne-Rhône-Alpes `auvergne_mutuelle_communale` et une spécifique pour les étudiants `auvergne_mutuelle_communale_etudiant`
 
 ## [6.17.1] - 2024-11-14
 
