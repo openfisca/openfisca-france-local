@@ -1,4 +1,12 @@
 # Changelog
+## [6.17.4] - 2025-01-07
+
+_Pour les changements détaillés et les discussions associées, référencez la pull request [#221](https://github.com/openfisca/openfisca-france-local/pull/221)_
+
+### Changed
+
+- Suppression des autres communes du dispositif de mutuelle communale de la ville de Montpellier car il y a trop de différences dans l'approche des autres communes : `eligibilite_metropole_mutuelle`
+
 ## [6.17.3] - 2024-12-27
 
 _Pour les changements détaillés et les discussions associées, référencez la pull request [#221](https://github.com/openfisca/openfisca-france-local/pull/221)_
