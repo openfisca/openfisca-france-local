@@ -1,4 +1,13 @@
 # Changelog
+
+## [6.17.6] - 2025-04-24
+
+_Pour les changements détaillés et les discussions associées, référencez la pull request [#225](https://github.com/openfisca/openfisca-france-local/pull/225)_
+
+### Changed
+
+- Mise à jour maximale de la version d'OpenFisca-France.
+
 ## [6.17.5] - 2025-04-24
 
 _Pour les changements détaillés et les discussions associées, référencez la pull request [#226](https://github.com/openfisca/openfisca-france-local/pull/226)_
@@ -9,7 +18,7 @@ _Pour les changements détaillés et les discussions associées, référencez la
 
 ## [6.17.4] - 2025-01-07
 
-_Pour les changements détaillés et les discussions associées, référencez la pull request [#221](https://github.com/openfisca/openfisca-france-local/pull/221)_
+_Pour les changements détaillés et les discussions associées, référencez la pull request [#223](https://github.com/openfisca/openfisca-france-local/pull/223)_
 
 ### Changed
 
