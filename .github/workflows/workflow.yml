@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     strategy:
       matrix:
         openfisca-dependencies: [minimal, maximal]
@@ -44,7 +44,7 @@ jobs:
           path: dist
           key: release-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-${{ matrix.openfisca-dependencies }}
   test-python:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     strategy:
       fail-fast: true
       matrix:
@@ -69,7 +69,7 @@ jobs:
         if: matrix.openfisca-dependencies != 'minimal'
 
   test-yaml:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     strategy:
       matrix:
         openfisca-dependencies: [minimal, maximal]
@@ -92,7 +92,7 @@ jobs:
           openfisca test tests --country-package openfisca_france --extensions openfisca_france_local
 
   check-version-and-changelog:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     needs: [ test-yaml ] # Last job to run
     steps:
       - uses: actions/checkout@v3
@@ -109,7 +109,7 @@ jobs:
   # We build a separate job to substitute the halt option.
   # The `deploy` job is dependent on the output of the `check-for-functional-changes` job.
   check-for-functional-changes:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     if: github.ref == 'refs/heads/master' # Only triggered for the `master` branch
     needs: [ check-version-and-changelog ]
     outputs:
@@ -126,7 +126,7 @@ jobs:
         run: if "${GITHUB_WORKSPACE}/.github/has-functional-changes.sh" ; then echo "::set-output name=status::success" ; fi
 
   deploy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     strategy:
       matrix:
         openfisca-dependencies: [maximal]
