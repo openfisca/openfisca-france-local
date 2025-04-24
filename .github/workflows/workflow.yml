@@ -56,7 +56,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.9.9
+          python-version: 3.9.12
       - name: Cache build
         id: restore-build
         uses: actions/cache@v3
@@ -80,7 +80,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.9.9
+          python-version: 3.9.12
       - name: Cache build
         id: restore-build
         uses: actions/cache@v3
@@ -101,7 +101,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.9.9
+          python-version: 3.9.12
       - name: Check version number has been properly updated
         run: "${GITHUB_WORKSPACE}/.github/is-version-number-acceptable.sh"
 
@@ -121,7 +121,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.9.9
+          python-version: 3.9.12
       - id: stop-early
         run: if "${GITHUB_WORKSPACE}/.github/has-functional-changes.sh" ; then echo "::set-output name=status::success" ; fi
 
@@ -142,7 +142,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.9.9
+          python-version: 3.9.12
       - name: Cache build
         id: restore-build
         uses: actions/cache@v3
