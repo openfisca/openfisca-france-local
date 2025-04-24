@@ -1,4 +1,12 @@
 # Changelog
+## [6.17.5] - 2025-04-24
+
+_Pour les changements détaillés et les discussions associées, référencez la pull request [#226](https://github.com/openfisca/openfisca-france-local/pull/226)_
+
+### Changed
+
+- Mise à jour de la version d'Ubuntu de 20.04 à 24.04 pour la CI/CD.
+
 ## [6.17.4] - 2025-01-07
 
 _Pour les changements détaillés et les discussions associées, référencez la pull request [#221](https://github.com/openfisca/openfisca-france-local/pull/221)_
