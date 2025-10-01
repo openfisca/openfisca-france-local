@@ -34,7 +34,7 @@ setup(
             'nose',
             ],
         'excel-reader': [
-            'openpyxl == 3.1.2',
+            'openpyxl == 3.1.5',
             ]
         },
     scripts=['openfisca_france_local/scripts/openfisca_local_test']
