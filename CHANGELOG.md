@@ -1,5 +1,11 @@
 # Changelog
 
+## [6.17.10] - 2026-01-21
+
+### Changed
+
+- Extension compatible avec OpenFisca-Core jusqu'à la version 45.x (mise à jour de la borne maximale dans `setup.py`).
+
 ## [6.17.9] - 2026-01-08
 
 ### Changed
