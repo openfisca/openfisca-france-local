@@ -1,5 +1,11 @@
 # Changelog
 
+## [6.17.11] - 2026-01-21
+
+### Changed
+
+- Met à jour la dépendance `pandas` pour supporter les versions jusqu'à `< 3.0`.
+
 ## [6.17.10] - 2026-01-21
 
 ### Changed
