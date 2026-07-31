@@ -1,5 +1,11 @@
 # Changelog
 
+## [6.17.11] - 2026-07-31
+
+### Changed
+
+- Extension compatible avec OpenFisca-France jusqu'à la version 176.0.7 (mise à jour de la borne maximale dans `setup.py`).
+
 ## [6.17.10] - 2026-01-21
 
 ### Changed
