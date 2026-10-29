@@ -79,11 +79,11 @@ class rennes_metropole_transport_base_ressource(Variable):
         aide_logement = individu.famille('aide_logement', last_year, options = [ADD]) / 12
         rsa = round_(individu.famille('rsa', last_year, options = [ADD]) / 12)
         touche_que_aah = ressources_familiales - aide_logement - (individu.famille.sum(individu('aah', last_year, options = [ADD])) / 12) - rsa
-        forfait_aah = where(touche_que_aah, '0', '1')
+        forfait_aah = not_(touche_que_aah)
         ressources_familiales = where(forfait_aah, ressources_familiales - aide_logement + forfait_logement, ressources_familiales)
 
         touche_que_aspa = ressources_familiales - aide_logement - (individu.famille('aspa', last_year, options = [ADD]) / 12) - rsa
-        forfait_aspa = where(touche_que_aspa, '0', '1')
+        forfait_aspa = not_(touche_que_aspa)
         ressources_familiales = where(forfait_aspa, ressources_familiales - aide_logement + forfait_logement, ressources_familiales)
 
         return ressources_familiales
