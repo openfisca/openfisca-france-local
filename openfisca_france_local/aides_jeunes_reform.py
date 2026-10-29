@@ -8,7 +8,6 @@ import yaml
 import operator
 
 from pathlib import Path
-from numpy.core.defchararray import startswith
 import numpy as np
 
 from openfisca_france.model.base import (
@@ -62,7 +61,7 @@ def is_department_eligible(individu: Population, period: Period, parameters: Par
     eligible_departments = parameters.departements
 
     eligibilities = np.array([
-        startswith(depcom, code.encode('UTF-8'))
+        np.char.startswith(depcom, code.encode('UTF-8'))
         for code in eligible_departments
         ])
 
