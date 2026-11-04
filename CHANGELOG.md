@@ -1,5 +1,20 @@
 # Changelog
 
+## [6.18.0] - 2026-10-29
+
+### Changed
+
+- Extension compatible avec OpenFisca-Core jusqu'à la version 46.x (mise à jour de la borne maximale dans `setup.py`).
+- Passage à pandas 2 (`pandas >= 2.2.2, < 3.0`), nécessaire pour Python 3.12+ et numpy 2 (2.2.2 est la [première version compatible numpy 2](https://pandas.pydata.org/docs/whatsnew/v2.2.2.html)).
+- Python 3.11 minimum (`python_requires`) : abandon de Python 3.9 et 3.10, en fin de vie. La CI teste désormais Python 3.11 et 3.13.
+- CI : mise à jour des GitHub Actions (`checkout@v7`, `setup-python@v7`, `cache@v6`) et remplacement de `::set-output`, déprécié, par `$GITHUB_OUTPUT`.
+- Mise à jour d'openpyxl en 3.1.5 (extra `excel-reader`).
+- Réforme aides-jeunes : remplacement de `numpy.core.defchararray`, déprécié en numpy 2, par `np.char`.
+
+### Fixed
+
+- Rennes Métropole, tarification solidaire des transports : correction d'un taux de réduction erroné avec numpy 2. Par exemple, un couple de retraités à l'ASPA obtenait 50 % de réduction au lieu de 85 %. Aucun changement avec numpy 1.
+
 ## [6.17.11] - 2026-07-31
 
 ### Changed

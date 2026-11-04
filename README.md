@@ -12,7 +12,7 @@ Pour plus d'information sur les fonctionnalités et la manière d'utiliser OpenF
 
 ## Installation
 
-Ce paquet requiert [Python 3.9 ou supérieur](https://www.python.org/downloads/) et [pip](https://pip.pypa.io/en/stable/installation/).
+Ce paquet requiert [Python 3.11 ou supérieur](https://www.python.org/downloads/) et [pip](https://pip.pypa.io/en/stable/installation/).
 
 Afin d'installer l'extension `openfisca-france-local`, lancez une fenêtre de terminal et suivez les instructions suivantes pour en récupérer le code source :
 
