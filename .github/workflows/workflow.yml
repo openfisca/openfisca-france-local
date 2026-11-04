@@ -21,6 +21,9 @@ jobs:
         exclude:  # Les versions minimales (numpy 1.26) ne fournissent pas de wheels pour Python 3.13
           - openfisca-dependencies: minimal
             python-version: *max_python_version
+        include:  # Les jobs Python minimal gardent les noms de checks requis par la protection de branche
+          - python-version: *min_python_version
+            required-check: true
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -76,6 +79,7 @@ jobs:
         if: matrix.openfisca-dependencies != 'minimal'
 
   test-yaml:
+    name: test-yaml (${{ matrix.openfisca-dependencies }}${{ !matrix.required-check && format(', {0}', matrix.python-version) || '' }})
     runs-on: ubuntu-24.04
     strategy:
       matrix: *python-matrix
