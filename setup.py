@@ -3,7 +3,7 @@ from setuptools import setup, find_namespace_packages
 
 setup(
     name='OpenFisca-France-Local',
-    version='6.18.0',
+    version='6.18.1',
     author='OpenFisca Team',
     author_email='contact@openfisca.fr',
     classifiers=[
@@ -28,7 +28,7 @@ setup(
     install_requires=[
         'OpenFisca-Core >= 43, < 47',
         'OpenFisca-France >= 169.0.0, < 178.0.0',
-        'pandas >= 2.2.2, < 4.0'  # 2.2.2 : première version compatible numpy 2, https://pandas.pydata.org/docs/whatsnew/v2.2.2.html
+        'pandas >= 2.2.2, < 3.0'  # 2.2.2 : première version compatible numpy 2, https://pandas.pydata.org/docs/whatsnew/v2.2.2.html
         ],
     extras_require={
         'test': [
